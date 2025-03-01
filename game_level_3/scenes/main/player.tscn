@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=4 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
@@ -7,15 +7,16 @@
 atlas = ExtResource("2_arape")
 region = Rect2(0, 0, 120, 120)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_od0o8"]
-size = Vector2(35, 35)
-
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 0
 script = ExtResource("1_wlkgh")
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.20371e-35, 11)
 scale = Vector2(0.35, 0.35)
 texture = SubResource("AtlasTexture_4oo0e")
+offset = Vector2(1.08991e-06, -31.4286)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_od0o8")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-21, 10.5, 0, 0, 21, 10.5, 0, 21)
