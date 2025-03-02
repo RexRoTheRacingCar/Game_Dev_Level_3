@@ -3,20 +3,28 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4oo0e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
-region = Rect2(0, 0, 120, 120)
+region = Rect2(120, 0, 120, 120)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer")]
 y_sort_enabled = true
 collision_layer = 0
 script = ExtResource("1_wlkgh")
+p_dash_timer = NodePath("DashTimer")
+P_ACCEL = 6500
+P_FRICTION = 25000
+p_dash_delay = 0.4
+
+[node name="DashTimer" type="Timer" parent="."]
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.20371e-35, 11)
 scale = Vector2(0.35, 0.35)
-texture = SubResource("AtlasTexture_4oo0e")
+texture = SubResource("AtlasTexture_rokkj")
 offset = Vector2(1.08991e-06, -31.4286)
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-21, 10.5, 0, 0, 21, 10.5, 0, 21)
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
