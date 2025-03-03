@@ -27,6 +27,7 @@ func _ready():
 	velocity = Vector2.ZERO
 
 
+#---------------------------------------------------------------------------------------------------------------------------
 #THE MAIN PHYSICS PROCESS
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
@@ -43,8 +44,8 @@ func _physics_process(delta):
 	var _error = move_and_slide()
 
 
-#Player Movement Function
 #---------------------------------------------------------------------------------------------------------------------------
+#Player Movement Function
 func player_movement(p_input, delta):
 	#If moving
 	if p_input: 
@@ -57,8 +58,8 @@ func player_movement(p_input, delta):
 	
 
 
-#Player Dash Function
 #---------------------------------------------------------------------------------------------------------------------------
+#Player Dash Function
 func player_dash(p_input):
 	if p_dashing == false and p_input:
 		p_dashing = true
@@ -68,10 +69,9 @@ func player_dash(p_input):
 		p_dash_timer.start(p_dash_delay)
 
 
-#------------------------------SIGNAL FUNCTIONS------------------------------
 
-#Player Dash Timer
 #---------------------------------------------------------------------------------------------------------------------------
+#Player dash timer signal
 func _on_dash_timer_timeout():
 	if p_dashing == true:
 		p_dashing = false
