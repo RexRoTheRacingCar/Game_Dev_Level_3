@@ -11,12 +11,13 @@ signal zero_health
 var health : float : set = _set_health
 
 
-
+#---------------------------------------------------------------------------------------------------------------------------
 func ready():
 	health_bar.max_value = health
 	health_bar.value = health
 
 
+#---------------------------------------------------------------------------------------------------------------------------
 #Health setter function
 func _set_health(new_value : float) -> void:
 	health = new_value

@@ -12,7 +12,7 @@ class_name Player
 @export var p_speed : float = 425
 @export var P_ACCEL : int = 3000
 @export var P_FRICTION : int = 20000
-var p_vel_prep : Vector2
+var p_vel_prep : Vector2 
 var p_dashing : bool = false
 
 #Misc variables
@@ -28,7 +28,7 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#THE MAIN PHYSICS PROCESS
+#THE PHYSICS PROCESS
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	#Player movement
@@ -39,9 +39,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("dash"):
 		player_dash(p_input)
 	
-	#Apply motion
-	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2)
-	var _error = move_and_slide()
+	
+	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
+	var _error = move_and_slide() #Apply velocity
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -54,8 +54,6 @@ func player_movement(p_input, delta):
 	#If not moving
 	else: 
 		p_vel_prep = p_vel_prep.move_toward(Vector2(0,0), delta * P_FRICTION)
-		
-	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +65,6 @@ func player_dash(p_input):
 		p_vel_prep = p_input * 2200
 		
 		p_dash_timer.start(p_dash_delay)
-
 
 
 #---------------------------------------------------------------------------------------------------------------------------

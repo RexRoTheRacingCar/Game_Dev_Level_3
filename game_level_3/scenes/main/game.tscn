@@ -22,7 +22,6 @@ tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
 position = Vector2(60, 22)
-motion_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-50.2267, 10.6893)
