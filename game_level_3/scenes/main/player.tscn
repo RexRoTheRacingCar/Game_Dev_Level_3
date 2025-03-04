@@ -1,11 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=8 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
+[ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
+[ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
 region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtjm4"]
+bg_color = Color(1, 0, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukb0n"]
+radius = 19.0263
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer")]
 y_sort_enabled = true
@@ -26,5 +36,29 @@ offset = Vector2(1.08991e-06, -31.4286)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_hpa7o")]
+health_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -34.0
+offset_right = 31.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_jtjm4")
+show_percentage = false
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+z_index = 1
+shape = SubResource("CircleShape2D_ukb0n")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

@@ -6,6 +6,8 @@ class_name Player
 #Node variables
 @export_group("Nodes")
 @export var p_dash_timer : Timer
+@export var p_health_component : HealthComponent
+@export var p_hitbox_component : HitboxComponent
 
 #Movement variables
 @export_group("Customisable")

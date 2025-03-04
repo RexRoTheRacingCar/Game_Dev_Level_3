@@ -12,7 +12,6 @@ signal hitbox_entered(atk_dmg : float, atk_kckbck : float, atk_stun : float)
 var is_hit : bool = false
 
 #Hitbox variables
-@export var hitbox_shape : Node2D
 var detect_arr : Array = []
 
 
@@ -23,20 +22,22 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#When body enters hit area
-func _on_body_entered(body: HurtboxComponent):
-	detect_arr.append(body)
-	
-	if is_hit == false:
-		_hit_signal()
-		is_hit = true
+#When hurtbox area enters hit area
+func _on_area_entered(area: HurtboxComponent):
+	if area != self:
+		detect_arr.append(area)
 		
-		hit_timer.start(hit_delay)
+		if is_hit == false:
+			_hit_signal()
+			is_hit = true
+			
+			hit_timer.start(hit_delay)
 
 
-#When body exits hit area
-func _on_body_exited(body: HurtboxComponent):
-	detect_arr.erase(body)
+#When area exits hit area
+func _on_area_exited(area: HurtboxComponent):
+	if area != self:
+		detect_arr.erase(area)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
