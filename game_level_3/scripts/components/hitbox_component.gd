@@ -4,7 +4,7 @@ class_name HitboxComponent
 
 
 #Signals
-signal hitbox_entered(atk_dmg : float, atk_kckbck : float, atk_stun : float)
+signal hitbox_entered(area: HurtboxComponent)
 
 #Timer variables
 @export var hit_timer : Timer
@@ -24,6 +24,7 @@ func _ready():
 #---------------------------------------------------------------------------------------------------------------------------
 #When hurtbox area enters hit area
 func _on_area_entered(area: HurtboxComponent):
+	print("hit")
 	if area != self:
 		detect_arr.append(area)
 		
@@ -47,6 +48,7 @@ func _on_hit_timer_timeout():
 	
 	if detect_arr.is_empty() == false:
 		_hit_signal()
+		hit_timer.start(hit_delay)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -15,16 +15,17 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukb0n"]
-radius = 19.0263
+radius = 16.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_hitbox_component", "p_health_component")]
 y_sort_enabled = true
 collision_layer = 0
 script = ExtResource("1_wlkgh")
 p_dash_timer = NodePath("DashTimer")
+p_hitbox_component = NodePath("HitboxComponent")
+p_health_component = NodePath("HealthComponent")
 P_ACCEL = 6500
 P_FRICTION = 25000
-p_dash_delay = 0.4
 
 [node name="DashTimer" type="Timer" parent="."]
 
@@ -56,9 +57,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jtjm4")
 show_percentage = false
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 z_index = 1
+position = Vector2(0, 11)
+scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_ukb0n")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

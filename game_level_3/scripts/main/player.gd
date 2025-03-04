@@ -6,8 +6,8 @@ class_name Player
 #Node variables
 @export_group("Nodes")
 @export var p_dash_timer : Timer
-@export var p_health_component : HealthComponent
 @export var p_hitbox_component : HitboxComponent
+@export var p_health_component : HealthComponent
 
 #Movement variables
 @export_group("Customisable")
@@ -18,7 +18,7 @@ var p_vel_prep : Vector2
 var p_dashing : bool = false
 
 #Misc variables
-@export var p_dash_delay : float = 0.9
+@export var p_dash_delay : float = 0.4
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -27,6 +27,10 @@ func _ready():
 	p_dashing = false
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
+	
+	#Signal connecting
+	p_hitbox_component.hitbox_entered.connect(player_hit_signalled)
+	p_health_component.zero_health.connect(player_no_health)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -67,6 +71,19 @@ func player_dash(p_input):
 		p_vel_prep = p_input * 2200
 		
 		p_dash_timer.start(p_dash_delay)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Player damage function
+func player_hit_signalled(hurtbox: HurtboxComponent):
+	p_health_component.health -= hurtbox.hurt_dmg
+	p_vel_prep *= hurtbox.hurt_kckbck
+
+
+#Player has 0 HP
+func player_no_health():
+	var a = 0
+	var b = 1 / a
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=5 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/test_tileset.tres" id="2_brnf4"]
+[ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3c8bn"]
+radius = 102.646
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -26,3 +30,13 @@ position = Vector2(60, 22)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-50.2267, 10.6893)
 position_smoothing_enabled = true
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("3_tmc20")]
+position = Vector2(-129, 97)
+collision_layer = 2
+collision_mask = 0
+hurt_dmg = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_3c8bn")

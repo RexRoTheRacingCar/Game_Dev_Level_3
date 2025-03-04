@@ -28,11 +28,11 @@ func _set_health(new_value : float) -> void:
 	#If health is above mex_health
 	if health > max_health:
 		health = max_health
+		health_bar.max_value = health
 	
 	#If there is a health bar
 	if health_bar:
 		health_bar.value = health
-		health_bar.max_value = health
 	
 	#If health is equal to or below 0
 	if health <= 0:
