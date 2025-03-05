@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://fxfnm3yb88aw"]
 
-[ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="1_eburb"]
+[ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="1_5u8u2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hjg1m"]
-texture = ExtResource("1_eburb")
+texture = ExtResource("1_5u8u2")
 texture_region_size = Vector2i(120, 60)
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
@@ -15,12 +15,10 @@ texture_region_size = Vector2i(120, 60)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, -30)
 1:0/0/y_sort_origin = 60
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 90, -60, 60, 0, 30, 0, 30, 60, 60)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, 60, 0, 90, 60, 60, 0, 30)
 1:2/size_in_atlas = Vector2i(1, 2)
 1:2/0 = 0
 1:2/0/texture_origin = Vector2i(0, -30)
-1:2/0/y_sort_origin = 60
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 90, -60, 60, 0, 30, 0, 30, 60, 60)
 
 [resource]
 tile_shape = 1

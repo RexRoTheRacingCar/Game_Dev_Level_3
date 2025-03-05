@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=9 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
+[ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/main/bullet.tscn" id="2_qg8hb"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
-region = Rect2(120, 0, 120, 120)
+region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtjm4"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -26,10 +27,12 @@ p_hitbox_component = NodePath("HitboxComponent")
 p_health_component = NodePath("HealthComponent")
 P_ACCEL = 6500
 P_FRICTION = 25000
+p_bullet_scene = ExtResource("2_qg8hb")
 
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.13, 0.13, 1)
 position = Vector2(-1.20371e-35, 11)
 scale = Vector2(0.35, 0.35)
 texture = SubResource("AtlasTexture_rokkj")

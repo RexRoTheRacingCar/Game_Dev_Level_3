@@ -8,8 +8,8 @@ signal zero_health
 
 #Variables
 @export var health_bar : ProgressBar
-@export var max_health : float = 100
-var health : float : set = _set_health
+@export var max_health : int = 100
+var health : int : set = _set_health
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Health setter function
-func _set_health(new_value : float) -> void:
+func _set_health(new_value : int) -> void:
 	health = new_value
 	
 	#If health is above mex_health

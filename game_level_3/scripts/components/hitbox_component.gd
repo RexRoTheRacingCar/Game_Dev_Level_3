@@ -24,15 +24,11 @@ func _ready():
 #---------------------------------------------------------------------------------------------------------------------------
 #When hurtbox area enters hit area
 func _on_area_entered(area: HurtboxComponent):
-	print("hit")
 	if area != self:
 		detect_arr.append(area)
 		
 		if is_hit == false:
 			_hit_signal()
-			is_hit = true
-			
-			hit_timer.start(hit_delay)
 
 
 #When area exits hit area
@@ -48,7 +44,6 @@ func _on_hit_timer_timeout():
 	
 	if detect_arr.is_empty() == false:
 		_hit_signal()
-		hit_timer.start(hit_delay)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 
+#p is short for "Player"
 #Node variables
 @export_group("Nodes")
 @export var p_dash_timer : Timer
@@ -15,18 +16,26 @@ class_name Player
 @export var P_ACCEL : int = 3000
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
-var p_dashing : bool = false
+
+@export var p_dash_delay : float = 0.4
+
+@export var p_bullet_scene : PackedScene
 
 #Misc variables
-@export var p_dash_delay : float = 0.4
+var p_dashing : bool = false
+var p_attacking : bool = false
+var p_upgrades : Array = []
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Variable prep
+	p_attacking = false
 	p_dashing = false
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
+	
+	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 	
 	#Signal connecting
 	p_hitbox_component.hitbox_entered.connect(player_hit_signalled)
@@ -37,13 +46,18 @@ func _ready():
 #THE PHYSICS PROCESS
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
-	#Player movement
-	var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
-	player_movement(p_input, delta)
-	
-	#Player roll
-	if Input.is_action_just_pressed("dash"):
-		player_dash(p_input)
+	if p_attacking == false:
+		#Player movement
+		var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
+		player_movement(p_input, delta)
+		
+		#Player roll
+		if Input.is_action_just_pressed("dash"):
+			player_dash(p_input)
+		
+		#Player shoot
+		if Input.is_action_just_pressed("primary_attack"):
+			player_shoot()
 	
 	
 	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
@@ -67,17 +81,48 @@ func player_movement(p_input, delta):
 func player_dash(p_input):
 	if p_dashing == false and p_input:
 		p_dashing = true
-		
 		p_vel_prep = p_input * 2200
 		
 		p_dash_timer.start(p_dash_delay)
+		
+		$PlaceholderSprite2D.self_modulate = Color("e3e65a")
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Player Shoot Function
+func player_shoot():
+	#The bullet instance
+	var bullet_instance := p_bullet_scene.instantiate()
+	var mouse_dir := get_global_mouse_position() - global_position
+	
+	#Bullet spawned
+	get_parent().add_child(bullet_instance)
+	bullet_instance.global_position = global_position
+	bullet_instance.rotation = mouse_dir.angle()
+	
+	#Apply upgrades to bullet
+	for upgrades in p_upgrades:
+			upgrades.apply_upgrade(bullet_instance)
+	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function
 func player_hit_signalled(hurtbox: HurtboxComponent):
-	p_health_component.health -= hurtbox.hurt_dmg
-	p_vel_prep *= hurtbox.hurt_kckbck
+	if p_dashing == false:
+		#Variables changed
+		p_health_component.health -= hurtbox.hurt_damage
+		p_vel_prep *= -hurtbox.hurt_knockback
+		
+		p_hitbox_component.is_hit = true
+		p_hitbox_component.hit_timer.start(p_hitbox_component.hit_delay)
+		
+		$PlaceholderSprite2D.self_modulate = Color("ff2121")
+		await get_tree().create_timer(0.9, false).timeout
+		$PlaceholderSprite2D.self_modulate = Color("ffffff")
+		
+	else:
+		p_hitbox_component.hit_timer.start(0.1)
 
 
 #Player has 0 HP
@@ -91,3 +136,5 @@ func player_no_health():
 func _on_dash_timer_timeout():
 	if p_dashing == true:
 		p_dashing = false
+		
+		$PlaceholderSprite2D.self_modulate = Color("ffffff")
