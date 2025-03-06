@@ -93,7 +93,9 @@ func player_dash(p_input):
 func player_shoot():
 	#The bullet instance
 	var bullet_instance := p_bullet_scene.instantiate()
-	var mouse_dir := get_global_mouse_position() - global_position
+	var mouse_pos := get_global_mouse_position()
+	var mouse_dir := mouse_pos - global_position
+	mouse_dir.y *= 2
 	
 	#Bullet spawned
 	get_parent().add_child(bullet_instance)
