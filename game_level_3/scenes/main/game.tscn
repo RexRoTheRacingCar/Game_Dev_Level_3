@@ -54,3 +54,4 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 
 [node name="StatUpgrade" parent="." instance=ExtResource("1_t5vvw")]
 position = Vector2(-61, -154)
+needs_update = true
