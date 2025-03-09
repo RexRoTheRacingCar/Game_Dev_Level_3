@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=5 format=4 uid="uid://bhusb8ekekxkj"]
 
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_t5vvw"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
@@ -50,3 +51,6 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="HurtboxComponent"]
 position = Vector2(300, -90)
 polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
+
+[node name="StatUpgrade" parent="." instance=ExtResource("1_t5vvw")]
+position = Vector2(-61, -154)

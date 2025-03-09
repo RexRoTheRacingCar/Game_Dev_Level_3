@@ -6,9 +6,9 @@ class_name Bullet
 @export var hurtbox : HurtboxComponent
 @export var collision : CollisionShape2D
 
-@export var speed := 600
-@export var damage := 5.0
-@export var max_pierce := 1
+@export var speed : float = 600.0
+@export var damage : int = 5
+@export var max_pierce : int = 1
 
 var current_pierce_count := 0
 var fake_velocity := Vector2.ZERO

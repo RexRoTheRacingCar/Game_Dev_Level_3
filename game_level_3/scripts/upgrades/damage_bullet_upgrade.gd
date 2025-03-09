@@ -1,9 +1,9 @@
-extends Resource
-class_name BaseBulletUpgrade
+extends BaseBulletUpgrade
+class_name DamageBulletUpgrade
 
-@export var texture : Texture2D
+@export var damage_increase : int = 5
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet (KEEP BLANK)
-func apply_upgrade(_bullet: Bullet):
-	pass
+func apply_upgrade(bullet: Bullet):
+	bullet.damage += damage_increase
