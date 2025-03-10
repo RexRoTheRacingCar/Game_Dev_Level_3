@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://01j0ju22xu5y"]
+
+[ext_resource type="Script" path="res://scripts/entity/enemies/test_enemy.gd" id="1_n8ry8"]
+[ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="2_m3pgr"]
+[ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_kkxus"]
+[ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_faqak"]
+[ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="5_v15ek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvboc"]
+size = Vector2(38, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkib"]
+atlas = ExtResource("2_m3pgr")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qshim"]
+bg_color = Color(1, 0, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkm83"]
+size = Vector2(40, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru5nu"]
+size = Vector2(44, 14)
+
+[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component")]
+y_sort_enabled = true
+collision_mask = 0
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_n8ry8")
+hitbox_component = NodePath("HitboxComponent")
+hurtbox_component = NodePath("HurtboxComponent")
+health_component = NodePath("HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_hvboc")
+debug_color = Color(0.582521, 0.550979, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_kgkib")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_kkxus")]
+health_bar = NodePath("ProgressBar")
+max_health = 25
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_qshim")
+show_percentage = false
+
+[node name="HitboxComponent" parent="." instance=ExtResource("4_faqak")]
+collision_layer = 0
+collision_mask = 8
+hit_delay = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_jkm83")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("5_v15ek")]
+collision_layer = 2
+collision_mask = 0
+hurt_damage = 5
+hurt_knockback = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_ru5nu")

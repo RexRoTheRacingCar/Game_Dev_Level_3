@@ -21,7 +21,7 @@ func _ready():
 	collision.disabled = false
 	
 	if hurtbox:
-		hurtbox.hit_enemy.connect(on_enemy_hit)
+		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -46,6 +46,11 @@ func on_enemy_hit():
 	
 	if current_pierce_count >= max_pierce:
 		delete_bullet()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func implement_stats():
+	hurtbox.hurt_damage = damage
 
 
 #---------------------------------------------------------------------------------------------------------------------------

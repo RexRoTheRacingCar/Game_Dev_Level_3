@@ -105,6 +105,8 @@ func player_shoot():
 	#Apply upgrades to bullet
 	for upgrades in p_upgrades:
 			upgrades.apply_upgrade(bullet_instance)
+	
+	bullet_instance.implement_stats()
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -9,10 +9,11 @@ radius = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4h8c"]
 radius = 12.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("collision")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "collision")]
 y_sort_enabled = true
 collision_layer = 0
 script = ExtResource("1_c138i")
+hurtbox = NodePath("HurtboxComponent")
 collision = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,8 +25,8 @@ color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(12, 0, 8.75, 8.75, 0, 12, -8.75, 8.75, -12, 0, -8.75, -8.75, 0, -12, 8.75, -8.75)
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
 script = ExtResource("2_va2l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_r4h8c")
-disabled = true

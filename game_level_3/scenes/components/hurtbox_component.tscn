@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="1_pcch3"]
 
 [node name="HurtboxComponent" type="Area2D"]
-monitoring = false
 script = ExtResource("1_pcch3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
