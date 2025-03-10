@@ -17,6 +17,8 @@ var has_collided : bool = false
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	current_pierce_count = 0
+	
 	has_collided = false
 	collision.disabled = false
 	
@@ -41,11 +43,11 @@ func _physics_process(delta: float) -> void:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func on_enemy_hit():
-	current_pierce_count += 1
-	
+func on_enemy_hit() -> void:
 	if current_pierce_count >= max_pierce:
 		delete_bullet()
+		
+	current_pierce_count += 1
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -60,7 +62,7 @@ func delete_bullet():
 	speed *= -1
 	
 	var delete_tween = create_tween()
-	delete_tween.tween_property(self, "speed", 0, 0.35).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN).from_current()
+	delete_tween.tween_property(self, "speed", 0, 0.35).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT).from_current()
 	
 	await get_tree().create_timer(0.35, false).timeout
 	

@@ -1,3 +1,4 @@
+############################## Main Bullet Base ##############################
 extends Resource
 class_name BaseBulletUpgrade
 

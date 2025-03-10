@@ -14,7 +14,10 @@ extends Area2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	randomize()
 	sprite.texture = upgrade.texture
+	
+	animation_player.speed_scale = randf_range(0.9, 1.1)
 	animation_player.play("idle")
 
 

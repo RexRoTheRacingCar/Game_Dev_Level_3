@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=8 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_t5vvw"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="5_qtw52"]
+[ext_resource type="Resource" uid="uid://djfc83d0m5aue" path="res://misc/resources/upgrades/pierce_bullet_upgrade.tres" id="5_s2l54"]
+[ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/speed_bullet_upgrade.tres" id="6_jvxss"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -21,6 +23,9 @@ tile_set = ExtResource("2_brnf4")
 [node name="TestTilemap2" type="TileMapLayer" parent="TilemapFolder"]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAADAAMAAgABAAAAAAADAPv/AgABAAAAAAD7/wMAAgABAAAAAAD4/wYAAgABAAAAAAD5/wYAAgABAAAAAAD6/wYAAgABAAAAAAD7/wYAAgABAAAAAAD8/wYAAgABAAAAAAD9/wYAAgABAAAAAAD+/wYAAgABAAAAAAD//wYAAgABAAAAAAAAAAYAAgABAAAAAAABAAYAAgABAAAAAAACAAYAAgABAAAAAAADAAYAAgABAAAAAAAEAAYAAgABAAAAAAAFAAYAAgABAAAAAAAGAAYAAgABAAAAAAAGAAUAAgABAAAAAAAGAAQAAgABAAAAAAAGAAMAAgABAAAAAAAGAAIAAgABAAAAAAAGAAEAAgABAAAAAAAGAAAAAgABAAAAAAAGAP//AgABAAAAAAAGAP7/AgABAAAAAAAGAP3/AgABAAAAAAAGAPz/AgABAAAAAAAGAPv/AgABAAAAAAAGAPr/AgABAAAAAAAGAPn/AgABAAAAAAAGAPj/AgABAAAAAAAFAPj/AgABAAAAAAAEAPj/AgABAAAAAAADAPj/AgABAAAAAAACAPj/AgABAAAAAAABAPj/AgABAAAAAAAAAPj/AgABAAAAAAD///j/AgABAAAAAAD+//j/AgABAAAAAAD9//j/AgABAAAAAAD8//j/AgABAAAAAAD7//j/AgABAAAAAAD6//j/AgABAAAAAAD7//v/AgABAAAAAAD5//j/AgABAAAAAAD4//j/AgABAAAAAAD4//n/AgABAAAAAAD4//r/AgABAAAAAAD4//v/AgABAAAAAAD4//z/AgABAAAAAAD4//3/AgABAAAAAAD4//7/AgABAAAAAAD4////AgABAAAAAAD4/wAAAgABAAAAAAD4/wEAAgABAAAAAAD4/wIAAgABAAAAAAD4/wMAAgABAAAAAAD4/wQAAgABAAAAAAD4/wUAAgABAAAAAAA=")
+tile_set = ExtResource("2_brnf4")
+
+[node name="TestTilemap3" type="TileMapLayer" parent="TilemapFolder"]
 tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
@@ -53,8 +58,21 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 position = Vector2(300, -90)
 polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 
-[node name="StatUpgrade" parent="." instance=ExtResource("1_t5vvw")]
+[node name="TestStatFolder" type="Node2D" parent="."]
+
+[node name="StatUpgrade" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-61, -154)
+upgrade = ExtResource("5_s2l54")
+
+[node name="StatUpgrade2" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
+position = Vector2(-9, -203)
+
+[node name="StatUpgrade3" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
+position = Vector2(-86, -90)
+upgrade = ExtResource("6_jvxss")
 
 [node name="TestEnemy" parent="." instance=ExtResource("5_qtw52")]
 position = Vector2(180, -162)
+
+[node name="TestEnemy2" parent="." instance=ExtResource("5_qtw52")]
+position = Vector2(277, -205)

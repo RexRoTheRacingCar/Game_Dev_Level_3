@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PierceBulletUpgrade" load_steps=4 format=3 uid="uid://djfc83d0m5aue"]
+
+[ext_resource type="Script" path="res://scripts/upgrades/pierce_bullet_upgrade.gd" id="1_30l25"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_tj800"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3urhf"]
+atlas = ExtResource("2_tj800")
+region = Rect2(0, 0, 100, 100)
+
+[resource]
+script = ExtResource("1_30l25")
+pierce_increase = 1
+texture = SubResource("AtlasTexture_3urhf")

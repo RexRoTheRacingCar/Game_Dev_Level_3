@@ -9,13 +9,21 @@ extends CharacterBody2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	#Connect enemy to signals
 	hitbox_component.hitbox_entered.connect(hit_signalled)
+	health_component.zero_health.connect(no_health)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#Test Enemy Hit
+#Enemy hit
 func hit_signalled(hurtbox: HurtboxComponent):
 	health_component.health -= hurtbox.hurt_damage
 	
 	hitbox_component.is_hit = true
 	hitbox_component.hit_timer.start(hitbox_component.hit_delay)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Enemy has 0 HP
+func no_health():
+	queue_free()

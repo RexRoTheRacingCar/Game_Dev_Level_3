@@ -1,10 +1,10 @@
-############################## Damage Bullet Base ##############################
+############################## Pierce Bullet Base ##############################
 extends BaseBulletUpgrade
-class_name DamageBulletUpgrade
+class_name PierceBulletUpgrade
 
-@export var damage_increase : int = 5
+@export var pierce_increase : int = 1
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
-	bullet.damage += damage_increase
+	bullet.max_pierce += pierce_increase

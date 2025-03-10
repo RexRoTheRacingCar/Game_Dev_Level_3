@@ -1,10 +1,10 @@
-############################## Damage Bullet Base ##############################
+############################## Speed Bullet Base ##############################
 extends BaseBulletUpgrade
-class_name DamageBulletUpgrade
+class_name SpeedBulletUpgrade
 
-@export var damage_increase : int = 5
+@export var speed_increase : int = 50
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
-	bullet.damage += damage_increase
+	bullet.speed += speed_increase
