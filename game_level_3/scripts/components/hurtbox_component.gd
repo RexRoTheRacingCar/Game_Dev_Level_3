@@ -3,7 +3,7 @@ extends Area2D
 class_name HurtboxComponent
 
 
-signal hurtbox_hit
+signal hurtbox_hit(body : CollisionObject2D)
 
 #Variables
 @export var hurt_damage : int
@@ -12,5 +12,5 @@ signal hurtbox_hit
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _on_body_entered(_body: CollisionObject2D):
-	hurtbox_hit.emit()
+func _on_body_entered(body: CollisionObject2D):
+	hurtbox_hit.emit(body)

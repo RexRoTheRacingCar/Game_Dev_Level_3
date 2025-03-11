@@ -13,10 +13,12 @@ class_name Bullet
 var current_pierce_count := 0
 var fake_velocity := Vector2.ZERO
 var has_collided : bool = false
+var collide_array : Array = []
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	collide_array.clear()
 	current_pierce_count = 0
 	
 	has_collided = false
@@ -28,22 +30,26 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
+	
 	var dir = Vector2.RIGHT.rotated(rotation)
 	
 	fake_velocity = dir * speed
 	velocity = Vector2(fake_velocity.x, fake_velocity.y / 2) #Make velocity isometric
 	
 	if has_collided == false:
-		var if_collision := move_and_collide(velocity * delta)
-		
-		if if_collision:
-			delete_bullet()
+		move_and_collide(velocity * delta)
+
 	else:
 		move_and_slide()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func on_enemy_hit() -> void:
+func on_enemy_hit(body) -> void:
+	pass
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func actually_hit() -> void:
 	if current_pierce_count >= max_pierce:
 		delete_bullet()
 		
