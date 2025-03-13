@@ -2,7 +2,7 @@
 
 Layers
 Collision Layers
-1. 
+1. Walls
 2. Testing Hurtbox,
 3. Player
 4. Player Bullet

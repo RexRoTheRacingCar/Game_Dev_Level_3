@@ -9,15 +9,23 @@ radius = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4h8c"]
 radius = 12.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "collision")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node")]
 y_sort_enabled = true
 collision_layer = 0
 script = ExtResource("1_c138i")
 hurtbox = NodePath("HurtboxComponent")
-collision = NodePath("CollisionShape2D")
+death_timer_node = NodePath("DeleteTimer")
+collision_timer_node = NodePath("CollisionTimer")
+
+[node name="DeleteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5tywq")
+disabled = true
 
 [node name="Sprite" type="Polygon2D" parent="."]
 y_sort_enabled = true
@@ -30,3 +38,8 @@ script = ExtResource("2_va2l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_r4h8c")
+
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]
+[connection signal="timeout" from="CollisionTimer" to="." method="_on_collision_timer_timeout"]
+[connection signal="body_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_exited"]
