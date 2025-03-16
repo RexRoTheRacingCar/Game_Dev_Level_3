@@ -53,7 +53,6 @@ func on_enemy_hit(body) -> void:
 		_on_collision_timer_timeout()
 
 
-
 #---------------------------------------------------------------------------------------------------------------------------
 func enemy_un_hit(body) -> void:
 	collide_array.erase(body)

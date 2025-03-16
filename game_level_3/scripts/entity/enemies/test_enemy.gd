@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var hurtbox_component : HurtboxComponent
 @export var health_component : HealthComponent
 
-
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Connect enemy to signals
@@ -18,8 +17,6 @@ func _ready():
 #Enemy hit
 func hit_signalled(hurtbox: HurtboxComponent):
 	health_component.health -= hurtbox.hurt_damage
-	
-	hitbox_component.is_hit = true
 	hitbox_component.hit_timer.start(hitbox_component.hit_delay)
 
 

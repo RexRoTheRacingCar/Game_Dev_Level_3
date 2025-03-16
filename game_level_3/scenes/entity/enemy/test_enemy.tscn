@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="5_v15ek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvboc"]
-size = Vector2(40, 10)
+size = Vector2(36, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgkib"]
 atlas = ExtResource("2_m3pgr")
@@ -22,7 +22,7 @@ corner_radius_bottom_right = 8
 size = Vector2(38, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ru5nu"]
-size = Vector2(40, 10)
+size = Vector2(38, 8)
 
 [node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component")]
 y_sort_enabled = true
@@ -66,7 +66,8 @@ show_percentage = false
 [node name="HitboxComponent" parent="." instance=ExtResource("4_faqak")]
 collision_layer = 0
 collision_mask = 8
-hit_delay = 0.2
+hit_delay = 0.01
+single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 12)

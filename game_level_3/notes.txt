@@ -2,11 +2,11 @@
 
 Layers
 Collision Layers
-1. Walls
-2. Testing Hurtbox,
-3. Player
-4. Player Bullet
-5. 
+1. Walls, 
+2. Testing Hurtbox, 
+3. Player, 
+4. Player Bullet, 
+5. Walls to Stop Bullets,  
 6. 
 7. 
 8. 
@@ -16,9 +16,9 @@ Collision Layers
 Mask Layers
 1. Player,
 2. Player hitbox, 
-3. Stat Upgrades
-4. Enemy Hitbox
-5. 
+3. Stat Upgrades, 
+4. Enemy Hitbox, 
+5. Bullet Wall Detection, 
 6. 
 7. 
 8. 
