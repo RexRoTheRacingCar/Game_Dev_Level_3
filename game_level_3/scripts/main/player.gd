@@ -19,8 +19,11 @@ class_name Player
 var p_vel_prep : Vector2 
 
 @export var p_dash_delay : float = 0.4
-
 @export var p_reload_time : float = 0.4
+@export var p_bullet_amount : int = 3 : 
+	set(new_value):
+		p_bullet_amount = new_value
+		p_bullet_spread = (15 * p_bullet_amount) - 15 
 
 @export var p_bullet_scene : PackedScene
 
@@ -28,14 +31,16 @@ var p_vel_prep : Vector2
 var p_dashing : bool = false
 var p_attacking : bool = false
 var p_bullet_upgrades : Array = []
-var p_upgrades : Array = [] :
-	set(new_value):
-		p_upgrades.append(new_value)
-		
-		
-		
 var p_can_shoot : bool = true
+var p_bullet_spread : float = 0.0
 
+#Apply upgrades to player
+var p_upgrades : BaseUpgrade = null :
+	set(new_value):
+		p_upgrades = new_value
+		if p_upgrades != null:
+			p_upgrades.apply_player_upgrade(self)
+			p_upgrades = null
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -108,22 +113,25 @@ func player_shoot():
 	p_shoot_timer.start(p_reload_time)
 	
 	#The bullet instance
-	var bullet_instance := p_bullet_scene.instantiate()
-	var mouse_pos := get_global_mouse_position()
-	var mouse_dir := mouse_pos - global_position
-	mouse_dir.y *= 2
-	
-	#Bullet spawned
-	get_parent().add_child(bullet_instance)
-	bullet_instance.global_position = global_position
-	bullet_instance.rotation = mouse_dir.angle()
-	
-	#Apply upgrades to bullet
-	for upgrades in p_bullet_upgrades:
-			upgrades.apply_upgrade(bullet_instance)
-	
-	bullet_instance.implement_stats()
-
+	for bullet in range(0, p_bullet_amount):
+		var bullet_instance := p_bullet_scene.instantiate()
+		var mouse_pos := get_global_mouse_position()
+		var mouse_dir := mouse_pos - global_position
+		mouse_dir.y *= 2
+		
+		#Bullet spawned
+		get_parent().add_child(bullet_instance)
+		bullet_instance.global_position = global_position
+		bullet_instance.rotation = mouse_dir.angle()
+		var test = floor((bullet + 1) / 2)
+		bullet_instance.rotation += deg_to_rad(p_bullet_spread)
+		
+		
+		#Apply upgrades to bullet
+		for upgrades in p_bullet_upgrades:
+				upgrades.apply_upgrade(bullet_instance)
+		
+		bullet_instance.implement_stats()
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function

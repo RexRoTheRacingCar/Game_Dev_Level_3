@@ -38,7 +38,7 @@ func _on_body_entered(body):
 			if upgrade.upgrade_type == "p_bullet_upgrades":
 				body.p_bullet_upgrades.append(upgrade)
 			elif upgrade.upgrade_type == "p_upgrades":
-					body.p_upgrades.append(upgrade)
+					body.p_upgrades = upgrade
 			
 			animation_player.stop()
 			animation_player.play("collected")
