@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=10 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_t5vvw"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://djfc83d0m5aue" path="res://misc/resources/upgrades/pierce_bullet_upgrade.tres" id="5_s2l54"]
 [ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/bullet_amount_upgrade.tres" id="6_jvxss"]
 [ext_resource type="Resource" uid="uid://bp8nlcaxu4dpl" path="res://misc/resources/upgrades/firerate_player_upgrade.tres" id="7_1iayt"]
+[ext_resource type="Resource" uid="uid://dlj1lxbxweiie" path="res://misc/resources/upgrades/health_player_upgrade.tres" id="8_6blog"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -30,7 +31,7 @@ tile_set = ExtResource("2_brnf4")
 tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
-position = Vector2(60, 22)
+position = Vector2(205, -21)
 p_reload_time = 0.3
 p_bullet_amount = 1
 
@@ -80,6 +81,11 @@ needs_update = true
 [node name="StatUpgrade4" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(348, -3)
 upgrade = ExtResource("7_1iayt")
+needs_update = true
+
+[node name="StatUpgrade5" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
+position = Vector2(258, 63)
+upgrade = ExtResource("8_6blog")
 needs_update = true
 
 [node name="TestEnemy" parent="." instance=ExtResource("5_qtw52")]

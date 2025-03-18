@@ -179,6 +179,7 @@ _data = {
 }
 
 [node name="StatUpgrade" type="Area2D" node_paths=PackedStringArray("animation_player", "sprite")]
+y_sort_enabled = true
 scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 4
@@ -187,20 +188,22 @@ script = ExtResource("1_mep5s")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 upgrade = ExtResource("2_j77ai")
+needs_update = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_vur6x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(0, 50)
 texture = SubResource("AtlasTexture_eutvc")
-offset = Vector2(0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wg86a")
 }
-speed_scale = 0.996598
+speed_scale = 1.06534
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

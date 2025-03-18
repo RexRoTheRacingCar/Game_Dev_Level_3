@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BulletAmountBulletUpgrade" load_steps=4 format=3 uid="uid://c54bj7d6c0rvt"]
+[gd_resource type="Resource" script_class="BulletAmountUpgrade" load_steps=4 format=3 uid="uid://c54bj7d6c0rvt"]
 
 [ext_resource type="Script" path="res://scripts/upgrades/bullet_amount_upgrade.gd" id="1_pxfw0"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_7qfht"]

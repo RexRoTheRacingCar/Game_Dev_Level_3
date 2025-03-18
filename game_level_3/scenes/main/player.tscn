@@ -50,6 +50,7 @@ polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_hpa7o")]
 health_bar = NodePath("ProgressBar")
+max_health = 20
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 anchors_preset = 7
@@ -57,9 +58,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -31.0
+offset_left = -21.0
 offset_top = -34.0
-offset_right = 31.0
+offset_right = 21.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0

@@ -23,7 +23,8 @@ var p_vel_prep : Vector2
 @export var p_bullet_amount : int = 3 : 
 	set(new_value):
 		p_bullet_amount = new_value
-		p_bullet_spread = (15 * p_bullet_amount) - 15 
+		@warning_ignore("integer_division")
+		p_bullet_spread = ((15 * p_bullet_amount) - 15) / p_bullet_amount
 
 @export var p_bullet_scene : PackedScene
 
@@ -123,9 +124,13 @@ func player_shoot():
 		get_parent().add_child(bullet_instance)
 		bullet_instance.global_position = global_position
 		bullet_instance.rotation = mouse_dir.angle()
-		var test = floor((bullet + 1) / 2)
-		bullet_instance.rotation += deg_to_rad(p_bullet_spread)
 		
+		#Bullet rotation offset based on amount of bullets fired
+		@warning_ignore("integer_division")
+		var bullet_rotation_offset = bullet - (p_bullet_amount / 2)
+		if bullet_rotation_offset % 1: 
+			bullet_rotation_offset = -bullet_rotation_offset
+		bullet_instance.rotation += deg_to_rad(p_bullet_spread) * bullet_rotation_offset
 		
 		#Apply upgrades to bullet
 		for upgrades in p_bullet_upgrades:
