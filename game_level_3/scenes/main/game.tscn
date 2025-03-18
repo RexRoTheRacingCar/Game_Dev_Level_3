@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=9 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_t5vvw"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="5_qtw52"]
 [ext_resource type="Resource" uid="uid://djfc83d0m5aue" path="res://misc/resources/upgrades/pierce_bullet_upgrade.tres" id="5_s2l54"]
 [ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/speed_bullet_upgrade.tres" id="6_jvxss"]
+[ext_resource type="Resource" uid="uid://bp8nlcaxu4dpl" path="res://misc/resources/upgrades/firerate_player_upgrade.tres" id="7_1iayt"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -30,6 +31,7 @@ tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
 position = Vector2(60, 22)
+p_reload_time = 0.3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-50.2267, 10.6893)
@@ -63,16 +65,17 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="StatUpgrade" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-61, -154)
 upgrade = ExtResource("5_s2l54")
-needs_update = false
 
 [node name="StatUpgrade2" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-9, -203)
-needs_update = false
 
 [node name="StatUpgrade3" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-86, -90)
 upgrade = ExtResource("6_jvxss")
-needs_update = false
+
+[node name="StatUpgrade4" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
+position = Vector2(348, -3)
+upgrade = ExtResource("7_1iayt")
 
 [node name="TestEnemy" parent="." instance=ExtResource("5_qtw52")]
 position = Vector2(180, -162)

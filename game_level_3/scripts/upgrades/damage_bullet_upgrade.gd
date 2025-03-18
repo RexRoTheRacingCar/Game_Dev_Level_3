@@ -1,5 +1,5 @@
 ############################## Damage Bullet Base ##############################
-extends BaseBulletUpgrade
+extends BaseUpgrade
 class_name DamageBulletUpgrade
 
 @export var damage_increase : int = 5

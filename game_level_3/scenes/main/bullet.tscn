@@ -12,6 +12,7 @@ radius = 12.0
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node")]
 y_sort_enabled = true
 collision_layer = 0
+collision_mask = 16
 script = ExtResource("1_c138i")
 hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
@@ -25,7 +26,6 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5tywq")
-disabled = true
 
 [node name="Sprite" type="Polygon2D" parent="."]
 y_sort_enabled = true

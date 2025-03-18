@@ -11,3 +11,4 @@ region = Rect2(100, 0, 100, 100)
 script = ExtResource("1_vh0ky")
 damage_increase = 5
 texture = SubResource("AtlasTexture_eutvc")
+upgrade_type = "p_bullet_upgrades"

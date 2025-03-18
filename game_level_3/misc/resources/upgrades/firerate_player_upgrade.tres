@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FireratePlayerUpgrade" load_steps=4 format=3 uid="uid://bp8nlcaxu4dpl"]
+
+[ext_resource type="Script" path="res://scripts/upgrades/firerate_upgrade.gd" id="1_wgm3b"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_vww8a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0jne"]
+atlas = ExtResource("2_vww8a")
+region = Rect2(300, 0, 100, 100)
+
+[resource]
+script = ExtResource("1_wgm3b")
+reload_decrease = 2.0
+texture = SubResource("AtlasTexture_f0jne")
+upgrade_type = "p_upgrades"

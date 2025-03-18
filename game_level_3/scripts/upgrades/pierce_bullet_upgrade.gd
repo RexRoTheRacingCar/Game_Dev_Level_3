@@ -1,5 +1,5 @@
 ############################## Pierce Bullet Base ##############################
-extends BaseBulletUpgrade
+extends BaseUpgrade
 class_name PierceBulletUpgrade
 
 @export var pierce_increase : int = 1

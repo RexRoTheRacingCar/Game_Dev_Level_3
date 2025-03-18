@@ -187,7 +187,6 @@ script = ExtResource("1_mep5s")
 animation_player = NodePath("AnimationPlayer")
 sprite = NodePath("Sprite2D")
 upgrade = ExtResource("2_j77ai")
-needs_update = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20)
@@ -202,6 +201,6 @@ offset = Vector2(0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_wg86a")
 }
-speed_scale = 0.932641
+speed_scale = 0.996598
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

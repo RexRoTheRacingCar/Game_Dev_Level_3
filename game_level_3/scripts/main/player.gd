@@ -7,6 +7,7 @@ class_name Player
 #Node variables
 @export_group("Nodes")
 @export var p_dash_timer : Timer
+@export var p_shoot_timer : Timer
 @export var p_hitbox_component : HitboxComponent
 @export var p_health_component : HealthComponent
 
@@ -19,12 +20,22 @@ var p_vel_prep : Vector2
 
 @export var p_dash_delay : float = 0.4
 
+@export var p_reload_time : float = 0.4
+
 @export var p_bullet_scene : PackedScene
 
 #Misc variables
 var p_dashing : bool = false
 var p_attacking : bool = false
-var p_upgrades : Array = []
+var p_bullet_upgrades : Array = []
+var p_upgrades : Array = [] :
+	set(new_value):
+		p_upgrades.append(new_value)
+		
+		
+		
+var p_can_shoot : bool = true
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -32,6 +43,8 @@ func _ready():
 	#Variable prep
 	p_attacking = false
 	p_dashing = false
+	p_can_shoot = true
+	
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
 	
@@ -56,7 +69,7 @@ func _physics_process(delta):
 			player_dash(p_input)
 		
 		#Player shoot
-		if Input.is_action_just_pressed("primary_attack"):
+		if Input.is_action_pressed("primary_attack") and p_can_shoot == true:
 			player_shoot()
 	
 	
@@ -91,6 +104,9 @@ func player_dash(p_input):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player Shoot Function
 func player_shoot():
+	p_can_shoot = false
+	p_shoot_timer.start(p_reload_time)
+	
 	#The bullet instance
 	var bullet_instance := p_bullet_scene.instantiate()
 	var mouse_pos := get_global_mouse_position()
@@ -103,7 +119,7 @@ func player_shoot():
 	bullet_instance.rotation = mouse_dir.angle()
 	
 	#Apply upgrades to bullet
-	for upgrades in p_upgrades:
+	for upgrades in p_bullet_upgrades:
 			upgrades.apply_upgrade(bullet_instance)
 	
 	bullet_instance.implement_stats()
@@ -141,3 +157,9 @@ func _on_dash_timer_timeout():
 		p_dashing = false
 		
 		$PlaceholderSprite2D.self_modulate = Color("ffffff")
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Player shoot timeout signal
+func _on_shoot_timer_timeout() -> void:
+	p_can_shoot = true

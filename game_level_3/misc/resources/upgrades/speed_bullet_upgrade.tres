@@ -11,3 +11,4 @@ region = Rect2(200, 0, 100, 100)
 script = ExtResource("1_pxfw0")
 speed_increase = 100
 texture = SubResource("AtlasTexture_2fifj")
+upgrade_type = "p_bullet_upgrades"

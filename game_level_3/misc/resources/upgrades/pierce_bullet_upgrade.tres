@@ -11,3 +11,4 @@ region = Rect2(0, 0, 100, 100)
 script = ExtResource("1_30l25")
 pierce_increase = 2
 texture = SubResource("AtlasTexture_3urhf")
+upgrade_type = "p_bullet_upgrades"

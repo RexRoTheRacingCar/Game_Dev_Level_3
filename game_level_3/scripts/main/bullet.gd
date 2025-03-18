@@ -36,14 +36,17 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _physics_process(_delta: float) -> void:
-	
+func _physics_process(delta: float) -> void:
 	var dir = Vector2.RIGHT.rotated(rotation)
 	
 	fake_velocity = dir * speed
 	velocity = Vector2(fake_velocity.x, fake_velocity.y / 2) #Make velocity isometric
 	
-	move_and_slide()
+	var collision := move_and_collide(velocity * delta)
+	
+	if collision:
+		queue_free()
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------

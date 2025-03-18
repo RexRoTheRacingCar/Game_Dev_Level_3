@@ -1,5 +1,5 @@
 ############################## Speed Bullet Base ##############################
-extends BaseBulletUpgrade
+extends BaseUpgrade
 class_name SpeedBulletUpgrade
 
 @export var speed_increase : int = 50

@@ -4,7 +4,7 @@ extends Area2D
 
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
-@export var upgrade : BaseBulletUpgrade:
+@export var upgrade : BaseUpgrade:
 	set(new_value):
 		upgrade = new_value
 		needs_update = true
@@ -35,7 +35,10 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
 		if body.name == "Player":
-			body.p_upgrades.append(upgrade)
+			if upgrade.upgrade_type == "p_bullet_upgrades":
+				body.p_bullet_upgrades.append(upgrade)
+			elif upgrade.upgrade_type == "p_upgrades":
+					body.p_upgrades.append(upgrade)
 			
 			animation_player.stop()
 			animation_player.play("collected")

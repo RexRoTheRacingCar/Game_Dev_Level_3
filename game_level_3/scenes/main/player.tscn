@@ -18,20 +18,25 @@ corner_radius_bottom_right = 8
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukb0n"]
 radius = 16.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_hitbox_component", "p_health_component")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component")]
 y_sort_enabled = true
 collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_wlkgh")
 p_dash_timer = NodePath("DashTimer")
+p_shoot_timer = NodePath("ShootTimer")
 p_hitbox_component = NodePath("HitboxComponent")
 p_health_component = NodePath("HealthComponent")
 P_ACCEL = 6500
 P_FRICTION = 25000
+p_reload_time = 1.0
 p_bullet_scene = ExtResource("2_qg8hb")
 
 [node name="DashTimer" type="Timer" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.13, 0.13, 1)
@@ -64,6 +69,7 @@ show_percentage = false
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
 collision_layer = 0
 collision_mask = 2
+hit_delay = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 z_index = 1
@@ -72,3 +78,4 @@ scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_ukb0n")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
