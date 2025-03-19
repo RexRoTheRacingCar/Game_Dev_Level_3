@@ -50,6 +50,7 @@ func _set_max_health(new_value : int) -> void:
 	max_health = new_value
 	
 	if health_bar:
-		health_bar.size.x = 40 + (max_health / 2)
+		@warning_ignore("integer_division")
+		health_bar.size.x = 50 + (max_health / 2)
 		health_bar.position.x = -health_bar.size.x / 2
 	

@@ -67,26 +67,21 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="StatUpgrade" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-61, -154)
 upgrade = ExtResource("5_s2l54")
-needs_update = true
 
 [node name="StatUpgrade2" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-9, -203)
-needs_update = true
 
 [node name="StatUpgrade3" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(-86, -90)
 upgrade = ExtResource("6_jvxss")
-needs_update = true
 
 [node name="StatUpgrade4" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(348, -3)
 upgrade = ExtResource("7_1iayt")
-needs_update = true
 
 [node name="StatUpgrade5" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
 position = Vector2(258, 63)
 upgrade = ExtResource("8_6blog")
-needs_update = true
 
 [node name="TestEnemy" parent="." instance=ExtResource("5_qtw52")]
 position = Vector2(180, -162)
