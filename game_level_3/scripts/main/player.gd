@@ -21,10 +21,10 @@ var p_vel_prep : Vector2
 @export var p_dash_delay : float = 0.4
 @export var p_reload_time : float = 0.4
 @export var p_bullet_amount : int = 3 : 
-	set(new_value):
+	set(new_value): #Update the bullet spread basd on bullet amount
 		p_bullet_amount = new_value
 		@warning_ignore("integer_division")
-		p_bullet_spread = ((15 * p_bullet_amount) - 15) / p_bullet_amount
+		p_bullet_spread = ((15 * p_bullet_amount) - 15) / (p_bullet_amount * 1.5)
 
 @export var p_bullet_scene : PackedScene
 
