@@ -70,7 +70,7 @@ show_percentage = false
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
 collision_layer = 0
 collision_mask = 2
-hit_delay = 0.2
+hit_delay = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 z_index = 1

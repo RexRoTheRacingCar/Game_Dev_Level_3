@@ -19,8 +19,8 @@ class_name Player
 var p_vel_prep : Vector2 
 
 @export var p_dash_delay : float = 0.4
-@export var p_reload_time : float = 0.4
-@export var p_bullet_amount : int = 3 : 
+@export var p_reload_time : float = 0.55
+@export var p_bullet_amount : int = 1 : 
 	set(new_value): #Update the bullet spread basd on bullet amount
 		p_bullet_amount = new_value
 		@warning_ignore("integer_division")
@@ -137,6 +137,7 @@ func player_shoot():
 				upgrades.apply_upgrade(bullet_instance)
 		
 		bullet_instance.implement_stats()
+		bullet_instance.death_timer_node.start(bullet_instance.life_time)
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function

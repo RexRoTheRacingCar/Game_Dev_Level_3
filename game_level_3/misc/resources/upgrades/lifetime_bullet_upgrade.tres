@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LifetimeBulletUpgrade" load_steps=4 format=3 uid="uid://cdrw7kvmvkbg1"]
+
+[ext_resource type="Script" path="res://scripts/upgrades/lifetime_bullet_upgrade.gd" id="1_256h3"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_5ryo4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j73os"]
+atlas = ExtResource("2_5ryo4")
+region = Rect2(200, 100, 100, 100)
+
+[resource]
+script = ExtResource("1_256h3")
+lifetime_increase = 1.0
+texture = SubResource("AtlasTexture_j73os")
+upgrade_type = "p_bullet_upgrades"

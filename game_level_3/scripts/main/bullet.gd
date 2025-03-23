@@ -28,7 +28,6 @@ func _ready():
 	current_pierce_count = 1
 	collision_hit = false
 	
-	death_timer_node.start(life_time)
 	
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
@@ -72,6 +71,7 @@ func actually_hit() -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func implement_stats():
 	hurtbox.hurt_damage = damage
+	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ func delete_bullet():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#TImer Nodes
+#Timer Nodes
 func _on_delete_timer_timeout():
 	delete_bullet()
 

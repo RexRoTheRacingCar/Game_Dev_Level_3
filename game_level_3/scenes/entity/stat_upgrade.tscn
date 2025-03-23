@@ -204,6 +204,6 @@ texture = SubResource("AtlasTexture_eutvc")
 libraries = {
 "": SubResource("AnimationLibrary_wg86a")
 }
-speed_scale = 1.06534
+speed_scale = 1.09031
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
