@@ -13,7 +13,7 @@ class_name Bullet
 @export var speed : float = 600.0
 @export var damage : int = 5
 @export var max_pierce : int = 1
-@export var life_time : float = 1.0
+@export var life_time : float = 0.75
 @export var collision_time : float = 0.15
 
 var current_pierce_count := 0

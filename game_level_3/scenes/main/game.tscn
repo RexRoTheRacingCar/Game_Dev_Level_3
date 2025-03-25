@@ -1,15 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=5 format=4 uid="uid://bhusb8ekekxkj"]
 
-[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_t5vvw"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
-[ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="5_qtw52"]
-[ext_resource type="Resource" uid="uid://djfc83d0m5aue" path="res://misc/resources/upgrades/pierce_bullet_upgrade.tres" id="5_s2l54"]
-[ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/bullet_amount_upgrade.tres" id="6_jvxss"]
-[ext_resource type="Resource" uid="uid://bp8nlcaxu4dpl" path="res://misc/resources/upgrades/firerate_player_upgrade.tres" id="7_1iayt"]
-[ext_resource type="Resource" uid="uid://dlj1lxbxweiie" path="res://misc/resources/upgrades/health_player_upgrade.tres" id="8_6blog"]
-[ext_resource type="Resource" uid="uid://cdrw7kvmvkbg1" path="res://misc/resources/upgrades/lifetime_bullet_upgrade.tres" id="9_pkmnd"]
+[ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_qyhbx"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -23,7 +17,7 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD//wAAAgAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAACAAAAAgAAAAIAAAACAP//AgAAAAIAAAABAP//AgAAAAIAAAAAAP//AgAAAAAAAAD/////AgAAAAIAAAD//wEAAgAAAAIAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAIAAAAAAAIAAgAAAAIAAAABAAIAAgAAAAIAAAACAAIAAgAAAAAAAAADAAEAAgAAAAIAAAADAAAAAgAAAAIAAAACAP7/AgAAAAAAAAACAP3/AgAAAAIAAAABAP3/AgAAAAIAAAAAAP3/AgAAAAIAAAD///3/AgAAAAIAAAD///7/AgAAAAIAAAAAAP7/AgAAAAIAAAABAP7/AgAAAAIAAAD+//3/AgAAAAIAAAD+//7/AgAAAAAAAAD+////AgAAAAIAAAD+/wAAAgAAAAIAAAD+/wEAAgAAAAIAAAD+/wIAAgAAAAAAAAD//wIAAgAAAAIAAAADAAIAAgAAAAIAAAADAP//AgAAAAIAAAADAP7/AgAAAAIAAAADAP3/AgAAAAAAAAACAAEAAgAAAAIAAAD9/wMAAgAAAAAAAAD+/wMAAgAAAAIAAAD//wMAAgAAAAIAAAAAAAMAAgAAAAIAAAABAAMAAgAAAAIAAAABAAQAAgAAAAIAAAACAAMAAgAAAAIAAAADAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAIAAAAFAAQAAgAAAAIAAAADAAQAAgAAAAAAAAACAAQAAgAAAAAAAAAAAAQAAgABAAIAAAD//wQAAgAAAAIAAAD+/wQAAgAAAAAAAAD9/wQAAgAAAAAAAAD8/wQAAgAAAAIAAAD8/wMAAgAAAAAAAAD8/wIAAgAAAAAAAAD8/wEAAgAAAAIAAAD9/wEAAgAAAAIAAAD8/wAAAgABAAIAAAD9/wIAAgAAAAIAAAD9/wAAAgAAAAIAAAD9////AgAAAAIAAAD8////AgAAAAIAAAD8//7/AgAAAAAAAAD9//3/AgAAAAAAAAD8//3/AgAAAAAAAAD9//7/AgAAAAIAAAD9//z/AgAAAAAAAAD8//v/AgAAAAIAAAD8//z/AgAAAAIAAAD9//v/AgAAAAIAAAD+//z/AgAAAAAAAAD///z/AgAAAAIAAAD///v/AgAAAAIAAAD+//v/AgAAAAIAAAAAAPz/AgABAAIAAAAAAPv/AgAAAAIAAAABAPz/AgAAAAIAAAACAPz/AgAAAAAAAAADAPz/AgAAAAAAAAACAPv/AgAAAAIAAAABAPv/AgAAAAIAAAAEAPz/AgAAAAIAAAAEAPv/AgAAAAIAAAAFAPv/AgAAAAIAAAAFAPz/AgAAAAIAAAADAPv/AgAAAAIAAAAFAAEAAgAAAAIAAAAFAAIAAgAAAAIAAAAFAAMAAgAAAAIAAAAEAAIAAgAAAAAAAAAEAAEAAgAAAAIAAAAEAAAAAgABAAIAAAAEAP//AgAAAAIAAAAEAP7/AgAAAAAAAAAEAP3/AgAAAAAAAAAFAP3/AgAAAAIAAAAFAP7/AgAAAAIAAAAFAP//AgAAAAIAAAAFAAAAAgAAAAIAAAAGAAUAAgAAAAAAAAD7//r/AgAAAAAAAAD8//r/AgAAAAAAAAD9//r/AgAAAAAAAAD+//r/AgAAAAAAAAD///r/AgAAAAAAAAAAAPr/AgAAAAAAAAABAPr/AgAAAAAAAAACAPr/AgAAAAAAAAADAPr/AgAAAAAAAAAEAPr/AgAAAAAAAAAFAPr/AgAAAAAAAAAGAPr/AgAAAAAAAAAGAPv/AgAAAAAAAAAGAPz/AgAAAAAAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAD6//r/AgAAAAAAAAD6//v/AgAAAAAAAAD6//z/AgAAAAAAAAD6//3/AgAAAAAAAAD6//7/AgAAAAAAAAD6////AgAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAgAAAAAAAAD6/wIAAgAAAAAAAAD6/wMAAgAAAAAAAAD6/wQAAgAAAAAAAAD6/wUAAgAAAAAAAAD6/wYAAgAAAAAAAAD7/wYAAgAAAAAAAAD8/wYAAgAAAAAAAAAGAAYAAgAAAAAAAAAFAAYAAgAAAAAAAAAEAAYAAgAAAAAAAAADAAYAAgAAAAAAAAACAAYAAgAAAAAAAAD//wYAAgAAAAAAAAD+/wYAAgAAAAAAAAAAAAYAAgAAAAAAAAABAAYAAgAAAAAAAAD9/wYAAgAAAAAAAAAEAAUAAgAAAAIAAAAFAAUAAgAAAAIAAAD7//v/AgAAAAIAAAD7//z/AgAAAAIAAAD7//3/AgAAAAIAAAD7//7/AgAAAAIAAAD7/wAAAgAAAAIAAAD7/wEAAgAAAAIAAAD7/wIAAgAAAAIAAAD7/wMAAgAAAAIAAAD7/wQAAgAAAAIAAAD7/wUAAgAAAAIAAAD8/wUAAgAAAAIAAAD9/wUAAgAAAAIAAAD+/wUAAgAAAAIAAAD//wUAAgAAAAIAAAAAAAUAAgAAAAIAAAABAAUAAgAAAAIAAAACAAUAAgAAAAIAAAADAAUAAgAAAAIAAAD7////AgAAAAIAAAAHAAcAAgAAAAAAAAAGAAcAAgAAAAAAAAAFAAcAAgAAAAAAAAAEAAcAAgAAAAAAAAADAAcAAgAAAAAAAAACAAcAAgAAAAAAAAABAAcAAgAAAAAAAAAAAAcAAgAAAAAAAAD//wcAAgAAAAAAAAD+/wcAAgAAAAAAAAD9/wcAAgAAAAAAAAD8/wcAAgAAAAAAAAD7/wcAAgAAAAAAAAD6/wcAAgAAAAAAAAD5/wcAAgAAAAAAAAD5/wYAAgAAAAAAAAD5/wUAAgAAAAAAAAD5//n/AgAAAAAAAAD5//r/AgAAAAAAAAD5//v/AgAAAAAAAAD5//z/AgAAAAAAAAD5//3/AgAAAAAAAAD5//7/AgAAAAAAAAD5////AgAAAAAAAAD5/wEAAgAAAAAAAAD5/wAAAgAAAAAAAAD5/wIAAgAAAAAAAAD5/wMAAgAAAAAAAAD5/wQAAgAAAAAAAAD6//n/AgAAAAAAAAD7//n/AgAAAAAAAAD8//n/AgAAAAAAAAD9//n/AgAAAAAAAAD+//n/AgAAAAAAAAD///n/AgAAAAAAAAAAAPn/AgAAAAAAAAABAPn/AgAAAAAAAAACAPn/AgAAAAAAAAADAPn/AgAAAAAAAAAEAPn/AgAAAAAAAAAFAPn/AgAAAAAAAAAHAPr/AgAAAAAAAAAHAPn/AgAAAAAAAAAHAPv/AgAAAAAAAAAHAPz/AgAAAAAAAAAHAP3/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP//AgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAYAAgAAAAAAAAA=")
 tile_set = ExtResource("2_brnf4")
 
-[node name="TestTilemap2" type="TileMapLayer" parent="TilemapFolder"]
+[node name="TestTilemap2" type="TileMapLayer" parent="TilemapFolder" groups=["walls"]]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAADAAMAAgABAAAAAAADAPv/AgABAAAAAAD7/wMAAgABAAAAAAD4/wYAAgABAAAAAAD5/wYAAgABAAAAAAD6/wYAAgABAAAAAAD7/wYAAgABAAAAAAD8/wYAAgABAAAAAAD9/wYAAgABAAAAAAD+/wYAAgABAAAAAAD//wYAAgABAAAAAAAAAAYAAgABAAAAAAABAAYAAgABAAAAAAACAAYAAgABAAAAAAADAAYAAgABAAAAAAAEAAYAAgABAAAAAAAFAAYAAgABAAAAAAAGAAYAAgABAAAAAAAGAAUAAgABAAAAAAAGAAQAAgABAAAAAAAGAAMAAgABAAAAAAAGAAIAAgABAAAAAAAGAAEAAgABAAAAAAAGAAAAAgABAAAAAAAGAP//AgABAAAAAAAGAP7/AgABAAAAAAAGAP3/AgABAAAAAAAGAPz/AgABAAAAAAAGAPv/AgABAAAAAAAGAPr/AgABAAAAAAAGAPn/AgABAAAAAAAGAPj/AgABAAAAAAAFAPj/AgABAAAAAAAEAPj/AgABAAAAAAADAPj/AgABAAAAAAACAPj/AgABAAAAAAABAPj/AgABAAAAAAAAAPj/AgABAAAAAAD///j/AgABAAAAAAD+//j/AgABAAAAAAD9//j/AgABAAAAAAD8//j/AgABAAAAAAD7//j/AgABAAAAAAD6//j/AgABAAAAAAD7//v/AgABAAAAAAD5//j/AgABAAAAAAD4//j/AgABAAAAAAD4//n/AgABAAAAAAD4//r/AgABAAAAAAD4//v/AgABAAAAAAD4//z/AgABAAAAAAD4//3/AgABAAAAAAD4//7/AgABAAAAAAD4////AgABAAAAAAD4/wAAAgABAAAAAAD4/wEAAgABAAAAAAD4/wIAAgABAAAAAAD4/wMAAgABAAAAAAD4/wQAAgABAAAAAAD4/wUAAgABAAAAAAA=")
 tile_set = ExtResource("2_brnf4")
@@ -32,7 +26,6 @@ tile_set = ExtResource("2_brnf4")
 tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
-position = Vector2(205, -21)
 p_reload_time = 0.3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -62,39 +55,5 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 position = Vector2(300, -90)
 polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 
-[node name="TestStatFolder" type="Node2D" parent="."]
-
-[node name="StatUpgrade" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(-61, -154)
-upgrade = ExtResource("5_s2l54")
-needs_update = false
-
-[node name="StatUpgrade2" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(-9, -203)
-needs_update = false
-
-[node name="StatUpgrade3" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(-86, -90)
-upgrade = ExtResource("6_jvxss")
-needs_update = false
-
-[node name="StatUpgrade4" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(348, -3)
-upgrade = ExtResource("7_1iayt")
-needs_update = false
-
-[node name="StatUpgrade5" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(258, 63)
-upgrade = ExtResource("8_6blog")
-needs_update = false
-
-[node name="StatUpgrade6" parent="TestStatFolder" instance=ExtResource("1_t5vvw")]
-position = Vector2(173, 107)
-upgrade = ExtResource("9_pkmnd")
-needs_update = false
-
-[node name="TestEnemy2" parent="." instance=ExtResource("5_qtw52")]
-position = Vector2(277, -205)
-
-[node name="TestEnemy" parent="." instance=ExtResource("5_qtw52")]
-position = Vector2(180, -162)
+[node name="TestEnemy" parent="." instance=ExtResource("4_qyhbx")]
+position = Vector2(-272, -35)

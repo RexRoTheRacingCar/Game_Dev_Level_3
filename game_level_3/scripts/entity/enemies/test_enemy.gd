@@ -2,9 +2,13 @@
 extends CharacterBody2D
 
 #A test enemy to figure out how I'm going to implement enemies
+
+#Node variables
 @export var hitbox_component : HitboxComponent
 @export var hurtbox_component : HurtboxComponent
 @export var health_component : HealthComponent
+@export var line_of_sight : TargetRaycast
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -24,3 +28,11 @@ func hit_signalled(hurtbox: HurtboxComponent):
 #Enemy has 0 HP
 func no_health():
 	queue_free()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _process(_delta: float) -> void:
+	if line_of_sight.target_check((Global.player_position - global_position), global_position) == true:
+		var dir = get_angle_to(Global.player_position)
+		velocity = Vector2.RIGHT.rotated(dir) * 100
+		move_and_slide()

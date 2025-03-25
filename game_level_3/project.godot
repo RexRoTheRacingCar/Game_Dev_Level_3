@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Math="*res://scripts/autoload/math.gd"
+Global="*res://scripts/autoload/global_variables.gd"
 
 [display]
 
@@ -25,6 +26,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
+
+[global_group]
+
+walls=""
 
 [input]
 

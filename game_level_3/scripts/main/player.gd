@@ -81,6 +81,8 @@ func _physics_process(delta):
 	
 	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
 	var _error = move_and_slide() #Apply velocity
+	
+	Global.player_position = global_position
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -9,6 +9,6 @@ region = Rect2(300, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_wgm3b")
-reload_decrease = 1.5
+reload_decrease = 1.25
 texture = SubResource("AtlasTexture_f0jne")
 upgrade_type = "p_upgrades"

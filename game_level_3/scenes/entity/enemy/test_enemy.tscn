@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://01j0ju22xu5y"]
+[gd_scene load_steps=12 format=3 uid="uid://01j0ju22xu5y"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/test_enemy.gd" id="1_n8ry8"]
 [ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="2_m3pgr"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_kkxus"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_faqak"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="5_v15ek"]
+[ext_resource type="PackedScene" uid="uid://sufby11k1j6" path="res://scenes/misc/line_of_sight.tscn" id="6_7at8u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hvboc"]
 size = Vector2(36, 6)
@@ -24,9 +25,8 @@ size = Vector2(38, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ru5nu"]
 size = Vector2(38, 8)
 
-[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component")]
+[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "line_of_sight")]
 y_sort_enabled = true
-scale = Vector2(12, 12)
 collision_mask = 0
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -34,6 +34,7 @@ script = ExtResource("1_n8ry8")
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
+line_of_sight = NodePath("RayCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -47,7 +48,7 @@ texture = SubResource("AtlasTexture_kgkib")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_kkxus")]
 health_bar = NodePath("ProgressBar")
-max_health = 1000
+max_health = 25
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 anchors_preset = 7
@@ -83,3 +84,7 @@ hurt_knockback = 0.75
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_ru5nu")
+
+[node name="RayCast2D" parent="." instance=ExtResource("6_7at8u")]
+collision_mask = 33
+collide_with_areas = true

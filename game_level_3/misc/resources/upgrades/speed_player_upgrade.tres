@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerSpeedUpgrade" load_steps=4 format=3 uid="uid://dbvxn1t66c5j8"]
+
+[ext_resource type="Script" path="res://scripts/upgrades/player_speed_upgrade.gd" id="1_ltrmb"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_6f31c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd3up"]
+atlas = ExtResource("2_6f31c")
+region = Rect2(0, 100, 100, 100)
+
+[resource]
+script = ExtResource("1_ltrmb")
+player_speed_increase = 1.15
+texture = SubResource("AtlasTexture_nd3up")
+upgrade_type = "p_upgrades"
