@@ -34,5 +34,6 @@ func no_health():
 func _process(_delta: float) -> void:
 	if line_of_sight.target_check((Global.player_position - global_position), global_position) == true:
 		var dir = get_angle_to(Global.player_position)
-		velocity = Vector2.RIGHT.rotated(dir) * 100
+		velocity = Vector2.RIGHT.rotated(dir) * 225
+		velocity.y /= 2
 		move_and_slide()

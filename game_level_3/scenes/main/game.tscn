@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=6 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_qyhbx"]
+[ext_resource type="PackedScene" uid="uid://bk0kqjh6f40ti" path="res://scenes/entity/coin.tscn" id="5_scl2m"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -57,3 +58,6 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 
 [node name="TestEnemy" parent="." instance=ExtResource("4_qyhbx")]
 position = Vector2(-272, -35)
+
+[node name="Coin" parent="." instance=ExtResource("5_scl2m")]
+position = Vector2(225, -149)

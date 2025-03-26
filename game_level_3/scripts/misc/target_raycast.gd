@@ -20,10 +20,13 @@ func target_check(target_place : Vector2, parent_pos : Vector2) -> bool:
 		#Check if ray is colliding with walls
 		if object.is_in_group("walls") == false:
 			#Calculate ray distance
-			var distance = sqrt((target_place.x - parent_pos.x)**(2.0) + (target_place.y - parent_pos.y)**(2))
+			var distance = abs(sqrt((target_place.x - parent_pos.x)**(2) + (target_place.y - parent_pos.y)**(2)))
 			
 			#Check if ray is within max and min parameters
-			if distance < max_target_distance and distance > min_target_distance:
+			if (distance <= max_target_distance) and (distance >= min_target_distance):
+				print("distance")
+				print(distance)
+				
 				return true
 	
 	return false
