@@ -14,10 +14,11 @@ func _process(delta):
 		var dir = get_angle_to(Global.player_position)
 		velocity = Vector2.RIGHT.rotated(dir) * speed
 		global_position += velocity * delta
+		$Polygon2D.rotation_degrees += (speed * delta) / 2
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _on_collection_radius_body_entered(body : Player):
+func _on_collection_radius_body_entered(_body : Player):
 	Global.player_coins += 1
 	queue_free()
 

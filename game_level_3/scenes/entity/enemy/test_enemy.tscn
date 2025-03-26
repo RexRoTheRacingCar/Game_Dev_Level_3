@@ -88,4 +88,3 @@ shape = SubResource("RectangleShape2D_ru5nu")
 [node name="RayCast2D" parent="." instance=ExtResource("6_7at8u")]
 collision_mask = 33
 collide_with_areas = true
-max_target_distance = 500.0

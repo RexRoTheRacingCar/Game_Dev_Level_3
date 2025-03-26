@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=7 format=4 uid="uid://bhusb8ekekxkj"]
 
+[ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/main/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
@@ -30,7 +31,6 @@ tile_set = ExtResource("2_brnf4")
 p_reload_time = 0.3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-50.2267, 10.6893)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
@@ -57,7 +57,11 @@ position = Vector2(300, -90)
 polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 
 [node name="TestEnemy" parent="." instance=ExtResource("4_qyhbx")]
-position = Vector2(-272, -35)
+position = Vector2(-331, 86)
 
 [node name="Coin" parent="." instance=ExtResource("5_scl2m")]
-position = Vector2(225, -149)
+position = Vector2(424, -141)
+
+[node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
+layer = 12
+follow_viewport_enabled = false

@@ -83,6 +83,8 @@ func _physics_process(delta):
 	var _error = move_and_slide() #Apply velocity
 	
 	Global.player_position = global_position
+	Global.player_hp = p_health_component.health
+	Global.player_max_hp = p_health_component.max_health
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -163,6 +165,7 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player has 0 HP
 func player_no_health():
+	
 	get_tree().quit()
 
 
