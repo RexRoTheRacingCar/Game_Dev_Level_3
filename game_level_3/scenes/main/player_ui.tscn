@@ -18,6 +18,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="PlayerHP" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1056.0
 offset_right = 140.0
