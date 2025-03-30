@@ -3,9 +3,11 @@ extends CanvasLayer
 
 
 #Label variables
-@export var hp_label : Label
+@onready var player_hp: Label = $Control/PlayerHP
+@onready var coins: Label = $Control/Coins
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(_delta):
-	hp_label.text = str(Global.player_hp, " / ", Global.player_max_hp)
+	player_hp.text = str(Global.player_hp, " / ", Global.player_max_hp)
+	coins.text = str(Global.player_coins)

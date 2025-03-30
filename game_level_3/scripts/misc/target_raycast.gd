@@ -24,9 +24,6 @@ func target_check(target_place : Vector2, parent_pos : Vector2) -> bool:
 			
 			#Check if ray is within max and min parameters
 			if (distance <= max_target_distance) and (distance >= min_target_distance):
-				print("distance")
-				print(distance)
-				
 				return true
 	
 	return false

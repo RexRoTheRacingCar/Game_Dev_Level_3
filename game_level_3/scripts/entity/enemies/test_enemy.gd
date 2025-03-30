@@ -27,13 +27,19 @@ func hit_signalled(hurtbox: HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 #Enemy has 0 HP
 func no_health():
+	Global.spawn_coins(10, global_position, self)
 	queue_free()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(_delta: float) -> void:
+	#If Line of Sight returns true
 	if line_of_sight.target_check((Global.player_position - global_position), global_position) == true:
-		var dir = get_angle_to(Global.player_position)
+		var player_pos := Global.player_position - global_position
+		player_pos.y *= 2
+		
+		var dir = player_pos.angle()
+		
 		velocity = Vector2.RIGHT.rotated(dir) * 225
 		velocity.y /= 2
 		move_and_slide()

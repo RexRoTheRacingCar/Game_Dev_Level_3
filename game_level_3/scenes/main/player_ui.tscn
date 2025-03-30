@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/main/player_ui.gd" id="1_cms01"]
 
-[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("hp_label")]
+[node name="PlayerUI" type="CanvasLayer"]
 follow_viewport_enabled = true
 script = ExtResource("1_cms01")
-hp_label = NodePath("Control/PlayerHP")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -23,4 +22,18 @@ offset_left = 1.0
 offset_top = 1056.0
 offset_right = 140.0
 offset_bottom = 1079.0
-text = "5r6ct7vybjnomkp;"
+text = "Player HP"
+
+[node name="Coins" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Coins"
+horizontal_alignment = 2
