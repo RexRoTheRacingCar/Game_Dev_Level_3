@@ -29,10 +29,9 @@ func _ready():
 func _set_health(new_value : int) -> void:
 	health = new_value
 	
-	#If health is above mex_health
+	#If health is above max_health
 	if health > max_health:
 		health = max_health
-		health_bar.max_value = health
 	
 	#If there is a health bar
 	if health_bar:

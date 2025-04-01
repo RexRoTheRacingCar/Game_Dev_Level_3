@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=9 format=4 uid="uid://bhusb8ekekxkj"]
 
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_foqc4"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/main/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_qyhbx"]
 [ext_resource type="PackedScene" uid="uid://bk0kqjh6f40ti" path="res://scenes/entity/coin.tscn" id="5_scl2m"]
+[ext_resource type="Resource" uid="uid://dlj1lxbxweiie" path="res://misc/resources/upgrades/health_player_upgrade.tres" id="8_72s5o"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -65,3 +67,43 @@ position = Vector2(424, -141)
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12
 follow_viewport_enabled = false
+
+[node name="StatUpgrade" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-81, -232)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade2" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-124, -215)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade3" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-40, -214)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade4" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-21, -183)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade5" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-33, -144)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade6" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-135, -148)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade7" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-148, -182)
+upgrade = ExtResource("8_72s5o")
+needs_update = false
+
+[node name="StatUpgrade8" parent="." instance=ExtResource("1_foqc4")]
+position = Vector2(-84, -125)
+upgrade = ExtResource("8_72s5o")
+needs_update = false

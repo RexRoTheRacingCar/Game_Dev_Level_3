@@ -30,9 +30,11 @@ size_flags_vertical = 4
 [node name="PlayerHP" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 410.0
-offset_top = 1049.0
-offset_right = 549.0
-offset_bottom = 1072.0
+offset_top = 1053.0
+offset_right = 485.0
+offset_bottom = 1076.0
+theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
+theme_override_constants/outline_size = 10
 text = "Player HP"
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="Control"]
@@ -41,8 +43,8 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = -32.0
-offset_right = 405.0
+offset_top = -25.0
+offset_right = 404.0
 offset_bottom = -5.0
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_74qv3")
@@ -64,5 +66,7 @@ offset_right = -5.0
 offset_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
+theme_override_constants/outline_size = 10
 text = "Coins"
 horizontal_alignment = 2
