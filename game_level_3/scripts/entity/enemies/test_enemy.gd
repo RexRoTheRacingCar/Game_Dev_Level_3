@@ -9,9 +9,15 @@ extends CharacterBody2D
 @export var health_component : HealthComponent
 @export var line_of_sight : TargetRaycast
 
+#Number Variables
+@export var coin_range : int
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	randomize()
+	coin_range = randi_range(8, 12)
+	
 	#Connect enemy to signals
 	hitbox_component.hitbox_entered.connect(hit_signalled)
 	health_component.zero_health.connect(no_health)
@@ -27,7 +33,7 @@ func hit_signalled(hurtbox: HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 #Enemy has 0 HP
 func no_health():
-	Global.spawn_coins(10, global_position, self)
+	Global.spawn_coins(coin_range, global_position, self)
 	queue_free()
 
 

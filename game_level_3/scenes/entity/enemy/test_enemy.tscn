@@ -23,7 +23,7 @@ corner_radius_bottom_right = 8
 size = Vector2(38, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ru5nu"]
-size = Vector2(38, 8)
+size = Vector2(40, 10)
 
 [node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "line_of_sight")]
 y_sort_enabled = true
