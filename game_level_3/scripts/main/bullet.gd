@@ -28,10 +28,12 @@ func _ready():
 	current_pierce_count = 1
 	collision_hit = false
 	
-	
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
+		hurtbox.monitoring = false
+		await get_tree().create_timer(0.1, false).timeout
+		hurtbox.monitoring = true
 
 
 #---------------------------------------------------------------------------------------------------------------------------
