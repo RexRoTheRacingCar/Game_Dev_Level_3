@@ -35,8 +35,11 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
 		if body.name == "Player":
+			#Apply to bullet upgrade array
 			if upgrade.upgrade_type == "p_bullet_upgrades":
 				body.p_bullet_upgrades.append(upgrade)
+			
+			#Apply directly to player
 			elif upgrade.upgrade_type == "p_upgrades":
 				body.p_upgrades = upgrade
 			

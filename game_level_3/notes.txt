@@ -19,7 +19,7 @@ Mask Layers
 3. Stat Upgrades, 
 4. Enemy Hitbox, 
 5. Bullet Wall Detection, 
-6. Enemy Line of Sight,
+6. Enemy Area of Sight,
 7. 
 8. 
 9. 

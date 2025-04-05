@@ -46,8 +46,7 @@ offset = Vector2(1.08991e-06, -31.4286)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_hpa7o")]
-health_bar = NodePath("")
+[node name="HealthComponent" parent="." instance=ExtResource("3_hpa7o")]
 max_health = 20
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
@@ -61,13 +60,13 @@ position = Vector2(0, 11)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_ukb0n")
 
-[node name="Enemy_Hitbox" type="Area2D" parent="."]
+[node name="EnemyHitbox" type="Area2D" parent="."]
 z_index = 1
 collision_layer = 32
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 shape = SubResource("CircleShape2D_u08x0")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

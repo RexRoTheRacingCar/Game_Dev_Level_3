@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://sufby11k1j6"]
-
-[ext_resource type="Script" path="res://scripts/misc/target_raycast.gd" id="1_1mmma"]
-
-[node name="RayCast2D" type="RayCast2D"]
-target_position = Vector2(0, 0)
-collision_mask = 0
-script = ExtResource("1_1mmma")
-max_target_distance = 1000.0

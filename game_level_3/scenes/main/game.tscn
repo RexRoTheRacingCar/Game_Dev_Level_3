@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=6 format=4 uid="uid://bhusb8ekekxkj"]
 
-[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_foqc4"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/main/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_qyhbx"]
-[ext_resource type="PackedScene" uid="uid://bk0kqjh6f40ti" path="res://scenes/entity/coin.tscn" id="5_scl2m"]
-[ext_resource type="Resource" uid="uid://dlj1lxbxweiie" path="res://misc/resources/upgrades/health_player_upgrade.tres" id="8_72s5o"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -27,6 +24,10 @@ tile_map_data = PackedByteArray("AAADAAMAAgABAAAAAAADAPv/AgABAAAAAAD7/wMAAgABAAA
 tile_set = ExtResource("2_brnf4")
 
 [node name="TestTilemap3" type="TileMapLayer" parent="TilemapFolder"]
+tile_set = ExtResource("2_brnf4")
+
+[node name="TestNaviTilemap" type="TileMapLayer" parent="TilemapFolder"]
+tile_map_data = PackedByteArray("AAD6/wUAAgACAAAAAAD7/wUAAgACAAAAAAD8/wUAAgACAAAAAAD9/wUAAgACAAAAAAD+/wUAAgACAAAAAAD6/wYAAgACAAAAAAD6/wQAAgACAAAAAAD6/wMAAgACAAAAAAD6/wIAAgACAAAAAAD6/wEAAgACAAAAAAD6/wAAAgACAAAAAAD6////AgACAAAAAAD6//7/AgACAAAAAAD6//3/AgACAAAAAAD6//z/AgACAAAAAAD6//v/AgACAAAAAAD6//r/AgACAAAAAAD7/wYAAgACAAAAAAD7/wQAAgACAAAAAAD7/wMAAgACAAAAAAD7/wIAAgACAAAAAAD7/wEAAgACAAAAAAD7/wAAAgACAAAAAAD7////AgACAAAAAAD7//7/AgACAAAAAAD7//3/AgACAAAAAAD7//z/AgACAAAAAAD7//v/AgACAAAAAAD7//r/AgACAAAAAAD8//r/AgACAAAAAAD8//v/AgACAAAAAAD8//3/AgACAAAAAAD8//7/AgACAAAAAAD8////AgACAAAAAAD8/wAAAgACAAAAAAD8/wEAAgACAAAAAAD8/wIAAgACAAAAAAD8/wMAAgACAAAAAAD8/wYAAgACAAAAAAD9/wYAAgACAAAAAAD+/wYAAgACAAAAAAD//wYAAgACAAAAAAAAAAYAAgACAAAAAAABAAYAAgACAAAAAAACAAYAAgACAAAAAAADAAYAAgACAAAAAAAEAAYAAgACAAAAAAAFAAYAAgACAAAAAAAGAAYAAgACAAAAAAAGAAUAAgACAAAAAAAGAAQAAgACAAAAAAAGAAMAAgACAAAAAAAGAAIAAgACAAAAAAAGAAEAAgACAAAAAAAGAAAAAgACAAAAAAAGAP//AgACAAAAAAAGAP7/AgACAAAAAAAGAP3/AgACAAAAAAAGAPz/AgACAAAAAAAGAPv/AgACAAAAAAAGAPr/AgACAAAAAAD9//r/AgACAAAAAAD+//r/AgACAAAAAAD///r/AgACAAAAAAAAAPr/AgACAAAAAAABAPr/AgACAAAAAAACAPr/AgACAAAAAAADAPr/AgACAAAAAAAEAPr/AgACAAAAAAAFAPr/AgACAAAAAAAFAPv/AgACAAAAAAAEAPv/AgACAAAAAAADAPv/AgACAAAAAAACAPv/AgACAAAAAAABAPv/AgACAAAAAAAAAPv/AgACAAAAAAD///v/AgACAAAAAAD+//v/AgACAAAAAAD9//v/AgACAAAAAAD9//z/AgACAAAAAAD+//z/AgACAAAAAAD///z/AgACAAAAAAAAAPz/AgACAAAAAAABAPz/AgACAAAAAAACAPz/AgACAAAAAAADAPz/AgACAAAAAAAFAPz/AgACAAAAAAAFAP3/AgACAAAAAAAFAP7/AgACAAAAAAAFAP//AgACAAAAAAAFAAAAAgACAAAAAAAFAAEAAgACAAAAAAAFAAIAAgACAAAAAAAFAAMAAgACAAAAAAAFAAQAAgACAAAAAAAFAAUAAgACAAAAAAADAAQAAgACAAAAAAACAAQAAgACAAAAAAABAAQAAgACAAAAAAAAAAQAAgACAAAAAAD//wQAAgACAAAAAAD+/wQAAgACAAAAAAD9/wQAAgACAAAAAAD9/wMAAgACAAAAAAD+/wMAAgACAAAAAAD//wMAAgACAAAAAAAAAAMAAgACAAAAAAABAAMAAgACAAAAAAACAAMAAgACAAAAAAADAAMAAgACAAAAAAAEAAMAAgACAAAAAAAEAAIAAgACAAAAAAADAAIAAgACAAAAAAACAAIAAgACAAAAAAABAAIAAgACAAAAAAAAAAIAAgACAAAAAAD//wIAAgACAAAAAAD+/wIAAgACAAAAAAD9/wIAAgACAAAAAAD9/wEAAgACAAAAAAD+/wEAAgACAAAAAAD//wEAAgACAAAAAAAAAAEAAgACAAAAAAABAAEAAgACAAAAAAACAAEAAgACAAAAAAADAAEAAgACAAAAAAAEAAEAAgACAAAAAAAEAAAAAgACAAAAAAADAAAAAgACAAAAAAACAAAAAgACAAAAAAABAAAAAgACAAAAAAAAAAAAAgACAAAAAAD//wAAAgACAAAAAAD+/wAAAgACAAAAAAD9/wAAAgACAAAAAAD9////AgACAAAAAAD+////AgACAAAAAAD/////AgACAAAAAAAAAP//AgACAAAAAAABAP//AgACAAAAAAACAP//AgACAAAAAAADAP//AgACAAAAAAAEAP//AgACAAAAAAAEAP7/AgACAAAAAAADAP7/AgACAAAAAAACAP7/AgACAAAAAAABAP7/AgACAAAAAAAAAP7/AgACAAAAAAD///7/AgACAAAAAAD+//7/AgACAAAAAAD9//7/AgACAAAAAAD9//3/AgACAAAAAAD+//3/AgACAAAAAAD///3/AgACAAAAAAAAAP3/AgACAAAAAAABAP3/AgACAAAAAAACAP3/AgACAAAAAAADAP3/AgACAAAAAAAEAP3/AgACAAAAAAD//wUAAgACAAAAAAAAAAUAAgACAAAAAAABAAUAAgACAAAAAAACAAUAAgACAAAAAAADAAUAAgACAAAAAAAEAAUAAgACAAAAAAA=")
 tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
@@ -61,49 +62,6 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="TestEnemy" parent="." instance=ExtResource("4_qyhbx")]
 position = Vector2(-331, 86)
 
-[node name="Coin" parent="." instance=ExtResource("5_scl2m")]
-position = Vector2(424, -141)
-
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12
 follow_viewport_enabled = false
-
-[node name="StatUpgrade" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-81, -232)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade2" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-124, -215)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade3" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-40, -214)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade4" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-21, -183)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade5" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-33, -144)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade6" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-135, -148)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade7" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-148, -182)
-upgrade = ExtResource("8_72s5o")
-needs_update = false
-
-[node name="StatUpgrade8" parent="." instance=ExtResource("1_foqc4")]
-position = Vector2(-84, -125)
-upgrade = ExtResource("8_72s5o")
-needs_update = false

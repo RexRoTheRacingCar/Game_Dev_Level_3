@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 
-
 #---------------------------------------------------------------------------------------------------------------------------
 func on_enemy_hit(body) -> void:
 	if collide_array.find(body) == -1: 
@@ -71,13 +70,13 @@ func actually_hit() -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func implement_stats():
 	hurtbox.hurt_damage = damage
-	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func delete_bullet():
 	speed = 0
 	
+	#Bullet death animation
 	var delete_tween = create_tween()
 	delete_tween.tween_property(self, "scale", Vector2(0, 0), 0.35).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT).from_current()
 	

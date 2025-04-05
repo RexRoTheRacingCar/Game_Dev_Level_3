@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ks5hyrq6x4v1"]
+
+[ext_resource type="Script" path="res://scripts/misc/area_of_sight.gd" id="1_je0ql"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cki1u"]
+resource_local_to_scene = true
+
+[node name="AreaOfSight" type="Area2D"]
+script = ExtResource("1_je0ql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cki1u")
+debug_color = Color(0.88533, 0.250759, 0.55489, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
