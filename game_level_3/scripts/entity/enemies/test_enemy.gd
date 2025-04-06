@@ -13,17 +13,18 @@ extends CharacterBody2D
 @onready var nav_timer = $NavigationTimer
 
 #Number Variables
-@export var coin_range : int
 @export var timer_delay : float = 0.55
 
 var timing : bool = false
 var current_agent_position : Vector2
 var next_path_position
+var coin_range : int
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
-	coin_range = randi_range(8, 12)
+	coin_range = randi_range(3, 6)
 	
 	timing = false
 	current_agent_position = global_position
