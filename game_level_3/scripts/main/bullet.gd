@@ -7,6 +7,7 @@ class_name Bullet
 @export var hurtbox : HurtboxComponent
 @export var death_timer_node : Timer
 @export var collision_timer_node : Timer
+@export var sprite : Node2D
 
 
 @export_group("Bullet Stats")

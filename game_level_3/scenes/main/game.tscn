@@ -67,15 +67,6 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="TestEnemy" parent="." instance=ExtResource("4_qyhbx")]
 position = Vector2(-300, 143)
 
-[node name="TestEnemy2" parent="." instance=ExtResource("4_qyhbx")]
-position = Vector2(-399, -99)
-
-[node name="TestEnemy3" parent="." instance=ExtResource("4_qyhbx")]
-position = Vector2(151, 277)
-
-[node name="TestEnemy4" parent="." instance=ExtResource("4_qyhbx")]
-position = Vector2(-536, -28)
-
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12
 follow_viewport_enabled = false

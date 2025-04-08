@@ -125,9 +125,9 @@ func player_shoot():
 		mouse_dir.y *= 2
 		
 		#Bullet spawned
-		get_parent().add_child(bullet_instance)
 		bullet_instance.global_position = global_position
 		bullet_instance.rotation = mouse_dir.angle()
+		get_parent().add_child(bullet_instance)
 		
 		#Bullet rotation offset based on amount of bullets fired
 		@warning_ignore("integer_division")

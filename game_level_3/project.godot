@@ -71,5 +71,6 @@ primary_attack={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.16446, 0.16446, 0.16446, 1)
