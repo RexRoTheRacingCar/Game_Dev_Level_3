@@ -29,6 +29,9 @@ func _ready():
 	current_pierce_count = 1
 	collision_hit = false
 	
+	if sprite:
+		sprite.look_at(get_global_mouse_position())
+	
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)

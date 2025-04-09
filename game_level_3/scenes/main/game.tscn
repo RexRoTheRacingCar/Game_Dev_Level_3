@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=7 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/main/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_qyhbx"]
+[ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/main/pause_menu.tscn" id="6_8na6d"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -70,3 +71,6 @@ position = Vector2(-300, 143)
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12
 follow_viewport_enabled = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_8na6d")]
+visible = false
