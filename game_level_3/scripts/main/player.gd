@@ -18,25 +18,41 @@ class_name Player
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
 
-@export var p_dash_delay : float = 0.4
+@export var p_dash_delay : float = 0.6
+@export var p_max_dash : int = 1
 @export var p_reload_time : float = 0.55
+
+@export var p_bullet_scene : PackedScene
+
+#Setter variables
+@export var p_is_dashing : bool = false : #If dashing or 
+	set(new_value):
+		p_is_dashing = new_value
+		if p_is_dashing == true:
+			$PlaceholderSprite2D.self_modulate = Color("e3e65a")
+			await get_tree().create_timer(0.25, false).timeout
+			p_is_dashing = false
+			$PlaceholderSprite2D.self_modulate = Color("ffffff")
+		else:
+			$PlaceholderSprite2D.self_modulate = Color("ffffff")
+
+var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets after last dash
+	set(new_value):
+		p_consecutive_dash = new_value
+		if p_consecutive_dash != 0:
+			if p_dash_timer.is_stopped() == false:
+				p_dash_timer.stop()
+			p_dash_timer.start(p_dash_delay)
+			
+			p_is_dashing = true
+
 @export var p_bullet_amount : int = 1 : 
 	set(new_value): #Update the bullet spread basd on bullet amount
 		p_bullet_amount = new_value
 		@warning_ignore("integer_division")
 		p_bullet_spread = ((15 * p_bullet_amount) - 15) / (p_bullet_amount * 1.5)
 
-@export var p_bullet_scene : PackedScene
-
-#Misc variables
-var p_dashing : bool = false
-var p_attacking : bool = false
-var p_bullet_upgrades : Array = []
-var p_can_shoot : bool = true
-var p_bullet_spread : float = 0.0
-
-#Apply upgrades to player
-var p_upgrades : BaseUpgrade = null :
+var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 	set(new_value):
 		p_upgrades = new_value
 		if p_upgrades != null:
@@ -44,12 +60,20 @@ var p_upgrades : BaseUpgrade = null :
 			p_upgrades = null
 
 
+#Misc Variables
+var p_attacking : bool = false
+var p_bullet_upgrades : Array = []
+var p_can_shoot : bool = true
+var p_bullet_spread : float = 0.0
+
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Variable prep
 	p_attacking = false
-	p_dashing = false
 	p_can_shoot = true
+	p_is_dashing = false
+	p_consecutive_dash = 0
 	
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
@@ -102,14 +126,10 @@ func player_movement(p_input, delta):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player Dash Function
 func player_dash(p_input):
-	if p_dashing == false and p_input:
-		p_dashing = true
+	if p_input and p_consecutive_dash <= p_max_dash:
 		p_vel_prep = p_input * 2200
-		
-		p_dash_timer.start(p_dash_delay)
-		
-		$PlaceholderSprite2D.self_modulate = Color("e3e65a")
-
+		p_consecutive_dash += 1
+ 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player Shoot Function
@@ -146,7 +166,7 @@ func player_shoot():
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function
 func player_hit_signalled(hurtbox: HurtboxComponent):
-	if p_dashing == false:
+	if p_consecutive_dash == 0:
 		#Variables changed
 		p_health_component.health -= hurtbox.hurt_damage
 		p_vel_prep *= -hurtbox.hurt_knockback
@@ -165,17 +185,13 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player has 0 HP
 func player_no_health():
-	
 	get_tree().quit()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player dash timer signal
 func _on_dash_timer_timeout():
-	if p_dashing == true:
-		p_dashing = false
-		
-		$PlaceholderSprite2D.self_modulate = Color("ffffff")
+	p_consecutive_dash = 0
 
 
 #---------------------------------------------------------------------------------------------------------------------------

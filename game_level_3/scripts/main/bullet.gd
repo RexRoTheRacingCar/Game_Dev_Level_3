@@ -11,10 +11,10 @@ class_name Bullet
 
 
 @export_group("Bullet Stats")
-@export var speed : float = 650.0
+@export var speed : float = 800.0
 @export var damage : int = 5
 @export var max_pierce : int = 1
-@export var life_time : float = 0.8
+@export var life_time : float = 0.6
 @export var collision_time : float = 0.15
 
 var current_pierce_count := 0
@@ -29,15 +29,8 @@ func _ready():
 	current_pierce_count = 1
 	collision_hit = false
 	
-	if sprite:
-		sprite.look_at(get_global_mouse_position())
-	
-	if hurtbox:
-		hurtbox.hurtbox_hit.connect(on_enemy_hit)
-		hurtbox.hurtbox_exited.connect(enemy_un_hit)
-		hurtbox.monitoring = false
-		await get_tree().create_timer(0.1, false).timeout
-		hurtbox.monitoring = true
+	call_deferred("update_bullet")
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -51,6 +44,19 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		queue_free()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func update_bullet():
+	if sprite:
+		sprite.look_at(get_global_mouse_position())
+		sprite.skew = (sin(0.075 * (sprite.rotation_degrees))) / 3
+	if hurtbox:
+		hurtbox.hurtbox_hit.connect(on_enemy_hit)
+		hurtbox.hurtbox_exited.connect(enemy_un_hit)
+		hurtbox.monitoring = false
+		await get_tree().create_timer(0.1, false).timeout
+		hurtbox.monitoring = true
 
 
 #---------------------------------------------------------------------------------------------------------------------------
