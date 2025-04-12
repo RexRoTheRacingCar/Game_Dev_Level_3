@@ -29,8 +29,8 @@ func _ready():
 	current_pierce_count = 1
 	collision_hit = false
 	
+	await get_tree().create_timer(0.075, false).timeout
 	call_deferred("update_bullet")
-
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -49,8 +49,8 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func update_bullet():
 	if sprite:
-		sprite.look_at(get_global_mouse_position())
-		sprite.skew = (sin(0.075 * (sprite.rotation_degrees))) / 3
+		sprite.rotation = velocity.angle() - rotation
+		sprite.skew = (0.5 * sin((2 * PI) * (sprite.rotation)) + 0)
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)

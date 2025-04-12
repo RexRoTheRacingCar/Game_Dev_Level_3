@@ -9,6 +9,6 @@ region = Rect2(0, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_ltrmb")
-player_speed_increase = 65.0
+player_speed_increase = 50.0
 texture = SubResource("AtlasTexture_nd3up")
 upgrade_type = "p_upgrades"

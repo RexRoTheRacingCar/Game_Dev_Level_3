@@ -20,7 +20,7 @@ var p_vel_prep : Vector2
 
 @export var p_dash_delay : float = 0.6
 @export var p_max_dash : int = 1
-@export var p_reload_time : float = 0.55
+@export var p_reload_time : float = 0.6
 
 @export var p_bullet_scene : PackedScene
 

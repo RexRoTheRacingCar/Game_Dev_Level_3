@@ -2,7 +2,7 @@
 extends BaseUpgrade
 class_name PlayerSpeedUpgrade
 
-@export var player_speed_increase : float = 75
+@export var player_speed_increase : float = 50
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player

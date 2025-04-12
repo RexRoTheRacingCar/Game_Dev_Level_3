@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://bom22ublhv6f4"]
 
-[ext_resource type="Script" path="res://scripts/main/player_ui.gd" id="1_cms01"]
+[ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="1_cms01"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_6yvmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74qv3"]
-bg_color = Color(0.08, 0, 0, 1)
+bg_color = Color(0.0947207, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qe5c6"]
 bg_color = Color(1, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0, 0, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tn83g"]
 atlas = ExtResource("2_6yvmt")
@@ -34,10 +34,10 @@ size_flags_vertical = 4
 
 [node name="PlayerHP" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 410.0
-offset_top = 1053.0
-offset_right = 485.0
-offset_bottom = 1076.0
+offset_left = 430.0
+offset_top = 1050.0
+offset_right = 505.0
+offset_bottom = 1073.0
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Player HP"
@@ -48,8 +48,8 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = -25.0
-offset_right = 404.0
+offset_top = -33.0
+offset_right = 424.0
 offset_bottom = -5.0
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_74qv3")
@@ -59,16 +59,16 @@ value = 90.0
 show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(1901, 1059)
-scale = Vector2(0.25, 0.25)
+position = Vector2(1901, 1061)
+scale = Vector2(0.285, 0.285)
 texture = SubResource("AtlasTexture_tn83g")
 
 [node name="Coins" type="Label" parent="Control"]
 layout_mode = 2
 offset_left = 1838.0
-offset_top = 1048.0
+offset_top = 1050.0
 offset_right = 1881.0
-offset_bottom = 1071.0
+offset_bottom = 1073.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 4

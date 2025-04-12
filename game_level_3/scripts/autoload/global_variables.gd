@@ -16,7 +16,7 @@ var coin : PackedScene = preload("res://scenes/entity/coin.tscn")
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
-
+	Engine.time_scale = 1
 
 #---------------------------------------------------------------------------------------------------------------------------
 func spawn_coins(coin_amount : int, spawn_pos : Vector2, parent : Node):
