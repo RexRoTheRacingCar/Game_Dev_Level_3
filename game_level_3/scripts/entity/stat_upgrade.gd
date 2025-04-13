@@ -1,5 +1,5 @@
 ############################## Stat Upgrade ##############################
-@tool
+#@tool
 extends Area2D
 
 @export var animation_player : AnimationPlayer
@@ -11,12 +11,19 @@ extends Area2D
 
 #Used to update the sprite if updated in the editor
 @export var needs_update : bool = false
+var collected : bool = false
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
 	sprite.texture = upgrade.texture
+	collected = false
+	$GPUParticles2D.emitting = true
 	
+	call_deferred("start")
+
+
+func start():
 	animation_player.speed_scale = randf_range(0.9, 1.1)
 	animation_player.play("idle")
 
@@ -34,7 +41,10 @@ func _process(_delta: float) -> void:
 #When player entered area
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
-		if body.name == "Player":
+		if body.name == "Player" and collected == false:
+			collected = true
+			$GPUParticles2D.emitting = false
+			
 			#Apply to bullet upgrade array
 			if upgrade.upgrade_type == "p_bullet_upgrades":
 				body.p_bullet_upgrades.append(upgrade)

@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="LifetimeBulletUpgrade" load_steps=4 format=3 uid="uid://cdrw7kvmvkbg1"]
+[gd_resource type="Resource" script_class="LifetimeBulletUpgrade" load_steps=5 format=3 uid="uid://cdrw7kvmvkbg1"]
 
-[ext_resource type="Script" path="res://scripts/upgrades/lifetime_bullet_upgrade.gd" id="1_256h3"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/lifetime_bullet_upgrade.gd" id="1_256h3"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_quq6i"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_5ryo4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j73os"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3cqt"]
 atlas = ExtResource("2_5ryo4")
 region = Rect2(200, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_256h3")
-lifetime_increase = 0.4
-texture = SubResource("AtlasTexture_j73os")
+lifetime_increase = 0.15
+rarity = 0
+item_type = ExtResource("1_quq6i")
+item_cost = 15
+texture = SubResource("AtlasTexture_a3cqt")
 upgrade_type = "p_bullet_upgrades"

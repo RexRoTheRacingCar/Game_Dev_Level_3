@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="PierceBulletUpgrade" load_steps=4 format=3 uid="uid://djfc83d0m5aue"]
+[gd_resource type="Resource" script_class="PierceBulletUpgrade" load_steps=5 format=3 uid="uid://djfc83d0m5aue"]
 
-[ext_resource type="Script" path="res://scripts/upgrades/pierce_bullet_upgrade.gd" id="1_30l25"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/pierce_bullet_upgrade.gd" id="1_30l25"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_33pv8"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_tj800"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3urhf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fegw"]
 atlas = ExtResource("2_tj800")
 region = Rect2(0, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_30l25")
 pierce_increase = 2
-texture = SubResource("AtlasTexture_3urhf")
+rarity = 0
+item_type = ExtResource("1_33pv8")
+item_cost = 10
+texture = SubResource("AtlasTexture_5fegw")
 upgrade_type = "p_bullet_upgrades"

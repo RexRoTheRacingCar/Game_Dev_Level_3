@@ -2,7 +2,7 @@
 extends BaseUpgrade
 class_name LifetimeBulletUpgrade
 
-@export var lifetime_increase : float = 0.4
+@export var lifetime_increase : float = 0.15
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet

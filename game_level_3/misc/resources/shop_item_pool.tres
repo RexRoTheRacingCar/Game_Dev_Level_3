@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RandomItemResource" load_steps=10 format=3 uid="uid://v4ljbmcc8dtf"]
+
+[ext_resource type="Script" path="res://scripts/items/item.gd" id="1_t8xtv"]
+[ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/bullet_amount_upgrade.tres" id="2_488kx"]
+[ext_resource type="Script" path="res://scripts/components/random_item_node.gd" id="2_mwjdc"]
+[ext_resource type="Resource" uid="uid://bw75a3x4e353n" path="res://misc/resources/upgrades/damage_bullet_upgrade.tres" id="3_ex0yc"]
+[ext_resource type="Resource" uid="uid://bp8nlcaxu4dpl" path="res://misc/resources/upgrades/firerate_player_upgrade.tres" id="4_t0wrj"]
+[ext_resource type="Resource" uid="uid://dlj1lxbxweiie" path="res://misc/resources/upgrades/health_player_upgrade.tres" id="5_6j71p"]
+[ext_resource type="Resource" uid="uid://cdrw7kvmvkbg1" path="res://misc/resources/upgrades/lifetime_bullet_upgrade.tres" id="6_4p6fg"]
+[ext_resource type="Resource" uid="uid://djfc83d0m5aue" path="res://misc/resources/upgrades/pierce_bullet_upgrade.tres" id="7_17tuf"]
+[ext_resource type="Resource" uid="uid://dbvxn1t66c5j8" path="res://misc/resources/upgrades/speed_player_upgrade.tres" id="8_1gnpd"]
+
+[resource]
+script = ExtResource("2_mwjdc")
+item_pool = Array[ExtResource("1_t8xtv")]([ExtResource("2_488kx"), ExtResource("3_ex0yc"), ExtResource("4_t0wrj"), ExtResource("5_6j71p"), ExtResource("6_4p6fg"), ExtResource("7_17tuf"), ExtResource("8_1gnpd")])

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://mi1130iamiy0"]
+
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_q006t"]
+[ext_resource type="Script" path="res://scripts/entity/particle.gd" id="2_danbg"]
+
+[sub_resource type="Gradient" id="Gradient_qxqvg"]
+offsets = PackedFloat32Array(0.371681, 1)
+colors = PackedColorArray(0.36, 0.36, 0.36, 0.698039, 0.212305, 0.212305, 0.212305, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xjca8"]
+gradient = SubResource("Gradient_qxqvg")
+
+[sub_resource type="Curve" id="Curve_ssxah"]
+_data = [Vector2(0, 0), 0.0, 12.0654, 0, 0, Vector2(0.140152, 1), 0.301887, 0.301887, 0, 0, Vector2(1, 0.320755), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a0odh"]
+curve = SubResource("Curve_ssxah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m1152"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 124.22
+initial_velocity_max = 124.22
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+gravity = Vector3(0, -32, 0)
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_min = 0.1
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_a0odh")
+color_ramp = SubResource("GradientTexture1D_xjca8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3emk"]
+atlas = ExtResource("1_q006t")
+region = Rect2(0, 300, 50, 50)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+y_sort_enabled = true
+scale = Vector2(1, 0.5)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_m1152")
+texture = SubResource("AtlasTexture_j3emk")
+lifetime = 1.4
+one_shot = true
+explosiveness = 0.98
+randomness = 0.2
+script = ExtResource("2_danbg")

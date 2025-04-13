@@ -50,7 +50,9 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(0, 10)
 texture = SubResource("AtlasTexture_kgkib")
+offset = Vector2(0, -10)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_kkxus")]
 health_bar = NodePath("ProgressBar")
@@ -72,6 +74,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_qshim")
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_faqak")]
 collision_layer = 0

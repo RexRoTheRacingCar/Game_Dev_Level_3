@@ -1,14 +1,20 @@
-[gd_resource type="Resource" script_class="DamageBulletUpgrade" load_steps=4 format=3 uid="uid://bw75a3x4e353n"]
+[gd_resource type="Resource" script_class="DamageBulletUpgrade" load_steps=5 format=3 uid="uid://bw75a3x4e353n"]
 
-[ext_resource type="Script" path="res://scripts/upgrades/damage_bullet_upgrade.gd" id="1_vh0ky"]
-[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_6i4r1"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_hgjma"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/damage_bullet_upgrade.gd" id="1_p7div"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eutvc"]
-atlas = ExtResource("2_6i4r1")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uemj"]
+load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krcig"]
+atlas = SubResource("CompressedTexture2D_6uemj")
 region = Rect2(100, 0, 100, 100)
 
 [resource]
-script = ExtResource("1_vh0ky")
+script = ExtResource("1_p7div")
 damage_increase = 5
-texture = SubResource("AtlasTexture_eutvc")
+rarity = 0
+item_type = ExtResource("1_hgjma")
+item_cost = 10
+texture = SubResource("AtlasTexture_krcig")
 upgrade_type = "p_bullet_upgrades"

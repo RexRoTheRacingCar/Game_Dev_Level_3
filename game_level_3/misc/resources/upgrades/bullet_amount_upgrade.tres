@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="BulletAmountUpgrade" load_steps=4 format=3 uid="uid://c54bj7d6c0rvt"]
+[gd_resource type="Resource" script_class="BulletAmountUpgrade" load_steps=5 format=3 uid="uid://c54bj7d6c0rvt"]
 
-[ext_resource type="Script" path="res://scripts/upgrades/bullet_amount_upgrade.gd" id="1_pxfw0"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/bullet_amount_upgrade.gd" id="1_c1urm"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_m7nh0"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_7qfht"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2fifj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lriop"]
 atlas = ExtResource("2_7qfht")
 region = Rect2(200, 0, 100, 100)
 
 [resource]
-script = ExtResource("1_pxfw0")
+script = ExtResource("1_c1urm")
 bullet_amount_increase = 2
-texture = SubResource("AtlasTexture_2fifj")
+rarity = 1
+item_type = ExtResource("1_m7nh0")
+item_cost = 25
+texture = SubResource("AtlasTexture_lriop")
 upgrade_type = "p_upgrades"

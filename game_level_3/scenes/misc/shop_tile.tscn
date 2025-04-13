@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://burt04gq6di4m"]
+
+[ext_resource type="Script" path="res://scripts/misc/shop_tile.gd" id="1_pfyx2"]
+[ext_resource type="Resource" uid="uid://v4ljbmcc8dtf" path="res://misc/resources/shop_item_pool.tres" id="2_o3642"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_oao8i"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p81b7"]
+load_path = "res://.godot/imported/iso_green_set.png-4817c5288525ba079934765ca6e40ecb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa3hi"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_p81b7")
+region = Rect2(480, 180, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fclsx"]
+atlas = ExtResource("3_oao8i")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xjhl"]
+atlas = ExtResource("3_oao8i")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rine"]
+bg_color = Color(0.0693, 0.099825, 0.11, 0.654902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0704, 0.09812, 0.11, 0)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r68nd"]
+atlas = ExtResource("3_oao8i")
+region = Rect2(0, 200, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kt1uf"]
+radius = 80.0
+
+[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "lock_sprite", "shop_tile", "price_label") groups=["walls"]]
+collision_layer = 25
+collision_mask = 0
+script = ExtResource("1_pfyx2")
+reward_sprite = NodePath("SpriteFolder/Reward")
+lock_sprite = NodePath("SpriteFolder/RewardLock")
+shop_tile = NodePath("SpriteFolder/ShopTile")
+price_label = NodePath("PriceUI/MarginContainer/HBoxContainer/Coins")
+random_item = ExtResource("2_o3642")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+y_sort_enabled = true
+polygon = PackedVector2Array(0, 30, -60, 0, 0, -30, 60, 0)
+
+[node name="SpriteFolder" type="Node2D" parent="."]
+
+[node name="ShopTile" type="Sprite2D" parent="SpriteFolder"]
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_qa3hi")
+offset = Vector2(0, 13)
+
+[node name="Reward" type="Sprite2D" parent="SpriteFolder"]
+self_modulate = Color(0.32, 0.32, 0.32, 0.564706)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -42)
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_fclsx")
+
+[node name="RewardLock" type="Sprite2D" parent="SpriteFolder"]
+visible = false
+z_index = 2
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_3xjhl")
+
+[node name="PriceUI" type="PanelContainer" parent="."]
+z_index = 10
+y_sort_enabled = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -100.0
+offset_right = 40.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rine")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PriceUI"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PriceUI/MarginContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Coins" type="Label" parent="PriceUI/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Coins"
+horizontal_alignment = 2
+
+[node name="Icon" type="TextureRect" parent="PriceUI/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_r68nd")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+y_sort_enabled = true
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_kt1uf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -11,10 +11,10 @@ class_name Bullet
 
 
 @export_group("Bullet Stats")
-@export var speed : float = 800.0
+@export var speed : float = 950.0
 @export var damage : int = 5
 @export var max_pierce : int = 1
-@export var life_time : float = 0.6
+@export var life_time : float = 0.5
 @export var collision_time : float = 0.15
 
 var current_pierce_count := 0
@@ -28,7 +28,9 @@ func _ready():
 	collide_array.clear()
 	current_pierce_count = 1
 	collision_hit = false
-	
+	if hurtbox:
+		hurtbox.monitoring = false
+		
 	await get_tree().create_timer(0.075, false).timeout
 	call_deferred("update_bullet")
 
@@ -54,8 +56,6 @@ func update_bullet():
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
-		hurtbox.monitoring = false
-		await get_tree().create_timer(0.1, false).timeout
 		hurtbox.monitoring = true
 
 

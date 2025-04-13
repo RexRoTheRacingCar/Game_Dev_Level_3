@@ -8,21 +8,24 @@ bg_color = Color(0.0947207, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qe5c6"]
 bg_color = Color(1, 0, 0, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tn83g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbw1i"]
 atlas = ExtResource("2_6yvmt")
 region = Rect2(0, 200, 100, 100)
 
-[node name="PlayerUI" type="CanvasLayer"]
+[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("player_hp", "player_health_bar", "coins")]
 follow_viewport_enabled = true
 script = ExtResource("1_cms01")
+player_hp = NodePath("MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1/PlayerHP")
+player_health_bar = NodePath("MainControl/UIMargin/BottomHBox/BottomHSplit/PlayerHealthBar")
+coins = NodePath("MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1/HSplit2/Coins")
 
-[node name="Control" type="Control" parent="."]
+[node name="MainControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,47 +35,66 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="PlayerHP" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 430.0
-offset_top = 1050.0
-offset_right = 505.0
-offset_bottom = 1073.0
-theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
-theme_override_constants/outline_size = 10
-text = "Player HP"
-
-[node name="PlayerHealthBar" type="ProgressBar" parent="Control"]
+[node name="UIMargin" type="MarginContainer" parent="MainControl"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = -33.0
-offset_right = 424.0
-offset_bottom = -5.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BottomHBox" type="HBoxContainer" parent="MainControl/UIMargin"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BottomHSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="MainControl/UIMargin/BottomHBox/BottomHSplit"]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_74qv3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qe5c6")
 step = 1.0
 value = 90.0
 show_percentage = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(1901, 1061)
-scale = Vector2(0.285, 0.285)
-texture = SubResource("AtlasTexture_tn83g")
-
-[node name="Coins" type="Label" parent="Control"]
+[node name="HSplit1" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomHSplit"]
 layout_mode = 2
-offset_left = 1838.0
-offset_top = 1050.0
-offset_right = 1881.0
-offset_bottom = 1073.0
-grow_horizontal = 0
-grow_vertical = 0
+size_flags_horizontal = 3
+split_offset = 12
+
+[node name="PlayerHP" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Player HP"
+
+[node name="HSplit2" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Coins" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1/HSplit2"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Coins"
 horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomHSplit/HSplit1/HSplit2"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_cbw1i")
+expand_mode = 4
+stretch_mode = 5

@@ -1,14 +1,18 @@
-[gd_resource type="Resource" script_class="HealthPlayerUpgrade" load_steps=4 format=3 uid="uid://dlj1lxbxweiie"]
+[gd_resource type="Resource" script_class="HealthPlayerUpgrade" load_steps=5 format=3 uid="uid://dlj1lxbxweiie"]
 
-[ext_resource type="Script" path="res://scripts/upgrades/health_player_upgrade.gd" id="1_t5fvc"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/health_player_upgrade.gd" id="1_t5fvc"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_vrlhv"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_ihwln"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x7xd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5hmf"]
 atlas = ExtResource("2_ihwln")
 region = Rect2(100, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_t5fvc")
 health_increase = 25
-texture = SubResource("AtlasTexture_7x7xd")
+rarity = 1
+item_type = ExtResource("1_vrlhv")
+item_cost = 20
+texture = SubResource("AtlasTexture_e5hmf")
 upgrade_type = "p_upgrades"

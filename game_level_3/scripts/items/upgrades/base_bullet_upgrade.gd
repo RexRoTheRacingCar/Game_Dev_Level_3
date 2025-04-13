@@ -1,9 +1,6 @@
 ############################## Main Bullet Base ##############################
-extends Resource
+extends Item
 class_name BaseUpgrade
-
-@export var texture : Texture2D
-@export var upgrade_type : String
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet (KEEP BLANK)

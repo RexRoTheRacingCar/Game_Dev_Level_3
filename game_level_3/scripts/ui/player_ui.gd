@@ -3,10 +3,10 @@ extends CanvasLayer
 
 
 #Label variables
-@onready var player_hp : Label = $Control/PlayerHP
-@onready var player_health_bar : ProgressBar = $Control/PlayerHealthBar
+@export var player_hp : Label
+@export var player_health_bar : ProgressBar
 
-@onready var coins : Label = $Control/Coins
+@export var coins : Label
 
 
 #---------------------------------------------------------------------------------------------------------------------------

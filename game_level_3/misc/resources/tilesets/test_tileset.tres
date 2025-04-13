@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://fxfnm3yb88aw"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://fxfnm3yb88aw"]
 
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="1_5u8u2"]
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_qscnk"]
+[ext_resource type="PackedScene" uid="uid://burt04gq6di4m" path="res://scenes/misc/shop_tile.tscn" id="2_5wp4y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s31wi"]
 texture = ExtResource("1_qscnk")
@@ -37,6 +38,11 @@ texture_region_size = Vector2i(120, 60)
 5:0/0 = 0
 5:1/0 = 0
 5:2/0 = 0
+5:3/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qq58d"]
+resource_name = "SceneTiles"
+scenes/1/scene = ExtResource("2_5wp4y")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0s1ul"]
 vertices = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
@@ -74,3 +80,4 @@ physics_layer_0/collision_mask = 0
 navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_hjg1m")
 sources/0 = SubResource("TileSetAtlasSource_s31wi")
+sources/1 = SubResource("TileSetScenesCollectionSource_qq58d")
