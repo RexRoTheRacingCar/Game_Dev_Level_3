@@ -14,21 +14,21 @@ region = Rect2(100, 0, 100, 100)
 offsets = PackedFloat32Array(0, 0.256637, 0.982301, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0, 1, 1, 1, 0.0609756)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa2nt"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0igoj"]
 gradient = SubResource("Gradient_px8ew")
 
 [sub_resource type="Curve" id="Curve_dnk2s"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.96929, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_x27it"]
+[sub_resource type="CurveTexture" id="CurveTexture_10yhp"]
 curve = SubResource("Curve_dnk2s")
 
 [sub_resource type="Curve" id="Curve_tg3wl"]
 _data = [Vector2(0, 0.516981), 0.0, 1.69057, 0, 0, Vector2(0.435606, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.773585), -1.44135, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_m80py"]
+[sub_resource type="CurveTexture" id="CurveTexture_jbd6x"]
 curve = SubResource("Curve_tg3wl")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_djyvr"]
@@ -43,12 +43,12 @@ angle_min = 90.0
 angle_max = 90.0
 radial_velocity_min = 7.99998
 radial_velocity_max = 12.43
-radial_velocity_curve = SubResource("CurveTexture_x27it")
+radial_velocity_curve = SubResource("CurveTexture_10yhp")
 gravity = Vector3(0, -35, 0)
 scale_min = 0.25
 scale_max = 0.3
-scale_curve = SubResource("CurveTexture_m80py")
-color_ramp = SubResource("GradientTexture1D_aa2nt")
+scale_curve = SubResource("CurveTexture_jbd6x")
+color_ramp = SubResource("GradientTexture1D_0igoj")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kdbw"]
 atlas = ExtResource("3_yd28e")
@@ -249,7 +249,6 @@ process_material = SubResource("ParticleProcessMaterial_djyvr")
 texture = SubResource("AtlasTexture_6kdbw")
 lifetime = 0.75
 explosiveness = 0.1
-randomness = 0.35
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://burt04gq6di4m"]
+[gd_scene load_steps=19 format=3 uid="uid://burt04gq6di4m"]
 
 [ext_resource type="Script" path="res://scripts/misc/shop_tile.gd" id="1_pfyx2"]
 [ext_resource type="Resource" uid="uid://v4ljbmcc8dtf" path="res://misc/resources/shop_item_pool.tres" id="2_o3642"]
@@ -20,6 +20,50 @@ region = Rect2(0, 0, 100, 100)
 atlas = ExtResource("3_oao8i")
 region = Rect2(300, 200, 100, 100)
 
+[sub_resource type="Gradient" id="Gradient_nywwv"]
+offsets = PackedFloat32Array(0, 0.256637, 0.982301, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0, 1, 1, 1, 0.0609756)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa2nt"]
+gradient = SubResource("Gradient_nywwv")
+
+[sub_resource type="Curve" id="Curve_5576q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.96929, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x27it"]
+curve = SubResource("Curve_5576q")
+
+[sub_resource type="Curve" id="Curve_5mxm2"]
+_data = [Vector2(0, 0.516981), 0.0, 1.69057, 0, 0, Vector2(0.435606, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.773585), -1.44135, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_m80py"]
+curve = SubResource("Curve_5mxm2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_00cou"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 35.0
+emission_ring_inner_radius = 25.0
+angle_min = 90.0
+angle_max = 90.0
+radial_velocity_min = 7.99998
+radial_velocity_max = 12.43
+radial_velocity_curve = SubResource("CurveTexture_x27it")
+gravity = Vector3(0, -35, 0)
+scale_min = 0.25
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_m80py")
+color_ramp = SubResource("GradientTexture1D_aa2nt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqing"]
+atlas = ExtResource("3_oao8i")
+region = Rect2(0, 350, 100, 50)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rine"]
 bg_color = Color(0.0693, 0.099825, 0.11, 0.654902)
 border_width_left = 2
@@ -38,7 +82,7 @@ atlas = ExtResource("3_oao8i")
 region = Rect2(0, 200, 100, 100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kt1uf"]
-radius = 80.0
+radius = 75.0
 
 [node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "lock_sprite", "shop_tile", "price_label") groups=["walls"]]
 collision_layer = 25
@@ -51,7 +95,6 @@ price_label = NodePath("PriceUI/MarginContainer/HBoxContainer/Coins")
 random_item = ExtResource("2_o3642")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 y_sort_enabled = true
 polygon = PackedVector2Array(0, 30, -60, 0, 0, -30, 60, 0)
 
@@ -63,11 +106,11 @@ texture = SubResource("AtlasTexture_qa3hi")
 offset = Vector2(0, 13)
 
 [node name="Reward" type="Sprite2D" parent="SpriteFolder"]
-self_modulate = Color(0.32, 0.32, 0.32, 0.564706)
+self_modulate = Color(0.25, 0.25, 0.25, 0.9)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -42)
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.54, 0.54)
 texture = SubResource("AtlasTexture_fclsx")
 
 [node name="RewardLock" type="Sprite2D" parent="SpriteFolder"]
@@ -75,6 +118,16 @@ visible = false
 z_index = 2
 y_sort_enabled = true
 texture = SubResource("AtlasTexture_3xjhl")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SpriteFolder"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -42)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_00cou")
+texture = SubResource("AtlasTexture_oqing")
+lifetime = 0.75
+explosiveness = 0.1
 
 [node name="PriceUI" type="PanelContainer" parent="."]
 z_index = 10

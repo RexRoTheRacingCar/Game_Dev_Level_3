@@ -7,4 +7,4 @@ var enemy := preload("res://scenes/entity/enemy/test_enemy.tscn")
 #---------------------------------------------------------------------------------------------------------------------------
 func _unhandled_input(event): #Change pause status based on "pause" pressed
 	if event.is_action_pressed("spawn_enemy"):
-		Global.spawn_particle(Vector2(-300, 300), $Player, enemy)
+		Global.spawn_particle(get_global_mouse_position(), $Player, enemy)
