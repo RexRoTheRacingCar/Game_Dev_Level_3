@@ -13,11 +13,6 @@ var player_max_ammo : int
 #Only use in global script!!!
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 
-var rarities = {0 : 1000, #Common
-				1 : 500, #Rare
-				2 : 250, #Epic
-				3 : 100} #Legendary
-
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -42,15 +37,15 @@ func spawn_particle(spawn_pos : Vector2, parent : Node, particle_scene : PackedS
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func get_rarity(): #Generate a random rarity with weighted sums
-	var weighted_sum := 0
+func get_rarity(rarities : Dictionary): #Generate a random rarity with weighted sums
+	var total = 0
+	for i in rarities: #Total rarity values
+		total += rarities[i]
+		
+	var randfloat = randf() * total #Random float from 0.0 to 1.0 multiplied by the total
 	
-	for n in rarities:
-		weighted_sum += rarities[n]
-	
-	var output = randi_range(0, weighted_sum)
-	
-	for n in rarities:
-		if output <= rarities[n]:
-			return n
-		output -= rarities[n]
+	for i in rarities:
+		if randfloat < rarities[i]:
+			return i
+		
+		randfloat -= rarities[i]

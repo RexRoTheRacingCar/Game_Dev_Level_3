@@ -21,8 +21,9 @@ atlas = ExtResource("3_oao8i")
 region = Rect2(300, 200, 100, 100)
 
 [sub_resource type="Gradient" id="Gradient_nywwv"]
-offsets = PackedFloat32Array(0, 0.256637, 0.982301, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0, 1, 1, 1, 0.0609756)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.256637, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.721, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_aa2nt"]
 gradient = SubResource("Gradient_nywwv")
@@ -92,7 +93,7 @@ reward_sprite = NodePath("SpriteFolder/Reward")
 lock_sprite = NodePath("SpriteFolder/RewardLock")
 shop_tile = NodePath("SpriteFolder/ShopTile")
 price_label = NodePath("PriceUI/MarginContainer/HBoxContainer/Coins")
-random_item = ExtResource("2_o3642")
+item_pool = ExtResource("2_o3642")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 y_sort_enabled = true

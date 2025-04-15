@@ -28,7 +28,7 @@ var p_vel_prep : Vector2
 @export var p_reload_time : float = 0.6
 @export var p_full_reload_time : float = 1.0
 @export var p_max_ammo : int = 18
-var p_ammo : int = 16
+var p_ammo : int = 0
 var p_reloading : bool = false
 
 @export var p_reload_label : Label #Delete Later
@@ -88,6 +88,7 @@ func _ready():
 	p_is_dashing = false
 	p_consecutive_dash = 0
 	p_reload_label.visible = false
+	p_ammo = p_max_ammo
 	
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO

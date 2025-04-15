@@ -11,7 +11,7 @@ region = Rect2(200, 0, 100, 100)
 [resource]
 script = ExtResource("1_c1urm")
 bullet_amount_increase = 2
-rarity = 1
+rarity = "Legendary"
 item_type = ExtResource("1_m7nh0")
 item_cost = 25
 texture = SubResource("AtlasTexture_lriop")

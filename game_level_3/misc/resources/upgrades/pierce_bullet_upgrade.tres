@@ -11,7 +11,7 @@ region = Rect2(0, 0, 100, 100)
 [resource]
 script = ExtResource("1_30l25")
 pierce_increase = 2
-rarity = 0
+rarity = "Common"
 item_type = ExtResource("1_33pv8")
 item_cost = 10
 texture = SubResource("AtlasTexture_5fegw")

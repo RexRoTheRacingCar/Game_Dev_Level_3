@@ -10,8 +10,8 @@ region = Rect2(300, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_h8wib")
-player_max_ammo_increase = 6.0
-rarity = 0
+player_max_ammo_increase = 6
+rarity = "Common"
 item_type = ExtResource("1_djcdh")
 item_cost = 10
 texture = SubResource("AtlasTexture_exut3")

@@ -13,7 +13,7 @@ region = Rect2(100, 0, 100, 100)
 [resource]
 script = ExtResource("1_p7div")
 damage_increase = 5
-rarity = 0
+rarity = "Common"
 item_type = ExtResource("1_hgjma")
 item_cost = 10
 texture = SubResource("AtlasTexture_krcig")

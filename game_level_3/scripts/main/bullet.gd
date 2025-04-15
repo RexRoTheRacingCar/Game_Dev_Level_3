@@ -17,6 +17,7 @@ class_name Bullet
 @export var life_time : float = 0.5
 @export var collision_time : float = 0.15
 
+
 var current_pierce_count := 0
 var fake_velocity := Vector2.ZERO
 var collide_array : Array = []
@@ -30,7 +31,7 @@ func _ready():
 	collision_hit = false
 	if hurtbox:
 		hurtbox.monitoring = false
-		
+	
 	await get_tree().create_timer(0.075, false).timeout
 	call_deferred("update_bullet")
 
