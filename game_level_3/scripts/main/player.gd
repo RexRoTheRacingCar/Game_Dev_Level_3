@@ -12,20 +12,32 @@ class_name Player
 @export var p_health_component : HealthComponent
 
 #Movement variables
-@export_group("Customisable")
+@export_group("Speed")
 @export var p_speed : float = 425
 @export var P_ACCEL : int = 3000
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
 
+#Dashing Variables
+@export_group("Dash")
 @export var p_dash_delay : float = 0.6
 @export var p_max_dash : int = 1
+
+#Weapon Variables
+@export_group("Weapon")
 @export var p_reload_time : float = 0.6
+@export var p_full_reload_time : float = 1.0
+@export var p_max_ammo : int = 18
+var p_ammo : int = 16
+var p_reloading : bool = false
+
+@export var p_reload_label : Label #Delete Later
 
 @export var p_bullet_scene : PackedScene
 
+
 #Setter variables
-@export var p_is_dashing : bool = false : #If dashing or 
+var p_is_dashing : bool = false : #If dashing or 
 	set(new_value):
 		p_is_dashing = new_value
 		if p_is_dashing == true:
@@ -35,6 +47,7 @@ var p_vel_prep : Vector2
 			$PlaceholderSprite2D.self_modulate = Color("ffffff")
 		else:
 			$PlaceholderSprite2D.self_modulate = Color("ffffff")
+
 
 var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets after last dash
 	set(new_value):
@@ -46,11 +59,13 @@ var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets a
 			
 			p_is_dashing = true
 
+
 @export var p_bullet_amount : int = 1 : 
 	set(new_value): #Update the bullet spread basd on bullet amount
 		p_bullet_amount = new_value
 		@warning_ignore("integer_division")
 		p_bullet_spread = ((15 * p_bullet_amount) - 15) / (p_bullet_amount * 1.5)
+
 
 var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 	set(new_value):
@@ -61,7 +76,6 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 
 
 #Misc Variables
-var p_attacking : bool = false
 var p_bullet_upgrades : Array = []
 var p_can_shoot : bool = true
 var p_bullet_spread : float = 0.0
@@ -70,10 +84,10 @@ var p_bullet_spread : float = 0.0
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Variable prep
-	p_attacking = false
 	p_can_shoot = true
 	p_is_dashing = false
 	p_consecutive_dash = 0
+	p_reload_label.visible = false
 	
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
@@ -89,19 +103,16 @@ func _ready():
 #THE PHYSICS PROCESS
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
-	if p_attacking == false:
-		#Player movement
-		var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
-		player_movement(p_input, delta)
-		
-		#Player roll
-		if Input.is_action_just_pressed("dash"):
-			player_dash(p_input)
-		
-		#Player shoot
-		if Input.is_action_pressed("primary_attack") and p_can_shoot == true:
-			player_shoot()
+	#Player movement
+	var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
+	player_movement(p_input, delta)
 	
+	#Player roll
+	if Input.is_action_just_pressed("dash"):
+		player_dash(p_input)
+	
+	#Player shooting
+	weapon_functionality()
 	
 	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
 	var _error = move_and_slide() #Apply velocity
@@ -132,9 +143,32 @@ func player_dash(p_input):
  
 
 #---------------------------------------------------------------------------------------------------------------------------
+func weapon_functionality():
+	#Reloading functionality
+	if (Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and p_reloading == false:
+		p_reload_label.visible = true
+		p_reloading = true
+		
+		await get_tree().create_timer(p_full_reload_time, false).timeout
+		
+		p_reload_label.visible = false
+		p_reloading = false
+		p_ammo = p_max_ammo
+	
+	#If can shoot
+	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false and p_ammo >= 1:
+		player_shoot()
+	
+	#Update global variables
+	Global.player_ammo = p_ammo
+	Global.player_max_ammo = p_max_ammo
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 #Player Shoot Function
 func player_shoot():
 	p_can_shoot = false
+	p_ammo -= 1
 	p_shoot_timer.start(p_reload_time)
 	
 	#The bullet instance

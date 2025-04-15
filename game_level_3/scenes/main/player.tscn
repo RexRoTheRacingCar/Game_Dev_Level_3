@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=10 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
@@ -16,7 +16,12 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_u08x0"]
 radius = 18.0278
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component")]
+[sub_resource type="LabelSettings" id="LabelSettings_c4jxb"]
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component", "p_reload_label")]
 y_sort_enabled = true
 collision_layer = 4
 motion_mode = 1
@@ -29,6 +34,7 @@ p_health_component = NodePath("HealthComponent")
 P_ACCEL = 6500
 P_FRICTION = 25000
 p_reload_time = 1.0
+p_reload_label = NodePath("Reloading")
 p_bullet_scene = ExtResource("2_qg8hb")
 
 [node name="DashTimer" type="Timer" parent="."]
@@ -68,6 +74,18 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 shape = SubResource("CircleShape2D_u08x0")
+
+[node name="Reloading" type="Label" parent="."]
+z_index = 5
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 39.0
+offset_bottom = -15.0
+theme_override_constants/outline_size = 7
+text = "Reloading"
+label_settings = SubResource("LabelSettings_c4jxb")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

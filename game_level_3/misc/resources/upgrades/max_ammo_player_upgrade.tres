@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerMaxAmmoUpgrade" load_steps=5 format=3 uid="uid://domnvnqxcbkkn"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_djcdh"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/max_ammo_upgrade.gd" id="1_h8wib"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_8rg6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exut3"]
+atlas = ExtResource("3_8rg6k")
+region = Rect2(300, 100, 100, 100)
+
+[resource]
+script = ExtResource("1_h8wib")
+player_max_ammo_increase = 6.0
+rarity = 0
+item_type = ExtResource("1_djcdh")
+item_cost = 10
+texture = SubResource("AtlasTexture_exut3")
+upgrade_type = "p_upgrades"

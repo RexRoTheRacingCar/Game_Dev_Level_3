@@ -7,7 +7,8 @@ var player_position : Vector2
 var player_coins : int
 var player_hp : int
 var player_max_hp : int
-
+var player_ammo : int
+var player_max_ammo : int
 
 #Only use in global script!!!
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")

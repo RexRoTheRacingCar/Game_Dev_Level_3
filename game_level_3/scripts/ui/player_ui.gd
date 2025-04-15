@@ -7,6 +7,8 @@ extends CanvasLayer
 @export var player_health_bar : ProgressBar
 
 @export var coins : Label
+@export var bullets : Label
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -18,3 +20,5 @@ func _process(_delta):
 	player_health_bar.value = Global.player_hp
 	
 	coins.text = str(Global.player_coins)
+	bullets.text = str(Global.player_ammo, " / ", Global.player_max_ammo)
+	
