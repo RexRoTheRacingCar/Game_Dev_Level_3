@@ -1,4 +1,4 @@
-############################## Bullet Amount Bullet Base ##############################
+############################## Bullet Amount Upgrade ##############################
 extends BaseUpgrade
 class_name BulletAmountUpgrade
 

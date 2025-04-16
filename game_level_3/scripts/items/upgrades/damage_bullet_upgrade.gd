@@ -1,4 +1,4 @@
-############################## Damage Bullet Upgrade ##############################
+############################## Bullet Damage Upgrade ##############################
 extends BaseUpgrade
 class_name DamageBulletUpgrade
 

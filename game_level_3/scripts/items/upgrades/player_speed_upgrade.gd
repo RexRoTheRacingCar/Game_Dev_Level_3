@@ -1,4 +1,4 @@
-############################## Pierce Bullet Base ##############################
+############################## Player Speed Upgrade ##############################
 extends BaseUpgrade
 class_name PlayerSpeedUpgrade
 

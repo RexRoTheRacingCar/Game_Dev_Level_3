@@ -1,4 +1,4 @@
-############################## Health Upgrade ##############################
+############################## Firerate Upgrade ##############################
 extends BaseUpgrade
 class_name FireratePlayerUpgrade
 

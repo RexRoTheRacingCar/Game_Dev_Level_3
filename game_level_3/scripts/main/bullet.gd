@@ -9,7 +9,6 @@ class_name Bullet
 @export var collision_timer_node : Timer
 @export var sprite : Node2D
 
-
 @export_group("Bullet Stats")
 @export var speed : float = 950.0
 @export var damage : int = 5
@@ -17,7 +16,6 @@ class_name Bullet
 @export var life_time : float = 0.5
 @export var knockback : float = 20
 @export var collision_time : float = 0.15
-
 
 var current_pierce_count := 0
 var fake_velocity := Vector2.ZERO
@@ -94,7 +92,8 @@ func delete_bullet():
 	
 	#Bullet death animation
 	var delete_tween = create_tween()
-	delete_tween.tween_property(self, "scale", Vector2(0, 0), 0.35).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT).from_current()
+	delete_tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
+	delete_tween.tween_property(self, "scale", Vector2(0, 0), 0.35).from_current()
 	
 	await get_tree().create_timer(0.35, false).timeout
 	

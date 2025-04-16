@@ -1,4 +1,4 @@
-############################## Pierce Bullet Base ##############################
+############################## Burst Fire Upgrade ##############################
 extends BaseUpgrade
 class_name PlayerBurstUpgrade
 

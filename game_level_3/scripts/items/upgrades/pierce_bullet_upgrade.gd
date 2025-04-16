@@ -1,4 +1,4 @@
-############################## Pierce Bullet Base ##############################
+############################## Pierce Bullet Upgrade ##############################
 extends BaseUpgrade
 class_name PierceBulletUpgrade
 

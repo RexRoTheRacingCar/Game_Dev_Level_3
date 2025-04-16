@@ -1,4 +1,4 @@
-############################## Pierce Bullet Base ##############################
+############################## Max Ammo Upgrade ##############################
 extends BaseUpgrade
 class_name PlayerMaxAmmoUpgrade
 

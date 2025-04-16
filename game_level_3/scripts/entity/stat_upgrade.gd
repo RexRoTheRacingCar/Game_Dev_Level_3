@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#When player entered area
+#When player enteres area
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
 		if body.name == "Player" and collected == false:

@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=8 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="Script" path="res://scripts/main/game.gd" id="1_cy04u"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player.tscn" id="1_vr3do"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_brnf4"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
-[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="5_addet"]
+[ext_resource type="Script" path="res://scripts/main/camera.gd" id="4_sitwm"]
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
-[ext_resource type="Resource" uid="uid://dbvxn1t66c5j8" path="res://misc/resources/upgrades/speed_player_upgrade.tres" id="6_tk4a8"]
-[ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/bullet_amount_upgrade.tres" id="6_xk1rf"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -47,9 +45,9 @@ position = Vector2(-180, 19)
 p_reload_time = 0.3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.25, 1.25)
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
+script = ExtResource("4_sitwm")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_tmc20")]
 collision_layer = 2
@@ -72,22 +70,6 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="HurtboxComponent"]
 position = Vector2(300, -90)
 polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
-
-[node name="StatUpgrade" parent="." instance=ExtResource("5_addet")]
-position = Vector2(-539, -98)
-upgrade = ExtResource("6_xk1rf")
-
-[node name="StatUpgrade2" parent="." instance=ExtResource("5_addet")]
-position = Vector2(-174, -315)
-upgrade = ExtResource("6_tk4a8")
-
-[node name="StatUpgrade3" parent="." instance=ExtResource("5_addet")]
-position = Vector2(-233, -273)
-upgrade = ExtResource("6_tk4a8")
-
-[node name="StatUpgrade4" parent="." instance=ExtResource("5_addet")]
-position = Vector2(-97, -349)
-upgrade = ExtResource("6_tk4a8")
 
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12

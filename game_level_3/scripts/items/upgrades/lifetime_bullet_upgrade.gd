@@ -1,4 +1,4 @@
-############################## Pierce Bullet Base ##############################
+############################## Bullet Lifetime Upgrade ##############################
 extends BaseUpgrade
 class_name LifetimeBulletUpgrade
 

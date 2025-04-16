@@ -1,0 +1,40 @@
+############################## Global Camera ##############################
+extends Camera2D
+
+
+#Camera shake variables
+var shake_fade_rate : float = 0.4
+var shake_multiplier : float = 1.0
+var max_shake : float = 35.0
+var shake_amount : float = 0.0
+
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _ready():
+	offset = Vector2.ZERO
+	zoom = Vector2(1.25, 1.25)
+	
+	shake_amount = 0
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Global shake function applied to camera from other scripts
+func apply_camera_shake(shake_strength : float):
+	shake_amount += shake_strength * shake_multiplier
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _process(_delta):
+	shake_amount = clamp(lerp(shake_amount, 0.0, shake_fade_rate), 0.0, max_shake * shake_multiplier)
+	offset = lerp(offset, get_random_offset(), 0.875)
+	
+	global_position = Global.player_position
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Get a random vector from positive to negative of the shake strength
+func get_random_offset() -> Vector2: 
+	return Vector2(
+		randf_range(shake_amount, -shake_amount),
+		randf_range(shake_amount, -shake_amount)
+	)

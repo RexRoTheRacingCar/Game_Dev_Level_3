@@ -30,6 +30,7 @@ func spawn_coins(coin_amount : int, spawn_pos : Vector2, parent : Node):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+#Function spawns a scene (Used for particles) at a given position, from a parent, with a packed scene of choice
 func spawn_particle(spawn_pos : Vector2, parent : Node, particle_scene : PackedScene):
 		var new_particle = particle_scene.instantiate()
 		parent.get_parent().call_deferred("add_child", new_particle)
@@ -37,7 +38,8 @@ func spawn_particle(spawn_pos : Vector2, parent : Node, particle_scene : PackedS
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func get_rarity(rarities : Dictionary): #Generate a random rarity with weighted sums
+#Generates a random rarity with weighted sums
+func get_rarity(rarities : Dictionary):
 	var total = 0
 	for i in rarities: #Total rarity values
 		total += rarities[i]

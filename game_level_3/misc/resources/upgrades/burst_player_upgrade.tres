@@ -12,7 +12,7 @@ region = Rect2(400, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_xxuik")
-player_burst_increase = 1.0
+player_burst_increase = 1
 rarity = "Epic"
 item_type = ExtResource("1_n3ptt")
 item_cost = 25

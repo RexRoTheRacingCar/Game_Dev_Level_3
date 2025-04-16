@@ -10,7 +10,7 @@ region = Rect2(0, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_8lots")
-player_speed_increase = 50.0
+player_speed_increase = 65.0
 rarity = "Common"
 item_type = ExtResource("1_a36x3")
 item_cost = 10

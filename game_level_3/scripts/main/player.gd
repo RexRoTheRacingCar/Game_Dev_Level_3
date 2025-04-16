@@ -102,8 +102,6 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#THE PHYSICS PROCESS
-#---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	#Player movement
 	var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
@@ -157,7 +155,7 @@ func weapon_functionality():
 		p_reloading = false
 		p_ammo = p_max_ammo
 	
-	#If can shoot
+	#Shooting functionality
 	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false:
 		for _n in range(0, p_burst_amount):
 			if p_ammo >= 1:
@@ -173,6 +171,8 @@ func weapon_functionality():
 #---------------------------------------------------------------------------------------------------------------------------
 #Player Shoot Function
 func player_shoot():
+	Camera.apply_camera_shake(4.0)
+	
 	p_can_shoot = false
 	p_ammo -= 1
 	p_shoot_timer.stop()
@@ -204,6 +204,7 @@ func player_shoot():
 		bullet_instance.implement_stats()
 		bullet_instance.death_timer_node.start(bullet_instance.life_time)
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function
 func player_hit_signalled(hurtbox: HurtboxComponent):
@@ -214,6 +215,8 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		
 		p_hitbox_component.is_hit = true
 		p_hitbox_component.hit_timer.start(p_hitbox_component.hit_delay)
+		
+		Camera.apply_camera_shake(15.0)
 		
 		$PlaceholderSprite2D.self_modulate = Color("ff2121")
 		await get_tree().create_timer(0.9, false).timeout

@@ -10,7 +10,7 @@ region = Rect2(200, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_256h3")
-lifetime_increase = 0.15
+lifetime_increase = 0.12
 rarity = "Common"
 item_type = ExtResource("1_quq6i")
 item_cost = 15

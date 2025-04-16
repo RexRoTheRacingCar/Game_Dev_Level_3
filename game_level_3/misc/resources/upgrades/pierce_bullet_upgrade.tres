@@ -10,9 +10,9 @@ region = Rect2(0, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_30l25")
-pierce_increase = 2
-rarity = "Common"
+pierce_increase = 1
+rarity = "Epic"
 item_type = ExtResource("1_33pv8")
-item_cost = 10
+item_cost = 20
 texture = SubResource("AtlasTexture_5fegw")
 upgrade_type = "p_bullet_upgrades"

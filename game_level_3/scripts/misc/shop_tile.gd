@@ -44,9 +44,10 @@ func _ready():
 	shop_tile.texture.region = Rect2(480, 180, 120, 120)
 
 #---------------------------------------------------------------------------------------------------------------------------
+#When player enters shop tile radius 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
-		if Global.player_coins >= price:
+		if Global.player_coins >= price: #If player can afford upgrade
 			Global.player_coins -= price
 			
 			for _shake in range(0, 16):
@@ -57,11 +58,12 @@ func _on_area_2d_body_entered(body):
 			Global.spawn_particle(global_position, self, dust_particle)
 			
 			queue_free()
-		else:
+		else: #If player can't afford upgrade
 			print("Get More Money")
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+#Spawn the reward item after interaction
 func spawn_upgrade():
 	var new_scene = display_item.item_type.instantiate()
 	get_parent().call_deferred("add_child", new_scene)
@@ -70,6 +72,7 @@ func spawn_upgrade():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+#Choose a random item from an item pool with a rarity system
 func get_random_item():
 	var rarity = Global.get_rarity(item_pool.rarities) #Choose a rarity
 	var temp_array : Array = item_pool.item_pool
@@ -85,6 +88,7 @@ func get_random_item():
 	var selection = randi() % items_array.size()
 	display_item = items_array[selection]
 	
+	#Misc for paritcle effects
 	if rarity == "Rare":
 		particle_1.self_modulate = Color(0, 0.398, 0.607, 1)
 	elif rarity == "Epic":
