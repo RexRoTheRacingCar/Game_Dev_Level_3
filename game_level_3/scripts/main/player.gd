@@ -34,6 +34,7 @@ var p_reloading : bool = false
 @export var p_reload_label : Label #Delete Later
 
 @export var p_bullet_scene : PackedScene
+@export var p_burst_amount : int = 1
 
 
 #Setter variables
@@ -157,8 +158,12 @@ func weapon_functionality():
 		p_ammo = p_max_ammo
 	
 	#If can shoot
-	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false and p_ammo >= 1:
-		player_shoot()
+	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false:
+		for _n in range(0, p_burst_amount):
+			if p_ammo >= 1:
+				player_shoot()
+				
+			await get_tree().create_timer(p_reload_time / (p_burst_amount), false).timeout
 	
 	#Update global variables
 	Global.player_ammo = p_ammo
@@ -170,6 +175,7 @@ func weapon_functionality():
 func player_shoot():
 	p_can_shoot = false
 	p_ammo -= 1
+	p_shoot_timer.stop()
 	p_shoot_timer.start(p_reload_time)
 	
 	#The bullet instance

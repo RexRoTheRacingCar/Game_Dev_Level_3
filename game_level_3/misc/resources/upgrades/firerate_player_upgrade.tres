@@ -11,7 +11,7 @@ region = Rect2(300, 0, 100, 100)
 [resource]
 script = ExtResource("1_wgm3b")
 reload_decrease = 1.25
-rarity = "Epic"
+rarity = "Rare"
 item_type = ExtResource("1_nrmc3")
 item_cost = 15
 texture = SubResource("AtlasTexture_64rb0")

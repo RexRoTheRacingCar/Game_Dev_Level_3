@@ -12,13 +12,11 @@ extends CharacterBody2D
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var nav_timer = $NavigationTimer
 
-#Number Variables
-@export var timer_delay : float = 0.55
-
 var timing : bool = false
 var current_agent_position : Vector2
 var next_path_position
 var coin_range : int
+var knockback_taken := Vector2.ZERO
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -57,6 +55,8 @@ func _process(_delta: float) -> void:
 			velocity = lerp(Vector2(velocity.x, velocity.y * 2) , current_agent_position.direction_to(next_path_position) * 250, 0.15)
 			velocity.y /= 2
 			
+			velocity += knockback_taken
+			
 			move_and_slide()
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -64,6 +64,13 @@ func _process(_delta: float) -> void:
 func hit_signalled(hurtbox: HurtboxComponent):
 	health_component.health -= hurtbox.hurt_damage
 	hitbox_component.hit_timer.start(hitbox_component.hit_delay)
+	
+	knockback_taken = hurtbox.get_parent().velocity.normalized()
+	knockback_taken *= hurtbox.hurt_knockback
+	
+	var knockback_tweem := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	knockback_tweem.tween_property(self, "knockback_taken", Vector2.ZERO, 0.4)
+	knockback_tweem.play()
 
 
 #---------------------------------------------------------------------------------------------------------------------------

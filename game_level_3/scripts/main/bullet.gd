@@ -15,6 +15,7 @@ class_name Bullet
 @export var damage : int = 5
 @export var max_pierce : int = 1
 @export var life_time : float = 0.5
+@export var knockback : float = 20
 @export var collision_time : float = 0.15
 
 
@@ -58,6 +59,7 @@ func update_bullet():
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
 		hurtbox.monitoring = true
+		
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -83,6 +85,7 @@ func actually_hit() -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func implement_stats():
 	hurtbox.hurt_damage = damage
+	hurtbox.hurt_knockback = knockback
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PlayerBurstUpgrade" load_steps=5 format=3 uid="uid://dralb13ujqk86"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_n3ptt"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/burst_fire_upgrade.gd" id="1_xxuik"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uemj"]
+load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b86i7"]
+atlas = SubResource("CompressedTexture2D_6uemj")
+region = Rect2(400, 0, 100, 100)
+
+[resource]
+script = ExtResource("1_xxuik")
+player_burst_increase = 1.0
+rarity = "Epic"
+item_type = ExtResource("1_n3ptt")
+item_cost = 25
+texture = SubResource("AtlasTexture_b86i7")
+upgrade_type = "p_upgrades"

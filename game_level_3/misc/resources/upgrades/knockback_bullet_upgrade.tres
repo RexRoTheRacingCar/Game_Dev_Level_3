@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="KnockbackBulletUpgrade" load_steps=5 format=3 uid="uid://bw6uxwnq72krk"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_f3r0i"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/knockback_bullet_upgrade.gd" id="1_t654v"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uemj"]
+load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4cw8"]
+atlas = SubResource("CompressedTexture2D_6uemj")
+region = Rect2(400, 100, 100, 100)
+
+[resource]
+script = ExtResource("1_t654v")
+knockback_increase = 125.0
+rarity = "Common"
+item_type = ExtResource("1_f3r0i")
+item_cost = 10
+texture = SubResource("AtlasTexture_q4cw8")
+upgrade_type = "p_bullet_upgrades"

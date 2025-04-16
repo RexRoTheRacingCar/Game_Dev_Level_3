@@ -1,10 +1,10 @@
-############################## Damage Bullet Upgrade ##############################
+############################## Knockback Bullet Upgrade ##############################
 extends BaseUpgrade
-class_name DamageBulletUpgrade
+class_name KnockbackBulletUpgrade
 
-@export var damage_increase : int = 5
+@export var knockback_increase : float = 125
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
-	bullet.damage += damage_increase
+	bullet.knockback += knockback_increase
