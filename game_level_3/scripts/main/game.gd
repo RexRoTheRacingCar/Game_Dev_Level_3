@@ -1,4 +1,4 @@
-############################## Game Setting (Delete or Change Later) ##############################
+############################## Game (Delete or Change Later) ##############################
 extends Node2D
 
 var enemy := preload("res://scenes/entity/enemy/test_enemy.tscn")

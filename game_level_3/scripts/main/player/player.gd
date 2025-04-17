@@ -6,6 +6,7 @@ class_name Player
 #p is short for "Player"
 #Node variables
 @export_group("Nodes")
+@export var p_secondary_controller : SecondaryController
 @export var p_dash_timer : Timer
 @export var p_shoot_timer : Timer
 @export var p_hitbox_component : HitboxComponent
@@ -78,8 +79,9 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 @export var p_damage_resistance : float = 1.0
 
 var p_bullet_upgrades : Array = []
-var p_can_shoot : bool = true
 var p_bullet_spread : float = 0.0
+var p_can_shoot : bool = true
+var p_secondary_active : bool = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -90,6 +92,8 @@ func _ready():
 	p_consecutive_dash = 0
 	p_reload_label.visible = false
 	p_ammo = p_max_ammo
+	
+	p_upgrades = null
 	
 	p_vel_prep = Vector2.ZERO
 	velocity = Vector2.ZERO
@@ -112,7 +116,8 @@ func _physics_process(delta):
 		player_dash(p_input)
 	
 	#Player shooting
-	weapon_functionality()
+	weapon_controls()
+	secondary_manage(delta)
 	
 	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
 	var _error = move_and_slide() #Apply velocity
@@ -137,15 +142,15 @@ func player_movement(p_input, delta):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player Dash Function
 func player_dash(p_input):
-	if p_input and p_consecutive_dash <= p_max_dash:
+	if p_input and p_consecutive_dash <= p_max_dash and p_secondary_active == false:
 		p_vel_prep = p_input * 2200
 		p_consecutive_dash += 1
  
 
 #---------------------------------------------------------------------------------------------------------------------------
-func weapon_functionality():
+func weapon_controls():
 	#Reloading functionality
-	if (Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and p_reloading == false:
+	if (Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and p_reloading == false and p_secondary_active == false:
 		p_reload_label.visible = true
 		p_reloading = true
 		
@@ -156,7 +161,7 @@ func weapon_functionality():
 		p_ammo = p_max_ammo
 	
 	#Shooting functionality
-	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false:
+	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false and p_secondary_active == false:
 		for _n in range(0, p_burst_amount):
 			if p_ammo >= 1:
 				player_shoot()
@@ -166,6 +171,17 @@ func weapon_functionality():
 	#Update global variables
 	Global.player_ammo = p_ammo
 	Global.player_max_ammo = p_max_ammo
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func secondary_manage(delta):
+	if p_is_dashing == false and p_reloading == false and not Input.is_action_pressed("primary_attack"):
+		if p_secondary_controller.charge_progress == 0.0:
+			p_secondary_active = false
+		else:
+			p_secondary_active = true
+			
+		p_secondary_controller.secondary_controls(delta)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -190,4 +190,8 @@ y_sort_enabled = true
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_kt1uf")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -41.5)
+scale = Vector2(6.4, 7.35)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -200,5 +200,8 @@ libraries = {
 "": SubResource("AnimationLibrary_w4ns1")
 }
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(1.8, 1.8)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="CollectionRadius" to="." method="_on_collection_radius_body_entered"]

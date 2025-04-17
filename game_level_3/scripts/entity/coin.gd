@@ -13,6 +13,8 @@ var random_offset : float
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
+	set_process(false)
+	
 	#Setup coin at spawn
 	target_hit = false
 	sprite.visible = true
@@ -48,6 +50,7 @@ func _on_collection_radius_body_entered(_body : Player):
 	target_hit = true
 	sprite.visible = false
 	particles.emitting = false
+	set_process(false)
 	
 	await get_tree().create_timer(0.75, false).timeout
 	
@@ -57,3 +60,4 @@ func _on_collection_radius_body_entered(_body : Player):
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_body_entered(body : Player):
 	target = body
+	set_process(true)

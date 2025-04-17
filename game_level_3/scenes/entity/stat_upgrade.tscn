@@ -256,4 +256,7 @@ libraries = {
 }
 speed_scale = 1.07541
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(8.4, 10.6)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

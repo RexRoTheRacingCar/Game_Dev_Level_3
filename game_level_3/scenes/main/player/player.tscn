@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=11 format=3 uid="uid://biv2erpftkxlb"]
 
-[ext_resource type="Script" path="res://scripts/main/player.gd" id="1_wlkgh"]
+[ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
 [ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/entity/bullets/default_bullet.tscn" id="2_qg8hb"]
+[ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 
@@ -21,12 +22,13 @@ font_size = 12
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component", "p_reload_label")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_secondary_controller", "p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component", "p_reload_label")]
 y_sort_enabled = true
 collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_wlkgh")
+p_secondary_controller = NodePath("SecondaryController")
 p_dash_timer = NodePath("DashTimer")
 p_shoot_timer = NodePath("ShootTimer")
 p_hitbox_component = NodePath("HitboxComponent")
@@ -36,6 +38,8 @@ P_FRICTION = 25000
 p_reload_time = 1.0
 p_reload_label = NodePath("Reloading")
 p_bullet_scene = ExtResource("2_qg8hb")
+
+[node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
 
 [node name="DashTimer" type="Timer" parent="."]
 
