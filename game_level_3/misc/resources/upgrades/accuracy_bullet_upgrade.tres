@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AccuracyBulletUpgrade" load_steps=5 format=3 uid="uid://tvle5x6xwkb3"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_socbi"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/accuracy_bullet_upgrade.gd" id="1_tbbgv"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_krqcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py722"]
+atlas = ExtResource("3_krqcd")
+region = Rect2(500, 0, 100, 100)
+
+[resource]
+script = ExtResource("1_tbbgv")
+accuracy_increase = 2.0
+rarity = "Common"
+item_type = ExtResource("1_socbi")
+item_cost = 10
+texture = SubResource("AtlasTexture_py722")
+upgrade_type = "p_bullet_upgrades"

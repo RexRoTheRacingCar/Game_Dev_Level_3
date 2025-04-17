@@ -107,7 +107,7 @@ texture = SubResource("AtlasTexture_qa3hi")
 offset = Vector2(0, 13)
 
 [node name="Reward" type="Sprite2D" parent="SpriteFolder"]
-self_modulate = Color(0.25, 0.25, 0.25, 0.9)
+self_modulate = Color(0.6, 0.588, 0.588, 0.9)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -42)

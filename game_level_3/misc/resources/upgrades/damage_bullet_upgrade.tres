@@ -2,12 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_hgjma"]
 [ext_resource type="Script" path="res://scripts/items/upgrades/damage_bullet_upgrade.gd" id="1_p7div"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6uemj"]
-load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_mj3pp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_krcig"]
-atlas = SubResource("CompressedTexture2D_6uemj")
+atlas = ExtResource("3_mj3pp")
 region = Rect2(100, 0, 100, 100)
 
 [resource]
@@ -15,6 +13,6 @@ script = ExtResource("1_p7div")
 damage_increase = 3
 rarity = "Common"
 item_type = ExtResource("1_hgjma")
-item_cost = 10
+item_cost = 15
 texture = SubResource("AtlasTexture_krcig")
 upgrade_type = "p_bullet_upgrades"

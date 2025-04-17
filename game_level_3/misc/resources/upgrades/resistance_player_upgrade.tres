@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerResistanceUpgrade" load_steps=5 format=3 uid="uid://bbfxtlf344uns"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_f1yx4"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/player_resistance_upgrade.gd" id="1_vynhd"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_w2ucw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_457sk"]
+atlas = ExtResource("3_w2ucw")
+region = Rect2(500, 100, 100, 100)
+
+[resource]
+script = ExtResource("1_vynhd")
+player_resistance_increase = 0.1
+rarity = "Epic"
+item_type = ExtResource("1_f1yx4")
+item_cost = 25
+texture = SubResource("AtlasTexture_457sk")
+upgrade_type = ""

@@ -1,11 +1,11 @@
 ############################## Player Speed Upgrade ##############################
 extends BaseUpgrade
-class_name PlayerSpeedUpgrade
+class_name PlayerResistanceUpgrade
 
-@export var player_speed_increase : float = 50.0
+@export var player_resistance_increase : float = 0.1
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player
 func apply_player_upgrade(player: Player):
-	player.p_speed += player_speed_increase
+	player.p_damage_resistance += player_resistance_increase
  

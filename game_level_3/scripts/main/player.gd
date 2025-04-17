@@ -18,11 +18,6 @@ class_name Player
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
 
-#Dashing Variables
-@export_group("Dash")
-@export var p_dash_delay : float = 0.6
-@export var p_max_dash : int = 1
-
 #Weapon Variables
 @export_group("Weapon")
 @export var p_reload_time : float = 0.6
@@ -77,6 +72,11 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 
 
 #Misc Variables
+@export_group("Misc")
+@export var p_dash_delay : float = 0.6
+@export var p_max_dash : int = 1
+@export var p_damage_resistance : float = 1.0
+
 var p_bullet_upgrades : Array = []
 var p_can_shoot : bool = true
 var p_bullet_spread : float = 0.0
@@ -202,15 +202,16 @@ func player_shoot():
 				upgrades.apply_upgrade(bullet_instance)
 		
 		bullet_instance.implement_stats()
-		bullet_instance.death_timer_node.start(bullet_instance.life_time)
+		bullet_instance.death_timer_node.start(bullet_instance.lifetime)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player damage function
 func player_hit_signalled(hurtbox: HurtboxComponent):
 	if p_consecutive_dash == 0:
-		#Variables changed
-		p_health_component.health -= hurtbox.hurt_damage
+		#Calculate damage based on damage resistance (Damage resistance is a float while hurt damage is an int)
+		@warning_ignore("narrowing_conversion")
+		p_health_component.health -= hurtbox.hurt_damage / p_damage_resistance 
 		p_vel_prep *= -hurtbox.hurt_knockback
 		
 		p_hitbox_component.is_hit = true

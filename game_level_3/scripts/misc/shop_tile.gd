@@ -36,7 +36,7 @@ func _ready():
 	#Update all displays
 	#Rewards
 	reward_sprite.texture = display_item.texture
-	reward_sprite.self_modulate = Color(0.25, 0.25, 0.25, 0.9)
+	reward_sprite.self_modulate = Color(0.55, 0.55, 0.55, 0.92)
 	#Pricing
 	price = display_item.item_cost
 	price_label.text = str(price)

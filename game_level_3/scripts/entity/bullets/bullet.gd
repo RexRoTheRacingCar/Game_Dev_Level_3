@@ -1,4 +1,4 @@
-############################## Bullet ##############################
+############################## Bullet Class ##############################
 extends CharacterBody2D
 class_name Bullet
 
@@ -10,46 +10,53 @@ class_name Bullet
 @export var sprite : Node2D
 
 @export_group("Bullet Stats")
+@export var default_damage : int = 5
+@export var default_lifetime : float = 0.5
+@export var default_knockback : float = 20
+
+@export var accuracy : float = 0.125
 @export var speed : float = 950.0
-@export var damage : int = 5
-@export var max_pierce : int = 1
-@export var life_time : float = 0.5
-@export var knockback : float = 20
 @export var collision_time : float = 0.15
+@export var max_pierce : int = 1
+
+var damage : int
+var lifetime : float
+var knockback : float
+
 
 var current_pierce_count := 0
+var rotation_offset : float = 0.0
 var fake_velocity := Vector2.ZERO
 var collide_array : Array = []
 var collision_hit : bool = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _ready():
-	collide_array.clear()
-	current_pierce_count = 1
-	collision_hit = false
-	if hurtbox:
-		hurtbox.monitoring = false
-	
-	await get_tree().create_timer(0.075, false).timeout
-	call_deferred("update_bullet")
+func load_starter_values():
+	damage = default_damage
+	lifetime = default_lifetime
+	knockback = default_knockback
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _physics_process(delta: float) -> void:
+func _bullet_velocity() -> Vector2:
 	var dir = Vector2.RIGHT.rotated(rotation)
 	
 	fake_velocity = dir * speed
-	velocity = Vector2(fake_velocity.x, fake_velocity.y / 2) #Make velocity isometric
-	
-	var collision := move_and_collide(velocity * delta)
-	
-	if collision:
-		queue_free()
+	return Vector2(
+		fake_velocity.x, 
+		fake_velocity.y / 2
+		) 
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func update_bullet():
+	visible = true
+	rotation_offset = randf_range(accuracy, -accuracy)
+	rotation += rotation_offset
+	
+	velocity = _bullet_velocity()
+	
 	if sprite:
 		sprite.rotation = velocity.angle() - rotation
 		sprite.skew = (0.5 * sin((2 * PI) * (sprite.rotation)) + 0)
@@ -57,7 +64,6 @@ func update_bullet():
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
 		hurtbox.monitoring = true
-		
 
 
 #---------------------------------------------------------------------------------------------------------------------------
