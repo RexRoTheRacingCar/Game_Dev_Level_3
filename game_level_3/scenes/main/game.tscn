@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=9 format=4 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="Script" path="res://scripts/main/game.gd" id="1_cy04u"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="3_tmc20"]
 [ext_resource type="PackedScene" uid="uid://dxqluonvie0sa" path="res://scenes/main/camera.tscn" id="4_ol12e"]
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
+[ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="8_n6g87"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -45,6 +46,7 @@ position = Vector2(-180, 19)
 p_reload_time = 0.3
 
 [node name="Camera2D" parent="Player" instance=ExtResource("4_ol12e")]
+position = Vector2(180, -19)
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_tmc20")]
 collision_layer = 2
@@ -72,5 +74,10 @@ polygon = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
 layer = 12
 follow_viewport_enabled = false
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_8na6d")]
+[node name="PauseMenu" parent="PlayerUI" node_paths=PackedStringArray("input_settings") instance=ExtResource("6_8na6d")]
 visible = false
+input_settings = NodePath("InputSettings")
+
+[node name="InputSettings" parent="PlayerUI/PauseMenu" instance=ExtResource("8_n6g87")]
+visible = false
+layout_mode = 1

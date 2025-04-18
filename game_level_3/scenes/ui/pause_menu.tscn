@@ -2,20 +2,17 @@
 
 [ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_cat3g"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="Control"]
 process_mode = 3
-layer = 12
-script = ExtResource("1_cat3g")
-
-[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cat3g")
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,25 +21,44 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0.72549, 0.215686)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.389583
-anchor_top = 0.489815
-anchor_right = 0.610417
-anchor_bottom = 0.511111
+anchor_left = 0.275521
+anchor_top = 0.413889
+anchor_right = 0.724479
+anchor_bottom = 0.586111
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Paused"
+size_flags_horizontal = 4
+text = " - Paused -"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
+[node name="KeybindingsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Controls
+"
 
-[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/KeybindingsButton" to="." method="_on_keybindings_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

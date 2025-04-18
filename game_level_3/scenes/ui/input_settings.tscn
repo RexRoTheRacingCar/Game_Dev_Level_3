@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbve6xlnimkfn"]
+
+[ext_resource type="Script" path="res://scripts/ui/input_settings.gd" id="1_i4i8r"]
+[ext_resource type="PackedScene" uid="uid://bis2m242j5a7j" path="res://scenes/ui/input_button.tscn" id="2_hl6gy"]
+
+[node name="InputSettings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i4i8r")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.275521
+anchor_top = 0.0453704
+anchor_right = 0.724479
+anchor_bottom = 0.95463
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="InputButton2" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="InputButton3" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="InputButton4" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="InputButton5" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="InputButton6" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_hl6gy")]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_mode = 0
+text = "Reset to Defaults"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
