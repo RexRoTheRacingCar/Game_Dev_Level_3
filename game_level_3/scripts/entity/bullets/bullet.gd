@@ -32,6 +32,34 @@ var collision_hit : bool = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+func _ready():
+	visible = false
+	
+	collide_array.clear()
+	current_pierce_count = 1
+	collision_hit = false
+	if hurtbox:
+		hurtbox.monitorable = true
+		hurtbox.monitoring = false
+	
+	load_starter_values()
+	
+	await get_tree().create_timer(0.075, false).timeout
+	
+	call_deferred("update_bullet")
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _physics_process(delta: float):
+	velocity = _bullet_velocity()
+	
+	var collision := move_and_collide(velocity * delta)
+	
+	if collision:
+		queue_free()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 func load_starter_values():
 	damage = default_damage
 	lifetime = default_lifetime
@@ -95,6 +123,10 @@ func implement_stats():
 #---------------------------------------------------------------------------------------------------------------------------
 func delete_bullet():
 	speed = 0
+	
+	#Stop lingering hitboxes
+	if hurtbox:
+		hurtbox.set_deferred("monitorable", false)
 	
 	#Bullet death animation
 	var delete_tween = create_tween()
