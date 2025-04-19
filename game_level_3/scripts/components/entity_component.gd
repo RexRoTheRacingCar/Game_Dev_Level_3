@@ -29,7 +29,8 @@ var knockback_taken := Vector2.ZERO
 @export var shake_on_hit : float = 5.5
 
 #Coin variables
-@export var coin_range : int = 5
+@export var coin_min : int = 1
+@export var coin_max : int = 3
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 
 
@@ -59,7 +60,14 @@ func hit_signalled(hurtbox: HurtboxComponent):
 		hit_flash_anim.play("hit_flash")
 	
 	#Apply knockback to enemy
-	knockback_taken = hurtbox.get_parent().velocity.normalized()
+	if hurtbox.knockback_type == "center":
+		var angle := get_angle_to(hurtbox.global_position) + PI
+		knockback_taken = Vector2.RIGHT.rotated(angle)
+	elif hurtbox.knockback_type == "velocity":
+		knockback_taken = hurtbox.get_parent().velocity.normalized()
+	else:
+		knockback_taken = Vector2.ZERO
+	
 	knockback_taken *= hurtbox.hurt_knockback
 	knockback_taken *= knockback_resistance
 	
@@ -103,7 +111,7 @@ func _on_navigation_timer_timeout():
 #---------------------------------------------------------------------------------------------------------------------------
 #Enemy has 0 HP
 func no_health():
-	for _n in randi_range(0, coin_range): #Spawn coins at death position
+	for _n in randi_range(coin_min, coin_max): #Spawn coins at death position
 		var new_coin = spawn_scene(coin_scene, self.get_parent())
 		var rand_spawn : float = 30.0
 		new_coin.global_position = Vector2(

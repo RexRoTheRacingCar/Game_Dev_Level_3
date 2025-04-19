@@ -14,15 +14,18 @@ class_name Bullet
 @export var default_lifetime : float = 0.5
 @export var default_knockback : float = 20
 
+@export var initial_speed : float = 950.0
+@export var target_speed : float = 950.0
+@export var lerp_speed : float = 1.0
+
 @export var accuracy : float = 0.125
-@export var speed : float = 950.0
 @export var collision_time : float = 0.15
 @export var max_pierce : int = 1
 
 var damage : int
 var lifetime : float
 var knockback : float
-
+var speed : float = 0.0
 
 var current_pierce_count := 0
 var rotation_offset : float = 0.0
@@ -38,15 +41,22 @@ func _ready():
 	collide_array.clear()
 	current_pierce_count = 1
 	collision_hit = false
+	
+	speed = initial_speed
+	
 	if hurtbox:
 		hurtbox.monitorable = true
 		hurtbox.monitoring = false
 	
-	load_starter_values()
+	_load_starter_values()
 	
-	await get_tree().create_timer(0.075, false).timeout
+	call_deferred("_update_bullet")
 	
-	call_deferred("update_bullet")
+	#Stop bullet collding with walls
+	if hurtbox: 
+		await get_tree().create_timer(0.075, false).timeout
+		hurtbox.monitoring = true
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -60,7 +70,7 @@ func _physics_process(delta: float):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func load_starter_values():
+func _load_starter_values():
 	damage = default_damage
 	lifetime = default_lifetime
 	knockback = default_knockback
@@ -78,7 +88,12 @@ func _bullet_velocity() -> Vector2:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func update_bullet():
+func _lerp_speed():
+	speed = lerp(speed, target_speed, lerp_speed)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _update_bullet():
 	visible = true
 	rotation_offset = randf_range(accuracy, -accuracy)
 	rotation += rotation_offset
@@ -91,7 +106,7 @@ func update_bullet():
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
-		hurtbox.monitoring = true
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------

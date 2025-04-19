@@ -51,3 +51,10 @@ func get_rarity(rarities : Dictionary):
 			return i
 		
 		randfloat -= rarities[i]
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func hit_stop(stop_time : float):
+	Engine.time_scale = 0
+	await get_tree().create_timer(stop_time, true, false, true).timeout
+	Engine.time_scale = 1

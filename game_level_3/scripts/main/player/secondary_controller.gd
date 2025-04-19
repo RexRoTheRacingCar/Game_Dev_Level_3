@@ -26,6 +26,8 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func secondary_controls(delta : float):
+	is_charging = false
+	
 	#Secondary charge up
 	if Input.is_action_pressed("secondary_attack") and cooldown_active == false:
 		charge_progress += delta
@@ -35,6 +37,9 @@ func secondary_controls(delta : float):
 			progress_bar.visible = true
 		
 		is_charging = true
+	else:
+		charge_progress -= 0.5 * delta
+		charge_progress = clamp(charge_progress, 0.0, current_secondary.charge_time)
 	
 	#Secondary button released. If cooldown progress = charge_time, spawn secondary ability
 	if Input.is_action_just_released("secondary_attack"):

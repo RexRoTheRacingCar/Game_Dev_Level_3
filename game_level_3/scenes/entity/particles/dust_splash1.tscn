@@ -50,3 +50,5 @@ one_shot = true
 explosiveness = 0.98
 randomness = 0.2
 script = ExtResource("2_danbg")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

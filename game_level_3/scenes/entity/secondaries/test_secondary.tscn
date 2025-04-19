@@ -1,0 +1,219 @@
+[gd_scene load_steps=16 format=3 uid="uid://cpm766wlxynum"]
+
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_d2pv5"]
+[ext_resource type="PackedScene" uid="uid://mi1130iamiy0" path="res://scenes/entity/particles/dust_splash1.tscn" id="3_8nch0"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_n8i0x"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_733cr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmis1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke3x7"]
+atlas = ExtResource("1_d2pv5")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fd54f"]
+blend_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x55wl"]
+radius = 89.0
+
+[sub_resource type="Curve" id="Curve_ssxah"]
+_data = [Vector2(0, 0), 0.0, 12.0654, 0, 0, Vector2(0.140152, 1), 0.301887, 0.301887, 0, 0, Vector2(1, 0), -0.0743454, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a0odh"]
+curve = SubResource("Curve_ssxah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_12pnu"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 118.62
+initial_velocity_max = 156.4
+angular_velocity_min = -125.0
+angular_velocity_max = 125.0
+gravity = Vector3(0, -64, 0)
+linear_accel_min = -90.62
+linear_accel_max = -90.62
+scale_min = 0.3
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_a0odh")
+color = Color(1, 0.901333, 0.26, 0.85098)
+hue_variation_min = -0.04
+hue_variation_max = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd76h"]
+atlas = ExtResource("4_733cr")
+region = Rect2(100, 200, 50, 50)
+
+[sub_resource type="Animation" id="Animation_3tfpb"]
+resource_name = "pulse"
+length = 0.8
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/MainPulse:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.55, 0.8),
+"transitions": PackedFloat32Array(2.46229, 0.210224, 2.21914, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.392693, 0.392693), Vector2(1, 1), Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/SecondPulse:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.8),
+"transitions": PackedFloat32Array(0.406126, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtboxComponent:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_lc4cp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/MainPulse:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/SecondPulse:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtboxComponent:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfv3l"]
+_data = {
+"RESET": SubResource("Animation_lc4cp"),
+"pulse": SubResource("Animation_3tfpb")
+}
+
+[node name="TestSecondary" type="CharacterBody2D"]
+z_index = -1
+y_sort_enabled = true
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jmis1")
+disabled = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+modulate = Color(1, 0.948, 0.48, 1)
+scale = Vector2(1, 0.5)
+
+[node name="MainPulse" type="Sprite2D" parent="CanvasGroup"]
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_ke3x7")
+
+[node name="SecondPulse" type="Sprite2D" parent="CanvasGroup"]
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_fd54f")
+texture = SubResource("AtlasTexture_ke3x7")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("3_n8i0x")
+hurt_damage = 12
+hurt_knockback = 175.0
+knockback_type = "center"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_x55wl")
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("3_8nch0")]
+amount = 36
+process_material = SubResource("ParticleProcessMaterial_12pnu")
+texture = SubResource("AtlasTexture_sd76h")
+lifetime = 1.2
+speed_scale = 1.6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kfv3l")
+}
+autoplay = "pulse"

@@ -137,6 +137,9 @@ func player_movement(p_input, delta):
 	#If not moving
 	else: 
 		p_vel_prep = p_vel_prep.move_toward(Vector2(0,0), delta * P_FRICTION)
+	
+	if p_secondary_active == true:
+		p_vel_prep *= 0.75
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -150,7 +153,12 @@ func player_dash(p_input):
 #---------------------------------------------------------------------------------------------------------------------------
 func weapon_controls():
 	#Reloading functionality
-	if (Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and p_reloading == false and p_secondary_active == false:
+	if (
+		(Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and
+		p_reloading == false and 
+		p_secondary_active == false
+		):
+		
 		p_reload_label.visible = true
 		p_reloading = true
 		
@@ -175,12 +183,13 @@ func weapon_controls():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func secondary_manage(delta):
-	if p_is_dashing == false and p_reloading == false and not Input.is_action_pressed("primary_attack"):
-		if p_secondary_controller.charge_progress == 0.0:
-			p_secondary_active = false
-		else:
-			p_secondary_active = true
+	if (
+		(p_is_dashing == false and p_reloading == false) and 
+		(not Input.is_action_pressed("primary_attack") or 
+		(Input.is_action_pressed("primary_attack") and p_secondary_active == true))
+		):
 			
+		p_secondary_active = p_secondary_controller.is_charging
 		p_secondary_controller.secondary_controls(delta)
 
 
@@ -227,13 +236,14 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 	if p_consecutive_dash == 0:
 		#Calculate damage based on damage resistance (Damage resistance is a float while hurt damage is an int)
 		@warning_ignore("narrowing_conversion")
-		p_health_component.health -= hurtbox.hurt_damage / p_damage_resistance 
+		p_health_component.health -= hurtbox.hurt_damage / p_damage_resistance
 		p_vel_prep *= -hurtbox.hurt_knockback
 		
 		p_hitbox_component.is_hit = true
 		p_hitbox_component.hit_timer.start(p_hitbox_component.hit_delay)
 		
-		Camera.apply_camera_shake(15.0)
+		Camera.apply_camera_shake(16.0)
+		Global.hit_stop(0.075)
 		
 		$PlaceholderSprite2D.self_modulate = Color("ff2121")
 		await get_tree().create_timer(0.9, false).timeout

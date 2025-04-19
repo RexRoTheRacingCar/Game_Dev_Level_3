@@ -35,7 +35,7 @@ func _on_area_entered(area: HurtboxComponent):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#When area exits hit area
+#When area exits hit areassss
 func _on_area_exited(area: HurtboxComponent):
 	if area != self:
 		detect_array.erase(area)
