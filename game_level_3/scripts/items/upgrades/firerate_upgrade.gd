@@ -7,4 +7,4 @@ class_name FireratePlayerUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player
 func apply_player_upgrade(player: Player):
-	player.p_reload_time /= reload_decrease
+	player.p_weapon_controller.firerate /= reload_decrease

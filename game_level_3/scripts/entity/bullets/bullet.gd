@@ -54,7 +54,10 @@ func _ready():
 	
 	#Stop bullet collding with walls
 	if hurtbox: 
-		await get_tree().create_timer(0.075, false).timeout
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		await get_tree().physics_frame
 		hurtbox.monitoring = true
 
 

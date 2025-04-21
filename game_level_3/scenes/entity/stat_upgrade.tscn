@@ -243,7 +243,6 @@ texture = SubResource("AtlasTexture_eutvc")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -18)
-emitting = false
 amount = 2
 process_material = SubResource("ParticleProcessMaterial_djyvr")
 texture = SubResource("AtlasTexture_6kdbw")

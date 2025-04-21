@@ -8,4 +8,4 @@ class_name DamageBulletUpgrade
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
 	@warning_ignore("integer_division")
-	bullet.damage += round(bullet.default_damage / damage_increase)
+	bullet.damage += ceil(bullet.default_damage / damage_increase)

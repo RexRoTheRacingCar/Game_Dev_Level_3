@@ -90,8 +90,8 @@ func get_random_item():
 	
 	#Misc for paritcle effects
 	if rarity == "Rare":
-		particle_1.self_modulate = Color(0, 0.398, 0.607, 1)
+		particle_1.self_modulate = Color(0.34, 1, 1, 1)
 	elif rarity == "Epic":
-		particle_1.self_modulate = Color(0.401, 0, 0.224, 1)
+		particle_1.self_modulate = Color(0.836, 0.351, 0.9, 1)
 	elif rarity == "Legendary":
 		particle_1.self_modulate = Color(0.95, 0.697, 0, 1)

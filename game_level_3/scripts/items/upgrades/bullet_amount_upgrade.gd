@@ -7,4 +7,4 @@ class_name BulletAmountUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_player_upgrade(player: Player):
-	player.p_bullet_amount += bullet_amount_increase
+	player.p_weapon_controller.bullet_amount += bullet_amount_increase

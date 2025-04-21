@@ -26,6 +26,14 @@ func _ready() -> void:
 func start():
 	animation_player.speed_scale = randf_range(0.9, 1.1)
 	animation_player.play("idle")
+	
+	#Misc for paritcle effects
+	if upgrade.rarity == "Rare":
+		$GPUParticles2D.self_modulate = Color(0.34, 1, 1, 1)
+	elif upgrade.rarity == "Epic":
+		$GPUParticles2D.self_modulate = Color(0.836, 0.351, 0.9, 1)
+	elif upgrade.rarity == "Legendary":
+		$GPUParticles2D.self_modulate = Color(0.95, 0.697, 0, 1)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -47,7 +55,7 @@ func _on_body_entered(body):
 			
 			#Apply to bullet upgrade array
 			if upgrade.upgrade_type == "p_bullet_upgrades":
-				body.p_bullet_upgrades.append(upgrade)
+				body.p_weapon_controller.bullet_upgrade_array.append(upgrade)
 			
 			#Apply directly to player
 			elif upgrade.upgrade_type == "p_upgrades":

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4xa4sn4p1kan"]
+
+[ext_resource type="Script" path="res://scripts/main/player/weapon_controller.gd" id="1_lnh1g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bmsbf"]
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="WeaponController" type="Node2D"]
+script = ExtResource("1_lnh1g")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Reloading" type="Label" parent="."]
+z_index = 5
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 39.0
+offset_bottom = -15.0
+theme_override_constants/outline_size = 7
+text = "Reloading"
+label_settings = SubResource("LabelSettings_bmsbf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

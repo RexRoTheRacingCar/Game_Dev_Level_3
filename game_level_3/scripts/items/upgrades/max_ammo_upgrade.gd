@@ -7,4 +7,4 @@ class_name PlayerMaxAmmoUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player
 func apply_player_upgrade(player: Player):
-	player.p_max_ammo += player_max_ammo_increase
+	player.p_weapon_controller.max_ammo += player_max_ammo_increase

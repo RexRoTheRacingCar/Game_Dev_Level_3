@@ -15,4 +15,4 @@ rarity = "Epic"
 item_type = ExtResource("1_f1yx4")
 item_cost = 20
 texture = SubResource("AtlasTexture_457sk")
-upgrade_type = ""
+upgrade_type = "p_upgrades"

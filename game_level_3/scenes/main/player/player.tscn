@@ -1,15 +1,31 @@
-[gd_scene load_steps=14 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=16 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
 [ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/entity/bullets/default_bullet.tscn" id="2_qg8hb"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
+[ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="4_7krut"]
+[ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="4_r18d4"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 [ext_resource type="PackedScene" uid="uid://cpm766wlxynum" path="res://scenes/entity/secondaries/test_secondary.tscn" id="5_cvwyh"]
 
-[sub_resource type="Resource" id="Resource_cnqt8"]
+[sub_resource type="Resource" id="Resource_ixg0o"]
+script = ExtResource("4_r18d4")
+default_bullet_amount = 1
+default_spread = 15.0
+default_burst_amount = 1
+default_firerate = 0.4
+default_reload_time = 0.4
+default_max_ammo = 18
+default_bullet = ExtResource("2_qg8hb")
+camera_shake = 4.0
+rarity = ""
+item_cost = 10
+upgrade_type = ""
+
+[sub_resource type="Resource" id="Resource_stj0r"]
 resource_local_to_scene = true
 script = ExtResource("4_7krut")
 secondary_attack = ExtResource("5_cvwyh")
@@ -26,35 +42,27 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_u08x0"]
 radius = 18.0278
 
-[sub_resource type="LabelSettings" id="LabelSettings_c4jxb"]
-font_size = 12
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_secondary_controller", "p_dash_timer", "p_shoot_timer", "p_hitbox_component", "p_health_component", "p_reload_label")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("p_weapon_controller", "p_secondary_controller", "p_dash_timer", "p_hitbox_component", "p_health_component")]
 y_sort_enabled = true
 collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_wlkgh")
+p_weapon_controller = NodePath("WeaponController")
 p_secondary_controller = NodePath("SecondaryController")
 p_dash_timer = NodePath("DashTimer")
-p_shoot_timer = NodePath("ShootTimer")
 p_hitbox_component = NodePath("HitboxComponent")
 p_health_component = NodePath("HealthComponent")
 P_ACCEL = 6500
 P_FRICTION = 25000
-p_reload_time = 1.0
-p_reload_label = NodePath("Reloading")
-p_bullet_scene = ExtResource("2_qg8hb")
+
+[node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
+current_weapon = SubResource("Resource_ixg0o")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
-current_secondary = SubResource("Resource_cnqt8")
+current_secondary = SubResource("Resource_stj0r")
 
 [node name="DashTimer" type="Timer" parent="."]
-
-[node name="ShootTimer" type="Timer" parent="."]
-one_shot = true
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0.13, 0.13, 1)
@@ -67,7 +75,7 @@ offset = Vector2(1.08991e-06, -31.4286)
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_hpa7o")]
-max_health = 20
+max_health = 2500
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
 collision_layer = 0
@@ -89,17 +97,4 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 shape = SubResource("CircleShape2D_u08x0")
 
-[node name="Reloading" type="Label" parent="."]
-z_index = 5
-offset_left = -38.0
-offset_top = -38.0
-offset_right = 39.0
-offset_bottom = -15.0
-theme_override_constants/outline_size = 7
-text = "Reloading"
-label_settings = SubResource("LabelSettings_c4jxb")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -49,11 +49,9 @@ tile_set = ExtResource("2_brnf4")
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
 position = Vector2(-180, 19)
-p_reload_time = 0.3
 
 [node name="Camera2D" parent="Player" instance=ExtResource("4_ol12e")]
 position = Vector2(180, -19)
-zoom = Vector2(2, 2)
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("3_tmc20")]
 collision_layer = 10

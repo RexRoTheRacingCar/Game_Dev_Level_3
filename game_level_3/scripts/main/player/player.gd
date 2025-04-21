@@ -6,9 +6,9 @@ class_name Player
 #p is short for "Player"
 #Node variables
 @export_group("Nodes")
+@export var p_weapon_controller : WeaponController
 @export var p_secondary_controller : SecondaryController
 @export var p_dash_timer : Timer
-@export var p_shoot_timer : Timer
 @export var p_hitbox_component : HitboxComponent
 @export var p_health_component : HealthComponent
 
@@ -18,19 +18,6 @@ class_name Player
 @export var P_ACCEL : int = 3000
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
-
-#Weapon Variables
-@export_group("Weapon")
-@export var p_reload_time : float = 0.6
-@export var p_full_reload_time : float = 1.0
-@export var p_max_ammo : int = 18
-var p_ammo : int = 0
-var p_reloading : bool = false
-
-@export var p_reload_label : Label #Delete Later
-
-@export var p_bullet_scene : PackedScene
-@export var p_burst_amount : int = 1
 
 
 #Setter variables
@@ -57,13 +44,6 @@ var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets a
 			p_is_dashing = true
 
 
-@export var p_bullet_amount : int = 1 : 
-	set(new_value): #Update the bullet spread basd on bullet amount
-		p_bullet_amount = new_value
-		@warning_ignore("integer_division")
-		p_bullet_spread = ((15 * p_bullet_amount) - 15) / (p_bullet_amount * 1.5)
-
-
 var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 	set(new_value):
 		p_upgrades = new_value
@@ -78,24 +58,20 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 @export var p_max_dash : int = 1
 @export var p_damage_resistance : float = 1.0
 
-var p_bullet_upgrades : Array = []
-var p_bullet_spread : float = 0.0
-var p_can_shoot : bool = true
 var p_secondary_active : bool = false
+var p_knockback_taken : Vector2 = Vector2.ZERO
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Variable prep
-	p_can_shoot = true
 	p_is_dashing = false
 	p_consecutive_dash = 0
-	p_reload_label.visible = false
-	p_ammo = p_max_ammo
 	
 	p_upgrades = null
 	
 	p_vel_prep = Vector2.ZERO
+	p_knockback_taken = Vector2.ZERO
 	velocity = Vector2.ZERO
 	
 	$PlaceholderSprite2D.self_modulate = Color("ffffff")
@@ -116,11 +92,16 @@ func _physics_process(delta):
 		player_dash(p_input)
 	
 	#Player shooting
-	weapon_controls()
+	p_weapon_controller.weapon_controls(p_secondary_active)
 	secondary_manage(delta)
 	
-	velocity = Vector2(p_vel_prep.x, p_vel_prep.y / 2) #Make velocity isometric
-	var _error = move_and_slide() #Apply velocity
+	#Velocity manage
+	velocity = p_vel_prep 
+	velocity += p_knockback_taken
+	velocity.y /= 2 #Make velocity isometric
+	var _error = move_and_slide()
+	
+	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, 0.075)
 	
 	Global.player_position = global_position
 	Global.player_hp = p_health_component.health
@@ -148,43 +129,12 @@ func player_dash(p_input):
 	if p_input and p_consecutive_dash <= p_max_dash and p_secondary_active == false:
 		p_vel_prep = p_input * 2200
 		p_consecutive_dash += 1
- 
-
-#---------------------------------------------------------------------------------------------------------------------------
-func weapon_controls():
-	#Reloading functionality
-	if (
-		(Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and p_ammo <= 0)) and
-		p_reloading == false and 
-		p_secondary_active == false
-		):
-		
-		p_reload_label.visible = true
-		p_reloading = true
-		
-		await get_tree().create_timer(p_full_reload_time, false).timeout
-		
-		p_reload_label.visible = false
-		p_reloading = false
-		p_ammo = p_max_ammo
-	
-	#Shooting functionality
-	if Input.is_action_pressed("primary_attack") and p_can_shoot == true and p_reloading == false and p_secondary_active == false:
-		for _n in range(0, p_burst_amount):
-			if p_ammo >= 1:
-				player_shoot()
-				
-			await get_tree().create_timer(p_reload_time / (p_burst_amount), false).timeout
-	
-	#Update global variables
-	Global.player_ammo = p_ammo
-	Global.player_max_ammo = p_max_ammo
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func secondary_manage(delta):
 	if (
-		(p_is_dashing == false and p_reloading == false) and 
+		(p_is_dashing == false and p_weapon_controller.reloading == false) and 
 		(not Input.is_action_pressed("primary_attack") or 
 		(Input.is_action_pressed("primary_attack") and p_secondary_active == true))
 		):
@@ -194,50 +144,22 @@ func secondary_manage(delta):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-#Player Shoot Function
-func player_shoot():
-	Camera.apply_camera_shake(4.0)
-	
-	p_can_shoot = false
-	p_ammo -= 1
-	p_shoot_timer.stop()
-	p_shoot_timer.start(p_reload_time)
-	
-	#The bullet instance
-	for bullet in range(0, p_bullet_amount):
-		var bullet_instance := p_bullet_scene.instantiate()
-		var mouse_pos := get_global_mouse_position()
-		var mouse_dir := mouse_pos - global_position
-		mouse_dir.y *= 2
-		
-		#Bullet spawned
-		bullet_instance.global_position = global_position
-		bullet_instance.rotation = mouse_dir.angle()
-		get_parent().add_child(bullet_instance)
-		
-		#Bullet rotation offset based on amount of bullets fired
-		@warning_ignore("integer_division")
-		var bullet_rotation_offset = bullet - (p_bullet_amount / 2)
-		if bullet_rotation_offset % 1: 
-			bullet_rotation_offset = -bullet_rotation_offset
-		bullet_instance.rotation += deg_to_rad(p_bullet_spread) * bullet_rotation_offset
-		
-		#Apply upgrades to bullet
-		for upgrades in p_bullet_upgrades:
-				upgrades.apply_upgrade(bullet_instance)
-		
-		bullet_instance.implement_stats()
-		bullet_instance.death_timer_node.start(bullet_instance.lifetime)
-
-
-#---------------------------------------------------------------------------------------------------------------------------
 #Player damage function
 func player_hit_signalled(hurtbox: HurtboxComponent):
 	if p_consecutive_dash == 0:
 		#Calculate damage based on damage resistance (Damage resistance is a float while hurt damage is an int)
 		@warning_ignore("narrowing_conversion")
 		p_health_component.health -= hurtbox.hurt_damage / p_damage_resistance
-		p_vel_prep *= -hurtbox.hurt_knockback
+		
+		#Apply knockback to self
+		if hurtbox.knockback_type == "center": 
+			var angle := get_angle_to(hurtbox.global_position) + PI
+			p_knockback_taken = Vector2.RIGHT.rotated(angle)
+		elif hurtbox.knockback_type == "velocity":
+			p_knockback_taken = hurtbox.get_parent().velocity.normalized()
+		else:
+			p_knockback_taken = Vector2.ZERO
+		p_knockback_taken *= hurtbox.hurt_knockback
 		
 		p_hitbox_component.is_hit = true
 		p_hitbox_component.hit_timer.start(p_hitbox_component.hit_delay)
@@ -263,9 +185,3 @@ func player_no_health():
 #Player dash timer signal
 func _on_dash_timer_timeout():
 	p_consecutive_dash = 0
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-#Player shoot timeout signal
-func _on_shoot_timer_timeout() -> void:
-	p_can_shoot = true

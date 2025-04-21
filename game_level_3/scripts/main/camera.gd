@@ -7,14 +7,13 @@ const shake_fade_rate : float = 0.4
 const shake_multiplier : float = 1.0
 const max_shake : float = 35.0
 var shake_amount : float = 0.0
-
+@onready var zoom_amount : float = 1.0
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	offset = Vector2.ZERO
-	zoom = Vector2(2, 2)
-	
 	shake_amount = 0
+	zoom = Vector2(zoom_amount, zoom_amount)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
