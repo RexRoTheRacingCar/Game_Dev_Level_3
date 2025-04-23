@@ -25,7 +25,7 @@ rarity = ""
 item_cost = 10
 upgrade_type = ""
 
-[sub_resource type="Resource" id="Resource_stj0r"]
+[sub_resource type="Resource" id="Resource_a30ri"]
 resource_local_to_scene = true
 script = ExtResource("4_7krut")
 secondary_attack = ExtResource("5_cvwyh")
@@ -60,7 +60,7 @@ P_FRICTION = 25000
 current_weapon = SubResource("Resource_ixg0o")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
-current_secondary = SubResource("Resource_stj0r")
+current_secondary = SubResource("Resource_a30ri")
 
 [node name="DashTimer" type="Timer" parent="."]
 

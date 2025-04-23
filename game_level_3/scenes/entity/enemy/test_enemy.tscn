@@ -89,6 +89,7 @@ coin_max = 4
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
 path_max_distance = 150.0
+navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
 simplify_epsilon = 2.118
