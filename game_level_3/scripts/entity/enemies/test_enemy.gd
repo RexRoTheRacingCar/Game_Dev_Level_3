@@ -13,7 +13,7 @@ func _ready():
 func _process(_delta: float) -> void:
 	#If Area Of Sight returns with a target
 	if area_of_sight.target != null:
-		_navigation_check(Global.player_position, 0.3, 0.6)
+		_navigation_check(Global.player_position, 0.35, 0.65)
 		
 		if can_navigate == true:
 			#Navigate to player
