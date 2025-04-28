@@ -9,6 +9,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke3x7"]
 atlas = ExtResource("1_d2pv5")
+region = Rect2(0, 0, 200, 200)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fd54f"]
 blend_mode = 2
@@ -174,7 +175,7 @@ _data = {
 [node name="TestSecondary" type="CharacterBody2D"]
 z_index = -1
 y_sort_enabled = true
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jmis1")

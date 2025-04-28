@@ -4,8 +4,12 @@ class_name SecondaryAbility
 
 
 @export var secondary_attack : PackedScene
+@export var secondary_outline : AtlasTexture
 @export var cooldown : float = 5.0
 @export var charge_time : float = 1.0
+#Locations : Player = Global.player_position, Mouse = get_global_mouse_position()
+@export var spawn_location_type : int = 2
+
 var is_usable : bool = true
 
 

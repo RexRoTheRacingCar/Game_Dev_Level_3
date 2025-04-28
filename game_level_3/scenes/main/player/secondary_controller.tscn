@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0l6em4pg4dha"]
+[gd_scene load_steps=7 format=3 uid="uid://b0l6em4pg4dha"]
 
 [ext_resource type="Script" path="res://scripts/main/player/secondary_controller.gd" id="1_18fdd"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="2_1l1j7"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="3_yrqo0"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="4_dcl6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riwpa"]
+atlas = ExtResource("4_dcl6d")
+region = Rect2(200, 0, 200, 200)
 
 [sub_resource type="Resource" id="Resource_kv5k6"]
 script = ExtResource("2_1l1j7")
 secondary_attack = ExtResource("3_yrqo0")
+secondary_outline = SubResource("AtlasTexture_riwpa")
 cooldown = 2.0
 charge_time = 1.0
+spawn_location_type = 2
 
 [node name="SpecialController" type="Node2D" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("1_18fdd")

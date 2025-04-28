@@ -64,6 +64,8 @@ var p_knockback_taken : Vector2 = Vector2.ZERO
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	set_physics_process(false)
+	
 	#Variable prep
 	p_is_dashing = false
 	p_consecutive_dash = 0
@@ -79,6 +81,8 @@ func _ready():
 	#Signal connecting
 	p_hitbox_component.hitbox_entered.connect(player_hit_signalled)
 	p_health_component.zero_health.connect(player_no_health)
+	
+	call_deferred("set_physics_process", true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
