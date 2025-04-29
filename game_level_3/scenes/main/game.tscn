@@ -82,7 +82,6 @@ tile_map_data = PackedByteArray("AAD8/wMAAAAAAAUAAAD//wEAAQAAAAAAAQABAAEAAQAAAAA
 tile_set = ExtResource("2_brnf4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TilemapFolder/TestTilemap2"]
-visible = false
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_l13gh")
 navigation_layers = 2
