@@ -82,6 +82,8 @@ func _ready():
 	p_hitbox_component.hitbox_entered.connect(player_hit_signalled)
 	p_health_component.zero_health.connect(player_no_health)
 	
+	await get_tree().create_timer(0.09, false).timeout 
+	
 	call_deferred("set_physics_process", true)
 
 

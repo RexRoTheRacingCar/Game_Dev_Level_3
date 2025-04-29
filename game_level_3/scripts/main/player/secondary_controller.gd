@@ -12,16 +12,12 @@ var new_outline_sprite
 
 @export var progress_bar : ProgressBar
 @onready var cooldown_timer = $CooldownTimer
+@onready var sprite_2d: Sprite2D = $CanvasGroup/Sprite2D
 var cooldown_active : bool = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
-	#Outline sprite
-	if current_secondary.secondary_outline:
-		outline_sprite = Sprite2D.new()
-		new_outline_sprite = get_tree().root.get_node("/root/Game/").call_deferred("add_child", outline_sprite)
-	
 	charge_progress = 0.0
 	is_charging = false
 	cooldown_active = false
@@ -30,12 +26,10 @@ func _ready():
 	progress_bar.max_value = current_secondary.charge_time
 	progress_bar.value = charge_progress
 	
-	await get_tree().create_timer(0.1, false).timeout 
+	sprite_2d.texture = current_secondary.secondary_outline
+	sprite_2d.visible = false
 	
-	if current_secondary.secondary_outline:
-		new_outline_sprite.z_index = 12
-		new_outline_sprite.visible = false
-		new_outline_sprite.texture = current_secondary.secondary_outline
+	sprite_2d.scale = Vector2(0, 0)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -44,9 +38,12 @@ func secondary_controls(delta : float):
 	
 	#Secondary charge up
 	if Input.is_action_pressed("secondary_attack") and cooldown_active == false:
-		if current_secondary.secondary_outline:
-			new_outline_sprite.visible = true
-			new_outline_sprite.global_position = _get_position_type()
+		sprite_2d.visible = true
+		sprite_2d.global_position = _get_position_type()
+		sprite_2d.rotation_degrees += 90 * delta
+		
+		#Convert to tween
+		sprite_2d.scale = lerp(sprite_2d.scale, Vector2(2.2, 2.2), 0.05)
 		
 		#Update secondary charge and progress bar
 		charge_progress += delta
@@ -57,8 +54,8 @@ func secondary_controls(delta : float):
 		
 		is_charging = true
 	else:
-		if current_secondary.secondary_outline:
-			new_outline_sprite.visible = false
+		sprite_2d.visible = false
+		sprite_2d.scale = Vector2(0, 0)
 		
 		charge_progress -= 0.5 * delta
 		charge_progress = clamp(charge_progress, 0.0, current_secondary.charge_time)
@@ -72,6 +69,8 @@ func secondary_controls(delta : float):
 			#Start cooldown timer
 			cooldown_timer.start(current_secondary.cooldown)
 			cooldown_active = true
+			
+			Camera.apply_camera_shake(current_secondary.shake_on_use)
 			
 			#Cooldown progress tween
 			var cooldown_tween = create_tween()

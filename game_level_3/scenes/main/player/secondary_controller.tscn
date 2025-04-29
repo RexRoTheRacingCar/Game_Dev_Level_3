@@ -5,17 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="3_yrqo0"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="4_dcl6d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_riwpa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2g3e"]
 atlas = ExtResource("4_dcl6d")
 region = Rect2(200, 0, 200, 200)
 
 [sub_resource type="Resource" id="Resource_kv5k6"]
+resource_local_to_scene = true
 script = ExtResource("2_1l1j7")
 secondary_attack = ExtResource("3_yrqo0")
-secondary_outline = SubResource("AtlasTexture_riwpa")
+secondary_outline = SubResource("AtlasTexture_y2g3e")
 cooldown = 2.0
 charge_time = 1.0
 spawn_location_type = 2
+shake_on_use = 12.0
 
 [node name="SpecialController" type="Node2D" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("1_18fdd")
@@ -34,5 +36,14 @@ offset_bottom = 24.0
 max_value = 5.0
 fill_mode = 3
 show_percentage = false
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = -1
+scale = Vector2(1, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
+self_modulate = Color(1, 1, 1, 0.576471)
+z_index = -2
+scale = Vector2(2.2, 2.2)
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

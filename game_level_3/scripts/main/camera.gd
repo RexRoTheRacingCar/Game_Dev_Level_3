@@ -3,11 +3,11 @@ extends Camera2D
 
 
 #Camera shake variables
-const shake_fade_rate : float = 0.4
+const shake_fade_rate : float = 0.25
 const shake_multiplier : float = 1.0
 const max_shake : float = 35.0
 var shake_amount : float = 0.0
-@onready var zoom_amount : float = 1.25
+@onready var zoom_amount : float = 1
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():

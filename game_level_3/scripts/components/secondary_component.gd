@@ -9,6 +9,7 @@ class_name SecondaryAbility
 @export var charge_time : float = 1.0
 #Locations : Player = Global.player_position, Mouse = get_global_mouse_position()
 @export var spawn_location_type : int = 2
+@export var shake_on_use : float = 0.0
 
 var is_usable : bool = true
 
