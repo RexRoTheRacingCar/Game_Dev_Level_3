@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ntcgi3rcq2"]
+[gd_scene load_steps=14 format=3 uid="uid://c8ntcgi3rcq2"]
 
 [ext_resource type="Script" path="res://scripts/entity/bullets/default_bullet.gd" id="1_nrrtv"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_t6jqe"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_xp51l"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_re8ai"]
 
@@ -8,13 +9,43 @@
 atlas = ExtResource("2_xp51l")
 region = Rect2(200, 200, 100, 100)
 
+[sub_resource type="Gradient" id="Gradient_ipjdg"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qjqk3"]
+gradient = SubResource("Gradient_ipjdg")
+
+[sub_resource type="Curve" id="Curve_r64tq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.39058, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l24af"]
+curve = SubResource("Curve_r64tq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dfcb8"]
+particle_flag_disable_z = true
+direction = Vector3(5, 0, 0)
+spread = 0.0
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_l24af")
+color = Color(1, 1, 1, 0.568627)
+color_ramp = SubResource("GradientTexture1D_qjqk3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kivum"]
+atlas = ExtResource("2_t6jqe")
+region = Rect2(0, 0, 200, 200)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsiv1"]
 radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
 radius = 1.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite", "particle")]
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 16
@@ -23,11 +54,23 @@ hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
+particle = NodePath("Sprite/GPUParticles2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(0.4, 0.3)
 texture = SubResource("AtlasTexture_4bivj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
+y_sort_enabled = true
+scale = Vector2(2.5, 3.33333)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_dfcb8")
+texture = SubResource("AtlasTexture_kivum")
+lifetime = 0.3
+speed_scale = 0.7
+explosiveness = 0.24
+randomness = 0.09
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 scale = Vector2(1, 0.999999)
@@ -52,6 +95,7 @@ one_shot = true
 [node name="CollisionTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_entered"]
 [connection signal="body_exited" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_exited"]
 [connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

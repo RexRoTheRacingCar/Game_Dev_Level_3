@@ -31,14 +31,15 @@ atlas = ExtResource("8_6g3ld")
 region = Rect2(200, 0, 200, 200)
 
 [sub_resource type="Resource" id="Resource_na0t1"]
-resource_local_to_scene = true
 script = ExtResource("4_7krut")
 secondary_attack = ExtResource("5_cvwyh")
 secondary_outline = SubResource("AtlasTexture_xr7et")
 cooldown = 1.5
 charge_time = 0.75
 spawn_location_type = 2
-shake_on_use = 0.0
+shake_on_use = 20.0
+scale_based = true
+max_scale = 2.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
@@ -83,7 +84,7 @@ offset = Vector2(1.08991e-06, -31.4286)
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_hpa7o")]
-max_health = 2500
+max_health = 25
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
 collision_layer = 0

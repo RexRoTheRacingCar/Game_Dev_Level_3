@@ -8,6 +8,7 @@ class_name Bullet
 @export var death_timer_node : Timer
 @export var collision_timer_node : Timer
 @export var sprite : Node2D
+@export var particle : GPUParticles2D
 
 @export_group("Bullet Stats")
 @export var default_damage : int = 5
@@ -140,7 +141,12 @@ func implement_stats():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func delete_bullet():
+	if particle:
+		particle.emitting = false
 	speed = 0
+	
+	var scene = preload("res://scenes/entity/secondaries/test_secondary.tscn")
+	Global.spawn_particle(global_position, get_tree().root.get_node("/root/Game/"), scene)
 	
 	#Stop lingering hitboxes
 	if hurtbox:

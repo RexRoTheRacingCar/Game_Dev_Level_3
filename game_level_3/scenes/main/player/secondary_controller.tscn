@@ -18,6 +18,8 @@ cooldown = 2.0
 charge_time = 1.0
 spawn_location_type = 2
 shake_on_use = 12.0
+scale_based = true
+max_scale = 2.2
 
 [node name="SpecialController" type="Node2D" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("1_18fdd")

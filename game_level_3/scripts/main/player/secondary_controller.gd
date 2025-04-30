@@ -15,6 +15,8 @@ var new_outline_sprite
 @onready var sprite_2d: Sprite2D = $CanvasGroup/Sprite2D
 var cooldown_active : bool = false
 
+var progress : float = 0.0
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -38,12 +40,12 @@ func secondary_controls(delta : float):
 	
 	#Secondary charge up
 	if Input.is_action_pressed("secondary_attack") and cooldown_active == false:
+		progress = charge_progress / current_secondary.charge_time
+		
 		sprite_2d.visible = true
 		sprite_2d.global_position = _get_position_type()
-		sprite_2d.rotation_degrees += 90 * delta
-		
-		#Convert to tween
-		sprite_2d.scale = lerp(sprite_2d.scale, Vector2(2.2, 2.2), 0.05)
+		sprite_2d.rotation_degrees += (120 * progress) * delta
+		sprite_2d.scale = (progress) * Vector2(current_secondary.max_scale, current_secondary.max_scale)
 		
 		#Update secondary charge and progress bar
 		charge_progress += delta
@@ -53,6 +55,7 @@ func secondary_controls(delta : float):
 			progress_bar.visible = true
 		
 		is_charging = true
+		
 	else:
 		sprite_2d.visible = false
 		sprite_2d.scale = Vector2(0, 0)
@@ -62,22 +65,30 @@ func secondary_controls(delta : float):
 	
 	#Secondary button released. If cooldown progress = charge_time, spawn secondary ability
 	if Input.is_action_just_released("secondary_attack"):
-		if charge_progress >= current_secondary.charge_time - current_secondary.charge_time / 12:
+		#if charge_progress >= current_secondary.charge_time - current_secondary.charge_time / 12:
+		
+		if charge_progress > 0.0:
+			#Spawn secondary attack scene
 			var new_secondary = current_secondary.spawn_scene(current_secondary.secondary_attack, get_tree().root.get_node("/root/Game/"))
 			new_secondary.global_position = _get_position_type()
 			
+			#Adjust secondary attack if scale_based == true
+			if current_secondary.scale_based == true:
+				new_secondary.scale = (progress) * Vector2(current_secondary.max_scale, current_secondary.max_scale)
+			
 			#Start cooldown timer
-			cooldown_timer.start(current_secondary.cooldown)
+			var cooldown_actual_time = current_secondary.cooldown * clamp(progress + 0.25, 0.0, 1.0)
+			cooldown_timer.start(cooldown_actual_time)
 			cooldown_active = true
 			
 			Camera.apply_camera_shake(current_secondary.shake_on_use)
 			
 			#Cooldown progress tween
 			var cooldown_tween = create_tween()
-			cooldown_tween.tween_property(progress_bar, "value", 0.0, current_secondary.cooldown)
-		
-		elif cooldown_active == false:
-			progress_bar.visible = false
+			cooldown_tween.tween_property(progress_bar, "value", 0.0, cooldown_actual_time)
+			
+			if cooldown_active == false:
+				progress_bar.visible = false
 			
 		charge_progress = 0
 		is_charging = false
