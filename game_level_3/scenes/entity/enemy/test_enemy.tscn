@@ -93,6 +93,7 @@ navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
 simplify_epsilon = 2.118
+debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0.978863, 0, 0.0976624, 1)
 debug_path_custom_point_size = 6.0

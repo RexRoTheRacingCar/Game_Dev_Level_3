@@ -193,6 +193,9 @@ y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_fd54f")
 texture = SubResource("AtlasTexture_ke3x7")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="CanvasGroup"]
+scale = Vector2(13.32, 13.9488)
+
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
