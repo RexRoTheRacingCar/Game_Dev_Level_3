@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
-[ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/entity/bullets/default_bullet.tscn" id="2_qg8hb"]
+[ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/entity/bullets/bubble_bullet.tscn" id="2_qg8hb"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
@@ -14,9 +14,9 @@
 
 [sub_resource type="Resource" id="Resource_ixg0o"]
 script = ExtResource("4_r18d4")
-default_bullet_amount = 1
-default_spread = 15.0
-default_burst_amount = 1
+default_bullet_amount = 2
+default_spread = 12.0
+default_burst_amount = 3
 default_firerate = 0.4
 default_reload_time = 0.4
 default_max_ammo = 18

@@ -23,6 +23,8 @@ class_name Bullet
 @export var collision_time : float = 0.15
 @export var max_pierce : int = 1
 
+@export var can_skew : bool = true
+
 var damage : int
 var lifetime : float
 var knockback : float
@@ -106,7 +108,8 @@ func _update_bullet():
 	
 	if sprite:
 		sprite.rotation = velocity.angle() - rotation
-		sprite.skew = (0.5 * sin((2 * PI) * (sprite.rotation)) + 0)
+		if can_skew ==  true: 
+			sprite.skew = (0.5 * sin((2 * PI) * (sprite.rotation)) + 0)
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
@@ -145,8 +148,7 @@ func delete_bullet():
 		particle.emitting = false
 	speed = 0
 	
-	var scene = preload("res://scenes/entity/secondaries/test_secondary.tscn")
-	Global.spawn_particle(global_position, get_tree().root.get_node("/root/Game/"), scene)
+
 	
 	#Stop lingering hitboxes
 	if hurtbox:
