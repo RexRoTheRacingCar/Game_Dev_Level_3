@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponType" load_steps=3 format=3 uid="uid://fyuhjs8leq0o"]
+
+[ext_resource type="PackedScene" uid="uid://dueeegogx0ea3" path="res://scenes/entity/bullets/default_bullet.tscn" id="1_jpypq"]
+[ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_onx0p"]
+
+[resource]
+script = ExtResource("2_onx0p")
+default_bullet_amount = 1
+default_spread = 15.0
+default_burst_amount = 1
+default_firerate = 0.4
+default_reload_time = 0.4
+default_max_ammo = 18
+default_bullet = ExtResource("1_jpypq")
+camera_shake = 3.0
+rarity = ""
+item_cost = 10
+upgrade_type = ""

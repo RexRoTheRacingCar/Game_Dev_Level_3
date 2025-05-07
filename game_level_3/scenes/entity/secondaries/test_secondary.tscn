@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cpm766wlxynum"]
 
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_d2pv5"]
-[ext_resource type="PackedScene" uid="uid://mi1130iamiy0" path="res://scenes/entity/particles/dust_splash1.tscn" id="3_8nch0"]
+[ext_resource type="PackedScene" uid="uid://mi1130iamiy0" path="res://scenes/entity/particles/bubble_pop1.tscn" id="3_8nch0"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_n8i0x"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_733cr"]
 

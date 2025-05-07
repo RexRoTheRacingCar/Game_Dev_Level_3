@@ -95,7 +95,6 @@ one_shot = true
 [node name="CollisionTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_entered"]
 [connection signal="body_exited" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_exited"]
 [connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

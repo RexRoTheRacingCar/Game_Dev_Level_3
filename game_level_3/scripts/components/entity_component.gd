@@ -9,7 +9,6 @@ class_name Entity
 @export var health_component : HealthComponent
 @export var hit_flash_anim : AnimationPlayer
 
-
 #Naviagtion
 @export_group("Navigation")
 @export var navigation_agent : NavigationAgent2D
@@ -27,12 +26,12 @@ var next_path_position
 var knockback_taken := Vector2.ZERO
 
 @export var shake_on_hit : float = 5.5
+@export var shake_on_death : float = 7.0
 
 #Coin variables
 @export var coin_min : int = 1
 @export var coin_max : int = 3
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
-
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -75,8 +74,6 @@ func hit_signalled(hurtbox: HurtboxComponent):
 	var knockback_tweem := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	knockback_tweem.tween_property(self, "knockback_taken", Vector2.ZERO, 0.4)
 	knockback_tweem.play()
-	
-	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -119,6 +116,6 @@ func no_health():
 			global_position.y + randf_range(rand_spawn / 2, -rand_spawn / 2)
 			)
 	
-	Camera.apply_camera_shake(shake_on_hit * 1.35)
+	Camera.apply_camera_shake(shake_on_death)
 	
 	queue_free()

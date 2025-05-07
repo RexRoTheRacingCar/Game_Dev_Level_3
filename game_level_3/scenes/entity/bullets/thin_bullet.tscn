@@ -1,55 +1,55 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ntcgi3rcq2"]
+[gd_scene load_steps=7 format=3 uid="uid://brb23yhtndmma"]
 
-[ext_resource type="Script" path="res://scripts/entity/bullets/bubble_bullet.gd" id="1_2f2u4"]
-[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="3_t76va"]
-[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="4_yqrmr"]
+[ext_resource type="Script" path="res://scripts/entity/bullets/default_bullet.gd" id="1_en1ul"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_mrn36"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="4_ji1ql"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mojfy"]
-atlas = ExtResource("3_t76va")
-region = Rect2(0, 200, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bivj"]
+atlas = ExtResource("2_mrn36")
+region = Rect2(200, 200, 100, 100)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1b7hu"]
-radius = 25.7099
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_t20aj"]
+a = Vector2(-8.70745e-05, -15)
+b = Vector2(2.15252e-05, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
 radius = 1.0
 
-[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
+[node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite", "particle")]
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 16
-script = ExtResource("1_2f2u4")
+script = ExtResource("1_en1ul")
 hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
-default_damage = 3
-default_lifetime = 1.0
-default_knockback = 150.0
-initial_speed = 750.0
-target_speed = 0.0
-lerp_speed = 0.03
-accuracy = 0.175
-can_skew = false
+particle = NodePath("")
+default_damage = 2
+default_lifetime = 0.35
+default_knockback = 10.0
+initial_speed = 1400.0
+target_speed = 1400.0
+accuracy = 0.25
+collision_time = 0.1
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0.41, 0.646, 1, 0.733333)
 y_sort_enabled = true
-scale = Vector2(0.27, 0.27)
-texture = SubResource("AtlasTexture_mojfy")
+scale = Vector2(0.42, 0.14)
+texture = SubResource("AtlasTexture_4bivj")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 scale = Vector2(1, 0.999999)
 collision_layer = 8
 collision_mask = 8
 monitorable = false
-script = ExtResource("4_yqrmr")
+script = ExtResource("4_ji1ql")
 knockback_type = "velocity"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -2.27374e-13)
+position = Vector2(2.38419e-06, 3.27746e-05)
 rotation = 1.5708
-shape = SubResource("CircleShape2D_1b7hu")
+shape = SubResource("SegmentShape2D_t20aj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5tywq")

@@ -37,6 +37,11 @@ var collide_array : Array = []
 var collision_hit : bool = false
 
 
+#Signal used in other bullet scripts
+@warning_ignore("unused_signal")
+signal delete_bullet_signal
+
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	visible = false
@@ -146,22 +151,12 @@ func implement_stats():
 func delete_bullet():
 	if particle:
 		particle.emitting = false
-	speed = 0
-	
-
 	
 	#Stop lingering hitboxes
 	if hurtbox:
 		hurtbox.set_deferred("monitorable", false)
 	
-	#Bullet death animation
-	var delete_tween = create_tween()
-	delete_tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
-	delete_tween.tween_property(self, "scale", Vector2(0, 0), 0.35).from_current()
-	
-	await get_tree().create_timer(0.35, false).timeout
-	
-	queue_free()
+	emit_signal("delete_bullet_signal")
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -83,6 +83,7 @@ hit_flash_anim = NodePath("HitFlashAnimationPlayer")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 area_of_sight = NodePath("AreaOfSight")
+shake_on_hit = 1.0
 coin_min = 2
 coin_max = 4
 
