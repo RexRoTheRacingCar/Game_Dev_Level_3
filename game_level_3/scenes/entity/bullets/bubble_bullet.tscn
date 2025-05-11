@@ -23,9 +23,9 @@ hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
-default_damage = 3
+default_damage = 2
 default_lifetime = 1.0
-default_knockback = 150.0
+default_knockback = 120.0
 initial_speed = 750.0
 target_speed = 0.0
 lerp_speed = 0.03
@@ -33,12 +33,13 @@ accuracy = 0.175
 can_skew = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0.41, 0.646, 1, 0.733333)
+modulate = Color(0.92, 1, 0.996, 0.792157)
 y_sort_enabled = true
 scale = Vector2(0.27, 0.27)
 texture = SubResource("AtlasTexture_mojfy")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+visible = false
 scale = Vector2(1, 0.999999)
 collision_layer = 8
 collision_mask = 8

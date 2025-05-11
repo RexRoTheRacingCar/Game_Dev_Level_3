@@ -10,7 +10,7 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#If Area Of Sight returns with a target
 	if area_of_sight.target != null:
 		_navigation_check(Global.player_position, 0.35, 0.65)
@@ -27,3 +27,9 @@ func _process(_delta: float) -> void:
 			velocity += knockback_taken
 			
 			move_and_slide()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func no_health():
+	super.no_health()
+	queue_free()

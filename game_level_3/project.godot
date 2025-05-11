@@ -31,6 +31,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 walls=""
+navigation_polygon_source_geometry_group=""
 
 [gui]
 

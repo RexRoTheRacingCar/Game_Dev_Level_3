@@ -5,7 +5,7 @@
 
 [sub_resource type="Gradient" id="Gradient_r18dv"]
 offsets = PackedFloat32Array(0.258333, 1)
-colors = PackedColorArray(0.377612, 0.424376, 1, 0.698039, 0.439922, 0.421104, 1, 0)
+colors = PackedColorArray(0.38, 0.628, 1, 0.776471, 0.439922, 0.421104, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_quip7"]
 gradient = SubResource("Gradient_r18dv")
@@ -41,7 +41,7 @@ region = Rect2(100, 200, 50, 50)
 [node name="GPUParticles2D" type="GPUParticles2D"]
 y_sort_enabled = true
 emitting = false
-amount = 5
+amount = 4
 process_material = SubResource("ParticleProcessMaterial_6k887")
 texture = SubResource("AtlasTexture_j3emk")
 lifetime = 1.4

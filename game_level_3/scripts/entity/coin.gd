@@ -15,6 +15,9 @@ var random_offset : float
 func _ready() -> void:
 	set_process(false)
 	
+	monitoring = true
+	$CollectionRadius.monitoring = false
+	
 	#Setup coin at spawn
 	target_hit = false
 	sprite.visible = true
@@ -33,6 +36,8 @@ func _ready() -> void:
 func _process(delta):
 	#If player enters radius, speed up in direction of player until collected
 	if target and target_hit == false:
+		monitoring = false
+		
 		speed += 450 * delta * random_offset
 		speed = clamp(speed, 0, 600)
 		
@@ -61,3 +66,5 @@ func _on_collection_radius_body_entered(_body : Player):
 func _on_body_entered(body : Player):
 	target = body
 	set_process(true)
+	
+	$CollectionRadius.monitoring = true

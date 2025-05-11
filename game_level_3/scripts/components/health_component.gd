@@ -10,11 +10,13 @@ signal zero_health
 @export var health_bar : ProgressBar 
 @export var max_health : int = 100 : set = _set_max_health
 var health : int : set = _set_health
+var death_emitted : bool
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	health = max_health
+	death_emitted = false
 	
 	_set_health(max_health)
 	_set_max_health(max_health)
@@ -33,14 +35,15 @@ func _set_health(new_value : int) -> void:
 	if health > max_health:
 		health = max_health
 	
-	#If there is a health bar
+	#If there is a health barse
 	if health_bar:
 		health_bar.value = health
 	
 	#If health is equal to or below 0
-	if health <= 0:
+	if health <= 0 and death_emitted == false:
 		health = 0
 		zero_health.emit()
+		death_emitted = true
 
 
 #---------------------------------------------------------------------------------------------------------------------------

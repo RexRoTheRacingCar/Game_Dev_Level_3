@@ -85,7 +85,7 @@ region = Rect2(0, 200, 100, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kt1uf"]
 radius = 75.0
 
-[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "lock_sprite", "shop_tile", "price_label") groups=["walls"]]
+[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "lock_sprite", "shop_tile", "price_label") groups=["navigation_polygon_source_geometry_group", "walls"]]
 collision_layer = 25
 collision_mask = 0
 script = ExtResource("1_pfyx2")

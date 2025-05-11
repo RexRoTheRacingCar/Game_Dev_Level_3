@@ -12,10 +12,10 @@ func _ready():
 	self.connect("delete_bullet_signal", _bullet_death)
 	
 	randomize()
-	speed_rand = randf_range(3.5, -3.5)
-	scale_rand = randf_range(0.8, 0.5)
+	scale_rand = randf_range(0.5, 0.3)
 	
 	default_lifetime -= randf_range(0.0, 0.35)
+	initial_speed *= randf_range(1.0, 0.8)
 	
 	scale = Vector2(
 		scale_rand,
@@ -38,8 +38,6 @@ func _ready():
 func _physics_process(delta):
 	super._physics_process(delta)
 	_lerp_speed()
-	
-	rotation += speed_rand * delta
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -47,7 +45,7 @@ func _bullet_death():
 	#Bubble particles on queue_free()
 	var bubbles = _spawn_bubbles()
 	bubbles.global_position = global_position
-	bubbles.scale = Vector2(scale_rand + 0.2, scale_rand + 0.2)
+	bubbles.scale = Vector2(scale_rand + 0.3, scale_rand + 0.3)
 	
 	queue_free()
 

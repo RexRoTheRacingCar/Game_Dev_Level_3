@@ -108,7 +108,8 @@ func _on_navigation_timer_timeout():
 #---------------------------------------------------------------------------------------------------------------------------
 #Enemy has 0 HP
 func no_health():
-	for _n in randi_range(coin_min, coin_max): #Spawn coins at death position
+	var rand = randi_range(coin_min, coin_max)
+	for _n in range(0, rand): #Spawn coins at death position
 		var new_coin = spawn_scene(coin_scene, self.get_parent())
 		var rand_spawn : float = 30.0
 		new_coin.global_position = Vector2(
@@ -117,5 +118,3 @@ func no_health():
 			)
 	
 	Camera.apply_camera_shake(shake_on_death)
-	
-	queue_free()
