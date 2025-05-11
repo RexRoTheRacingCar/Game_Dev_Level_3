@@ -68,7 +68,7 @@ func no_health():
 	visible = false
 	
 	#Create explosion when leaving the scene (on death)
-	for i in range(0, 5):
+	for i in range(0, 10):
 		for d in range(0, 4): 
 			var new_explosion = explode_scene.instantiate()
 			
