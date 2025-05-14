@@ -32,6 +32,7 @@ window/stretch/mode="viewport"
 
 walls=""
 navigation_polygon_source_geometry_group=""
+blocked=""
 
 [gui]
 

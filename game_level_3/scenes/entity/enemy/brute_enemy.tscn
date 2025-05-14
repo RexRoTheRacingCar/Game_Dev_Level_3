@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfhtc088cgns5"]
+[gd_scene load_steps=18 format=3 uid="uid://dfhtc088cgns5"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/brute_enemy.gd" id="1_ktovh"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="2_56qer"]
@@ -30,6 +30,9 @@ radius = 19.0263
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7aex"]
 radius = 275.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im0nk"]
+radius = 22.1359
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -142,8 +145,8 @@ shape = SubResource("CircleShape2D_qjmvo")
 position = Vector2(0, -7)
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 10
-hurt_knockback = 500.0
+hurt_damage = 8
+hurt_knockback = 300.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
@@ -176,6 +179,13 @@ position = Vector2(0, 12)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_l7aex")
 
+[node name="WallCollision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollision"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_im0nk")
+debug_color = Color(0.747664, 0.205094, 1, 0.42)
+
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4hgvt")
@@ -183,3 +193,4 @@ libraries = {
 
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
 [connection signal="body_entered" from="ChargeDetection" to="." method="_on_charge_detection_body_entered"]
+[connection signal="body_entered" from="WallCollision" to="." method="_on_wall_collision_body_entered"]

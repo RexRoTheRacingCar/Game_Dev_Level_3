@@ -17,8 +17,8 @@ func _ready():
 	for _h in range(0, 10000):
 		await get_tree().create_timer(1.1, false).timeout
 		var rand = randf_range(0.0, 1.0)
-		#if rand >= 0.80:
-			#Global.spawn_particle(Vector2(60, 30), $Player, explode_enemy)
+		if rand >= 0.80:
+			Global.spawn_particle(Vector2(60, 30), $Player, explode_enemy)
 		if rand >= 0.60:
 			Global.spawn_particle(Vector2(60, 30), $Player, brute_enemy)
 		else:
