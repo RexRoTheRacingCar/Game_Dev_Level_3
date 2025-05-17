@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bny6ynmi2tsa7"]
+[gd_scene load_steps=19 format=3 uid="uid://bny6ynmi2tsa7"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/exploding_enemy_1.gd" id="1_r0548"]
 [ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="2_38bs6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="4_ehx84"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="4_jq6ia"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="5_bfyrr"]
+[ext_resource type="PackedScene" uid="uid://r53nt5uliuqf" path="res://scenes/misc/line_of_sight.tscn" id="8_slnva"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s4tcs"]
 resource_local_to_scene = true
@@ -73,9 +74,10 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="ExplodingEnemy1" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="ExplodingEnemy1" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
 collision_layer = 9
 collision_mask = 16
+motion_mode = 1
 script = ExtResource("1_r0548")
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -84,7 +86,8 @@ hit_flash_anim = NodePath("HitFlashAnimationPlayer")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 area_of_sight = NodePath("AreaOfSight")
-shake_on_hit = 4.0
+line_of_sight = NodePath("LineOfSight")
+shake_on_hit = 3.0
 coin_min = 2
 coin_max = 4
 
@@ -111,7 +114,7 @@ texture = SubResource("AtlasTexture_1u4qc")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ehx84")]
 health_bar = NodePath("ProgressBar")
-max_health = 30
+max_health = 15
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 10
@@ -165,11 +168,14 @@ shape = SubResource("CircleShape2D_k5s54")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="AreaOfSight" parent="." instance=ExtResource("5_bfyrr")]
-visible = false
 collision_layer = 0
 collision_mask = 33
 monitorable = false
 radius = 2000.0
+
+[node name="LineOfSight" parent="." instance=ExtResource("8_slnva")]
+collision_mask = 33
+max_target_distance = 1000.0
 
 [node name="DiveDetection" type="Area2D" parent="."]
 collision_layer = 0

@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 
 [node name="AreaOfSight" type="Area2D"]
+visible = false
 script = ExtResource("1_je0ql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

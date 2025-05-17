@@ -26,8 +26,15 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 #When hurtbox area enters hit area
-func _on_area_entered(area: HurtboxComponent):
+func _on_area_entered(area: HurtboxComponent) -> void:
 	if area != self:
+		#Check if hurtbox is not parent's hurbox (Can't hurt itself)
+		var parent_check = "hurtbox_component" in get_parent()
+		if parent_check == true: 
+			if get_parent().hurtbox_component == area: 
+				return #Ends the function early, no signal emitted.
+		
+		#Append hurtbox to detection array
 		detect_array.append(area)
 		
 		if is_hit == false:

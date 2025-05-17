@@ -14,12 +14,21 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	Global.player_dead = false
+	
 	for _h in range(0, 10000):
-		await get_tree().create_timer(1.1, false).timeout
+		await get_tree().create_timer(1.4, false).timeout
 		var rand = randf_range(0.0, 1.0)
 		if rand >= 0.80:
 			Global.spawn_particle(Vector2(60, 30), $Player, explode_enemy)
-		if rand >= 0.60:
+		elif rand >= 0.60:
 			Global.spawn_particle(Vector2(60, 30), $Player, brute_enemy)
 		else:
 			Global.spawn_particle(Vector2(60, 30), $Player, enemy)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _process(_delta):
+	if Global.player_dead == true:
+		var _reload = get_tree().reload_current_scene()
+		Global.player_dead = false

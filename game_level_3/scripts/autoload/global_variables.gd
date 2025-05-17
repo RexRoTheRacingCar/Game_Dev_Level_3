@@ -3,6 +3,7 @@ extends Node
 
 
 #Player global variables
+var player_dead : bool
 var player_position : Vector2
 var player_velocity : Vector2
 var player_coins : int

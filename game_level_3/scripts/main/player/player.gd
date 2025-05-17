@@ -186,7 +186,8 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 #Player has 0 HP
 func player_no_health():
 	print("Player Died")
-	get_tree().quit()
+	Global.player_dead = true
+	#get_tree().quit()
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://r53nt5uliuqf"]
+
+[ext_resource type="Script" path="res://scripts/misc/line_of_sight.gd" id="1_d0vd0"]
+
+[node name="LineOfSight" type="RayCast2D"]
+collision_mask = 0
+hit_from_inside = true
+collide_with_areas = true
+script = ExtResource("1_d0vd0")

@@ -17,8 +17,11 @@ var can_navigate : bool = false
 var current_agent_position : Vector2
 var next_path_position
 
-#Area of sight variable
-@export var area_of_sight : AreaOfSight
+#Line of sight variables
+@export var area_of_sight : AreaOfSight #Polygon / 2d Shape
+@export var line_of_sight : LineOfSight #Raycast
+var los_check : bool = false
+
 
 #Knockback variables
 @export_group("Misc")
@@ -51,29 +54,31 @@ func _ready():
 #---------------------------------------------------------------------------------------------------------------------------
 #Hit signal function
 func hit_signalled(hurtbox: HurtboxComponent):
-	health_component.health -= hurtbox.hurt_damage
-	hitbox_component.hit_timer.start(hitbox_component.hit_delay)
-	
-	Camera.apply_camera_shake(shake_on_hit)
-	if hit_flash_anim:
-		hit_flash_anim.play("hit_flash")
-	
-	#Apply knockback to enemy
-	if hurtbox.knockback_type == "center":
-		var angle := get_angle_to(hurtbox.global_position) + PI
-		knockback_taken = Vector2.RIGHT.rotated(angle)
-	elif hurtbox.knockback_type == "velocity":
-		knockback_taken = hurtbox.get_parent().velocity.normalized()
-	else:
-		knockback_taken = Vector2.ZERO
-	
-	knockback_taken *= hurtbox.hurt_knockback
-	knockback_taken *= knockback_resistance
-	
-	#Knockback tweening to 0 for a slowdown effect
-	var knockback_tweem := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-	knockback_tweem.tween_property(self, "knockback_taken", Vector2.ZERO, 0.4)
-	knockback_tweem.play()
+	if hurtbox != self.hurtbox_component:
+		health_component.health -= hurtbox.hurt_damage
+		hitbox_component.hit_timer.start(hitbox_component.hit_delay)
+		
+		#Apply camera shake and hit flash animations
+		Camera.apply_camera_shake(shake_on_hit)
+		if hit_flash_anim:
+			hit_flash_anim.play("hit_flash")
+		
+		#Apply knockback to enemy
+		if hurtbox.knockback_type == "center":
+			var angle := get_angle_to(hurtbox.global_position) + PI
+			knockback_taken = Vector2.RIGHT.rotated(angle)
+		elif hurtbox.knockback_type == "velocity":
+			knockback_taken = hurtbox.get_parent().velocity.normalized()
+		else:
+			knockback_taken = Vector2.ZERO
+		
+		knockback_taken *= hurtbox.hurt_knockback
+		knockback_taken *= knockback_resistance
+		
+		#Knockback tweening to 0 for a slowdown effect
+		var knockback_tweem := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+		knockback_tweem.tween_property(self, "knockback_taken", Vector2.ZERO, 0.4)
+		knockback_tweem.play()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
