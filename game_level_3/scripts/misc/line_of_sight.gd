@@ -16,6 +16,9 @@ func target_check(target_place : Vector2, parent_pos : Vector2) -> bool:
 	if is_colliding() == true:
 		var object = get_collider()
 		
+		if object == null: #If collider is null
+			return false
+		
 		#Check if ray is colliding with walls
 		if object.is_in_group("walls") == false:
 			#Find ray distance
