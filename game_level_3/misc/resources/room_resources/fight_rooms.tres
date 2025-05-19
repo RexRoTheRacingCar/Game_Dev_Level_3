@@ -8,4 +8,4 @@
 [resource]
 script = ExtResource("1_bw7kj")
 array_type = "Fight"
-room_array = [ExtResource("1_csl5c"), ExtResource("2_qw64n"), ExtResource("3_m722b")]
+room_array = Array[PackedScene]([ExtResource("1_csl5c"), ExtResource("2_qw64n"), ExtResource("3_m722b")])
