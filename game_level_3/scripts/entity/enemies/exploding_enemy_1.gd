@@ -56,7 +56,6 @@ func _physics_process(delta) -> void:
 				explode_time += delta
 				if explode_time > 0.6 and exploded == false:
 					exploded = true
-					set_physics_process(false)
 					no_health()
 		
 		
