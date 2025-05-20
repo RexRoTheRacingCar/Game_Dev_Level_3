@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
+[ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_4r7uw"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
-[ext_resource type="Resource" uid="uid://wsp2b187sq6m" path="res://misc/resources/weapons/bubble_gun.tres" id="3_tl2gf"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="4_7krut"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 [ext_resource type="PackedScene" uid="uid://cpm766wlxynum" path="res://scenes/entity/secondaries/test_secondary.tscn" id="5_cvwyh"]
@@ -51,7 +51,7 @@ P_ACCEL = 6500
 P_FRICTION = 25000
 
 [node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
-current_weapon = ExtResource("3_tl2gf")
+current_weapon = ExtResource("3_4r7uw")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
 current_secondary = SubResource("Resource_na0t1")

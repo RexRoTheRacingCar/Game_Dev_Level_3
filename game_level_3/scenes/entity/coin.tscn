@@ -32,7 +32,7 @@ atlas = ExtResource("2_bibyc")
 region = Rect2(101, 201, 48, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4c6eq"]
-radius = 250.0
+radius = 350.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hau8"]
 radius = 8.06226
