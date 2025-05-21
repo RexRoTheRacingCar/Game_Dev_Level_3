@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="RoomArray" load_steps=6 format=3 uid="uid://cr4s0xjpk51tr"]
+[gd_resource type="Resource" script_class="RoomArray" load_steps=8 format=3 uid="uid://cr4s0xjpk51tr"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen_list.gd" id="1_bw7kj"]
 [ext_resource type="PackedScene" uid="uid://1owp7sjtvv5m" path="res://scenes/misc/rooms/test_room.tscn" id="1_csl5c"]
 [ext_resource type="PackedScene" uid="uid://dq8klrkh683h1" path="res://scenes/misc/rooms/fight_rooms/medium_fight_room_1.tscn" id="2_qw64n"]
 [ext_resource type="PackedScene" uid="uid://4laojjkb4nsw" path="res://scenes/misc/rooms/fight_rooms/medium_fight_room_2.tscn" id="3_m722b"]
-[ext_resource type="PackedScene" uid="uid://dxjsma141amsb" path="res://scenes/misc/rooms/fight_rooms/large_fight_room_1.tscn" id="4_rfjtq"]
+[ext_resource type="PackedScene" uid="uid://bell25h0fkti2" path="res://scenes/misc/rooms/fight_rooms/large_fight_room_1.tscn" id="4_rfjtq"]
+[ext_resource type="PackedScene" uid="uid://dxjsma141amsb" path="res://scenes/misc/rooms/fight_rooms/small_fight_room_1.tscn" id="5_gdqwd"]
+[ext_resource type="PackedScene" uid="uid://benmqink4q2g" path="res://scenes/misc/rooms/fight_rooms/small_fight_room_2.tscn" id="6_yeoq6"]
 
 [resource]
 script = ExtResource("1_bw7kj")
 array_type = "Fight"
-room_array = Array[PackedScene]([ExtResource("1_csl5c"), ExtResource("2_qw64n"), ExtResource("3_m722b"), ExtResource("4_rfjtq")])
+room_array = Array[PackedScene]([ExtResource("1_csl5c"), ExtResource("2_qw64n"), ExtResource("3_m722b"), ExtResource("4_rfjtq"), ExtResource("5_gdqwd"), ExtResource("6_yeoq6")])
