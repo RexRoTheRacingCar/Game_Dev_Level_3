@@ -38,14 +38,16 @@ offset_bottom = 24.0
 max_value = 5.0
 fill_mode = 3
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-z_index = -1
+y_sort_enabled = true
 scale = Vector2(1, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
 self_modulate = Color(1, 1, 1, 0.576471)
 z_index = -2
+y_sort_enabled = true
 scale = Vector2(2.2, 2.2)
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
