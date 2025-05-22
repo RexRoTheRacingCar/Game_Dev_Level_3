@@ -37,6 +37,8 @@ func spawn_particle(spawn_pos : Vector2, parent : Node, particle_scene : PackedS
 	var new_particle = particle_scene.instantiate()
 	parent.get_parent().call_deferred("add_child", new_particle)
 	new_particle.global_position = spawn_pos
+	
+	return new_particle
 
 
 #---------------------------------------------------------------------------------------------------------------------------

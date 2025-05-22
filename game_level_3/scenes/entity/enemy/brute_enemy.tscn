@@ -46,7 +46,7 @@ shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhipf"]
-radius = 20.0
+radius = 23.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg47j"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -54,10 +54,10 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjmvo"]
-radius = 22.0
+radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkdxq"]
-radius = 22.0
+radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7aex"]
 radius = 500.0

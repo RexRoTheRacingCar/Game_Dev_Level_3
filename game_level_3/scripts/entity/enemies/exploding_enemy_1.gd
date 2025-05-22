@@ -77,8 +77,8 @@ func no_health():
 	set_collision_mask_value(5, false)
 	
 	#Create explosion when leaving the scene (on death)
-	_instantiate_explosion(0, 0, 3)
-	for i in range(1, 3):
+	_instantiate_explosion(0, 0, 4)
+	for i in range(1, 4):
 		await get_tree().create_timer(0.2, false).timeout
 		
 		for d in range(0, 3): 

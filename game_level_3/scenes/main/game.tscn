@@ -15,10 +15,8 @@ script = ExtResource("1_cy04u")
 [node name="RoomGenerator" parent="." instance=ExtResource("2_i5teo")]
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
-position = Vector2(-180, 19)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("4_ol12e")]
-position = Vector2(180, -19)
 
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12

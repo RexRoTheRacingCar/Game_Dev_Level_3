@@ -27,15 +27,19 @@ var fight_room_array : Array = []
 var shop_room_array : Array = []
 var reward_room_array : Array = []
 
-
 var current_room = null
-
+var current_room_mesh = null
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
 	room_counter = 0
 	
+	_update_room_arrays()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _update_room_arrays():
 	#Update room arrays
 	if fight_room_resource: #Fight room array
 		maximum_fight_rooms = fight_room_resource.room_array.size()
@@ -62,6 +66,4 @@ func generate_room():
 	current_room = fight_room_array[rand_select].instantiate()
 	add_child(current_room)
 	
-	
-	
-#yippee!
+	current_room_mesh = current_room.room_nav_mesh
