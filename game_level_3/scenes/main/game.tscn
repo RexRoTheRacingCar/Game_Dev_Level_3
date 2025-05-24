@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=9 format=3 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="Script" path="res://scripts/main/game.gd" id="1_cy04u"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckjdjuavq4s2e" path="res://scenes/main/room_generator.tscn" id="2_i5teo"]
 [ext_resource type="PackedScene" uid="uid://dxqluonvie0sa" path="res://scenes/main/camera.tscn" id="4_ol12e"]
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
+[ext_resource type="PackedScene" uid="uid://wxuhlbqbmy7x" path="res://scenes/ui/debug_menu.tscn" id="6_w6w6d"]
 [ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="8_n6g87"]
 
 [node name="Game" type="Node2D"]
@@ -21,6 +22,9 @@ script = ExtResource("1_cy04u")
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12
 follow_viewport_enabled = false
+
+[node name="DebugMenu" parent="PlayerUI" instance=ExtResource("6_w6w6d")]
+visible = false
 
 [node name="PauseMenu" parent="PlayerUI" node_paths=PackedStringArray("input_settings") instance=ExtResource("6_8na6d")]
 visible = false

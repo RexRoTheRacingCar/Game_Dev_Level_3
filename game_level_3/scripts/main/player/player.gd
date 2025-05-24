@@ -109,6 +109,8 @@ func _physics_process(delta):
 	
 	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, 0.075)
 	
+	
+	#Global Variable Management
 	Global.player_position = global_position
 	Global.player_velocity = velocity
 	Global.player_hp = p_health_component.health

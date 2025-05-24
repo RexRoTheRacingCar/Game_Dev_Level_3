@@ -171,3 +171,10 @@ func _on_collision_timer_timeout():
 		actually_hit()
 		collision_timer_node.start(collision_time)
 		collision_hit = true
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _new_scene(scene : PackedScene):
+	var new_scene = scene.instantiate()
+	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_scene)
+	return new_scene

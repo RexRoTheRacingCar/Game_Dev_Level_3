@@ -18,6 +18,7 @@ var input_actions = {
 	"primary_attack" : "Primary Attack",
 	"secondary_attack" : "Secondary Attack",
 	"esc" : "Escape Menu",
+	"open_debug" : "Debug Menu",
 	
 }
 

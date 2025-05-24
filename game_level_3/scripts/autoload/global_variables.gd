@@ -62,3 +62,8 @@ func hit_stop(stop_time : float):
 	Engine.time_scale = 0
 	await get_tree().create_timer(stop_time, true, false, true).timeout
 	Engine.time_scale = 1
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func rand_nav_mesh_point(nav_map, layer : int, uniform : bool) -> Vector2:
+	return NavigationServer2D.map_get_random_point(nav_map, layer, uniform)

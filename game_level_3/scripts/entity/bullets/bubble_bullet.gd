@@ -4,8 +4,7 @@ extends Bullet
 var speed_rand : float = 0.0
 var scale_rand : float = 0.0
 
-@export var pop_bubble_scene = preload("res://scenes/entity/particles/bubble_pop1.tscn")
-
+const BUBBLE_POP_1 = preload("res://scenes/entity/particles/bubble_pop1.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -43,16 +42,8 @@ func _physics_process(delta):
 #---------------------------------------------------------------------------------------------------------------------------
 func _bullet_death():
 	#Bubble particles on queue_free()
-	var bubbles = _spawn_bubbles()
+	var bubbles = _new_scene(BUBBLE_POP_1)
 	bubbles.global_position = global_position
 	bubbles.scale = Vector2(scale_rand + 0.3, scale_rand + 0.3)
 	
 	queue_free()
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-func _spawn_bubbles():
-	#Spawns bubble particle effects
-	var new_scene = pop_bubble_scene.instantiate()
-	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_scene)
-	return new_scene
