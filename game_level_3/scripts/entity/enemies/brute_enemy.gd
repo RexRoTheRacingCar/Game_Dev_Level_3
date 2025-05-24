@@ -24,6 +24,7 @@ var state = PURSUIT
 
 @onready var CHARGE_PARTICLE = $ChargeParticles
 const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
+const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -114,10 +115,14 @@ func _physics_process(delta: float) -> void:
 						
 						hurtbox_component.set_collision_layer_value(4, false)
 						hurtbox_component.hurt_damage = 5
-						CHARGE_PARTICLE.emitting = false
 						
+						#Effects on impact
+						CHARGE_PARTICLE.emitting = false
 						var dust_scene = spawn_scene(DUST_PARTICLE, self)
 						dust_scene.speed_scale = 1.5
+						var pulse_scene = spawn_scene(SMALL_PULSE, self)
+						pulse_scene.modulate = Color(1, 1, 1, 0.675)
+						pulse_scene.scale = Vector2(1.6, 0.8)
 						
 						timer = 0.0
 					

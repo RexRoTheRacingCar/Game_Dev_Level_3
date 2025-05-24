@@ -21,28 +21,13 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 func _ready():
 	randomize()
 	Global.player_dead = false
+	Global.player_coins = 0
 	room_generator.generate_room()
 	
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
 	player.global_position = Global.rand_nav_mesh_point(room_generator.current_room_mesh, 2, false)
-	
-	for _h in range(0, 10000):
-		await get_tree().create_timer(1.4, false).timeout
-		var rand = randf_range(0.0, 1.0)
-		var rand_postion = Global.rand_nav_mesh_point(room_generator.current_room_mesh, 2, false)
-		
-		var enemy_type
-		if rand >= 0.80:
-			enemy_type = EXPLODE_ENEMY
-		elif rand >= 0.60:
-			enemy_type = BRUTE_ENEMY
-		else:
-			enemy_type = ENEMY
-		
-		var spawn_anim = Global.spawn_particle(rand_postion, $Player, SPAWN_ANIMATION)
-		spawn_anim.enemy_scene = enemy_type
 
 
 #---------------------------------------------------------------------------------------------------------------------------

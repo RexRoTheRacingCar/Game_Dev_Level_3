@@ -89,7 +89,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.05, 0.4),
-"transitions": PackedFloat32Array(4.28709, 1),
+"transitions": PackedFloat32Array(2.54912, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.784314), Color(1, 1, 1, 0)]
 }

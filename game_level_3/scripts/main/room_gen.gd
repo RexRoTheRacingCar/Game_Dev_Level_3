@@ -60,10 +60,16 @@ func generate_room():
 		current_room.queue_free()
 		
 		current_room = null
+	var rand_room_type := randf()
+	var rand_select : int
 	
-	var rand_select : int = randi_range(0, fight_room_array.size() - 1)
+	if rand_room_type > 0.25:
+		rand_select = randi_range(0, fight_room_array.size() - 1)
+		current_room = fight_room_array[rand_select].instantiate()
+	else:
+		rand_select = randi_range(0, shop_room_array.size() - 1)
+		current_room = shop_room_array[rand_select].instantiate()
 	
-	current_room = fight_room_array[rand_select].instantiate()
 	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh

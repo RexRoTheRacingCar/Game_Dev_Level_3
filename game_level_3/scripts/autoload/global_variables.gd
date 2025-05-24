@@ -2,6 +2,10 @@
 extends Node
 
 
+#World global variables
+var enemy_count : int
+var enemy_wave : bool
+
 #Player global variables
 var player_dead : bool
 var player_position : Vector2

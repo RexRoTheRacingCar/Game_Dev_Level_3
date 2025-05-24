@@ -41,6 +41,8 @@ var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 func _ready():
 	randomize()
 	
+	Global.enemy_count += 1
+	
 	can_navigate = false
 	current_agent_position = global_position
 	next_path_position = navigation_agent.get_next_path_position()
@@ -49,6 +51,7 @@ func _ready():
 	#Signals
 	hitbox_component.hitbox_entered.connect(hit_signalled)
 	health_component.zero_health.connect(no_health)
+	self.connect("tree_exiting", queue_freeing)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -123,3 +126,8 @@ func no_health():
 			)
 	
 	Camera.apply_camera_shake(shake_on_death)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func queue_freeing():
+	Global.enemy_count -= 1

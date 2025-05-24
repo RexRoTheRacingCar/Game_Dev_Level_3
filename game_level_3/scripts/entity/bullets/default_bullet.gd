@@ -18,10 +18,16 @@ func _physics_process(delta):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+func actually_hit():
+	super.actually_hit()
+	var bullet_pulse = _new_scene(SMALL_PULSE)
+	bullet_pulse.global_position = global_position
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 func _bullet_death():
 	#Bubble particles on queue_free()
-	var bubbles = _new_scene(SMALL_PULSE)
-	bubbles.global_position = global_position
-	#bubbles.scale = Vector2(0.3, 0.3)
+	var bullet_pulse = _new_scene(SMALL_PULSE)
+	bullet_pulse.global_position = global_position
 	
 	queue_free()
