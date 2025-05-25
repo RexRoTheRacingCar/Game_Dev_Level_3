@@ -73,3 +73,4 @@ func generate_room():
 	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
+	Global.global_map = current_room_mesh

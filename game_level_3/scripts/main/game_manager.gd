@@ -18,6 +18,8 @@ const SPAWN_ANIMATION = preload("res://scenes/entity/spawn_animation.tscn")
 var is_generating : bool = false
 var arrows_generated : bool = false
 
+@export var generate_waves : bool
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -35,8 +37,9 @@ func _ready():
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
-	call_deferred("_generate_wave")
-	set_process(true)
+	if generate_waves == true:
+		call_deferred("_generate_wave")
+		set_process(true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

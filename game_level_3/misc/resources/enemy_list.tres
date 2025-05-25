@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="RoomArray" load_steps=5 format=3 uid="uid://cw2bmycje13t1"]
+[gd_resource type="Resource" script_class="RoomArray" load_steps=3 format=3 uid="uid://cw2bmycje13t1"]
 
-[ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="1_77j4x"]
 [ext_resource type="Script" path="res://scripts/misc/room_gen_list.gd" id="1_lui8k"]
-[ext_resource type="PackedScene" uid="uid://bny6ynmi2tsa7" path="res://scenes/entity/enemy/exploding_enemy_1.tscn" id="2_608ao"]
-[ext_resource type="PackedScene" uid="uid://dfhtc088cgns5" path="res://scenes/entity/enemy/brute_enemy.tscn" id="3_hl0pu"]
+[ext_resource type="PackedScene" uid="uid://jkr0v7p7k4en" path="res://scenes/entity/enemy/bomber_enemy.tscn" id="4_1puay"]
 
 [resource]
 script = ExtResource("1_lui8k")
 array_type = "Enemies"
-room_array = Array[PackedScene]([ExtResource("1_77j4x"), ExtResource("2_608ao"), ExtResource("3_hl0pu")])
+room_array = Array[PackedScene]([ExtResource("4_1puay")])

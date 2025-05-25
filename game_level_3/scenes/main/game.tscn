@@ -17,6 +17,8 @@ script = ExtResource("1_cy04u")
 [node name="GameManager" parent="." node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")
 PLAYER = NodePath("../Player")
+maximum_enemies = 1
+generate_waves = true
 
 [node name="RoomGenerator" parent="." instance=ExtResource("2_i5teo")]
 

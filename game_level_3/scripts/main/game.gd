@@ -27,7 +27,7 @@ func _ready():
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
-	player.global_position = Global.rand_nav_mesh_point(room_generator.current_room_mesh, 2, false)
+	player.global_position = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

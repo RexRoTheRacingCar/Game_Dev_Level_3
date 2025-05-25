@@ -8,6 +8,8 @@ var enemy_wave : bool
 var wave_time : float
 var active_enemy_array : Array
 
+var global_map
+
 
 #Player global variables
 var player_dead : bool

@@ -47,6 +47,7 @@ func _ready():
 	current_agent_position = global_position
 	next_path_position = navigation_agent.get_next_path_position()
 	navigation_agent.target_position = Global.player_position
+	knockback_taken = Vector2(0, 0)
 	
 	#Signals
 	hitbox_component.hitbox_entered.connect(hit_signalled)
