@@ -10,6 +10,7 @@ var is_enabled = false :
 @onready var FPS_LABEL = %FPSLabel
 @onready var ENEMY_WAVE = %EnemyWave
 @onready var ENEMY_COUNTER = %EnemyCounter
+@onready var WAVE_TIMER = %WaveTimer
 
 var fps : String
 
@@ -31,4 +32,5 @@ func _process(delta):
 		FPS_LABEL.text = "FPS : " + fps
 		ENEMY_WAVE.text = str("Wave Enabled : ", Global.enemy_wave)
 		ENEMY_COUNTER.text = str("Enemy Count : ", Global.enemy_count)
+		WAVE_TIMER.text = str("Wave Time : ", "%.2f" % Global.wave_time)
 	

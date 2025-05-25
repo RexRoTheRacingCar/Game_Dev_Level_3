@@ -24,6 +24,8 @@ var burst_amount : int
 var firerate : float
 var reload_time : float
 var max_ammo : int
+var defualt_max_ammo : int
+var default 
 
 var bullet_scene : PackedScene
 var camera_shake : float

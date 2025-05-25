@@ -5,6 +5,9 @@ extends Node
 #World global variables
 var enemy_count : int
 var enemy_wave : bool
+var wave_time : float
+var active_enemy_array : Array
+
 
 #Player global variables
 var player_dead : bool

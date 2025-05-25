@@ -4,46 +4,64 @@ extends Node2D
 @export_group("Required")
 @export var ENEMY_SCENE_LIST : RoomArray
 @export var ROOM_GENERATOR : RoomGenerator
+@export var PLAYER : Player
 
 @export_group("Customisable")
 @export var minimum_enemies : int = 1
 @export var maximum_enemies : int = 16
+@export var time_till_arrows : float = 24.0
 
-
+#Scene variables
+const GUIDING_ARROW = preload("res://scenes/misc/guiding_arrow.tscn")
 const SPAWN_ANIMATION = preload("res://scenes/entity/spawn_animation.tscn")
 
 var is_generating : bool = false
+var arrows_generated : bool = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	set_process(false)
+	
+	arrows_generated = false
+	is_generating = false
 	
 	#Reset global values
 	Global.enemy_count = 0 
 	Global.enemy_wave = false
+	Global.active_enemy_array = []
 	
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
 	call_deferred("_generate_wave")
+	set_process(true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _process(_delta):
+func _process(delta):
+	Global.wave_time += delta
 	if Global.enemy_count == 0 and is_generating == false:
+		Global.enemy_wave = false
 		if Global.enemy_wave == false:
 			_generate_wave()
-		
-		Global.enemy_wave = false
-
+	
+	if Global.enemy_count > 0 and Global.wave_time > time_till_arrows and arrows_generated == false:
+		arrows_generated = true
+		_create_arrows()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Generates a wave of enemies
 func _generate_wave():
 	Global.enemy_wave = true
+	Global.wave_time = 0
+	
 	is_generating = true
+	arrows_generated = false
+	
+	await get_tree().create_timer(1.0, false).timeout
 	
 	var generating_delay = (randf_range(0.1, 1.0) ** 6) + 0.1
 	
@@ -69,3 +87,13 @@ func _generate_wave():
 	await get_tree().create_timer(2.5, false).timeout
 	
 	is_generating = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Creates arrows pointing to remaining enemies
+func _create_arrows():
+	for enemy in Global.active_enemy_array:
+		var new_arrow = GUIDING_ARROW.instantiate()
+		new_arrow.follow_target = PLAYER
+		new_arrow.point_target = enemy
+		add_child(new_arrow)

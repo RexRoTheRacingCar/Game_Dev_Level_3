@@ -14,8 +14,9 @@
 y_sort_enabled = true
 script = ExtResource("1_cy04u")
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("ROOM_GENERATOR") instance=ExtResource("2_xnef5")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")
+PLAYER = NodePath("../Player")
 
 [node name="RoomGenerator" parent="." instance=ExtResource("2_i5teo")]
 

@@ -117,7 +117,7 @@ health_bar = NodePath("ProgressBar")
 max_health = 15
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
-z_index = 10
+z_index = 20
 z_as_relative = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -171,7 +171,7 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 collision_layer = 0
 collision_mask = 33
 monitorable = false
-radius = 2000.0
+radius = 2500.0
 
 [node name="LineOfSight" parent="." instance=ExtResource("8_slnva")]
 collision_mask = 33

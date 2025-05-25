@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ous458o2jqp2"]
+
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_6axy8"]
+[ext_resource type="Script" path="res://scripts/misc/guide_arrow.gd" id="2_tgsnt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2pl1"]
+atlas = ExtResource("1_6axy8")
+region = Rect2(100, 300, 100, 100)
+
+[node name="GuidingArrow" type="Sprite2D"]
+self_modulate = Color(0.424931, 0.424931, 0.424931, 0.8)
+z_index = 21
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_w2pl1")
+script = ExtResource("2_tgsnt")
