@@ -7,4 +7,4 @@ class_name LifetimeBulletUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
-	bullet.lifetime += ceili(bullet.default_lifetime / (3 * lifetime_increase))
+	bullet.lifetime += bullet.default_lifetime / lifetime_increase

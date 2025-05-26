@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://vnkinv4wdsmk"]
+
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_djuu1"]
+[ext_resource type="Script" path="res://scripts/entity/bullets/flying_bomb.gd" id="2_r7u0f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr3t1"]
+atlas = ExtResource("1_djuu1")
+region = Rect2(0, 300, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p6ou"]
+atlas = ExtResource("1_djuu1")
+region = Rect2(0, 300, 50, 50)
+
+[sub_resource type="Gradient" id="Gradient_ddg6o"]
+offsets = PackedFloat32Array(0, 0.275, 1)
+colors = PackedColorArray(0.32, 0.32, 0.32, 0, 0.51, 0.51, 0.51, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w2eyb"]
+gradient = SubResource("Gradient_ddg6o")
+
+[sub_resource type="Curve" id="Curve_6w62m"]
+_data = [Vector2(0, 0), 0.0, 14.104, 0, 0, Vector2(0.161871, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.350943), -1.47236, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cyv22"]
+curve = SubResource("Curve_6w62m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qnhh5"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 23.81
+initial_velocity_max = 29.76
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 20, 0)
+scale_min = 0.2
+scale_max = 0.45
+scale_curve = SubResource("CurveTexture_cyv22")
+color_ramp = SubResource("GradientTexture1D_w2eyb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q0hf"]
+atlas = ExtResource("1_djuu1")
+region = Rect2(0, 300, 50, 50)
+
+[node name="FlyingBomb" type="Node2D"]
+script = ExtResource("2_r7u0f")
+
+[node name="BombShadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.5)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 12)
+scale = Vector2(1, 0.5)
+texture = SubResource("AtlasTexture_tr3t1")
+
+[node name="BombSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.35, 0.360833, 1)
+y_sort_enabled = true
+scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_7p6ou")
+
+[node name="AirbroneParticles" type="GPUParticles2D" parent="BombSprite"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 1.90735e-06)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_qnhh5")
+texture = SubResource("AtlasTexture_4q0hf")
+lifetime = 0.8
+speed_scale = 1.1
+randomness = 0.2
