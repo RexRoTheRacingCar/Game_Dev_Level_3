@@ -78,11 +78,11 @@ func no_health():
 	
 	#Create explosion when leaving the scene (on death)
 	_instantiate_explosion(0, 0, 4)
-	for i in range(1, 4):
+	for i in range(1, 3):
 		await get_tree().create_timer(0.2, false).timeout
 		
-		for d in range(0, 3): 
-			_instantiate_explosion(i, d, 3) 
+		for d in range(0, 4): 
+			_instantiate_explosion(i, d, 4) 
 	queue_free()
 
 
