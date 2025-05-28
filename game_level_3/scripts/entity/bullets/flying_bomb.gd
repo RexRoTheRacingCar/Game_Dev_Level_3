@@ -24,7 +24,7 @@ func _ready():
 	bomb_sprite.scale = Vector2(explosion_scale.x / 3, explosion_scale.x / 3)
 	airbrone_particles.emitting = true
 	
-	var v : float = 4.0 #v for variation
+	var v : float = 6.0 #v for variation
 	target_pos += Vector2(randf_range(distance / v, -distance / v), randf_range(distance / v, -distance / v) / 2)
 	
 	#Animate the explosion and await air_time
