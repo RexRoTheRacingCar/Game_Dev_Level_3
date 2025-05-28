@@ -21,7 +21,7 @@ func _ready():
 	target_pos = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 	can_navigate = false
 	
-	timer = randf_range(1.0, -3.0)
+	timer = randf_range(3.0, -2.0)
 	target_speed = MAX_SPEED
 	speed = MAX_SPEED
 
@@ -59,16 +59,17 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(randf_range(0.6, 1.6), false).timeout
 			
 			for _bomb in randi_range(1, 3):
-				_create_bomb()
+				_create_bomb(delta)
 				await get_tree().create_timer(randf_range(0.1, 0.6), false).timeout
 			
 			await get_tree().create_timer(randf_range(0.4, 1.4), false).timeout
 			
 			target_speed = MAX_SPEED
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 #Create and load in variables to create a lobbing bomb
-func _create_bomb():
+func _create_bomb(delta : float):
 	#Particle effect
 	var pulse_scene = spawn_scene(SMALL_PULSE, self)
 	pulse_scene.modulate = Color(1, 1, 1, 0.675)
@@ -81,8 +82,9 @@ func _create_bomb():
 	new_bomb.warning_scene = WARNING_OUTLINE
 	new_bomb.explosion_scene = TEST_SECONDARY
 	#Bomb airtime
-	new_bomb.air_time = global_position.distance_to(Global.player_position) / 340
+	new_bomb.air_time = global_position.distance_to(new_bomb.target_pos) / 340
 	new_bomb.air_time = clamp(new_bomb.air_time, 0.85, 4.0)
+	new_bomb.warning_time = new_bomb.air_time / 4
 	#Bomb scale
 	var rand_scale = randf_range(1.25, 2.0)
 	new_bomb.explosion_scale = Vector2(rand_scale, rand_scale / 2)

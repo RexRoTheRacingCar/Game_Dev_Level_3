@@ -6,6 +6,7 @@ extends Node2D
 @export var air_time : float
 @export var explosion_scene : PackedScene
 @export var warning_scene : PackedScene
+@export var warning_time : float
 @export var explosion_scale : Vector2
 
 @onready var bomb_sprite = $BombSprite
@@ -26,13 +27,6 @@ func _ready():
 	var v : float = 4.0 #v for variation
 	target_pos += Vector2(randf_range(distance / v, -distance / v), randf_range(distance / v, -distance / v) / 2)
 	
-	#Load warning scene (if any)
-	if warning_scene:
-		var new_scene = Global.spawn_particle(target_pos, self, warning_scene)
-		new_scene.global_position = target_pos
-		new_scene.scale = explosion_scale
-		new_scene.get_child(0).speed_scale = 1 / air_time
-	
 	#Animate the explosion and await air_time
 	var ground_tween = create_tween()
 	ground_tween.tween_property(self, "global_position", target_pos, air_time).from(spawn_pos)
@@ -42,7 +36,16 @@ func _ready():
 	air_tween.tween_property(bomb_sprite, "position", Vector2(0, -distance / 2), air_time / 2)
 	air_tween.tween_property(bomb_sprite, "position", Vector2(0, 0), air_time / 2).set_ease(Tween.EASE_IN)
 	
-	await get_tree().create_timer(air_time, false).timeout
+	await get_tree().create_timer(warning_time, false).timeout
+	
+	#Load warning scene (if any)
+	if warning_scene:
+		var new_scene = Global.spawn_particle(target_pos, self, warning_scene)
+		new_scene.global_position = target_pos
+		new_scene.scale = explosion_scale
+		new_scene.get_child(0).speed_scale = 1 / (air_time - warning_time)
+	
+	await get_tree().create_timer(air_time - warning_time, false).timeout
 	
 	#Explode
 	if explosion_scene:
