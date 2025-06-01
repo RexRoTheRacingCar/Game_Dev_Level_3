@@ -74,3 +74,4 @@ func generate_room():
 	
 	current_room_mesh = current_room.room_nav_mesh
 	Global.global_map = current_room_mesh
+	Global.destructable_layer = current_room.destructable_tilemap

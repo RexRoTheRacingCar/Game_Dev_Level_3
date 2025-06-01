@@ -9,6 +9,7 @@ var wave_time : float
 var active_enemy_array : Array
 
 var global_map
+var destructable_layer : TileMapLayer
 
 
 #Player global variables

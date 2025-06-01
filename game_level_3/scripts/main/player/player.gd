@@ -6,11 +6,11 @@ class_name Player
 #p is short for "Player"
 #Node variables
 @export_group("Nodes")
-@export var p_weapon_controller : WeaponController
-@export var p_secondary_controller : SecondaryController
-@export var p_dash_timer : Timer
-@export var p_hitbox_component : HitboxComponent
-@export var p_health_component : HealthComponent
+@export var P_WEAPON_CONTROLLER : WeaponController
+@export var P_SECONDARY_CONTROLLER : SecondaryController
+@export var P_DASH_TIMER : Timer
+@export var P_HITBOX_COMPONENT : HitboxComponent
+@export var P_HEALTH_COMPONENT : HealthComponent
 
 #Movement variables
 @export_group("Speed")
@@ -37,9 +37,9 @@ var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets a
 	set(new_value):
 		p_consecutive_dash = new_value
 		if p_consecutive_dash != 0:
-			if p_dash_timer.is_stopped() == false:
-				p_dash_timer.stop()
-			p_dash_timer.start(p_dash_delay)
+			if P_DASH_TIMER.is_stopped() == false:
+				P_DASH_TIMER.stop()
+			P_DASH_TIMER.start(p_dash_delay)
 			
 			p_is_dashing = true
 
@@ -79,8 +79,8 @@ func _ready():
 	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 	
 	#Signal connecting
-	p_hitbox_component.hitbox_entered.connect(player_hit_signalled)
-	p_health_component.zero_health.connect(player_no_health)
+	P_HITBOX_COMPONENT.hitbox_entered.connect(player_hit_signalled)
+	P_HEALTH_COMPONENT.zero_health.connect(player_no_health)
 	
 	await get_tree().create_timer(0.09, false).timeout 
 	
@@ -98,7 +98,7 @@ func _physics_process(delta):
 		player_dash(p_input)
 	
 	#Player shooting
-	p_weapon_controller.weapon_controls(p_secondary_active)
+	P_WEAPON_CONTROLLER.weapon_controls(p_secondary_active)
 	secondary_manage(delta)
 	
 	#Velocity manage
@@ -113,8 +113,8 @@ func _physics_process(delta):
 	#Global Variable Management
 	Global.player_position = global_position
 	Global.player_velocity = velocity
-	Global.player_hp = p_health_component.health
-	Global.player_max_hp = p_health_component.max_health
+	Global.player_hp = P_HEALTH_COMPONENT.health
+	Global.player_max_hp = P_HEALTH_COMPONENT.max_health
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -143,13 +143,13 @@ func player_dash(p_input):
 #---------------------------------------------------------------------------------------------------------------------------
 func secondary_manage(delta):
 	if (
-		(p_is_dashing == false and p_weapon_controller.reloading == false) and 
+		(p_is_dashing == false and P_WEAPON_CONTROLLER.reloading == false) and 
 		(not Input.is_action_pressed("primary_attack") or 
 		(Input.is_action_pressed("primary_attack") and p_secondary_active == true))
 		):
 			
-		p_secondary_active = p_secondary_controller.is_charging
-		p_secondary_controller.secondary_controls(delta)
+		p_secondary_active = P_SECONDARY_CONTROLLER.is_charging
+		P_SECONDARY_CONTROLLER.secondary_controls(delta)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 	if p_consecutive_dash == 0:
 		#Calculate damage based on damage resistance (Damage resistance is a float while hurt damage is an int)
 		@warning_ignore("narrowing_conversion")
-		p_health_component.health -= hurtbox.hurt_damage / p_damage_resistance
+		P_HEALTH_COMPONENT.health -= hurtbox.hurt_damage / p_damage_resistance
 		
 		#Apply knockback to self
 		if hurtbox.knockback_type == "center": 
@@ -170,8 +170,8 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 			p_knockback_taken = Vector2.ZERO
 		p_knockback_taken *= hurtbox.hurt_knockback
 		
-		p_hitbox_component.is_hit = true
-		p_hitbox_component.hit_timer.start(p_hitbox_component.hit_delay)
+		P_HITBOX_COMPONENT.is_hit = true
+		P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay)
 		
 		Camera.apply_camera_shake(16.0)
 		Global.hit_stop(0.075)
@@ -181,7 +181,7 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		$PlaceholderSprite2D.self_modulate = Color("ffffff")
 		
 	else:
-		p_hitbox_component.hit_timer.start(0.1)
+		P_HITBOX_COMPONENT.hit_timer.start(0.1)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

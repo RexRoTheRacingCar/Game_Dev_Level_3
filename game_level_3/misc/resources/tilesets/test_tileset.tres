@@ -1,8 +1,12 @@
-[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://fxfnm3yb88aw"]
+[gd_resource type="TileSet" load_steps=26 format=3 uid="uid://fxfnm3yb88aw"]
 
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="1_5u8u2"]
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_qscnk"]
 [ext_resource type="PackedScene" uid="uid://burt04gq6di4m" path="res://scenes/misc/shop_tile.tscn" id="2_5wp4y"]
+[ext_resource type="PackedScene" uid="uid://dtnagmw10hmt4" path="res://scenes/components/destructable_component.tscn" id="3_x8481"]
+[ext_resource type="Texture2D" uid="uid://df35dx1aayhsk" path="res://assets/art/enviroment/iso_destructable_tileset.png" id="4_5b3hn"]
+[ext_resource type="PackedScene" uid="uid://cuvtgw8jvwlxa" path="res://scenes/entity/particles/wood_break1.tscn" id="5_rfkiw"]
+[ext_resource type="PackedScene" uid="uid://cpm766wlxynum" path="res://scenes/entity/secondaries/test_secondary.tscn" id="6_relny"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0e24q"]
 
@@ -327,6 +331,7 @@ texture_region_size = Vector2i(120, 60)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qq58d"]
 resource_name = "SceneTiles"
 scenes/1/scene = ExtResource("2_5wp4y")
+scenes/2/scene = ExtResource("3_x8481")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gj8i8"]
 vertices = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)
@@ -357,6 +362,61 @@ texture_region_size = Vector2i(120, 60)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -30, 60, 0, 0, 30, -60, 0)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t4uta"]
+texture = ExtResource("4_5b3hn")
+texture_region_size = Vector2i(120, 60)
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 30)
+0:0/0/z_index = -1
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_2 = Vector2(15, 15)
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 30)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -21, -42, 0, 0, 21, 42, 0)
+1:0/0/custom_data_1 = 1
+1:0/0/custom_data_2 = Vector2(22, 22)
+1:0/0/custom_data_3 = [ExtResource("5_rfkiw")]
+2:0/size_in_atlas = Vector2i(1, 2)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 30)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -21, -42, 0, 0, 21, 42, 0)
+2:0/0/custom_data_1 = 1
+2:0/0/custom_data_2 = Vector2(22, 22)
+2:0/0/custom_data_3 = [ExtResource("6_relny")]
+1:2/size_in_atlas = Vector2i(1, 2)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 30)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -48, -12, 24, 24, 48, 12)
+1:2/0/custom_data_1 = 1
+1:2/0/custom_data_2 = Vector2(22, 22)
+1:2/0/custom_data_3 = [ExtResource("5_rfkiw")]
+0:2/size_in_atlas = Vector2i(1, 2)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 30)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(30, 9, 18, 15, 30, 21, 42, 15)
+0:2/0/physics_layer_0/polygon_1/points = PackedVector2Array(-42, -15, -30, -9, -18, -15, -30, -21)
+0:2/0/custom_data_0 = true
+0:2/0/custom_data_2 = Vector2(22, 22)
+0:2/0/custom_data_3 = [ExtResource("5_rfkiw")]
+3:0/size_in_atlas = Vector2i(1, 2)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 30)
+3:0/0/z_index = -1
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, -30)
+3:0/0/custom_data_0 = true
+3:0/0/custom_data_1 = 1
+3:0/0/custom_data_2 = Vector2(15, 15)
+4:0/size_in_atlas = Vector2i(1, 2)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, 30)
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, -30)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -12, -24, 0, 0, 12, 24, 0)
+4:0/0/custom_data_1 = 1
+4:0/0/custom_data_2 = Vector2(15, 15)
+4:0/0/custom_data_3 = [ExtResource("5_rfkiw")]
+
 [resource]
 tile_shape = 1
 tile_layout = 5
@@ -365,6 +425,15 @@ tile_size = Vector2i(120, 60)
 physics_layer_0/collision_layer = 25
 physics_layer_0/collision_mask = 0
 navigation_layer_0/layers = 1
+custom_data_layer_0/name = "delete"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "offset"
+custom_data_layer_1/type = 2
+custom_data_layer_2/name = "hitbox_size"
+custom_data_layer_2/type = 5
+custom_data_layer_3/name = "hit_scenes"
+custom_data_layer_3/type = 28
 sources/2 = SubResource("TileSetAtlasSource_hjg1m")
 sources/0 = SubResource("TileSetAtlasSource_s31wi")
 sources/1 = SubResource("TileSetScenesCollectionSource_qq58d")
+sources/3 = SubResource("TileSetAtlasSource_t4uta")
