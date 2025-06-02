@@ -4,7 +4,7 @@ extends Node2D
 @export var room_nav_region : NavigationRegion2D #The NavMesh Node
 var room_nav_mesh : RID #The actual NavMesh
 
-@export var destructable_tilemap : TileMapLayer
+@onready var destructable_tilemap : TileMapLayer = $FloorFolder/DestructableMap
 var destructable_detection_layer : TileMapLayer
 
 #---------------------------------------------------------------------------------------------------------------------------

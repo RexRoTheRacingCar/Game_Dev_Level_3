@@ -69,6 +69,16 @@ y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")
 navigation_layers = 2
 
+[node name="DestructableMap" type="TileMapLayer" parent="FloorFolder"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD5/wUAAwABAAQAAAD6/wYAAwABAAQAAAD6/wUAAwABAAQAAAD4/wUAAwABAAQAAAD4/wYAAwABAAQAAAD4/wcAAwABAAQAAAD5/wcAAwABAAQAAAD6/wcAAwABAAQAAAD6//v/AwABAAQAAAD5//v/AwABAAQAAAD4//v/AwABAAQAAAD4//r/AwABAAQAAAD4//n/AwABAAQAAAD5//n/AwABAAQAAAD6//n/AwABAAQAAAD6//r/AwABAAQAAAAEAPv/AwABAAQAAAAEAPr/AwABAAQAAAAEAPn/AwABAAQAAAAFAPn/AwABAAQAAAAGAPn/AwABAAQAAAAGAPr/AwABAAQAAAAGAPv/AwABAAQAAAAFAPv/AwABAAQAAAAEAAUAAwABAAQAAAAEAAYAAwABAAQAAAAEAAcAAwABAAQAAAAFAAcAAwABAAQAAAAGAAcAAwABAAQAAAAGAAYAAwABAAQAAAAGAAUAAwABAAQAAAAFAAUAAwABAAQAAAA=")
+tile_set = ExtResource("1_t5145")
+
+[node name="HitboxTilemap" type="TileMapLayer" parent="FloorFolder/DestructableMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_t5145")
+collision_enabled = false
+
 [node name="EdgeFolder" type="Node2D" parent="."]
 y_sort_enabled = true
 

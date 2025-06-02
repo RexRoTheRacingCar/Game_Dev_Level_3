@@ -66,6 +66,7 @@ tile_map_data = PackedByteArray("AAD4//z/AQAAAAAAAQD1//z/AQAAAAAAAQDy//z/AQAAAAA
 tile_set = ExtResource("2_x2m7b")
 
 [node name="MainNavigation" type="NavigationRegion2D" parent="FloorFolder/MainTilemap"]
+visible = false
 z_index = 20
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")
@@ -76,6 +77,16 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AADe//3/AAAMAAYAAADf//z/AAAMAAYAAADe//7/AAAMAAYAAADe////AAAMAAYAAADe/wAAAAAMAAYAAADe/wEAAAAMAAYAAADe/wIAAAAMAAYAAADf/wIAAAAMAAYAAADg/wIAAAAMAAYAAADh/wIAAAAMAAYAAADi/wIAAAAMAAYAAADj/wIAAAAMAAYAAADk/wIAAAAMAAYAAADk/wEAAAAMAAYAAADk//3/AAAMAAYAAADk//z/AAAMAAYAAADj//z/AAAMAAYAAADi//z/AAAMAAYAAADh//z/AAAMAAYAAADg//z/AAAMAAYAAADe//z/AAAMAAYAAAABAP3/AAAMAAYAAAABAPz/AAAMAAYAAAACAPz/AAAMAAYAAAADAPz/AAAMAAYAAAAEAPz/AAAMAAYAAAAFAPz/AAAMAAYAAAAGAPz/AAAMAAYAAAAHAPz/AAAMAAYAAAAHAP3/AAAMAAYAAAAHAP7/AAAMAAYAAAAHAP//AAAMAAYAAAAHAAAAAAAMAAYAAAAHAAEAAAAMAAYAAAAHAAIAAAAMAAYAAAAGAAIAAAAMAAYAAAAFAAIAAAAMAAYAAAAEAAIAAAAMAAYAAAADAAIAAAAMAAYAAAACAAIAAAAMAAYAAAABAAIAAAAMAAYAAAABAAEAAAAMAAYAAAA=")
 tile_set = ExtResource("2_x2m7b")
 y_sort_origin = 60
+
+[node name="DestructableMap" type="TileMapLayer" parent="FloorFolder"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAGAP7/AwABAAQAAAAEAP7/AwAEAAAAAAAEAAIAAwABAAQAAADh//7/AwACAAAAAADi//7/AwACAAAAAADg////AwAEAAAAAADj//7/AwAEAAAAAADg/wEAAwABAAQAAADj/wIAAwABAAQAAADs//v/AwABAAQAAADs//z/AwABAAQAAADs//r/AwAEAAAAAAD5//r/AwACAAAAAAD7//3/AwABAAQAAAD4//r/AwABAAQAAADx//r/AwAEAAAAAADw//r/AwAEAAAAAAA=")
+tile_set = ExtResource("2_x2m7b")
+
+[node name="HitboxTilemap" type="TileMapLayer" parent="FloorFolder/DestructableMap"]
+y_sort_enabled = true
+tile_set = ExtResource("2_x2m7b")
+collision_enabled = false
 
 [node name="EdgeFolder" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/entity/particles/particle.gd" id="2_fy7sk"]
 
 [sub_resource type="Gradient" id="Gradient_0gmwk"]
-offsets = PackedFloat32Array(0, 0.230089, 0.469027, 1)
-colors = PackedColorArray(0.49, 0.261333, 0, 0, 0.45, 0.3225, 0.225, 0.905882, 0.47, 0.335972, 0.1927, 0.807843, 0.330042, 0.162073, 7.21961e-08, 0)
+offsets = PackedFloat32Array(0, 0.230089, 0.477876, 1)
+colors = PackedColorArray(0.49, 0.261333, 0, 0, 0.58, 0.415667, 0.29, 1, 0.15, 0.107225, 0.0615, 0.921569, 0.330042, 0.162073, 7.21961e-08, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_o1omg"]
 gradient = SubResource("Gradient_0gmwk")
@@ -48,12 +48,11 @@ y_sort_enabled = true
 position = Vector2(0, -20)
 scale = Vector2(1, 0.5)
 emitting = false
-amount = 9
 process_material = SubResource("ParticleProcessMaterial_hwsmo")
 texture = SubResource("AtlasTexture_j3emk")
 lifetime = 0.6
 one_shot = true
-speed_scale = 1.2
+speed_scale = 1.5
 explosiveness = 0.98
 randomness = 0.27
 script = ExtResource("2_fy7sk")

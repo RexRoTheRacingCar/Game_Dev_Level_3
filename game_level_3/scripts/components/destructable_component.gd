@@ -13,7 +13,7 @@ var is_being_hit : bool = false :
 		is_being_hit = new_value
 		while is_being_hit == true:
 			_tile_hit(hitting_node)
-			await get_tree().create_timer(0.6, false).timeout
+			await get_tree().create_timer(0.2, false).timeout
 
 var hitting_node : Node
 
@@ -74,7 +74,7 @@ func _tile_hit(body):
 				tileset.set_cell(tile_pos, tileset.get_cell_source_id(tile_pos), 
 				tileset.get_cell_atlas_coords(tile_pos) - Vector2i(tile_d.get_custom_data("offset"), 0))
 			
-			#Update collision_size
+			#Update collision and camera shake
 			collison.scale = tile_d.get_custom_data("hitbox_size")
 			
 			#Stop monitoring for a moment
@@ -91,6 +91,9 @@ func _tile_hit(body):
 
 #--------------------------------------------------------------------------------------------------------------------------
 func _generate_scenes():
+	#Apply screen_shake
+	Camera.apply_camera_shake(tile_d.get_custom_data("screen_shake")) 
+	
 	#Get scene array from tile, if it exists instantiate the scenes at the tile's position
 	var scene_array : Array = tile_d.get_custom_data("hit_scenes")
 	

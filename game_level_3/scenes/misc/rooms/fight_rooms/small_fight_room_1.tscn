@@ -10,11 +10,10 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1099, -9, -721, 181, -
 source_geometry_mode = 2
 agent_radius = 16.0
 
-[node name="SmallFightRoom1" type="Node2D" node_paths=PackedStringArray("room_nav_region", "destructable_tilemap")]
+[node name="SmallFightRoom1" type="Node2D" node_paths=PackedStringArray("room_nav_region")]
 y_sort_enabled = true
 script = ExtResource("1_f3f8t")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
-destructable_tilemap = NodePath("FloorFolder/DestructableMap")
 
 [node name="WallFolder" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -73,7 +72,7 @@ navigation_layers = 2
 
 [node name="DestructableMap" type="TileMapLayer" parent="FloorFolder"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAAMAAwAEAAAAAAAEAAIAAwACAAAAAAD6/wIAAwACAAAAAAD6/wEAAwAEAAAAAAD3/wYAAwAEAAAAAAD3//n/AwAEAAAAAAD3//r/AwACAAAAAAADAPj/AwACAAAAAAAHAAQAAwACAAAAAAADAAgAAwAEAAAAAAAFAAgAAwAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAMAAwAEAAAAAAAEAAIAAwACAAAAAAD6/wEAAwAEAAAAAAD3/wYAAwAEAAAAAAD3//n/AwAEAAAAAAD3//r/AwACAAAAAAAHAAQAAwABAAQAAAADAAgAAwAEAAAAAAAFAAgAAwAEAAAAAAADAPj/AwABAAQAAAD7//j/AwABAAQAAAD3/wcAAwABAAQAAAA=")
 tile_set = ExtResource("1_ro07n")
 
 [node name="HitboxTilemap" type="TileMapLayer" parent="FloorFolder/DestructableMap"]

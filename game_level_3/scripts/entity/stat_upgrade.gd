@@ -55,7 +55,7 @@ func _on_body_entered(body):
 			
 			#Apply to bullet upgrade array
 			if upgrade.upgrade_type == "p_bullet_upgrades":
-				body.p_weapon_controller.bullet_upgrade_array.append(upgrade)
+				body.P_WEAPON_CONTROLLER.bullet_upgrade_array.append(upgrade)
 			
 			#Apply directly to player
 			elif upgrade.upgrade_type == "p_upgrades":

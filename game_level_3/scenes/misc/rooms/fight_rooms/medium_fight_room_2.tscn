@@ -65,9 +65,20 @@ tile_map_data = PackedByteArray("AAD//wQAAAAGAAMAAAD//wIAAAAGAAMAAAD/////AAAGAAM
 tile_set = ExtResource("1_scjws")
 
 [node name="MainNavigation" type="NavigationRegion2D" parent="FloorFolder/MainTilemap"]
+visible = false
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")
 navigation_layers = 2
+
+[node name="DestructableMap" type="TileMapLayer" parent="FloorFolder"]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAAoAAwABAAQAAAACAAkAAwABAAQAAAAGAAEAAwABAAQAAAABAPz/AwACAAAAAAACAPz/AwACAAAAAAADAPz/AwAEAAAAAAABAP3/AwACAAAAAAD4/wAAAwACAAAAAAD4////AwAEAAAAAAD9/wUAAwAEAAAAAAD4//j/AwABAAQAAAD4//f/AwABAAQAAAD5//f/AwAEAAAAAAD4/wIAAwAEAAAAAAA=")
+tile_set = ExtResource("1_scjws")
+
+[node name="HitboxTilemap" type="TileMapLayer" parent="FloorFolder/DestructableMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_scjws")
+collision_enabled = false
 
 [node name="EdgeFolder" type="Node2D" parent="."]
 y_sort_enabled = true
