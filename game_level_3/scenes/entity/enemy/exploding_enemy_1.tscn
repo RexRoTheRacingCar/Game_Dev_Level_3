@@ -178,6 +178,7 @@ collision_mask = 33
 max_target_distance = 1000.0
 
 [node name="DiveDetection" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

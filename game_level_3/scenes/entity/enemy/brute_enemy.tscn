@@ -233,6 +233,7 @@ scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_l7aex")
 
 [node name="WallCollision" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollision"]
 position = Vector2(0, 3)

@@ -50,8 +50,7 @@ func _ready():
 	#Explode
 	if explosion_scene:
 		var explosion = Global.spawn_particle(target_pos, self, explosion_scene)
-		explosion.scale = Vector2(explosion_scale.x, explosion_scale.y * 2)
-		explosion.get_node("HurtboxComponent").call_deferred("set_collision_layer_value", 2, true)
+		explosion.scale = Vector2(explosion_scale.x, explosion_scale.y * 2) / 1.6
 	
 	bomb_sprite.self_modulate = Color(1, 1, 1, 0)
 	bomb_shadow.self_modulate = Color(1, 1, 1, 0)

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnagmw10hmt4" path="res://scenes/components/destructable_component.tscn" id="3_x8481"]
 [ext_resource type="Texture2D" uid="uid://df35dx1aayhsk" path="res://assets/art/enviroment/iso_destructable_tileset.png" id="4_5b3hn"]
 [ext_resource type="PackedScene" uid="uid://cuvtgw8jvwlxa" path="res://scenes/entity/particles/wood_break1.tscn" id="5_rfkiw"]
-[ext_resource type="PackedScene" uid="uid://cpm766wlxynum" path="res://scenes/entity/secondaries/test_secondary.tscn" id="6_relny"]
+[ext_resource type="PackedScene" uid="uid://b1u5aw4wug8o5" path="res://scenes/entity/secondaries/explosion.tscn" id="6_5mihc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0e24q"]
 
@@ -379,6 +379,8 @@ texture_region_size = Vector2i(120, 60)
 1:0/0/custom_data_2 = Vector2(22, 22)
 1:0/0/custom_data_3 = [ExtResource("5_rfkiw")]
 1:0/0/custom_data_4 = 1.5
+1:0/0/custom_data_5 = 0.04
+1:0/0/custom_data_6 = 1
 2:0/size_in_atlas = Vector2i(1, 2)
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 30)
@@ -387,6 +389,8 @@ texture_region_size = Vector2i(120, 60)
 2:0/0/custom_data_2 = Vector2(22, 22)
 2:0/0/custom_data_3 = [ExtResource("5_rfkiw")]
 2:0/0/custom_data_4 = 1.5
+2:0/0/custom_data_5 = 0.1
+2:0/0/custom_data_6 = 3
 1:2/size_in_atlas = Vector2i(1, 2)
 1:2/0 = 0
 1:2/0/texture_origin = Vector2i(0, 30)
@@ -419,6 +423,8 @@ texture_region_size = Vector2i(120, 60)
 4:0/0/custom_data_2 = Vector2(15, 15)
 4:0/0/custom_data_3 = [ExtResource("5_rfkiw")]
 4:0/0/custom_data_4 = 1.5
+4:0/0/custom_data_5 = 0.08
+4:0/0/custom_data_6 = 2
 0:4/size_in_atlas = Vector2i(1, 2)
 0:4/0 = 0
 0:4/0/texture_origin = Vector2i(0, 30)
@@ -435,13 +441,15 @@ texture_region_size = Vector2i(120, 60)
 1:4/0/custom_data_2 = Vector2(20, 20)
 1:4/0/custom_data_3 = [ExtResource("5_rfkiw")]
 1:4/0/custom_data_4 = 1.5
+1:4/0/custom_data_5 = 0.15
+1:4/0/custom_data_6 = 3
 2:4/size_in_atlas = Vector2i(1, 2)
 2:4/0 = 0
 2:4/0/texture_origin = Vector2i(0, 30)
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -12, -30, 3, 0, 18, 30, 3)
 2:4/0/custom_data_0 = true
 2:4/0/custom_data_2 = Vector2(20, 20)
-2:4/0/custom_data_3 = [ExtResource("6_relny")]
+2:4/0/custom_data_3 = [ExtResource("6_5mihc")]
 2:4/0/custom_data_4 = 24.0
 
 [resource]
@@ -462,6 +470,10 @@ custom_data_layer_3/name = "hit_scenes"
 custom_data_layer_3/type = 28
 custom_data_layer_4/name = "screen_shake"
 custom_data_layer_4/type = 3
+custom_data_layer_5/name = "coin_chance"
+custom_data_layer_5/type = 3
+custom_data_layer_6/name = "coin_amount"
+custom_data_layer_6/type = 2
 sources/2 = SubResource("TileSetAtlasSource_hjg1m")
 sources/0 = SubResource("TileSetAtlasSource_s31wi")
 sources/1 = SubResource("TileSetScenesCollectionSource_qq58d")

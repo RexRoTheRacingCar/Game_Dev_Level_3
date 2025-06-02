@@ -7,6 +7,6 @@ class_name HealthPlayerUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player
 func apply_player_upgrade(player: Player):
-	player.p_health_component.max_health += health_increase
-	player.p_health_component.health += health_increase
+	player.P_HEALTH_COMPONENT.max_health += health_increase
+	player.P_HEALTH_COMPONENT.health += health_increase
  

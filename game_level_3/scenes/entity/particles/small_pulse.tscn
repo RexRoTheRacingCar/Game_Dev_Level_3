@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cweoeqqs0iomf"]
 
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_bdwbq"]
-[ext_resource type="Script" path="res://scripts/entity/particles/small_pulse.gd" id="1_yepr8"]
+[ext_resource type="Script" path="res://scripts/entity/particles/visibilty_script.gd" id="1_yepr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_818pq"]
 atlas = ExtResource("1_bdwbq")
@@ -116,7 +116,6 @@ _data = {
 
 [node name="CanvasGroup" type="CanvasGroup"]
 scale = Vector2(1, 0.5)
-script = ExtResource("1_yepr8")
 
 [node name="MainPulse" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -130,6 +129,7 @@ texture = SubResource("AtlasTexture_7tuf2")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 y_sort_enabled = true
 scale = Vector2(3.7, 4)
+script = ExtResource("1_yepr8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -137,5 +137,3 @@ libraries = {
 }
 autoplay = "pulse"
 speed_scale = 1.2
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

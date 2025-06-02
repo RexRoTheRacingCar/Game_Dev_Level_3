@@ -7,6 +7,7 @@ class_name DestructableComponent
 
 var tile_pos := Vector2i(0, 0)
 var tile_d
+var tile_global_position : Vector2
 
 var is_being_hit : bool = false :
 	set(new_value):
@@ -19,12 +20,14 @@ var hitting_node : Node
 
 #--------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	randomize()
 	is_being_hit = false
 	
 	if Global.destructable_layer:
 		tileset = Global.destructable_layer
 		tile_pos = tileset.local_to_map(global_position)
 		tile_d = tileset.get_cell_tile_data(tile_pos)
+		tile_global_position = tileset.to_global(tileset.map_to_local(tile_pos))
 		
 		collison.scale = tile_d.get_custom_data("hitbox_size")
 
@@ -46,6 +49,7 @@ func _on_body_exited(_area):
 	is_being_hit = false
 
 
+#When tile is hit
 #--------------------------------------------------------------------------------------------------------------------------
 func _tile_hit(body):
 	if body.is_in_group("not_destructive") == false and body.is_in_group("walls") == false:
@@ -56,6 +60,8 @@ func _tile_hit(body):
 			queue_free()
 			return
 		
+		if tile_d.get_custom_data("coin_chance") != 0.0:
+			_coin_drop(tile_d.get_custom_data("coin_chance"), tile_d.get_custom_data("coin_amount"))
 		_generate_scenes()
 		
 		#Update destructable tilseset
@@ -101,5 +107,15 @@ func _generate_scenes():
 		for scenes in range(0, scene_array.size()):
 			#Instantiate the scene, get global position based on tile_pos, add the scene as a child
 			var new_scene = scene_array[scenes].instantiate()
-			new_scene.global_position = tileset.to_global(tileset.map_to_local(tile_pos))
+			new_scene.global_position = tile_global_position
 			get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_scene)
+
+
+#Chance 
+#--------------------------------------------------------------------------------------------------------------------------
+func _coin_drop(coin_chance, coin_amount):
+	if randf() < coin_chance: #Possible chance to spawn a coin
+		for coins in randi_range(1, coin_amount):
+			var new_coin = Global.coin_scene.instantiate()
+			new_coin.global_position = tile_global_position
+			get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_coin)
