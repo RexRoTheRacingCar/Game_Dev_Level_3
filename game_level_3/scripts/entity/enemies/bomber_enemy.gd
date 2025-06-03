@@ -86,7 +86,7 @@ func _create_bomb(_delta : float):
 	new_bomb.air_time = clamp(new_bomb.air_time, 1.0, 3.5)
 	new_bomb.warning_time = new_bomb.air_time / 4
 	#Bomb scale
-	var rand_scale = randf_range(1.5, 2.1)
+	var rand_scale = randf_range(1.6, 2.2)
 	new_bomb.explosion_scale = Vector2(rand_scale, rand_scale / 2)
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_bomb)
