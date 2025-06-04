@@ -3,6 +3,18 @@ extends Node
 
 
 #World global variables
+var current_main_scene : String :
+	set(new_value):
+		current_main_scene = new_value
+		
+		match current_main_scene:
+			"Game":
+				Camera.anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
+			
+			"Start Menu":
+				Camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+
+
 var enemy_count : int
 var enemy_wave : bool
 var wave_time : float

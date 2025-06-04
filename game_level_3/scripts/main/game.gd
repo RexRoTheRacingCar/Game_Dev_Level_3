@@ -19,9 +19,13 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	Global.current_main_scene = "Game"
+	
 	randomize()
+	
 	Global.player_dead = false
 	Global.player_coins = 0
+	
 	room_generator.generate_room()
 	
 	await get_tree().physics_frame
