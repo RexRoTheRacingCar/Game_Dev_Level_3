@@ -4,11 +4,10 @@ extends Control
 var all_buttons : Array = []
 @onready var v_box_options: VBoxContainer = $PanelContainer/MarginContainer/MainVBox/VBoxOptions
 
-var scene_array : Array = ["res://scenes/main/game.tscn", ]
-
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	Global.current_main_scene = "Start Menu"
+	get_tree().paused = false
 	
 	#Loop connects all buttons and assigns button id bind
 	all_buttons = v_box_options.get_children()
@@ -20,7 +19,7 @@ func _ready():
 func _button_pressed(btn_id : int):
 	match btn_id:
 		0: #Start Game
-			var _new_game = get_tree().change_scene_to_file(scene_array[btn_id])
+			var _new_game = get_tree().change_scene_to_file("res://scenes/main/game.tscn")
 		
 		1: #Settings
 			pass

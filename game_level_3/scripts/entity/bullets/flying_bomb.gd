@@ -24,7 +24,7 @@ func _ready():
 	bomb_sprite.scale = Vector2(explosion_scale.x / 3, explosion_scale.x / 3)
 	airbrone_particles.emitting = true
 	
-	var v : float = 6.0 #v for variation
+	var v : float = 5.0 #v for variation
 	target_pos += Vector2(randf_range(distance / v, -distance / v), randf_range(distance / v, -distance / v) / 2)
 	
 	#Animate the explosion and await air_time
@@ -33,7 +33,7 @@ func _ready():
 	
 	var air_tween = create_tween()
 	air_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_parallel(false)
-	air_tween.tween_property(bomb_sprite, "position", Vector2(0, -distance / 2), air_time / 2)
+	air_tween.tween_property(bomb_sprite, "position", Vector2(0, -(distance + 20.0) / 2), air_time / 2)
 	air_tween.tween_property(bomb_sprite, "position", Vector2(0, 0), air_time / 2).set_ease(Tween.EASE_IN)
 	
 	await get_tree().create_timer(warning_time, false).timeout

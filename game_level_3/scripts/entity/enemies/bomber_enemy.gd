@@ -1,7 +1,6 @@
 ############################## Bomber Enemy ##############################
 extends Entity
 
-
 @export var MAX_SPEED : float = 375.0
 var speed : float = 425.0
 var target_speed : float = 425.0

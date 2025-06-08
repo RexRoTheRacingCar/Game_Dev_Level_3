@@ -95,6 +95,7 @@ func _tile_hit(body):
 			queue_free()
 
 
+#Spawn scene/s at tile position with camera shake
 #--------------------------------------------------------------------------------------------------------------------------
 func _generate_scenes():
 	#Apply screen_shake
@@ -111,7 +112,7 @@ func _generate_scenes():
 			get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_scene)
 
 
-#Chance 
+#Chance to drop coins
 #--------------------------------------------------------------------------------------------------------------------------
 func _coin_drop(coin_chance, coin_amount):
 	if randf() < coin_chance: #Possible chance to spawn a coin

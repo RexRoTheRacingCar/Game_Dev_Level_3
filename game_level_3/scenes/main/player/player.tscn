@@ -19,12 +19,12 @@ region = Rect2(200, 0, 200, 200)
 script = ExtResource("4_7krut")
 secondary_attack = ExtResource("5_cvwyh")
 secondary_outline = SubResource("AtlasTexture_xr7et")
-cooldown = 1.5
-charge_time = 0.75
+cooldown = 1.6
+charge_time = 0.8
 spawn_location_type = 2
 shake_on_use = 20.0
 scale_based = true
-max_scale = 2.2
+max_scale = 2.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")

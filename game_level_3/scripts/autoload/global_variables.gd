@@ -13,6 +13,8 @@ var current_main_scene : String :
 			
 			"Start Menu":
 				Camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
+				Camera.shake_amount = 0
+				Global.player_position = Vector2.ZERO
 
 
 var enemy_count : int
