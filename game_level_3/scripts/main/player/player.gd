@@ -61,6 +61,7 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 var p_secondary_active : bool = false
 var p_knockback_taken : Vector2 = Vector2.ZERO
 
+const PLAYER_HIT_FLASH = preload("res://scenes/entity/particles/player_hit_flash.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -175,6 +176,9 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		
 		Camera.apply_camera_shake(16.0)
 		Global.hit_stop(0.075)
+		
+		var new_flash = PLAYER_HIT_FLASH.instantiate()
+		self.add_child(new_flash)
 		
 		$PlaceholderSprite2D.self_modulate = Color("ff2121")
 		await get_tree().create_timer(0.9, false).timeout
