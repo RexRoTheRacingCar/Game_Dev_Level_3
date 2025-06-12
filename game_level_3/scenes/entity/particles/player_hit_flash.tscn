@@ -1,47 +1,5 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6vkeubnlsrfs"]
 
-[sub_resource type="Animation" id="Animation_k6nfy"]
-resource_name = "flash"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.133333, 0.266667, 0.6),
-"transitions": PackedFloat32Array(3.03143, 0.241484, -2.82843, 2.54912, 1),
-"update": 0,
-"values": [Vector2(1.3, 1.3), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.3, 1.3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333334, 0.233333, 0.6),
-"transitions": PackedFloat32Array(0, 0.277392, 1, 1),
-"update": 0,
-"values": [Color(0.5, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0.49, 0, 0, 1)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_g6w35"]
 length = 0.001
 tracks/0/type = "value"
@@ -67,6 +25,49 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k6nfy"]
+resource_name = "flash"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0916667, 0.158334, 0.3),
+"transitions": PackedFloat32Array(3.03143, 0.241484, -2.82843, 2.54912, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.3), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.3, 1.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333334, 0.125, 0.3),
+"transitions": PackedFloat32Array(0, 0.277392, 1, 1),
+"update": 0,
+"values": [Color(0.5, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0.49, 0, 0, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p7lfa"]
