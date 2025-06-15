@@ -23,6 +23,7 @@ func _ready() -> void:
 	call_deferred("start")
 
 
+#---------------------------------------------------------------------------------------------------------------------------
 func start():
 	animation_player.speed_scale = randf_range(0.9, 1.1)
 	animation_player.play("idle")
@@ -49,6 +50,7 @@ func _process(_delta: float) -> void:
 #When player enteres area
 func _on_body_entered(body):
 	if not Engine.is_editor_hint():
+		#If colliding with player and isn't already collected
 		if body.name == "Player" and collected == false:
 			collected = true
 			$GPUParticles2D.emitting = false

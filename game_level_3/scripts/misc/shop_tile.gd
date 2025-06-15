@@ -43,6 +43,7 @@ func _ready():
 	#Display Tile
 	shop_tile.texture.region = Rect2(480, 180, 120, 120)
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 #When player enters shop tile radius 
 func _on_area_2d_body_entered(body):
