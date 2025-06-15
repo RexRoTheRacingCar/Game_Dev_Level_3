@@ -19,10 +19,9 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
-	Global.current_main_scene = "Game"
-	
 	randomize()
 	
+	Global.current_main_scene = "Game"
 	Global.player_dead = false
 	Global.player_coins = 0
 	

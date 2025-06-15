@@ -2,7 +2,7 @@
 extends BaseUpgrade
 class_name PlayerResistanceUpgrade
 
-@export var player_resistance_increase : float = 0.1
+@export var player_resistance_increase : float = 0.2
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to player
