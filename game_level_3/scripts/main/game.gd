@@ -21,6 +21,7 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 func _ready():
 	randomize()
 	
+	Global.player = player
 	Global.current_main_scene = "Game"
 	Global.player_dead = false
 	Global.player_coins = 0

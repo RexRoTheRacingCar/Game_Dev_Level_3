@@ -2,6 +2,7 @@
 extends Resource
 class_name Item
 
+@export var item_name : String
 @export var rarity : String
 #Common ||| Rare ||| Epic ||| Legendary
 @export var item_type : PackedScene

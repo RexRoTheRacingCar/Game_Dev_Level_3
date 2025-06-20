@@ -32,7 +32,7 @@ var speed : float = 0.0
 
 var current_pierce_count := 0
 var rotation_offset : float = 0.0
-var fake_velocity := Vector2.ZERO
+var fake_velocity : Vector2 = Vector2.ZERO
 var collide_array : Array = []
 var collision_hit : bool = false
 
@@ -91,11 +91,11 @@ func _load_starter_values():
 func _bullet_velocity() -> Vector2:
 	var dir = Vector2.RIGHT.rotated(rotation)
 	
-	fake_velocity = dir * speed
+	fake_velocity = dir * speed 
 	return Vector2(
 		fake_velocity.x, 
 		fake_velocity.y / 2
-		) 
+		)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

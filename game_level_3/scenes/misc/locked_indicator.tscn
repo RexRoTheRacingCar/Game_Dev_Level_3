@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=3 uid="uid://clanh5sh0ranu"]
+
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_6k6ly"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_kk6m6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afo11"]
+atlas = ExtResource("1_6k6ly")
+region = Rect2(300, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgtsi"]
+atlas = ExtResource("2_kk6m6")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="Animation" id="Animation_ei0h6"]
+resource_name = "lock_animation"
+length = 1.1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LockedSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.45, 0.483333, 0.508159, 0.547695, 0.587232, 0.65, 0.75),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [0.0, 0.139626, -0.139626, 0.139626, -0.139626, 0.10472, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LockedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.2, 0.675, 0.95, 0.975, 1.05),
+"transitions": PackedFloat32Array(0, 0.34151, 2.54912, 0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(0.54, 0.54), Vector2(0.4, 0.75), Vector2(0.66, 0.66), Vector2(0.4, 0.7), Vector2(0.8, 0.4), Vector2(0.54, 0.54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.425, 0.575, 0.725, 0.825, 0.925, 1.1),
+"transitions": PackedFloat32Array(-2, -2, 1, 1, 1, 1, 0.329877, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.41, 0.41, 1), Color(1, 0.41, 0.41, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LockedSprite/Gradient:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.475, 0.575, 0.85),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.3, 0.3, 0.3, 1), Color(0, 0, 0, 1)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LockedSprite:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.051165, 0.201165, 0.751165, 0.951165, 1.05116),
+"transitions": PackedFloat32Array(-1.62451, 0.210224, 2.2974, -2.46229, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5), Vector2(0, -25), Vector2(0, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_36s2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LockedSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LockedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.54, 0.54)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LockedSprite/Gradient:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LockedSprite:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1k2h"]
+_data = {
+"RESET": SubResource("Animation_36s2v"),
+"lock_animation": SubResource("Animation_ei0h6")
+}
+
+[node name="LockedIndicator" type="CanvasGroup"]
+z_index = 1
+position = Vector2(0, 10)
+scale = Vector2(1.2, 1.2)
+
+[node name="LockedSprite" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(0.54, 0.54)
+texture = SubResource("AtlasTexture_afo11")
+
+[node name="Gradient" type="Sprite2D" parent="LockedSprite"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_tgtsi")
+
+[node name="LockAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f1k2h")
+}
+autoplay = "lock_animation"
+speed_scale = 1.25

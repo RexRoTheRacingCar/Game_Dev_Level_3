@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://burt04gq6di4m"]
+[gd_scene load_steps=22 format=3 uid="uid://burt04gq6di4m"]
 
 [ext_resource type="Script" path="res://scripts/misc/shop_tile.gd" id="1_pfyx2"]
 [ext_resource type="Resource" uid="uid://v4ljbmcc8dtf" path="res://misc/resources/shop_item_pool.tres" id="2_o3642"]
@@ -15,10 +15,6 @@ region = Rect2(480, 180, 120, 120)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fclsx"]
 atlas = ExtResource("3_oao8i")
 region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3xjhl"]
-atlas = ExtResource("3_oao8i")
-region = Rect2(300, 200, 100, 100)
 
 [sub_resource type="Gradient" id="Gradient_nywwv"]
 interpolation_mode = 2
@@ -85,14 +81,104 @@ region = Rect2(0, 200, 100, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kt1uf"]
 radius = 75.0
 
-[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "lock_sprite", "shop_tile", "price_label") groups=["navigation_polygon_source_geometry_group", "walls"]]
+[sub_resource type="Animation" id="Animation_4uqy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PriceUI/MarginContainer/HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PriceUI/MarginContainer/HBoxContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dgtor"]
+resource_name = "name_to_price"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PriceUI/MarginContainer/HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PriceUI/MarginContainer/HBoxContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eom5y"]
+resource_name = "price_to_name"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PriceUI/MarginContainer/HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PriceUI/MarginContainer/HBoxContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_endef"]
+_data = {
+"RESET": SubResource("Animation_4uqy6"),
+"name_to_price": SubResource("Animation_dgtor"),
+"price_to_name": SubResource("Animation_eom5y")
+}
+
+[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "shop_tile") groups=["navigation_polygon_source_geometry_group", "walls"]]
 collision_layer = 25
 collision_mask = 0
 script = ExtResource("1_pfyx2")
 reward_sprite = NodePath("SpriteFolder/Reward")
-lock_sprite = NodePath("SpriteFolder/RewardLock")
 shop_tile = NodePath("SpriteFolder/ShopTile")
-price_label = NodePath("PriceUI/MarginContainer/HBoxContainer/Coins")
 item_pool = ExtResource("2_o3642")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -113,12 +199,6 @@ y_sort_enabled = true
 position = Vector2(0, -42)
 scale = Vector2(0.54, 0.54)
 texture = SubResource("AtlasTexture_fclsx")
-
-[node name="RewardLock" type="Sprite2D" parent="SpriteFolder"]
-visible = false
-z_index = 2
-y_sort_enabled = true
-texture = SubResource("AtlasTexture_3xjhl")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="SpriteFolder"]
 z_index = 1
@@ -162,6 +242,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Coins" type="Label" parent="PriceUI/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -178,6 +259,21 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_r68nd")
 expand_mode = 1
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PriceUI/MarginContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Item" type="Label" parent="PriceUI/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Item Name"
+horizontal_alignment = 2
+
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 y_sort_enabled = true
@@ -193,5 +289,14 @@ shape = SubResource("CircleShape2D_kt1uf")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -41.5)
 scale = Vector2(6.4, 7.35)
+
+[node name="SwapTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_endef")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

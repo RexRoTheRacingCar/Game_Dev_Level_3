@@ -69,7 +69,7 @@ offset = Vector2(1.08991e-06, -31.4286)
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_hpa7o")]
-max_health = 40
+max_health = 50
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_yqhgr")]
 collision_layer = 0

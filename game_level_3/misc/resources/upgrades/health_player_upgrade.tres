@@ -11,6 +11,7 @@ region = Rect2(100, 100, 100, 100)
 [resource]
 script = ExtResource("1_t5fvc")
 health_increase = 25
+item_name = "Health"
 rarity = "Rare"
 item_type = ExtResource("1_vrlhv")
 item_cost = 20

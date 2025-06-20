@@ -27,6 +27,7 @@ var destructable_layer : TileMapLayer
 
 
 #Player global variables
+var player
 var player_dead : bool
 var player_position : Vector2
 var player_velocity : Vector2

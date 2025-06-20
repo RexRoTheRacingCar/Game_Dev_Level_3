@@ -11,6 +11,7 @@ region = Rect2(300, 0, 100, 100)
 [resource]
 script = ExtResource("1_wgm3b")
 reload_decrease = 1.4
+item_name = "Firerate"
 rarity = "Rare"
 item_type = ExtResource("1_nrmc3")
 item_cost = 15

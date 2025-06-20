@@ -11,6 +11,7 @@ region = Rect2(0, 0, 100, 100)
 [resource]
 script = ExtResource("1_30l25")
 pierce_increase = 1
+item_name = "Piercing "
 rarity = "Epic"
 item_type = ExtResource("1_33pv8")
 item_cost = 25
