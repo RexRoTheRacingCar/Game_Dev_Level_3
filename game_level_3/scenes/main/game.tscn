@@ -18,9 +18,11 @@ script = ExtResource("1_cy04u")
 ROOM_GENERATOR = NodePath("../RoomGenerator")
 PLAYER = NodePath("../Player")
 maximum_enemies = 14
+time_till_arrows = 22.0
 generate_waves = true
 
 [node name="RoomGenerator" parent="." instance=ExtResource("2_i5teo")]
+shop_chance = 0.6
 
 [node name="Player" parent="." instance=ExtResource("1_vr3do")]
 

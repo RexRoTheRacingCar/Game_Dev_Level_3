@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PlayerMultUpgrade" load_steps=5 format=3 uid="uid://c3evgg8si6yuq"]
+
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_8plok"]
+[ext_resource type="Script" path="res://scripts/items/upgrades/player_power_mult.gd" id="1_vbidg"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_hfyja"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwt5i"]
+atlas = ExtResource("3_hfyja")
+region = Rect2(600, 0, 100, 100)
+
+[resource]
+script = ExtResource("1_vbidg")
+player_mult_increase = 0.15
+item_name = "Power"
+rarity = "Common"
+item_type = ExtResource("1_8plok")
+item_cost = 20
+texture = SubResource("AtlasTexture_iwt5i")
+upgrade_type = "p_upgrades"

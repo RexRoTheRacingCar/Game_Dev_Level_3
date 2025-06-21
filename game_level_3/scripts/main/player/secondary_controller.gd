@@ -45,7 +45,7 @@ func secondary_controls(delta : float):
 		sprite_2d.visible = true
 		sprite_2d.global_position = _get_position_type()
 		sprite_2d.rotation_degrees += (120 * progress) * delta
-		sprite_2d.scale = (progress) * Vector2(current_secondary.max_scale, current_secondary.max_scale)
+		sprite_2d.scale = PlayerUpgradeStats.power_mult * progress * Vector2(current_secondary.max_scale, current_secondary.max_scale)
 		
 		#Update secondary charge and progress bar
 		charge_progress += delta

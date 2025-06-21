@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dnol7wny77myh"]
+[gd_scene load_steps=18 format=3 uid="uid://dnol7wny77myh"]
 
 [ext_resource type="Script" path="res://scripts/entity/stat_upgrade.gd" id="1_mep5s"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_yd28e"]
@@ -6,8 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vur6x"]
 size = Vector2(96, 45.5)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gc7rv"]
+load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_eutvc"]
-atlas = ExtResource("3_yd28e")
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_gc7rv")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="Gradient" id="Gradient_px8ew"]

@@ -57,7 +57,7 @@ func _on_collection_radius_body_entered(_body : Player):
 	particles.emitting = false
 	set_process(false)
 	
-	await get_tree().create_timer(0.75, false).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	
 	queue_free()
 

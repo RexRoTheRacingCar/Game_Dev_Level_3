@@ -1,5 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://b1u5aw4wug8o5"]
+[gd_scene load_steps=44 format=3 uid="uid://b1u5aw4wug8o5"]
 
+[ext_resource type="Script" path="res://scripts/entity/secondaries/dmg_based_secondary.gd" id="1_g3giv"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_s30yv"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="2_fjiq7"]
 [ext_resource type="Script" path="res://scripts/entity/particles/particle.gd" id="4_c41wv"]
@@ -502,10 +503,13 @@ _data = {
 "explode": SubResource("Animation_y1i7i")
 }
 
-[node name="Explosion" type="CharacterBody2D"]
+[node name="Explosion" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
 z_index = -1
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
+script = ExtResource("1_g3giv")
+hurtbox = NodePath("HurtboxComponent")
+default_power = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jmis1")
@@ -561,7 +565,7 @@ texture = SubResource("AtlasTexture_1bli2")
 z_index = 1
 y_sort_enabled = true
 scale = Vector2(0.8, 1.4)
-amount = 14
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_5qwvw")
 texture = SubResource("AtlasTexture_i8xdc")
 lifetime = 1.8
@@ -575,7 +579,7 @@ z_index = 1
 y_sort_enabled = true
 scale = Vector2(0.9, 0.9)
 emitting = false
-amount = 7
+amount = 6
 process_material = SubResource("ParticleProcessMaterial_n37ju")
 texture = SubResource("AtlasTexture_i8xdc")
 lifetime = 2.0
@@ -588,7 +592,7 @@ script = ExtResource("4_c41wv")
 z_index = 1
 y_sort_enabled = true
 scale = Vector2(0.8, 1.3)
-amount = 12
+amount = 11
 process_material = SubResource("ParticleProcessMaterial_u1grf")
 texture = SubResource("AtlasTexture_i8xdc")
 one_shot = true

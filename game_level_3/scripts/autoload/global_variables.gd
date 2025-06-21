@@ -20,11 +20,13 @@ var current_main_scene : String :
 var enemy_count : int
 var enemy_wave : bool
 var wave_time : float
+var wave_counter : int = 0
 var active_enemy_array : Array
 
 var global_map
 var destructable_layer : TileMapLayer
 
+var hidden_chance : float = 0.925 #Range from 0.0 to 1.0
 
 #Player global variables
 var player

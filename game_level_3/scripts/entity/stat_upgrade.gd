@@ -13,6 +13,7 @@ extends Area2D
 @export var needs_update : bool = false
 var collected : bool = false
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()

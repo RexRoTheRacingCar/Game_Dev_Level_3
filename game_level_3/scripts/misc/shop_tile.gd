@@ -24,18 +24,24 @@ const DUST_PARTICLE : PackedScene = preload("res://scenes/entity/particles/dust_
 const LOCKED_INDICATOR = preload("res://scenes/misc/locked_indicator.tscn")
 
 var text_state : String = "name"
-var swap_time : float = 4.0
+var swap_time : float = 3.0
+var collected : bool = false
+var is_hidden : bool = false
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
 	particle_1.self_modulate = Color(1, 1, 1, 1)
 	
-	get_random_item()
+	if randf() >= Global.hidden_chance:
+		is_hidden = true
 	
+	get_random_item()
+
 	reward_sprite.visible = true
 	shop_tile.visible = true 
 	collision.disabled = false
+	collected = false
 	
 	_update_display()
 	
@@ -48,29 +54,44 @@ func _ready():
 func _update_display():
 	text_state = "name"
 	animation_player.play("price_to_name")
-	#Rewards
-	reward_sprite.texture = display_item.texture
-	reward_sprite.self_modulate = Color(0.55, 0.55, 0.55, 0.92)
-	#Pricing
-	price = display_item.item_cost
-	coins.text = str(price)
-	item.text = display_item.item_name
 	#Display Tile
 	shop_tile.texture.region = Rect2(480, 180, 120, 120)
+	
+	reward_sprite.texture = display_item.texture.duplicate()
+	
+	if is_hidden == false:
+		reward_sprite.self_modulate = Color(0.55, 0.55, 0.55, 0.92)
+		#Pricing
+		price = display_item.item_cost
+		coins.text = str(price)
+		item.text = display_item.item_name
+	else:
+		reward_sprite.texture.region = Rect2(600, 100, 100, 100)
+		#Pricing
+		price = randi_range(10, 25)
+		coins.text = str(price)
+		item.text = "Random?"
+		
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #When player enters shop tile radius 
 func _on_area_2d_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and collected == false:
 		if Global.player_coins >= price: #If player can afford upgrade
 			Global.player_coins -= price
+			collected = true
 			
 			for _shake in range(0, 16):
 				shop_tile.position.x = randf_range(3.0, -3.0)
 				await get_tree().create_timer(0.02, false).timeout
 			
-			spawn_upgrade()
+			#Spawn upgrade and particles
+			if is_hidden == false:
+				spawn_upgrade(0)
+			else:
+				spawn_upgrade(35)
+				spawn_upgrade(-35)
 			Global.spawn_particle(global_position, self, DUST_PARTICLE)
 			
 			queue_free()
@@ -83,10 +104,10 @@ func _on_area_2d_body_entered(body):
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Spawn the reward item after interaction
-func spawn_upgrade():
+func spawn_upgrade(x_offset : float):
 	var new_scene = display_item.item_type.instantiate()
 	get_parent().call_deferred("add_child", new_scene)
-	new_scene.global_position = Vector2(global_position.x, global_position.y - 30)
+	new_scene.global_position = Vector2(global_position.x + x_offset, global_position.y - 30)
 	new_scene.upgrade = display_item
 
 
@@ -108,12 +129,13 @@ func get_random_item():
 	display_item = items_array[selection]
 	
 	#Misc for paritcle effects
-	if rarity == "Rare":
-		particle_1.self_modulate = Color(0.34, 1, 1, 1)
-	elif rarity == "Epic":
-		particle_1.self_modulate = Color(0.836, 0.351, 0.9, 1)
-	elif rarity == "Legendary":
-		particle_1.self_modulate = Color(0.95, 0.697, 0, 1)
+	if is_hidden == false:
+		if rarity == "Rare":
+			particle_1.self_modulate = Color(0.34, 1, 1, 1)
+		elif rarity == "Epic":
+			particle_1.self_modulate = Color(0.836, 0.351, 0.9, 1)
+		elif rarity == "Legendary":
+			particle_1.self_modulate = Color(0.95, 0.697, 0, 1)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

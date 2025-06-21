@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://burt04gq6di4m"]
+[gd_scene load_steps=23 format=3 uid="uid://burt04gq6di4m"]
 
 [ext_resource type="Script" path="res://scripts/misc/shop_tile.gd" id="1_pfyx2"]
 [ext_resource type="Resource" uid="uid://v4ljbmcc8dtf" path="res://misc/resources/shop_item_pool.tres" id="2_o3642"]
@@ -12,8 +12,12 @@ resource_local_to_scene = true
 atlas = SubResource("CompressedTexture2D_p81b7")
 region = Rect2(480, 180, 120, 120)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tycpq"]
+load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fclsx"]
-atlas = ExtResource("3_oao8i")
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_tycpq")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="Gradient" id="Gradient_nywwv"]
@@ -199,6 +203,7 @@ y_sort_enabled = true
 position = Vector2(0, -42)
 scale = Vector2(0.54, 0.54)
 texture = SubResource("AtlasTexture_fclsx")
+region_rect = Rect2(50, 0, 100, 100)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="SpriteFolder"]
 z_index = 1

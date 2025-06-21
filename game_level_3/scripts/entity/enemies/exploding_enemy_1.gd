@@ -16,7 +16,7 @@ var dir_2 : float = 0.0
 var player_angle_pos : Vector2
 
 @export var speed : float = 425.0
-var explode_scene := preload("res://scenes/entity/secondaries/test_secondary.tscn")
+const EXPLOSION := preload("res://scenes/entity/secondaries/explosion.tscn")
 
 @onready var sprite = $Sprite2D
 
@@ -79,16 +79,16 @@ func no_health():
 	#Create explosion when leaving the scene (on death)
 	_instantiate_explosion(0, 0, 4)
 	for i in range(1, 3):
-		await get_tree().create_timer(0.25, false).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		
-		for d in range(0, 4): 
-			_instantiate_explosion(i, d, 4) 
+		for d in range(0, 3): 
+			_instantiate_explosion(i, d, 3) 
 	queue_free()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _instantiate_explosion(i, d, am):
-	var new_explosion = explode_scene.instantiate()
+	var new_explosion = EXPLOSION.instantiate()
 	
 	#Update explosion values
 	new_explosion.visible = true
@@ -96,7 +96,8 @@ func _instantiate_explosion(i, d, am):
 	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 180 * i)
 	new_explosion.global_position = global_position + Vector2(postion_correction.x, postion_correction.y / 2)
 	new_explosion.rotation = 0
-	new_explosion.scale = Vector2(1.2, 1.2)
+	new_explosion.default_power = 19
+	new_explosion.power_mult = 0.55
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_explosion)
 	

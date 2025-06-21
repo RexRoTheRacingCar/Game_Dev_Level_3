@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/autoload/global_variables.gd"
 Camera="*res://scripts/main/camera.gd"
+PlayerUpgradeStats="*res://scripts/autoload/player_upgrade_stats.gd"
 
 [display]
 

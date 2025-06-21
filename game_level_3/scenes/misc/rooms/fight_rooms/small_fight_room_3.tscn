@@ -6,7 +6,7 @@
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4ltyq"]
 vertices = PackedVector2Array(-496, -20.1094, 84.2188, 270, -120, 372.109, -924.219, -30, 256, -39.8906, -324.219, -330, -120, -432.109, 684.219, -30, -496, -39.8906, -420, -282.109, -420, -77.8906, 180, 17.8906, 180, 222.109, 256, -20.1094)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 0, 3), PackedInt32Array(8, 3, 9, 10), PackedInt32Array(10, 9, 11, 12), PackedInt32Array(7, 12, 11, 13), PackedInt32Array(4, 7, 13)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-134, -493, -1034, -41, -108, 420, 781, -39)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-110, -466, -1003, -28, -110, 413, 754, -33)])
 source_geometry_mode = 2
 agent_radius = 16.0
 
@@ -63,7 +63,6 @@ tile_map_data = PackedByteArray("AAD2/wgAAAAFAAUAAAD7/wgAAAAFAAUAAAAAAAgAAAAFAAU
 tile_set = ExtResource("2_tmtf3")
 
 [node name="MainNavigation" type="NavigationRegion2D" parent="FloorFolder/MainTilemap"]
-visible = false
 z_index = 20
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")

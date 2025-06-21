@@ -176,7 +176,7 @@ y_sort_enabled = true
 amount = 3
 process_material = SubResource("ParticleProcessMaterial_lpcii")
 texture = SubResource("AtlasTexture_08jni")
-lifetime = 0.75
+lifetime = 0.6
 randomness = 0.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

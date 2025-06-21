@@ -6,7 +6,7 @@ extends Node2D
 @export var ROOM_GENERATOR : RoomGenerator
 @export var PLAYER : Player
 
-@export_group("Customisable")
+@export_group("Customisable Enemies")
 @export var minimum_enemies : int = 1
 @export var maximum_enemies : int = 16
 @export var time_till_arrows : float = 24.0
@@ -18,8 +18,9 @@ const SPAWN_ANIMATION = preload("res://scenes/entity/spawn_animation.tscn")
 var is_generating : bool = false
 var arrows_generated : bool = false
 
+@export_group("Customisable Waves")
 @export var generate_waves : bool
-
+var max_waves : int = 3
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -44,12 +45,12 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
-	Global.wave_time += delta
-	if Global.enemy_count == 0 and is_generating == false:
+	Global.wave_time += delta #Wave timer
+	#If there are no enemies, start the next wave
+	if Global.enemy_count == 0 and is_generating == false and Global.enemy_wave == true:
 		Global.enemy_wave = false
-		if Global.enemy_wave == false:
-			_generate_wave()
 	
+	#If enemies have been on screen for a while, spawn arrows to help guide the player
 	if Global.enemy_count > 0 and Global.wave_time > time_till_arrows and arrows_generated == false:
 		arrows_generated = true
 		_create_arrows()
@@ -58,14 +59,13 @@ func _process(delta):
 #---------------------------------------------------------------------------------------------------------------------------
 #Generates a wave of enemies
 func _generate_wave():
-	Global.enemy_wave = true
-	Global.wave_time = 0
-	
+	Global.wave_counter += 1
 	is_generating = true
 	arrows_generated = false
 	
 	await get_tree().create_timer(1.0, false).timeout
 	
+	#Wave spawn time variation
 	var generating_delay = (randf_range(0.1, 1.0) ** 6) + 0.1
 	
 	var enemy_variance = randi_range(0, ENEMY_SCENE_LIST.room_array.size() - 1)

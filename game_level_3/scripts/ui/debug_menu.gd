@@ -11,6 +11,8 @@ var is_enabled = false :
 @onready var ENEMY_WAVE = %EnemyWave
 @onready var ENEMY_COUNTER = %EnemyCounter
 @onready var WAVE_TIMER = %WaveTimer
+@onready var WAVE_COUNTER = %WaveCounter
+@onready var POWER_MULT = %PowerMult
 
 var fps : String
 
@@ -33,4 +35,9 @@ func _process(delta):
 		ENEMY_WAVE.text = str("Wave Enabled : ", Global.enemy_wave)
 		ENEMY_COUNTER.text = str("Enemy Count : ", Global.enemy_count)
 		WAVE_TIMER.text = str("Wave Time : ", "%.2f" % Global.wave_time)
-	
+		WAVE_COUNTER.text = str("Wave Count : ", Global.wave_counter)
+		POWER_MULT.text = str("Player PWR MULT : ", PlayerUpgradeStats.power_mult)
+
+
+func _on_h_slider_value_changed(value):
+	PlayerUpgradeStats.power_mult = value

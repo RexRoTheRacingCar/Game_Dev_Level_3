@@ -30,6 +30,8 @@ var reward_room_array : Array = []
 var current_room = null
 var current_room_mesh = null
 
+@export var shop_chance : float = 0.5
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
@@ -63,7 +65,7 @@ func generate_room():
 	var rand_room_type := randf()
 	var rand_select : int
 	
-	if rand_room_type > 0.25:
+	if rand_room_type >= shop_chance:
 		rand_select = randi_range(0, fight_room_array.size() - 1)
 		current_room = fight_room_array[rand_select].instantiate()
 	else:

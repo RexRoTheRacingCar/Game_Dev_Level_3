@@ -2,7 +2,6 @@
 extends Resource
 class_name SecondaryAbility
 
-
 @export var secondary_attack : PackedScene
 @export var secondary_outline : AtlasTexture
 @export var cooldown : float = 5.0
@@ -26,6 +25,7 @@ func _ready():
 func spawn_scene(scene : PackedScene, parent : Node):
 	var new_scene = scene.instantiate()
 	parent.call_deferred("add_child", new_scene)
+	new_scene.power_mult = PlayerUpgradeStats.power_mult
 	return new_scene
 
 

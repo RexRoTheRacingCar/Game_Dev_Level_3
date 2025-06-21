@@ -10,7 +10,7 @@ region = Rect2(100, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_p7div")
-damage_increase = 1.5
+damage_increase = 1.7
 item_name = "Damage"
 rarity = "Common"
 item_type = ExtResource("1_hgjma")

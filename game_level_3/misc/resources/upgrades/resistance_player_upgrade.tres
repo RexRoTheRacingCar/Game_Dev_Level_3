@@ -10,7 +10,7 @@ region = Rect2(500, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_vynhd")
-player_resistance_increase = 0.1
+player_resistance_increase = 0.2
 item_name = "Resistance"
 rarity = "Epic"
 item_type = ExtResource("1_f1yx4")

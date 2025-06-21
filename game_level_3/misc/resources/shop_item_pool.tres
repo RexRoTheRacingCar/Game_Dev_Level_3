@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RandomItemResource" load_steps=15 format=3 uid="uid://v4ljbmcc8dtf"]
+[gd_resource type="Resource" script_class="RandomItemResource" load_steps=16 format=3 uid="uid://v4ljbmcc8dtf"]
 
 [ext_resource type="Script" path="res://scripts/items/item.gd" id="1_t8xtv"]
 [ext_resource type="Resource" uid="uid://c54bj7d6c0rvt" path="res://misc/resources/upgrades/bullet_amount_upgrade.tres" id="2_488kx"]
@@ -14,10 +14,11 @@
 [ext_resource type="Resource" uid="uid://bw6uxwnq72krk" path="res://misc/resources/upgrades/knockback_bullet_upgrade.tres" id="11_kf0xw"]
 [ext_resource type="Resource" uid="uid://tvle5x6xwkb3" path="res://misc/resources/upgrades/accuracy_bullet_upgrade.tres" id="12_xt1nd"]
 [ext_resource type="Resource" uid="uid://bbfxtlf344uns" path="res://misc/resources/upgrades/resistance_player_upgrade.tres" id="13_tmo5f"]
+[ext_resource type="Resource" uid="uid://c3evgg8si6yuq" path="res://misc/resources/upgrades/power_player_upgrade.tres" id="14_a6p7w"]
 
 [resource]
 script = ExtResource("2_mwjdc")
-item_pool = Array[ExtResource("1_t8xtv")]([ExtResource("2_488kx"), ExtResource("3_ex0yc"), ExtResource("4_t0wrj"), ExtResource("5_6j71p"), ExtResource("6_4p6fg"), ExtResource("7_17tuf"), ExtResource("8_1gnpd"), ExtResource("9_1wvmq"), ExtResource("10_dkt8r"), ExtResource("11_kf0xw"), ExtResource("12_xt1nd"), ExtResource("13_tmo5f")])
+item_pool = Array[ExtResource("1_t8xtv")]([ExtResource("2_488kx"), ExtResource("3_ex0yc"), ExtResource("4_t0wrj"), ExtResource("5_6j71p"), ExtResource("6_4p6fg"), ExtResource("7_17tuf"), ExtResource("8_1gnpd"), ExtResource("9_1wvmq"), ExtResource("10_dkt8r"), ExtResource("11_kf0xw"), ExtResource("12_xt1nd"), ExtResource("13_tmo5f"), ExtResource("14_a6p7w")])
 rarities = {
 "Common": 55.0,
 "Epic": 11.0,
