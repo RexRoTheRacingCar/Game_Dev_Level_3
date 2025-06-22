@@ -12,6 +12,7 @@ var is_enabled = false :
 @onready var ENEMY_COUNTER = %EnemyCounter
 @onready var WAVE_TIMER = %WaveTimer
 @onready var WAVE_COUNTER = %WaveCounter
+@onready var MAX_WAVES = %MaxWaves
 @onready var POWER_MULT = %PowerMult
 
 var fps : String
@@ -36,6 +37,7 @@ func _process(delta):
 		ENEMY_COUNTER.text = str("Enemy Count : ", Global.enemy_count)
 		WAVE_TIMER.text = str("Wave Time : ", "%.2f" % Global.wave_time)
 		WAVE_COUNTER.text = str("Wave Count : ", Global.wave_counter)
+		MAX_WAVES.text = str("Current Max Waves : ", Global.current_max_waves)
 		POWER_MULT.text = str("Player PWR MULT : ", PlayerUpgradeStats.power_mult)
 
 

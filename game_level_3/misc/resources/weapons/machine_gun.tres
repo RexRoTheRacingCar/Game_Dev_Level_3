@@ -13,6 +13,7 @@ default_reload_time = 1.2
 default_max_ammo = 50
 default_bullet = ExtResource("1_rcnt6")
 camera_shake = 4.0
+item_name = ""
 rarity = ""
 item_cost = 10
 upgrade_type = ""

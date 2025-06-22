@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt76etq80rde8"]
+
+[ext_resource type="Script" path="res://scripts/main/dungeon_manager.gd" id="1_b45gf"]
+
+[node name="DungeonManager" type="Node2D"]
+script = ExtResource("1_b45gf")

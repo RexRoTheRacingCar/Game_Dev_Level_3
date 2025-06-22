@@ -1,7 +1,6 @@
 ############################## Main Global Variables ##############################
 extends Node
 
-
 #World global variables
 var current_main_scene : String :
 	set(new_value):
@@ -21,6 +20,7 @@ var enemy_count : int
 var enemy_wave : bool
 var wave_time : float
 var wave_counter : int = 0
+var current_max_waves : int = 0
 var active_enemy_array : Array
 
 var global_map

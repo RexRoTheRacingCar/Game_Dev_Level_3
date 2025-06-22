@@ -50,7 +50,12 @@ text = "Wave Timer"
 [node name="WaveCounter" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "WaveCounter"
+text = "Wave Counter"
+
+[node name="MaxWaves" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Max Waves"
 
 [node name="PowerMult" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

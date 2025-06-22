@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=11 format=3 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="Script" path="res://scripts/main/game.gd" id="1_cy04u"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player/player.tscn" id="1_vr3do"]
 [ext_resource type="PackedScene" uid="uid://ckjdjuavq4s2e" path="res://scenes/main/room_generator.tscn" id="2_i5teo"]
+[ext_resource type="PackedScene" uid="uid://bt76etq80rde8" path="res://scenes/main/dungeon_manager.tscn" id="2_r7fuv"]
 [ext_resource type="PackedScene" uid="uid://omnsitond0l" path="res://scenes/main/game_manager.tscn" id="2_xnef5"]
 [ext_resource type="PackedScene" uid="uid://dxqluonvie0sa" path="res://scenes/main/camera.tscn" id="4_ol12e"]
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
@@ -14,19 +15,24 @@
 y_sort_enabled = true
 script = ExtResource("1_cy04u")
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
+[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER") instance=ExtResource("2_r7fuv")]
+y_sort_enabled = true
+GAME_MANAGER = NodePath("GameManager")
+ROOM_MANAGER = NodePath("RoomGenerator")
+PLAYER = NodePath("Player")
+
+[node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")
 PLAYER = NodePath("../Player")
 maximum_enemies = 14
-time_till_arrows = 22.0
 generate_waves = true
 
-[node name="RoomGenerator" parent="." instance=ExtResource("2_i5teo")]
+[node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]
 shop_chance = 0.6
 
-[node name="Player" parent="." instance=ExtResource("1_vr3do")]
+[node name="Player" parent="DungeonManager" instance=ExtResource("1_vr3do")]
 
-[node name="Camera2D" parent="Player" instance=ExtResource("4_ol12e")]
+[node name="Camera2D" parent="DungeonManager/Player" instance=ExtResource("4_ol12e")]
 
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 layer = 12

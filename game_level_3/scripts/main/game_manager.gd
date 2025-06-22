@@ -9,7 +9,7 @@ extends Node2D
 @export_group("Customisable Enemies")
 @export var minimum_enemies : int = 1
 @export var maximum_enemies : int = 16
-@export var time_till_arrows : float = 24.0
+@export var min_time_till_arrows : float = 20.0
 
 #Scene variables
 const GUIDING_ARROW = preload("res://scenes/misc/guiding_arrow.tscn")
@@ -31,35 +31,16 @@ func _ready():
 	is_generating = false
 	
 	#Reset global values
-	Global.enemy_count = 0 
-	Global.enemy_wave = false
 	Global.active_enemy_array = []
-	
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	
-	if generate_waves == true:
-		call_deferred("_generate_wave")
-		set_process(true)
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-func _process(delta):
-	Global.wave_time += delta #Wave timer
-	#If there are no enemies, start the next wave
-	if Global.enemy_count == 0 and is_generating == false and Global.enemy_wave == true:
-		Global.enemy_wave = false
-	
-	#If enemies have been on screen for a while, spawn arrows to help guide the player
-	if Global.enemy_count > 0 and Global.wave_time > time_till_arrows and arrows_generated == false:
-		arrows_generated = true
-		_create_arrows()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Generates a wave of enemies
 func _generate_wave():
 	Global.wave_counter += 1
+	Global.wave_time = 0.0
+	Global.enemy_count = 0 
+	
 	is_generating = true
 	arrows_generated = false
 	
@@ -79,7 +60,7 @@ func _generate_wave():
 		enemy_array.erase(enemy_array[rand_selection])
 	
 	#Spawn random enemies from new random list
-	for i in randi_range(minimum_enemies, maximum_enemies):
+	for enemy in range(minimum_enemies, maximum_enemies):
 		var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
 		var rand_postion = Global.rand_nav_mesh_point(ROOM_GENERATOR.current_room_mesh, 2, false) #Find random position
 		var new_enemy = Global.spawn_particle(rand_postion, self, SPAWN_ANIMATION) #Spawn enemy
@@ -87,7 +68,7 @@ func _generate_wave():
 		
 		await get_tree().create_timer(generating_delay, false).timeout #Await a small delay
 	
-	await get_tree().create_timer(2.5, false).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	
 	is_generating = false
 
