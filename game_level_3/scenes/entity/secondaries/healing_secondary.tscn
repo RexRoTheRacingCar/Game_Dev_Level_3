@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjikuqw3w5l2t"]
+
+[ext_resource type="Script" path="res://scripts/entity/secondaries/dmg_based_secondary.gd" id="1_0rwjf"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_8anow"]
+[ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="2_k8wva"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmtup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l23wf"]
+atlas = ExtResource("2_8anow")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tokfm"]
+
+[sub_resource type="Animation" id="Animation_4337r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/MainPulse:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/MainPulse:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/MainPulse:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.09, 1, 0.150667, 0.345098)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtboxComponent:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rsk3n"]
+resource_name = "healing_aura"
+length = 3.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/MainPulse:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.707106, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/MainPulse:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/MainPulse:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Color(0.09, 1, 0.150667, 0.345098), Color(0.09, 1, 0.150667, 0.345098), Color(0.09, 1, 0.150667, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtboxComponent:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 1, 1.025, 1.99517, 2.02017, 2.7, 3),
+"transitions": PackedFloat32Array(1, 0, 0.450625, 0, 0.5, 2, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4, 4), Vector2(0, 0), Vector2(7, 7), Vector2(0, 0), Vector2(9, 9), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l0t0s"]
+_data = {
+"RESET": SubResource("Animation_4337r"),
+"healing_aura": SubResource("Animation_rsk3n")
+}
+
+[node name="HealingSecondary" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox")]
+z_index = -1
+y_sort_enabled = true
+script = ExtResource("1_0rwjf")
+hurtbox = NodePath("HurtboxComponent")
+default_power = -5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("RectangleShape2D_kmtup")
+disabled = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+scale = Vector2(1, 0.5)
+
+[node name="MainPulse" type="Sprite2D" parent="CanvasGroup"]
+self_modulate = Color(0.09, 1, 0.150667, 0.345098)
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_l23wf")
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("2_k8wva")]
+collision_layer = 2
+collision_mask = 0
+hurt_damage = -5
+knockback_type = "center"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_tokfm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l0t0s")
+}
+autoplay = "healing_aura"

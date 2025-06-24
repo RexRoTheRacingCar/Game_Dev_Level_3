@@ -158,8 +158,12 @@ func secondary_manage(delta):
 func player_hit_signalled(hurtbox: HurtboxComponent):
 	if p_consecutive_dash == 0:
 		#Calculate damage based on damage resistance (Damage resistance is a float while hurt damage is an int)
-		@warning_ignore("narrowing_conversion")
-		P_HEALTH_COMPONENT.health -= hurtbox.hurt_damage / p_damage_resistance
+		var dmg = hurtbox.hurt_damage
+		if dmg > 0:
+			@warning_ignore("narrowing_conversion")
+			dmg /= p_damage_resistance
+		
+		P_HEALTH_COMPONENT.health -= dmg
 		
 		#Apply knockback to self
 		if hurtbox.knockback_type == "center": 
@@ -177,8 +181,9 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		Camera.apply_camera_shake(16.0)
 		Global.hit_stop(0.075)
 		
-		var new_flash = PLAYER_HIT_FLASH.instantiate()
-		self.add_child(new_flash)
+		if hurtbox.hurt_damage / p_damage_resistance > 0:
+			var new_flash = PLAYER_HIT_FLASH.instantiate()
+			self.add_child(new_flash)
 		
 		$PlaceholderSprite2D.self_modulate = Color("ff2121")
 		await get_tree().create_timer(0.9, false).timeout
