@@ -13,12 +13,12 @@
 [sub_resource type="Resource" id="Resource_8tu7n"]
 script = ExtResource("4_7krut")
 secondary_attack = ExtResource("6_ct5ks")
-cooldown = 6.0
-charge_time = 3.0
+cooldown = 8.0
+charge_time = 1.2
 spawn_location_type = 2
 shake_on_use = 0.0
 scale_based = true
-max_scale = 2.0
+max_scale = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")

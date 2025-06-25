@@ -176,16 +176,24 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		p_knockback_taken *= hurtbox.hurt_knockback
 		
 		P_HITBOX_COMPONENT.is_hit = true
-		P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay)
 		
-		Camera.apply_camera_shake(16.0)
-		Global.hit_stop(0.075)
-		
+		#If take more than 0 damage
 		if hurtbox.hurt_damage / p_damage_resistance > 0:
+			P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay)
+			
 			var new_flash = PLAYER_HIT_FLASH.instantiate()
 			self.add_child(new_flash)
+			
+			Camera.apply_camera_shake(16.0)
+			Global.hit_stop(0.075)
+			$PlaceholderSprite2D.self_modulate = Color("ff2121")
 		
-		$PlaceholderSprite2D.self_modulate = Color("ff2121")
+		#If player was healed
+		else:
+			P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay / 5)
+			$PlaceholderSprite2D.self_modulate = Color("00FF00")
+		
+		
 		await get_tree().create_timer(0.9, false).timeout
 		$PlaceholderSprite2D.self_modulate = Color("ffffff")
 		

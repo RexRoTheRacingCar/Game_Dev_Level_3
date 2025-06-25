@@ -62,11 +62,23 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtboxComponent:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rsk3n"]
 resource_name = "healing_aura"
 length = 3.0
-step = 0.025
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +122,10 @@ tracks/3/path = NodePath("HurtboxComponent:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.05, 1, 1.025, 1.99517, 2.02017, 2.7, 3),
-"transitions": PackedFloat32Array(1, 0, 0.450625, 0, 0.5, 2, 2),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.707106, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(4, 4), Vector2(0, 0), Vector2(7, 7), Vector2(0, 0), Vector2(9, 9), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(9, 9)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -128,6 +140,18 @@ tracks/4/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtboxComponent:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l0t0s"]
@@ -160,7 +184,7 @@ texture = SubResource("AtlasTexture_l23wf")
 [node name="HurtboxComponent" parent="." instance=ExtResource("2_k8wva")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = -5
+hurt_damage = -3
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
