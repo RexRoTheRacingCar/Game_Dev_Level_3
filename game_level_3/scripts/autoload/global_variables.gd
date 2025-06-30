@@ -15,7 +15,6 @@ var current_main_scene : String :
 				Camera.shake_amount = 0
 				Global.player_position = Vector2.ZERO
 
-
 var enemy_count : int
 var enemy_wave : bool
 var wave_time : float
@@ -25,6 +24,8 @@ var active_enemy_array : Array
 
 var global_map
 var destructable_layer : TileMapLayer
+
+var game_timer : float = 0.0
 
 var hidden_chance : float = 0.925 #Range from 0.0 to 1.0
 
@@ -74,8 +75,9 @@ func get_rarity(rarities : Dictionary):
 	var total = 0
 	for i in rarities: #Total rarity values
 		total += rarities[i]
-		
-	var randfloat = randf() * total #Random float from 0.0 to 1.0 multiplied by the total
+	
+	#Random float from 0.0 to 1.0 multiplied by the total
+	var randfloat = randf() * total
 	
 	for i in rarities:
 		if randfloat < rarities[i]:
@@ -91,6 +93,26 @@ func hit_stop(stop_time : float):
 	Engine.time_scale = 1
 
 
+#Finds a random point on a NavMesh on a spesific layer
 #---------------------------------------------------------------------------------------------------------------------------
 func rand_nav_mesh_point(nav_map, layer : int, uniform : bool) -> Vector2:
 	return NavigationServer2D.map_get_random_point(nav_map, layer, uniform)
+
+
+#Returns the closest point to a NavMesh from a certain target point
+#---------------------------------------------------------------------------------------------------------------------------
+func get_nav_mesh_point(nav_map, target_point : Vector2, min_dist_from_edge : float) -> Vector2:
+	var closest_point := NavigationServer2D.map_get_closest_point(nav_map, target_point)
+	var delta := closest_point - target_point
+	var is_on_map = delta.is_zero_approx()
+	#If it wasn't on the map, push towards map
+	if not is_on_map and min_dist_from_edge > 0:
+		delta = delta.normalized()
+		closest_point += delta * min_dist_from_edge
+	return closest_point
+
+
+#Weighted lerp function to account for delta time
+#---------------------------------------------------------------------------------------------------------------------------
+func weighted_lerp(weight : float, delta : float) -> float:
+	return 1.0 - exp(-weight * delta)

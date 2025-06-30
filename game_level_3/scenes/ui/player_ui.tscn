@@ -22,13 +22,14 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 atlas = ExtResource("2_6yvmt")
 region = Rect2(0, 200, 100, 100)
 
-[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("player_hp", "player_health_bar", "coins", "bullets")]
+[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("player_hp", "player_health_bar", "coins", "bullets", "game_time")]
 follow_viewport_enabled = true
 script = ExtResource("1_cms01")
 player_hp = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomHSplit/HSplit1/PlayerHP")
 player_health_bar = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomHSplit/PlayerHealthBar")
 coins = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomHSplit/HSplit1/HSplit2/Coins")
 bullets = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomHSplit2/Bullets")
+game_time = NodePath("MainControl/UIMargin/TopHBox/GameTime")
 
 [node name="MainControl" type="Control" parent="."]
 layout_mode = 3
@@ -130,3 +131,17 @@ size_flags_vertical = 8
 texture = SubResource("AtlasTexture_cbw1i")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="TopHBox" type="HBoxContainer" parent="MainControl/UIMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="GameTime" type="Label" parent="MainControl/UIMargin/TopHBox"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Game Time"
+horizontal_alignment = 2

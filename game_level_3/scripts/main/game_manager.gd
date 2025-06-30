@@ -50,14 +50,12 @@ func _generate_wave():
 	var generating_delay = (randf_range(0.1, 1.0) ** 6) + 0.1
 	
 	var enemy_variance = randi_range(0, ENEMY_SCENE_LIST.room_array.size() - 1)
-	var enemy_array : Array = []
-	
-	enemy_array.append_array(ENEMY_SCENE_LIST.room_array)
+	var enemy_array : Array = ENEMY_SCENE_LIST.room_array.duplicate()
 	
 	#Select random enemies from enemy array and add them to new array
 	for _i in randi_range(0, enemy_variance):
 		var rand_selection = randi_range(0, enemy_array.size() - 1)
-		enemy_array.erase(enemy_array[rand_selection])
+		enemy_array.remove_at(rand_selection)
 	
 	#Spawn random enemies from new random list
 	for enemy in range(minimum_enemies, maximum_enemies):

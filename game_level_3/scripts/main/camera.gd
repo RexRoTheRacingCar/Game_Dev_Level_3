@@ -3,9 +3,9 @@ extends Camera2D
 
 
 #Camera shake variables
-const shake_fade_rate : float = 0.25
-const shake_multiplier : float = 1.0
-const max_shake : float = 35.0
+const SHAKE_FADE_RATE : float = 15.0
+const SHAKE_MULTIPLIER : float = 1.0
+const MAX_SHAKE : float = 35.0
 var shake_amount : float = 0.0
 @onready var zoom_amount : float = 1
 
@@ -17,10 +17,10 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _process(_delta):
+func _process(delta):
 	#Camera shake
-	shake_amount = clamp(lerp(shake_amount, 0.0, shake_fade_rate), 0.0, max_shake * shake_multiplier)
-	offset = lerp(offset, get_random_offset(), 0.875)
+	shake_amount = clamp(lerp(shake_amount, 0.0, Global.weighted_lerp(SHAKE_FADE_RATE, delta)), 0.0, MAX_SHAKE * SHAKE_MULTIPLIER)
+	offset = lerp(offset, get_random_offset(), Global.weighted_lerp(30, delta))
 	
 	global_position = Global.player_position
 
@@ -28,7 +28,7 @@ func _process(_delta):
 #---------------------------------------------------------------------------------------------------------------------------
 #Global shake function applied to camera from other scripts
 func apply_camera_shake(shake_strength : float):
-	shake_amount += shake_strength * shake_multiplier
+	shake_amount += shake_strength * SHAKE_MULTIPLIER
 
 
 #---------------------------------------------------------------------------------------------------------------------------

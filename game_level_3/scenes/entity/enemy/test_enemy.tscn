@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="5_v15ek"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="6_hqwr3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j80aj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_eb74s"]
+radius = 11.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuko5"]
 resource_local_to_scene = true
@@ -25,11 +26,11 @@ bg_color = Color(1, 0, 0.105882, 1)
 corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vpbxh"]
-radius = 11.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwd6q"]
+radius = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i161s"]
-radius = 11.0454
+[sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -104,7 +105,7 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_j80aj")
+shape = SubResource("CircleShape2D_eb74s")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -144,7 +145,7 @@ single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_vpbxh")
+shape = SubResource("CircleShape2D_mwd6q")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_v15ek")]
 collision_layer = 2
@@ -155,7 +156,7 @@ knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_i161s")
+shape = SubResource("CircleShape2D_icdur")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
 position = Vector2(0, 0.999998)

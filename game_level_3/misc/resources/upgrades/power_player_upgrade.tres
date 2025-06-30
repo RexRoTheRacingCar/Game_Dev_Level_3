@@ -10,7 +10,7 @@ region = Rect2(600, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_vbidg")
-player_mult_increase = 0.15
+player_mult_increase = 0.25
 item_name = "Power"
 rarity = "Common"
 item_type = ExtResource("1_8plok")

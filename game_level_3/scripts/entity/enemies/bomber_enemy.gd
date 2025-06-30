@@ -36,13 +36,13 @@ func _physics_process(delta: float) -> void:
 			target_pos = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 			can_navigate = false
 		
-		_navigation_check(target_pos, 0.35, 0.7)
+		_navigation_check(target_pos, min_nav_time, max_nav_time)
 		
 		if can_navigate == true:
 			#Navigate to random point
 			velocity = lerp(Vector2(
 				velocity.x, velocity.y * 2), 
-				current_agent_position.direction_to(next_path_position) * speed, 0.1
+				current_agent_position.direction_to(next_path_position) * speed, Global.weighted_lerp(9, delta)
 				)
 			
 			velocity.y /= 2

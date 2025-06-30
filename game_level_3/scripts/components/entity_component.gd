@@ -13,6 +13,8 @@ class_name Entity
 @export_group("Navigation")
 @export var navigation_agent : NavigationAgent2D
 @export var nav_timer : Timer
+@export var min_nav_time : float = 0.3
+@export var max_nav_time : float = 0.7
 var can_navigate : bool = false
 var current_agent_position : Vector2
 var next_path_position

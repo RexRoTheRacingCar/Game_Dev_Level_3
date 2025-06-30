@@ -65,7 +65,6 @@ func _ready():
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
-		await get_tree().physics_frame
 		hurtbox.monitoring = true
 
 
@@ -89,9 +88,7 @@ func _load_starter_values():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _bullet_velocity() -> Vector2:
-	var dir = Vector2.RIGHT.rotated(rotation)
-	
-	fake_velocity = dir * speed 
+	fake_velocity = Vector2.RIGHT.rotated(rotation) * speed 
 	return Vector2(
 		fake_velocity.x, 
 		fake_velocity.y / 2

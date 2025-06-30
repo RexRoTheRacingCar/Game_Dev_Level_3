@@ -29,8 +29,8 @@ func _ready():
 	progress_bar.value = charge_progress
 	
 	sprite_2d.texture = current_secondary.secondary_outline
-	sprite_2d.visible = false
-	
+	sprite_2d.visible = true
+	sprite_2d.self_modulate = Color(1, 1, 1, 0)
 	sprite_2d.scale = Vector2(0, 0)
 
 
@@ -38,11 +38,14 @@ func _ready():
 func secondary_controls(delta : float):
 	is_charging = false
 	
+	if Input.is_action_just_pressed("secondary_attack") and cooldown_active == false:
+		sprite_2d.scale = Vector2(0, 0)
+	
 	#Secondary charge up
 	if Input.is_action_pressed("secondary_attack") and cooldown_active == false:
 		progress = charge_progress / current_secondary.charge_time
 		
-		sprite_2d.visible = true
+		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0.6), Global.weighted_lerp(2, delta))
 		sprite_2d.global_position = _get_position_type()
 		sprite_2d.rotation_degrees += (120 * progress) * delta
 		sprite_2d.scale = PlayerUpgradeStats.power_mult * progress * Vector2(current_secondary.max_scale, current_secondary.max_scale)
@@ -57,8 +60,7 @@ func secondary_controls(delta : float):
 		is_charging = true
 		
 	else:
-		sprite_2d.visible = false
-		sprite_2d.scale = Vector2(0, 0)
+		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(12, delta))
 		
 		charge_progress -= 0.5 * delta
 		charge_progress = clamp(charge_progress, 0.0, current_secondary.charge_time)

@@ -1,8 +1,9 @@
-############################## Test Enemy ##############################
+############################## Weak Enemy ##############################
 extends Entity
 
-#A test enemy to figure out how I'm going to implement enemies
-@export var speed : float = 250.0
+#Similar to Test Enemy 
+@export var speed : float = 400.0
+const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 			#Navigate to player
 			velocity = lerp(Vector2(
 				velocity.x, velocity.y * 2), 
-				current_agent_position.direction_to(next_path_position) * speed, Global.weighted_lerp(9, delta)
+				current_agent_position.direction_to(next_path_position) * speed, Global.weighted_lerp(4, delta)
 				)
 			
 			velocity.y /= 2
@@ -31,4 +32,9 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	#Spawn dust particles on death
+	var new_scene = spawn_scene(DUST_SCENE, get_tree().root.get_node("/root/Game/"))
+	new_scene.global_position = global_position
+	new_scene.modulate = Color(0, 0, 0)
+	
 	queue_free()

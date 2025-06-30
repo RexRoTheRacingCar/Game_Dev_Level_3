@@ -35,7 +35,7 @@ func _ready():
 func _physics_process(delta) -> void:
 	#If Area Of Sight returns with a target
 	if area_of_sight.target != null:
-		_navigation_check(Global.player_position, 0.35, 0.7)
+		_navigation_check(Global.player_position, min_nav_time, max_nav_time)
 		
 		match state: #Exploding enemy code based state machine
 			PURSUIT:
@@ -45,13 +45,13 @@ func _physics_process(delta) -> void:
 					#Navigate to player
 					velocity = lerp(Vector2(
 						velocity.x, velocity.y * 2), 
-						current_agent_position.direction_to(next_path_position) * speed, 0.1
+						current_agent_position.direction_to(next_path_position) * speed, Global.weighted_lerp(5, delta)
 						)
 			
 			DIVING:
 				#Dive in front of player
 				velocity = Vector2.RIGHT.rotated(dir_1) * speed
-				speed = lerp(speed, 0.0, 0.05)
+				speed = lerp(speed, 0.0, Global.weighted_lerp(8, delta))
 				
 				explode_time += delta
 				if explode_time > 0.6 and exploded == false:
@@ -79,7 +79,7 @@ func no_health():
 	#Create explosion when leaving the scene (on death)
 	_instantiate_explosion(0, 0, 4)
 	for i in range(1, 3):
-		await get_tree().create_timer(0.2, false).timeout
+		await get_tree().create_timer(0.23, false).timeout
 		
 		for d in range(0, 3): 
 			_instantiate_explosion(i, d, 3) 
@@ -93,11 +93,11 @@ func _instantiate_explosion(i, d, am):
 	#Update explosion values
 	new_explosion.visible = true
 	var explode_dir = (((2 * PI) / am) * d) + dir_1
-	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 180 * i)
+	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 175 * i)
 	new_explosion.global_position = global_position + Vector2(postion_correction.x, postion_correction.y / 2)
 	new_explosion.rotation = 0
 	new_explosion.default_power = 19
-	new_explosion.power_mult = 0.55
+	new_explosion.power_mult = 0.5
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_explosion)
 	

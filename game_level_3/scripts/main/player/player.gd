@@ -108,7 +108,7 @@ func _physics_process(delta):
 	velocity.y /= 2 #Make velocity isometric
 	var _error = move_and_slide()
 	
-	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, 0.075)
+	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, Global.weighted_lerp(5, delta))
 	
 	
 	#Global Variable Management

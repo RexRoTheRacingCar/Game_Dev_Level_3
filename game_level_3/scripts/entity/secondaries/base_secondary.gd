@@ -6,6 +6,8 @@ class_name BaseSecondary
 @export var power_mult : float = 1.0
 var power : float = 0.0
 
+@export var anim_player : AnimationPlayer
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _apply_mult():
 	power = default_power * PlayerUpgradeStats.power_mult

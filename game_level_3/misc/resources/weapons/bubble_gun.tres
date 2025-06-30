@@ -13,6 +13,7 @@ default_reload_time = 2.0
 default_max_ammo = 48
 default_bullet = ExtResource("1_jhwdv")
 camera_shake = 2.0
+item_name = ""
 rarity = ""
 item_cost = 10
 upgrade_type = ""
