@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=12 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
@@ -6,25 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
 [ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_lo2ak"]
-[ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="4_7krut"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
-[ext_resource type="PackedScene" uid="uid://cjikuqw3w5l2t" path="res://scenes/entity/secondaries/healing_secondary.tscn" id="6_ct5ks"]
-[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="7_s4isl"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fcka3"]
-atlas = ExtResource("7_s4isl")
-region = Rect2(400, 200, 200, 200)
-
-[sub_resource type="Resource" id="Resource_8tu7n"]
-script = ExtResource("4_7krut")
-secondary_attack = ExtResource("6_ct5ks")
-secondary_outline = SubResource("AtlasTexture_fcka3")
-cooldown = 8.0
-charge_time = 1.75
-spawn_location_type = 2
-shake_on_use = 0.0
-scale_based = true
-max_scale = 4.0
+[ext_resource type="Resource" uid="uid://pmgh1c8hse5n" path="res://misc/resources/secondaries/pulse_secondary.tres" id="5_ic5a4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
@@ -54,7 +37,7 @@ P_FRICTION = 25000
 current_weapon = ExtResource("3_lo2ak")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
-current_secondary = SubResource("Resource_8tu7n")
+current_secondary = ExtResource("5_ic5a4")
 
 [node name="DashTimer" type="Timer" parent="."]
 

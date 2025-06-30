@@ -61,13 +61,13 @@ func _physics_process(delta: float) -> void:
 		if can_navigate == true:
 			match state:
 				PURSUIT: #Pursuing the player, not charging
-					speed = lerp(speed, target_speed, Global.weighted_lerp(20, delta))
+					speed = lerp(speed, target_speed, Global.weighted_lerp(16, delta))
 					
 					#Navigate to player
 					velocity = lerp(Vector2(
 						velocity.x, velocity.y * 2), 
 						current_agent_position.direction_to(next_path_position) * speed, 
-						Global.weighted_lerp(3, delta)
+						Global.weighted_lerp(6, delta)
 						)
 						
 					if detecting == true and line_of_sight.target_check(Global.player_position - global_position, global_position) == true:
@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 					
 					timer += delta
 					
-					speed = lerp(speed, target_speed, Global.weighted_lerp(24, delta))
+					speed = lerp(speed, target_speed, Global.weighted_lerp(4, delta))
 					target_speed += CHARGE_SPEED * delta
 					target_speed = clamp(target_speed, 0, CHARGE_SPEED)
 					
@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 						can_navigate = false
 						
 					
-					speed = lerp(speed, target_speed, Global.weighted_lerp(18, delta))
+					speed = lerp(speed, target_speed, Global.weighted_lerp(17, delta))
 					
 					velocity = Vector2(dir * speed)
 			

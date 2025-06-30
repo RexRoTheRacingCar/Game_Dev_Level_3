@@ -87,8 +87,8 @@ func _special_move(_delta : float):
 		var old_pos : Vector2 = global_position
 		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 		global_position = new_pos
-		_spawn_magic_explosion(old_pos)
-		_spawn_magic_explosion(new_pos)
+		_spawn_magic_explosion(old_pos, false)
+		_spawn_magic_explosion(new_pos, false)
 	
 	else:
 		#SUMMON PREP
@@ -121,11 +121,12 @@ func _special_move(_delta : float):
 #---------------------------------------------------------------------------------------------------------------------------
 func enemy_summon():
 	#Summon Enemies
-	var amt : int = 3
+	var amt : int = 4
 	var rand = randf() * 2 * PI
 
 	for enemy in range(0, amt):
-		var target : Vector2 = global_position + (Vector2.RIGHT.rotated((((2 * PI) / amt) * enemy) + rand) * 75)
+		var target : Vector2 = Vector2.RIGHT.rotated((((2 * PI) / amt) * enemy) + rand) * 75
+		target = global_position + Vector2(target.x, target.y / 2)
 		var spawn_pos = Global.get_nav_mesh_point(Global.global_map, target, 16.0)
 		#Enemy
 		var new_enemy = spawn_scene(WEAK_ENEMY, get_tree().root.get_node("/root/Game/"))
@@ -137,14 +138,15 @@ func enemy_summon():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _spawn_magic_explosion(pos : Vector2):
+func _spawn_magic_explosion(pos : Vector2, damage : bool):
 	var new_explosion = spawn_scene(EXPLOSION, get_tree().root.get_node("/root/Game/"))
 	new_explosion.global_position = pos
 	new_explosion.power_mult = 0.7
 	new_explosion.modulate = Color(0.13, 1.0, 0.54)
 	new_explosion.anim_player.speed_scale = 0.35
-	new_explosion.hurtbox.set_collision_layer_value(2, false)
-	new_explosion.hurtbox.set_collision_layer_value(4, false)
+	if damage == false:
+		new_explosion.hurtbox.set_collision_layer_value(2, false)
+		new_explosion.hurtbox.set_collision_layer_value(4, false)
 	
 	return new_explosion
 
@@ -158,4 +160,7 @@ func hit_signalled(hurtbox : HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	
+	_spawn_magic_explosion(global_position, true)
+	
 	queue_free()

@@ -60,7 +60,7 @@ func secondary_controls(delta : float):
 		is_charging = true
 		
 	else:
-		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(12, delta))
+		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(25, delta))
 		
 		charge_progress -= 0.5 * delta
 		charge_progress = clamp(charge_progress, 0.0, current_secondary.charge_time)

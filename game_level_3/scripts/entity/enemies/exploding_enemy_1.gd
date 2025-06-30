@@ -93,10 +93,10 @@ func _instantiate_explosion(i, d, am):
 	#Update explosion values
 	new_explosion.visible = true
 	var explode_dir = (((2 * PI) / am) * d) + dir_1
-	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 175 * i)
+	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 170 * i)
 	new_explosion.global_position = global_position + Vector2(postion_correction.x, postion_correction.y / 2)
 	new_explosion.rotation = 0
-	new_explosion.default_power = 19
+	new_explosion.default_power = 18
 	new_explosion.power_mult = 0.5
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_explosion)

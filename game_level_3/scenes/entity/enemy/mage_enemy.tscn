@@ -71,7 +71,7 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="MageEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="MageEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
@@ -84,6 +84,7 @@ special_max = 14.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
+hit_flash_anim = NodePath("HitFlashAnimationPlayer")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 max_nav_time = 0.8
@@ -92,7 +93,7 @@ knockback_resistance = 0.9
 shake_on_hit = 3.5
 shake_on_death = 10.0
 coin_min = 4
-coin_max = 6
+coin_max = 5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
