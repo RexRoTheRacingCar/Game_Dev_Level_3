@@ -17,6 +17,7 @@ var special_active : bool
 const WEAK_ENEMY = preload("res://scenes/entity/enemy/weak_enemy.tscn")
 const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
+const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
 
 @onready var sprite = $Sprite2D
 
@@ -73,19 +74,24 @@ func _special_move(_delta : float):
 	@warning_ignore("integer_division")
 	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= health_component.max_health / 2)):
 		#TELEPORT PREP
+		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
+		var teleport_1 = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
+		teleport_1.global_position = global_position
+		teleport_1.modulate = Color(0.108, 0.83, 0.637)
+		var teleport_2 = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
+		teleport_2.global_position = new_pos
+		teleport_2.modulate = Color(0.108, 0.83, 0.637)
 		
 		sprite.texture.region = Rect2(200, 0, 100, 100)
 		
 		var sprite_tween_1 = create_tween()
 		sprite_tween_1.tween_property(sprite, "modulate", Color(0, 0.6, 0.45), TWEEN_TIME / 2).from_current()
-		
 		hurtbox_component.set_collision_layer_value(2, false)
 		
 		await get_tree().create_timer(TWEEN_TIME, false).timeout
 		
 		#THE TELEPORT & EXPLOSION
 		var old_pos : Vector2 = global_position
-		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 		global_position = new_pos
 		_spawn_magic_explosion(old_pos, false)
 		_spawn_magic_explosion(new_pos, false)
@@ -96,6 +102,9 @@ func _special_move(_delta : float):
 		
 		var sprite_tween_1 = create_tween()
 		sprite_tween_1.tween_property(sprite, "modulate", Color(0.75, 0.45, 0), TWEEN_TIME / 2).from_current()
+		var summon_effect = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
+		summon_effect.global_position = global_position
+		summon_effect.modulate = Color(0.83, 0.409, 0.108)
 		
 		#SUMMON
 		await get_tree().create_timer(TWEEN_TIME, false).timeout

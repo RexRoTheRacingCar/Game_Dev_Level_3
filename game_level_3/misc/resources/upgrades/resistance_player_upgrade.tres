@@ -14,6 +14,6 @@ player_resistance_increase = 0.2
 item_name = "Resistance"
 rarity = "Epic"
 item_type = ExtResource("1_f1yx4")
-item_cost = 20
+item_cost = 15
 texture = SubResource("AtlasTexture_457sk")
 upgrade_type = "p_upgrades"
