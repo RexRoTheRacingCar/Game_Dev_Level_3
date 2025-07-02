@@ -79,7 +79,8 @@ func _physics_process(delta: float) -> void:
 				CHARGING:
 					if is_charging == false:
 						is_charging = true
-						dir = global_position.direction_to(Global.player_position + (Global.player_velocity * delta))
+						var dist = global_position.distance_to(Global.player_position)
+						dir = global_position.direction_to(Global.player_position + Global.player_velocity * (dist / CHARGE_SPEED))
 						velocity = Vector2.ZERO
 						
 						hurtbox_component.set_collision_layer_value(4, true)
@@ -106,7 +107,7 @@ func _physics_process(delta: float) -> void:
 					target_speed += CHARGE_SPEED * delta
 					target_speed = clamp(target_speed, 0, CHARGE_SPEED)
 					
-					velocity = Vector2(Vector2(dir.x, dir.y * 2) * speed)
+					velocity = Vector2(dir.x, dir.y * 2) * speed
 				
 				STUNNED:
 					if is_stunned == false:

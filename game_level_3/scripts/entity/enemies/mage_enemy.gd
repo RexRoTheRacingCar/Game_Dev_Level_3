@@ -3,6 +3,9 @@ extends Entity
 
 @export var speed : float = 150.0
 var max_speed : float = 150.0
+var circling_directon : float = 1.0
+var rand_move : float = 0.0
+var move_timer : float = 0.0
 
 @export_group("Special Variables")
 #Special Timing
@@ -30,18 +33,28 @@ func _ready():
 	special_active = false
 	
 	sprite.texture.region = Rect2(0, 0, 100, 100)
+	
+	if randf() >= 0.5: circling_directon = -1.0
+	rand_move = randf_range(-12.0, 12.0)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	special_timer += delta
+	move_timer += delta / 2.5
+	
 	if special_timer >= selected_time and special_active == false:
 		special_timer = 0.0
 		_special_move(delta)
 	
 	#If Area Of Sight returns with a target
 	if area_of_sight.target != null:
-		_navigation_check(Global.player_position, min_nav_time, max_nav_time)
+		#Circling the player navigation
+		if special_active == false:
+			var target_location : Vector2 = Vector2.RIGHT.rotated((2 * PI * circling_directon) + rand_move + move_timer) * 275
+			target_location = Global.player_position + Vector2(target_location.x, target_location.y / 2) 
+			target_location = Global.get_nav_mesh_point(Global.global_map, target_location, 5)
+			_navigation_check(target_location, min_nav_time, max_nav_time)
 		
 		if can_navigate == true:
 			#Navigate to player
@@ -163,7 +176,7 @@ func _spawn_magic_explosion(pos : Vector2, damage : bool):
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	special_timer += 3.5
+	special_timer += 4.5
 
 
 #---------------------------------------------------------------------------------------------------------------------------

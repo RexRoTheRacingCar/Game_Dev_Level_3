@@ -118,7 +118,7 @@ func player_shoot():
 		
 		#Apply upgrades to bullet
 		for upgrades in bullet_upgrade_array:
-				upgrades.apply_upgrade(bullet_instance)
+			upgrades.apply_upgrade(bullet_instance)
 		
 		bullet_instance.implement_stats()
 		bullet_instance.death_timer_node.start(bullet_instance.lifetime)

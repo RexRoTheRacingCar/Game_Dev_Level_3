@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SecondaryAbility" load_steps=5 format=3 uid="uid://bb0idptocjnwt"]
+
+[ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="1_hsxci"]
+[ext_resource type="PackedScene" uid="uid://csjvumawbopd5" path="res://scenes/entity/secondaries/turret_secondary.tscn" id="2_glaai"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_iscyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjqs0"]
+atlas = ExtResource("3_iscyd")
+region = Rect2(200, 300, 100, 100)
+
+[resource]
+script = ExtResource("1_hsxci")
+secondary_attack = ExtResource("2_glaai")
+secondary_outline = SubResource("AtlasTexture_sjqs0")
+cooldown = 12.5
+charge_time = 1.5
+max_charge_req = true
+spawn_location_type = 1
+shake_on_use = 0.0
+scale_based = false
+max_scale = 1.0

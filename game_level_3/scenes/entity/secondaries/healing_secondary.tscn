@@ -383,6 +383,7 @@ _data = {
 [node name="HealingSecondary" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player")]
 z_index = -1
 y_sort_enabled = true
+motion_mode = 1
 script = ExtResource("1_0rwjf")
 hurtbox = NodePath("HurtboxComponent")
 default_power = -1.0

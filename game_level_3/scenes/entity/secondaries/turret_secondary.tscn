@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://csjvumawbopd5"]
+
+[ext_resource type="Texture2D" uid="uid://cbel6epen134d" path="res://assets/art/entity/god_knows.png" id="1_cg1vb"]
+[ext_resource type="Script" path="res://scripts/entity/secondaries/turret_secondary.gd" id="1_kun16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_peele"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngm25"]
+radius = 600.0
+
+[node name="TurretSecondary" type="CharacterBody2D"]
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_kun16")
+shoot_time = 0.25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_peele")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.18, 1, 0.221, 1)
+position = Vector2(0.381897, 46.6905)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_cg1vb")
+offset = Vector2(0.381897, -46.6905)
+
+[node name="RangeArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea"]
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_ngm25")
+debug_color = Color(0.308347, 0.62, 0.2976, 0.243137)
+
+[node name="DeathTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 7.5
+autostart = true

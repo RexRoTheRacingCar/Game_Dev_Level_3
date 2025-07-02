@@ -507,6 +507,7 @@ _data = {
 z_index = -1
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
+motion_mode = 1
 script = ExtResource("1_g3giv")
 hurtbox = NodePath("HurtboxComponent")
 default_power = 25.0

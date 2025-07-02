@@ -8,6 +8,7 @@ var charge_progress : float = 0.0
 var is_charging : bool = false
 var is_outline : bool = false
 var outline_sprite : Sprite2D
+var can_spawn : bool
 var new_outline_sprite
 
 @export var progress_bar : ProgressBar
@@ -23,6 +24,7 @@ func _ready():
 	charge_progress = 0.0
 	is_charging = false
 	cooldown_active = false
+	can_spawn = false
 	
 	progress_bar.visible = false
 	progress_bar.max_value = current_secondary.charge_time
@@ -47,7 +49,7 @@ func secondary_controls(delta : float):
 		
 		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0.6), Global.weighted_lerp(2, delta))
 		sprite_2d.global_position = _get_position_type()
-		sprite_2d.rotation_degrees += (120 * progress) * delta
+		sprite_2d.rotation_degrees += (125 * progress) * delta
 		sprite_2d.scale = PlayerUpgradeStats.power_mult * progress * Vector2(current_secondary.max_scale, current_secondary.max_scale)
 		
 		#Update secondary charge and progress bar
@@ -60,6 +62,11 @@ func secondary_controls(delta : float):
 		is_charging = true
 		
 	else:
+		if charge_progress == current_secondary.charge_time and current_secondary.max_charge_req == true:
+			can_spawn = true
+		elif current_secondary.max_charge_req == true:
+			charge_progress = 0
+		
 		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(25, delta))
 		
 		charge_progress -= 0.5 * delta
@@ -67,9 +74,12 @@ func secondary_controls(delta : float):
 	
 	#Secondary button released. If cooldown progress = charge_time, spawn secondary ability
 	if Input.is_action_just_released("secondary_attack"):
-		#if charge_progress >= current_secondary.charge_time - current_secondary.charge_time / 12:
-		
-		if charge_progress > 0.0:
+		if (
+			(charge_progress > 0.0 and current_secondary.max_charge_req == false) or 
+			( current_secondary.max_charge_req == true and can_spawn == true)
+			):
+			can_spawn = false
+			
 			#Spawn secondary attack scene
 			var new_secondary = current_secondary.spawn_scene(current_secondary.secondary_attack, get_tree().root.get_node("/root/Game/"))
 			new_secondary.global_position = _get_position_type()
@@ -78,8 +88,10 @@ func secondary_controls(delta : float):
 			if current_secondary.scale_based == true:
 				new_secondary.scale = (progress) * Vector2(current_secondary.max_scale, current_secondary.max_scale)
 			
-			#Start cooldown timer
-			var cooldown_actual_time = current_secondary.cooldown * clamp(progress + 0.25, 0.0, 1.0)
+			#Cooldown 
+			var cooldown_actual_time : float = current_secondary.cooldown
+			if current_secondary.max_charge_req == false:
+				cooldown_actual_time *= clamp(progress + 0.25, 0.0, 1.0)
 			cooldown_timer.start(cooldown_actual_time)
 			cooldown_active = true
 			

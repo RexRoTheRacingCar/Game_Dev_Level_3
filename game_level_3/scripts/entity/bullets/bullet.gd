@@ -65,6 +65,7 @@ func _ready():
 		await get_tree().physics_frame
 		await get_tree().physics_frame
 		await get_tree().physics_frame
+		await get_tree().physics_frame
 		hurtbox.monitoring = true
 
 
