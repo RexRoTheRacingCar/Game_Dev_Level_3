@@ -6,11 +6,13 @@ var target_array : Array = []
 var target : Entity
 
 @onready var death_timer = %DeathTimer
+@export var can_shoot : bool = false
 @export var shoot_time : float = 1.0
 var timer : float = 0.0
 
 const BULLET = preload("res://scenes/entity/bullets/default_bullet.tscn")
-
+const LANDING_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
+const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -29,7 +31,7 @@ func _physics_process(delta):
 		timer += delta
 		
 		#Shoot when timer says so, reset timer afterwards
-		if timer >= shoot_time / ((power_mult + 1.0) / 2):
+		if timer >= shoot_time / ((power_mult + 1.0) / 2) and can_shoot == true:
 			timer = 0.0
 			_shoot_bullet()
 
@@ -86,7 +88,17 @@ func _shoot_bullet():
 #When death timer runs out, delete turret
 #---------------------------------------------------------------------------------------------------------------------------
 func turret_death():
+	crash_landed()
 	queue_free()
+
+
+#Turret has landed
+#---------------------------------------------------------------------------------------------------------------------------
+func crash_landed():
+	#Particle effects
+	var landing_particle = Global.spawn_particle(global_position, self, LANDING_PULSE)
+	landing_particle.scale *= 2
+	Global.spawn_particle(global_position, self, DUST_SCENE)
 
 
 #Enter & exit range

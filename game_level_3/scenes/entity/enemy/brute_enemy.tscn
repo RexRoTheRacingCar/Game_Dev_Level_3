@@ -151,9 +151,10 @@ randomness = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kx04d")
-position = Vector2(-2, -6)
+position = Vector2(-1, 29)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("7_rh1ok")
+offset = Vector2(-1.11111, -38.8889)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true

@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 					if is_charging == false:
 						is_charging = true
 						var dist = global_position.distance_to(Global.player_position)
-						dir = global_position.direction_to(Global.player_position + Global.player_velocity * (dist / CHARGE_SPEED))
+						dir = global_position.direction_to(Global.player_position + Global.player_velocity * (dist / (CHARGE_SPEED * 0.9)))
 						velocity = Vector2.ZERO
 						
 						hurtbox_component.set_collision_layer_value(4, true)

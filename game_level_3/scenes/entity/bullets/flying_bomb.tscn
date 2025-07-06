@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://vnkinv4wdsmk"]
+[gd_scene load_steps=12 format=3 uid="uid://vnkinv4wdsmk"]
 
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_djuu1"]
 [ext_resource type="Script" path="res://scripts/entity/bullets/flying_bomb.gd" id="2_r7u0f"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="3_8dahs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tr3t1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_obhy5"]
 atlas = ExtResource("1_djuu1")
 region = Rect2(0, 300, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7p6ou"]
-atlas = ExtResource("1_djuu1")
-region = Rect2(0, 300, 50, 50)
+atlas = ExtResource("3_8dahs")
+region = Rect2(0, 400, 200, 200)
 
 [sub_resource type="Gradient" id="Gradient_ddg6o"]
 offsets = PackedFloat32Array(0, 0.275, 1)
@@ -51,12 +52,11 @@ z_index = -1
 y_sort_enabled = true
 position = Vector2(0, 12)
 scale = Vector2(1, 0.5)
-texture = SubResource("AtlasTexture_tr3t1")
+texture = SubResource("AtlasTexture_obhy5")
 
 [node name="BombSprite" type="Sprite2D" parent="."]
-modulate = Color(1, 0.35, 0.360833, 1)
 y_sort_enabled = true
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.25, 0.25)
 texture = SubResource("AtlasTexture_7p6ou")
 
 [node name="AirbroneParticles" type="GPUParticles2D" parent="BombSprite"]

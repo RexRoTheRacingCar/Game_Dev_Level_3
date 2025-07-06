@@ -615,4 +615,5 @@ autoplay = "explode"
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -67.5)
 scale = Vector2(10.1333, 12.45)
+rect = Rect2(-8, -8, 16, 16)
 script = ExtResource("5_u3ima")

@@ -2,7 +2,6 @@
 extends Node2D
 class_name SecondaryController
 
-
 @export var current_secondary : SecondaryAbility
 var charge_progress : float = 0.0
 var is_charging : bool = false
@@ -62,10 +61,11 @@ func secondary_controls(delta : float):
 		is_charging = true
 		
 	else:
-		if charge_progress == current_secondary.charge_time and current_secondary.max_charge_req == true:
-			can_spawn = true
-		elif current_secondary.max_charge_req == true:
-			charge_progress = 0
+		if current_secondary.max_charge_req == true:
+			if charge_progress >= current_secondary.charge_time - current_secondary.charge_time / 10:
+				can_spawn = true
+			else:
+				charge_progress = 0
 		
 		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(25, delta))
 		
@@ -76,7 +76,7 @@ func secondary_controls(delta : float):
 	if Input.is_action_just_released("secondary_attack"):
 		if (
 			(charge_progress > 0.0 and current_secondary.max_charge_req == false) or 
-			( current_secondary.max_charge_req == true and can_spawn == true)
+			(current_secondary.max_charge_req == true and can_spawn == true)
 			):
 			can_spawn = false
 			
@@ -103,7 +103,10 @@ func secondary_controls(delta : float):
 			
 			if cooldown_active == false:
 				progress_bar.visible = false
-			
+		
+		elif current_secondary.max_charge_req == true and can_spawn == false and cooldown_active == false:
+			progress_bar.visible = false
+		
 		charge_progress = 0
 		is_charging = false
 

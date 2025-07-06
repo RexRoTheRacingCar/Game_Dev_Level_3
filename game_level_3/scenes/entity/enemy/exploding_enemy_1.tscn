@@ -111,8 +111,9 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_s4tcs")
-position = Vector2(0, 5)
+position = Vector2(0, 12)
 texture = SubResource("AtlasTexture_1u4qc")
+offset = Vector2(0, -7)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ehx84")]
 health_bar = NodePath("ProgressBar")

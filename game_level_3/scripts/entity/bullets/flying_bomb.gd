@@ -1,6 +1,7 @@
 ############################## Flying Bomb Projectile ##############################
 extends Node2D
 
+@export_group("Explosion Variables")
 @export var spawn_pos : Vector2
 @export var target_pos : Vector2
 @export var air_time : float
@@ -9,20 +10,32 @@ extends Node2D
 @export var warning_time : float
 @export var explosion_scale : Vector2
 
+@export_group("Misc")
+@export var bomb_texture : Texture2D
+@export var bomb_sprite_scale : Vector2
+
 @onready var bomb_sprite = $BombSprite
 @onready var bomb_shadow = $BombShadow
 @onready var airbrone_particles = $BombSprite/AirbroneParticles
 
 var distance : float
+var rand_flip : float
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Go to start position
 	global_position = spawn_pos
 	distance = spawn_pos.distance_to(target_pos)
+	
+	#Bomb sprite & Particles
 	bomb_sprite.z_index = 15
-	bomb_sprite.scale = Vector2(explosion_scale.x / 3, explosion_scale.x / 3)
+	if bomb_sprite_scale:
+		bomb_sprite.scale = bomb_sprite_scale
 	airbrone_particles.emitting = true
+	
+	rand_flip = randf_range(-1.0, 1.0)
+	bomb_sprite.rotation = rand_flip * 7
+	rand_flip /= abs(rand_flip)
 	
 	var v : float = 5.0 #v for variation
 	target_pos += Vector2(randf_range(distance / v, -distance / v), randf_range(distance / v, -distance / v) / 2)
@@ -63,4 +76,4 @@ func _ready():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
-	bomb_sprite.rotation += deg_to_rad(delta * 235)
+	bomb_sprite.rotation += deg_to_rad(delta * 275 * rand_flip)

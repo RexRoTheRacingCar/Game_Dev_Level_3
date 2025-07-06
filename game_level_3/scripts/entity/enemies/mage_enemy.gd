@@ -155,7 +155,7 @@ func enemy_summon():
 		new_enemy.global_position = spawn_pos
 		#Dust
 		var new_dust = spawn_scene(DUST_SCENE, get_tree().root.get_node("/root/Game/"))
-		new_dust.global_position = spawn_pos
+		new_dust.global_position = new_enemy.global_position
 		new_dust.modulate = Color(1, 0, 0)
 
 
