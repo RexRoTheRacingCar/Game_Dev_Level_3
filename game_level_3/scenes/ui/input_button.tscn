@@ -39,6 +39,7 @@ layout_mode = 2
 
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 mouse_filter = 1
 text = "Action Name"
 vertical_alignment = 1

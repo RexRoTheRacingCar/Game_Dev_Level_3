@@ -58,6 +58,10 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
+[node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Resume Game"
+
 [node name="KeybindsBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Controls"

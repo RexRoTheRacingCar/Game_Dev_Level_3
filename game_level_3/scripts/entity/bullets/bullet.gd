@@ -60,6 +60,9 @@ func _ready():
 	
 	call_deferred("_update_bullet")
 	
+	if particle:
+		particle.emitting = !GlobalSettings.limited_particles
+	
 	#Stop bullet collding with walls
 	if hurtbox: 
 		await get_tree().physics_frame

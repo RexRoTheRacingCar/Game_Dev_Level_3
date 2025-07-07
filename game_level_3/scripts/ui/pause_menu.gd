@@ -15,13 +15,16 @@ var is_paused := false :
 @onready var v_box_options = $PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer
 var all_buttons : Array = []
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	panel_container.visible = true
 	is_paused = false
 	input_settings_open = false
 	
-		#Loop connects all buttons and assigns button id bind
+	input_settings.connect("menu_closed", _force_menu_input)
+	
+	#Loop connects all buttons and assigns button id bind
 	all_buttons = v_box_options.get_children()
 	for button in range(0, all_buttons.size()):
 		all_buttons[button].pressed.connect(_button_pressed.bind(button))
@@ -41,13 +44,24 @@ func _unhandled_input(event): #Change pause status based on "pause" pressed
 #---------------------------------------------------------------------------------------------------------------------------
 func _button_pressed(btn_id : int):
 	match btn_id:
-		0: #Controls / Keybinds
+		0: #Resume Game
+			_force_menu_input()
+		
+		1: #Controls / Keybinds
 			input_settings_open = true
 			input_settings.visible = true
 			panel_container.visible = false
 		
-		1: #Settings
+		2: #Settings
 			var _new_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")
 			
-		2: #Quit Game
+		3: #Quit Game
 			get_tree().quit()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _force_menu_input():
+	var close_menu_event = InputEventAction.new()
+	close_menu_event.action = "esc"
+	close_menu_event.pressed = true
+	Input.parse_input_event(close_menu_event)

@@ -98,7 +98,10 @@ func crash_landed():
 	#Particle effects
 	var landing_particle = Global.spawn_particle(global_position, self, LANDING_PULSE)
 	landing_particle.scale *= 2
-	Global.spawn_particle(global_position, self, DUST_SCENE)
+	if GlobalSettings.limited_particles == false:
+		Global.spawn_particle(global_position, self, DUST_SCENE)
+	
+	Camera.apply_camera_shake(7)
 
 
 #Enter & exit range

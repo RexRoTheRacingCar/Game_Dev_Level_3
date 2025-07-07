@@ -7,6 +7,14 @@ class_name BaseSecondary
 var power : float = 0.0
 
 @export var anim_player : AnimationPlayer
+@export var particle_nodes : Array = []
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _particle_check():
+	if particle_nodes.is_empty() == false and GlobalSettings.limited_particles == true:
+		for emitter in particle_nodes.size():
+			particle_nodes[emitter].amount = round(particle_nodes[emitter].amount / 2)
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _apply_mult():

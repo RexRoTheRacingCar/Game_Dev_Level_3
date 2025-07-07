@@ -24,6 +24,7 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = health
+		health_bar.visible = GlobalSettings.show_health_bars
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ func _set_health(new_value : int) -> void:
 	#If there is a health barse
 	if health_bar:
 		health_bar.value = health
+		health_bar.visible = GlobalSettings.show_health_bars
 	
 	#If health is equal to or below 0
 	if health <= 0 and death_emitted == false:

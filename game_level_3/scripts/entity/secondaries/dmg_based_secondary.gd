@@ -7,6 +7,7 @@ class_name DamageBasedSecondary
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	_apply_mult()
+	_particle_check()
 	
 	if hurtbox:
 		hurtbox.hurt_damage = round(power)

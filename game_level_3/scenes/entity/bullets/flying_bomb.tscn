@@ -56,7 +56,7 @@ texture = SubResource("AtlasTexture_obhy5")
 
 [node name="BombSprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.22, 0.22)
 texture = SubResource("AtlasTexture_7p6ou")
 
 [node name="AirbroneParticles" type="GPUParticles2D" parent="BombSprite"]

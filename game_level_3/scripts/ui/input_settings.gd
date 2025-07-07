@@ -22,15 +22,26 @@ var input_actions = {
 	
 }
 
+@warning_ignore("unused_signal")
+signal menu_closed
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	_load_keybindings_from_settings()
 	_create_action_list()
+
+
+#Load keybindings from saved config file
+#---------------------------------------------------------------------------------------------------------------------------
+func _load_keybindings_from_settings():
+	var keybindings = ConfigFileHandler.load_keybindings()
+	for action in keybindings.keys():
+		InputMap.action_erase_events(action)
+		InputMap.action_add_event(action, keybindings[action])
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _create_action_list():
-	InputMap.load_from_project_settings()
 	#Clear current action list
 	for item in action_list.get_children(): 
 		item.queue_free()
@@ -82,6 +93,7 @@ func _input(event):
 			
 			InputMap.action_erase_events(action_to_remap)
 			InputMap.action_add_event(action_to_remap, event)
+			ConfigFileHandler.save_keybinding(action_to_remap, event)
 			_update_action_list(remapping_button, event)
 			
 			#Clear variable values
@@ -93,12 +105,25 @@ func _input(event):
 			accept_event()
 
 
-#---------------------------------------------------------------------------------------------------------------------------
 #Update remapped button text
+#---------------------------------------------------------------------------------------------------------------------------
 func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
 
 
+#Reset Keybindings back to Default
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_reset_button_pressed():
+	InputMap.load_from_project_settings()
+	for action in input_actions:
+		var events = InputMap.action_get_events(action)
+		if events.size() > 0:
+			ConfigFileHandler.save_keybinding(action, events[0])
+	
 	_create_action_list()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _on_close_menu_pressed():
+	visible = false
+	emit_signal("menu_closed")

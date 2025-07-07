@@ -17,7 +17,7 @@ region = Rect2(0, 0, 120, 120)
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u08x0"]
-radius = 19.0263
+radius = 21.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("P_WEAPON_CONTROLLER", "P_SECONDARY_CONTROLLER", "P_DASH_TIMER", "P_HITBOX_COMPONENT", "P_HEALTH_COMPONENT")]
 y_sort_enabled = true

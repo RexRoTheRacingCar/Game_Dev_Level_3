@@ -21,7 +21,7 @@ func _ready() -> void:
 	#Setup coin at spawn
 	target_hit = false
 	sprite.visible = true
-	particles.emitting = true
+	particles.emitting = !GlobalSettings.limited_particles
 	
 	randomize()
 	random_offset = randf_range(0.5, 2.0)

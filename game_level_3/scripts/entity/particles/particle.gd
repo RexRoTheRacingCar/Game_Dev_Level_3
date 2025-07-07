@@ -10,6 +10,10 @@ func _ready():
 	
 	if shake_on_start != 0.0:
 		Camera.apply_camera_shake(shake_on_start)
+	
+	if GlobalSettings.limited_particles == true:
+		@warning_ignore("integer_division")
+		amount = round(amount / 2)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

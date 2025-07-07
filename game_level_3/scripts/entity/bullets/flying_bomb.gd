@@ -31,7 +31,7 @@ func _ready():
 	bomb_sprite.z_index = 15
 	if bomb_sprite_scale:
 		bomb_sprite.scale = bomb_sprite_scale
-	airbrone_particles.emitting = true
+	airbrone_particles.emitting = !GlobalSettings.limited_particles
 	
 	rand_flip = randf_range(-1.0, 1.0)
 	bomb_sprite.rotation = rand_flip * 7

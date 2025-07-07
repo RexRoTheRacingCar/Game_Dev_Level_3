@@ -1,18 +1,5 @@
-############################## Game (Delete or Change Later) ##############################
+############################## Game Script ##############################
 extends Node2D
-
-const ENEMY := preload("res://scenes/entity/enemy/test_enemy.tscn")
-const EXPLODE_ENEMY := preload("res://scenes/entity/enemy/exploding_enemy_1.tscn")
-const BRUTE_ENEMY := preload("res://scenes/entity/enemy/brute_enemy.tscn")
-
-const SPAWN_ANIMATION = preload("res://scenes/entity/spawn_animation.tscn")
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-func _unhandled_input(event): #Change pause status based on "pause" pressed
-	if event.is_action_pressed("spawn_enemy"):
-		var spawn_anim = Global.spawn_particle(get_global_mouse_position(), $Player, SPAWN_ANIMATION)
-		spawn_anim.enemy_scene = BRUTE_ENEMY
 
 
 #---------------------------------------------------------------------------------------------------------------------------

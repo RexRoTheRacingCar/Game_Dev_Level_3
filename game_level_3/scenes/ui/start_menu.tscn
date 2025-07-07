@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://skhfik5dpup3"]
+[gd_scene load_steps=4 format=3 uid="uid://skhfik5dpup3"]
 
 [ext_resource type="Script" path="res://scripts/ui/start_menu.gd" id="1_ma0em"]
+[ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="2_q0vis"]
+[ext_resource type="PackedScene" uid="uid://7b3fdg50aw5p" path="res://scenes/ui/general_settings.tscn" id="2_xe85t"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -78,3 +80,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Quit Game"
+
+[node name="SettingsOptions" type="Node" parent="."]
+
+[node name="GeneralSettings" parent="SettingsOptions" instance=ExtResource("2_xe85t")]
+unique_name_in_owner = true
+visible = false
+
+[node name="InputSettings" parent="SettingsOptions" instance=ExtResource("2_q0vis")]
+unique_name_in_owner = true
+visible = false
