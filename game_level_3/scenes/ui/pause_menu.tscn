@@ -62,6 +62,10 @@ alignment = 1
 layout_mode = 2
 text = "Resume Game"
 
+[node name="GeneralBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
 [node name="KeybindsBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Controls"

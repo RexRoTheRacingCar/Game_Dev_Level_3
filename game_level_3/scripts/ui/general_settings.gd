@@ -16,6 +16,9 @@ extends Control
 #Misc
 @onready var screen_shake_label = %ScreenShakeLabel
 
+@warning_ignore("unused_signal")
+signal menu_closed
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	#Video Settings
@@ -54,6 +57,7 @@ func _update_global_settings():
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_close_menu_pressed():
 	visible = false
+	emit_signal("menu_closed")
 
 
 #Updating the parts of the game based on loaded in variables
