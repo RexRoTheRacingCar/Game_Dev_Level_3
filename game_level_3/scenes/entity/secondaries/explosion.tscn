@@ -574,7 +574,7 @@ lifetime = 1.8
 one_shot = true
 speed_scale = 1.2
 explosiveness = 0.95
-visibility_rect = Rect2(-125, -150, 250, 200)
+visibility_rect = Rect2(-500, -500, 1000, 1000)
 script = ExtResource("4_c41wv")
 
 [node name="SmokeParticle2" type="GPUParticles2D" parent="."]
@@ -589,7 +589,7 @@ lifetime = 2.0
 one_shot = true
 speed_scale = 1.1
 explosiveness = 0.95
-visibility_rect = Rect2(-125, -150, 250, 200)
+visibility_rect = Rect2(-500, -500, 1000, 1000)
 script = ExtResource("4_c41wv")
 
 [node name="FireParticle" type="GPUParticles2D" parent="."]
@@ -602,7 +602,7 @@ texture = SubResource("AtlasTexture_i8xdc")
 one_shot = true
 speed_scale = 1.2
 explosiveness = 0.95
-visibility_rect = Rect2(-125, -150, 250, 200)
+visibility_rect = Rect2(-500, -500, 1000, 1000)
 script = ExtResource("4_c41wv")
 shake_on_start = 25.0
 
@@ -612,8 +612,8 @@ libraries = {
 }
 autoplay = "explode"
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -67.5)
-scale = Vector2(10.1333, 12.45)
+scale = Vector2(25.6667, 31.2292)
 rect = Rect2(-8, -8, 16, 16)
 script = ExtResource("5_u3ima")
