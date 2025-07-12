@@ -1,37 +1,36 @@
-[gd_scene load_steps=17 format=3 uid="uid://d4lobqmm5y1pg"]
+[gd_scene load_steps=17 format=3 uid="uid://cnjv474qy6xes"]
 
-[ext_resource type="Script" path="res://scripts/entity/enemies/mage_enemy.gd" id="1_e3g0r"]
-[ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_ecwjj"]
-[ext_resource type="Texture2D" uid="uid://buumwfefiftfg" path="res://assets/art/entity/summoner.png" id="3_diolv"]
-[ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="4_t6fs5"]
-[ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="5_gan6n"]
-[ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="6_nif14"]
-[ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="7_v0aed"]
+[ext_resource type="Script" path="res://scripts/entity/enemies/test_enemy.gd" id="1_1srgs"]
+[ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_mqdo4"]
+[ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="3_c1lqa"]
+[ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="4_hgpeq"]
+[ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="5_gnyq7"]
+[ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="6_nd1ox"]
+[ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="7_rx3ke"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j80aj"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_eb74s"]
+radius = 11.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuko5"]
 resource_local_to_scene = true
-shader = ExtResource("2_ecwjj")
+shader = ExtResource("2_mqdo4")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i7g43"]
-resource_local_to_scene = true
-atlas = ExtResource("3_diolv")
-region = Rect2(0, 0, 100, 100)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkib"]
+atlas = ExtResource("3_c1lqa")
+region = Rect2(0, 0, 50, 50)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qshim"]
 bg_color = Color(1, 0, 0.105882, 1)
 corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w156p"]
-radius = 19.0263
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwd6q"]
+radius = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v3h61"]
-radius = 18.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -71,30 +70,21 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="MageEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_e3g0r")
-speed = 190.0
-special_min = 9.0
-special_max = 15.0
-special_distance = 250.0
+script = ExtResource("1_1srgs")
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
-max_nav_time = 0.4
 area_of_sight = NodePath("AreaOfSight")
-knockback_resistance = 0.9
-shake_on_hit = 3.5
-shake_on_death = 10.0
-coin_min = 4
-coin_max = 5
+shake_on_hit = 1.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
@@ -114,21 +104,20 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_j80aj")
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_eb74s")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_tuko5")
-position = Vector2(1, 25)
-scale = Vector2(1.14, 1.14)
-texture = SubResource("AtlasTexture_i7g43")
-offset = Vector2(-0.877193, -21.9298)
+position = Vector2(0, 11)
+texture = SubResource("AtlasTexture_kgkib")
+offset = Vector2(0, -11)
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_t6fs5")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_hgpeq")]
 health_bar = NodePath("ProgressBar")
-max_health = 32
+max_health = 25
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -139,26 +128,26 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -31.0
-offset_top = -42.0
+offset_top = -20.0
 offset_right = 31.0
-offset_bottom = -32.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_qshim")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="HitboxComponent" parent="." instance=ExtResource("5_gan6n")]
+[node name="HitboxComponent" parent="." instance=ExtResource("5_gnyq7")]
 collision_layer = 0
 collision_mask = 8
 hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_w156p")
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_mwd6q")
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("6_nif14")]
+[node name="HurtboxComponent" parent="." instance=ExtResource("6_nd1ox")]
 collision_layer = 2
 collision_mask = 0
 hurt_damage = 5
@@ -166,14 +155,14 @@ hurt_knockback = 250.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_v3h61")
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_icdur")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
 position = Vector2(0, 0.999998)
 scale = Vector2(2.2, 2.3)
 
-[node name="AreaOfSight" parent="." instance=ExtResource("7_v0aed")]
+[node name="AreaOfSight" parent="." instance=ExtResource("7_rx3ke")]
 collision_layer = 0
 collision_mask = 33
 monitorable = false

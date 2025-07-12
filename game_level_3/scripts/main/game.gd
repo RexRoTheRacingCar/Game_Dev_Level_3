@@ -15,4 +15,5 @@ func _ready():
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(_delta):
 	if Global.player_dead == true:
-		get_tree().quit()
+		Global.current_main_scene = "Start Menu"
+		var _main_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")
