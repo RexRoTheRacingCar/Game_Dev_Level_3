@@ -23,8 +23,11 @@ func _process(delta):
 	bullets.text = str(Global.player_ammo, " / ", Global.player_max_ammo)
 	
 	#Game Timer
-	var mils = fmod(Global.game_timer, 1) * 1000 
-	var secs = fmod(Global.game_timer, 60)
-	var mins = fmod(Global.game_timer, 60 * 60) / 60
-	var time_passed = "%02d : %02d : %03d" % [mins, secs, mils]
-	game_time.text = str(time_passed)
+	game_time.visible = GlobalSettings.show_stopwatch
+	if GlobalSettings.show_stopwatch == true:
+		var mils = fmod(Global.game_timer, 1) * 1000 
+		var secs = fmod(Global.game_timer, 60)
+		var mins = fmod(Global.game_timer, 60 * 60) / 60
+		var time_passed = "%02d : %02d : %03d" % [mins, secs, mils]
+		game_time.text = str(time_passed)
+		

@@ -7,6 +7,7 @@ extends Control
 
 #Graphics settings nodes
 @onready var limited_particles_checkbox = %LimitedParticlesCheckbox
+@onready var stopwatch_checkbox = %StopwatchCheckbox
 @onready var show_health_bars_checkbox = %ShowHealthBarsCheckbox
 @onready var screen_shake_slider = %ScreenShakeSlider
 
@@ -29,6 +30,7 @@ func _ready():
 	#Graphics Settings
 	var graphics_settings = ConfigFileHandler.load_graphics_settings()
 	limited_particles_checkbox.button_pressed = graphics_settings.limited_particles
+	stopwatch_checkbox.button_pressed = graphics_settings.show_stopwatch
 	show_health_bars_checkbox.button_pressed = graphics_settings.show_health_bars
 	screen_shake_slider.value = graphics_settings.screenshake_multiplier
 	
@@ -94,7 +96,6 @@ func _on_resolution_options_item_selected(index): #Screen Resolution
 	GlobalSettings.screen_resolution = index
 	call_deferred("_update_resolution")
 
-
 func _on_fullscreen_checkbox_toggled(toggled_on): #Fullscreen
 	ConfigFileHandler.save_video_setting("fullscreen", toggled_on)
 	GlobalSettings.fullscreen = toggled_on
@@ -103,6 +104,10 @@ func _on_fullscreen_checkbox_toggled(toggled_on): #Fullscreen
 func _on_limited_particles_checkbox_toggled(toggled_on): #Limited Particles
 	ConfigFileHandler.save_graphics_setting("limited_particles", toggled_on)
 	GlobalSettings.limited_particles = toggled_on
+
+func _on_stopwatch_checkbox_toggled(toggled_on): #Show Stopwatch
+	ConfigFileHandler.save_graphics_setting("show_stopwatch", toggled_on)
+	GlobalSettings.show_stopwatch = toggled_on
 
 func _on_show_health_bars_checkbox_toggled(toggled_on): #Toggle Health Bars
 	ConfigFileHandler.save_graphics_setting("show_health_bars", toggled_on)

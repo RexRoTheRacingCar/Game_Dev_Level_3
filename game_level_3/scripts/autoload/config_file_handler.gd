@@ -27,6 +27,7 @@ func _ready():
 		
 		#Graphics / Gameplay
 		config.set_value("graphics", "limited_particles", false)
+		config.set_value("graphics", "show_stopwatch", false)
 		config.set_value("graphics", "show_health_bars", true)
 		config.set_value("graphics", "screenshake_multiplier", 1.0)
 		

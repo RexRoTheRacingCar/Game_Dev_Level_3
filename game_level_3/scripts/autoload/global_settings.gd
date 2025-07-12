@@ -12,6 +12,7 @@ var is_updated : bool = true :
 
 #Grahpics
 @export var limited_particles : bool = false
+@export var show_stopwatch : bool = false
 @export var show_health_bars : bool = true
 @export var screenshake_multiplier : float = 1.0
 

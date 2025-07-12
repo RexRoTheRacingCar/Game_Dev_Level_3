@@ -149,6 +149,25 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Stopwatch" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StopwatchLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox"]
+layout_mode = 2
+text = "Show Stopwatch"
+horizontal_alignment = 1
+
+[node name="StopwatchCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="ShowHealthBars" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
@@ -221,6 +240,7 @@ text = "Close Menu"
 [connection signal="item_selected" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Resolution/HBox/ResolutionOptions" to="." method="_on_resolution_options_item_selected"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Fullscreen/HBox/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/LimitedParticles/HBox/LimitedParticlesCheckbox" to="." method="_on_limited_particles_checkbox_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox/StopwatchCheckbox" to="." method="_on_stopwatch_checkbox_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ShowHealthBars/HBox/ShowHealthBarsCheckbox" to="." method="_on_show_health_bars_checkbox_toggled"]
 [connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer/ScreenShakeSlider" to="." method="_on_screen_shake_slider_drag_ended"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/CloseMenu" to="." method="_on_close_menu_pressed"]
