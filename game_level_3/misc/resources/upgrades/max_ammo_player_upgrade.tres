@@ -10,7 +10,7 @@ region = Rect2(300, 100, 100, 100)
 
 [resource]
 script = ExtResource("1_h8wib")
-player_max_ammo_increase = 1.6
+player_max_ammo_increase = 1.5
 item_name = "Max Ammo"
 rarity = "Common"
 item_type = ExtResource("1_djcdh")

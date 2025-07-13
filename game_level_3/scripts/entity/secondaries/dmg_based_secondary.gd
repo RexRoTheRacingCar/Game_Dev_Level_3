@@ -3,13 +3,14 @@ extends BaseSecondary
 class_name DamageBasedSecondary
 
 @export var hurtbox : HurtboxComponent
-@onready var particle_folder = $ParticleFolder
+@export var particle_folder : Node2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	_apply_mult()
 	
-	particle_nodes = particle_folder.get_children()
+	if particle_nodes.is_empty() == false and particle_folder:
+		particle_nodes = particle_folder.get_children()
 	
 	_particle_check()
 	

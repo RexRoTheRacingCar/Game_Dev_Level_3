@@ -20,7 +20,7 @@ func target_check(target_place : Vector2, parent_pos : Vector2) -> bool:
 			return false
 		
 		#Check if ray is colliding with walls
-		if object.is_in_group("walls") == false:
+		if object.is_in_group("walls") == false and is_instance_valid(object) == true:
 			#Find ray distance
 			var distance = parent_pos.distance_to(target_place)
 			

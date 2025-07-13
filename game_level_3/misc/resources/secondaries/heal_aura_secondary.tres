@@ -14,6 +14,7 @@ secondary_attack = ExtResource("2_k00kk")
 secondary_outline = SubResource("AtlasTexture_fcka3")
 cooldown = 8.0
 charge_time = 1.75
+max_charge_req = false
 spawn_location_type = 2
 shake_on_use = 0.0
 scale_based = true

@@ -1,25 +1,55 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnjv474qy6xes"]
+[gd_scene load_steps=24 format=3 uid="uid://cnjv474qy6xes"]
 
-[ext_resource type="Script" path="res://scripts/entity/enemies/test_enemy.gd" id="1_1srgs"]
+[ext_resource type="Script" path="res://scripts/entity/enemies/ranged_enemy.gd" id="1_g3wwa"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_mg5pm"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_mqdo4"]
-[ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="3_c1lqa"]
+[ext_resource type="Texture2D" uid="uid://xq1gq8ww3yie" path="res://assets/art/entity/the_baler.png" id="3_35s60"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="4_hgpeq"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="5_gnyq7"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="6_nd1ox"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="7_rx3ke"]
+[ext_resource type="PackedScene" uid="uid://r53nt5uliuqf" path="res://scenes/misc/line_of_sight.tscn" id="8_8bplp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb74s"]
 radius = 11.0
+
+[sub_resource type="Gradient" id="Gradient_b4agg"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.275, 0.769912, 1)
+colors = PackedColorArray(0.22, 0.22, 0.22, 0, 0.39, 0.39, 0.39, 1, 0.35, 0.35, 0.35, 0.713726, 0.3, 0.3, 0.3, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p13p7"]
+gradient = SubResource("Gradient_b4agg")
+
+[sub_resource type="Curve" id="Curve_xubtq"]
+_data = [Vector2(0, 0), 0.0, 14.104, 0, 0, Vector2(0.161871, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.350943), -1.47236, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yc6og"]
+curve = SubResource("Curve_xubtq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rcvu1"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 23.81
+initial_velocity_max = 29.76
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 20, 0)
+scale_min = 0.2
+scale_max = 0.45
+scale_curve = SubResource("CurveTexture_yc6og")
+color_ramp = SubResource("GradientTexture1D_p13p7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbhlh"]
+atlas = ExtResource("2_mg5pm")
+region = Rect2(0, 300, 50, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuko5"]
 resource_local_to_scene = true
 shader = ExtResource("2_mqdo4")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgkib"]
-atlas = ExtResource("3_c1lqa")
-region = Rect2(0, 0, 50, 50)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qshim"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -70,21 +100,31 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_1srgs")
+script = ExtResource("1_g3wwa")
+pursuit_speed = 200.0
+fleeing_speed = 375.0
+shoot_speed = 2.5
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
+min_nav_time = 0.15
+max_nav_time = 0.25
 area_of_sight = NodePath("AreaOfSight")
-shake_on_hit = 1.0
+line_of_sight = NodePath("LineOfSight")
+knockback_resistance = 1.25
+shake_on_hit = 3.0
+shake_on_death = 5.0
+coin_min = 3
+coin_max = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
@@ -93,10 +133,6 @@ navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
 simplify_epsilon = 2.118
-debug_use_custom = true
-debug_path_custom_color = Color(0.978863, 0, 0.0976624, 1)
-debug_path_custom_point_size = 6.0
-debug_path_custom_line_width = 2.0
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -104,20 +140,32 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 12)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_eb74s")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
+
+[node name="FleeingParticles" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 27)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rcvu1")
+texture = SubResource("AtlasTexture_gbhlh")
+lifetime = 1.2
+speed_scale = 1.1
+randomness = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_tuko5")
-position = Vector2(0, 11)
-texture = SubResource("AtlasTexture_kgkib")
-offset = Vector2(0, -11)
+position = Vector2(0, -1.41464)
+scale = Vector2(0.78, 0.78)
+texture = ExtResource("3_35s60")
+offset = Vector2(0, -35.3659)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_hgpeq")]
 health_bar = NodePath("ProgressBar")
-max_health = 25
+max_health = 30
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -128,9 +176,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -31.0
-offset_top = -20.0
+offset_top = -65.0
 offset_right = 31.0
-offset_bottom = -10.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_qshim")
@@ -144,18 +192,18 @@ hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_mwd6q")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_nd1ox")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 5
-hurt_knockback = 250.0
+hurt_damage = 3
+hurt_knockback = 100.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_icdur")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
@@ -167,6 +215,10 @@ collision_layer = 0
 collision_mask = 33
 monitorable = false
 radius = 2500.0
+
+[node name="LineOfSight" parent="." instance=ExtResource("8_8bplp")]
+collision_mask = 33
+max_target_distance = 2500.0
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

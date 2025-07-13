@@ -14,6 +14,6 @@ health_increase = 25
 item_name = "Health"
 rarity = "Rare"
 item_type = ExtResource("1_vrlhv")
-item_cost = 20
+item_cost = 25
 texture = SubResource("AtlasTexture_e5hmf")
 upgrade_type = "p_upgrades"

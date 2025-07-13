@@ -80,11 +80,6 @@ func hit_signalled(hurtbox: HurtboxComponent):
 		
 		knockback_taken *= hurtbox.hurt_knockback
 		knockback_taken *= knockback_resistance
-		
-		#Knockback tweening to 0 for a slowdown effect
-		var knockback_tweem := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-		knockback_tweem.tween_property(self, "knockback_taken", Vector2.ZERO, 0.4)
-		knockback_tweem.play()
 
 
 #---------------------------------------------------------------------------------------------------------------------------

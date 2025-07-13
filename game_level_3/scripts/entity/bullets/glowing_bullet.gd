@@ -1,7 +1,9 @@
 ############################## Default Bullet ##############################
 extends Bullet
 
-const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
+var timer : float = 0.0
+
+const POP_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -16,19 +18,21 @@ func _ready():
 func _physics_process(delta):
 	super._physics_process(delta)
 	_lerp_speed(delta)
+	
+	timer += delta
+	sprite.rotation = timer * 4
+	var sin_scale = (0.03 * sin(timer * 44)) + 0.22
+	sprite.scale = Vector2(sin_scale, sin_scale)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func actually_hit():
 	super.actually_hit()
-	var bullet_pulse = _new_scene(SMALL_PULSE)
-	bullet_pulse.global_position = global_position
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _bullet_death():
-	#Bubble particles on queue_free()
-	var bullet_pulse = _new_scene(SMALL_PULSE)
-	bullet_pulse.global_position = global_position
+	var pop_scene = _new_scene(POP_PARTICLES)
+	pop_scene.global_position = global_position
 	
 	queue_free()

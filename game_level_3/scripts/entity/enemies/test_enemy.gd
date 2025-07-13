@@ -24,8 +24,10 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.y /= 2
 			velocity += knockback_taken
-			
+			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
+	
+	
 
 
 #---------------------------------------------------------------------------------------------------------------------------

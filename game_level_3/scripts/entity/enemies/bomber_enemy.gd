@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.y /= 2
 			velocity += knockback_taken
-			
+			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
 	
 		if timer >= 5.0:
@@ -72,7 +72,7 @@ func _create_bomb(_delta : float):
 	#Particle effect
 	var pulse_scene = spawn_scene(SMALL_PULSE, self)
 	pulse_scene.modulate = Color(1, 1, 1, 0.675)
-	pulse_scene.scale = Vector2(1.6, 0.8)
+	pulse_scene.scale = Vector2(1.8, 0.9)
 	
 	var new_bomb = FLYING_BOMB.instantiate()
 	#Bomb positioning
@@ -85,7 +85,7 @@ func _create_bomb(_delta : float):
 	new_bomb.air_time = clamp(new_bomb.air_time, 1.0, 3.5)
 	new_bomb.warning_time = new_bomb.air_time / 4
 	#Bomb scale
-	var rand_scale = randf_range(1.6, 2.2)
+	var rand_scale = randf_range(1.5, 2.0)
 	new_bomb.explosion_scale = Vector2(rand_scale, rand_scale / 2)
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_bomb)

@@ -100,8 +100,8 @@ func _bullet_velocity() -> Vector2:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _lerp_speed():
-	speed = lerp(speed, target_speed, lerp_speed)
+func _lerp_speed(delta : float):
+	speed = lerp(speed, target_speed, Global.weighted_lerp(lerp_speed, delta))
 
 
 #---------------------------------------------------------------------------------------------------------------------------

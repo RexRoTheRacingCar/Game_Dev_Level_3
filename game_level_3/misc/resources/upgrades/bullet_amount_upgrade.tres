@@ -14,6 +14,6 @@ bullet_amount_increase = 2
 item_name = "Bullet Amount"
 rarity = "Legendary"
 item_type = ExtResource("1_m7nh0")
-item_cost = 35
+item_cost = 50
 texture = SubResource("AtlasTexture_lriop")
 upgrade_type = "p_upgrades"

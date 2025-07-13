@@ -56,6 +56,7 @@ death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
 particle = NodePath("Sprite/GPUParticles2D")
+lerp_speed = 5.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true

@@ -160,11 +160,12 @@ _data = {
 "crashland": SubResource("Animation_gcpmy")
 }
 
-[node name="TurretSecondary" type="CharacterBody2D"]
+[node name="TurretSecondary" type="CharacterBody2D" node_paths=PackedStringArray("anim_player")]
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_kun16")
 shoot_time = 0.25
+anim_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_peele")

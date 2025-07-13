@@ -509,13 +509,14 @@ _data = {
 "explode": SubResource("Animation_y1i7i")
 }
 
-[node name="Explosion" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "anim_player", "vis_node")]
+[node name="Explosion" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "particle_folder", "anim_player", "vis_node")]
 z_index = -1
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 motion_mode = 1
 script = ExtResource("1_g3giv")
 hurtbox = NodePath("HurtboxComponent")
+particle_folder = NodePath("ParticleFolder")
 default_power = 25.0
 anim_player = NodePath("AnimationPlayer")
 vis_node = NodePath("VisibleOnScreenNotifier2D")

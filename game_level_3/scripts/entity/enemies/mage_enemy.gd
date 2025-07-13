@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 	if area_of_sight.target != null:
 		#Circling the player navigation
 		if special_active == false:
+			#Pathfind around the player in an orbit
 			var target_angle : float = Global.player_position.angle_to_point(global_position)
 			var target_location : Vector2 = Vector2.RIGHT.rotated((2 * PI * circling_directon) + target_angle + move_timer) * 350
 			target_location = Global.player_position + Vector2(target_location.x, target_location.y / 2) 
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.y /= 2
 			velocity += knockback_taken
-			
+			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
 
 

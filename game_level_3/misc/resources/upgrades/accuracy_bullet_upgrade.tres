@@ -10,7 +10,7 @@ region = Rect2(500, 0, 100, 100)
 
 [resource]
 script = ExtResource("1_tbbgv")
-accuracy_increase = 2.4
+accuracy_increase = 2.5
 item_name = "Accuracy"
 rarity = "Common"
 item_type = ExtResource("1_socbi")

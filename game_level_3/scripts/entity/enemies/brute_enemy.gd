@@ -26,6 +26,7 @@ var state = PURSUIT
 const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -81,8 +82,7 @@ func _physics_process(delta: float) -> void:
 				CHARGING:
 					if is_charging == false:
 						is_charging = true
-						var dist = global_position.distance_to(Global.player_position)
-						dir = global_position.direction_to(Global.player_position + Global.player_velocity * (dist / CHARGE_SPEED))
+						dir = global_position.direction_to(Global.player_position)
 						velocity = Vector2.ZERO
 						
 						hurtbox_component.set_collision_layer_value(4, true)
@@ -148,7 +148,7 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.y /= 2
 			velocity += knockback_taken
-			
+			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
 
 

@@ -14,6 +14,6 @@ pierce_increase = 1
 item_name = "Piercing "
 rarity = "Epic"
 item_type = ExtResource("1_33pv8")
-item_cost = 25
+item_cost = 30
 texture = SubResource("AtlasTexture_5fegw")
 upgrade_type = "p_bullet_upgrades"

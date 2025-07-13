@@ -29,7 +29,7 @@ default_lifetime = 1.0
 default_knockback = 120.0
 initial_speed = 750.0
 target_speed = 0.0
-lerp_speed = 0.03
+lerp_speed = 2.0
 accuracy = 0.175
 can_skew = false
 

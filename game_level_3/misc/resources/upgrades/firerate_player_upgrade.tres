@@ -14,6 +14,6 @@ reload_decrease = 1.45
 item_name = "Firerate"
 rarity = "Rare"
 item_type = ExtResource("1_nrmc3")
-item_cost = 15
+item_cost = 20
 texture = SubResource("AtlasTexture_64rb0")
 upgrade_type = "p_upgrades"
