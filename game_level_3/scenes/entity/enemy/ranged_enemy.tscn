@@ -57,10 +57,10 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwd6q"]
-radius = 12.0
+radius = 23.0868
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
-radius = 12.0
+radius = 17.0294
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -192,7 +192,7 @@ hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -4)
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_mwd6q")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_nd1ox")]
@@ -203,7 +203,7 @@ hurt_knockback = 100.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -4)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_icdur")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]

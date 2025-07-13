@@ -80,7 +80,7 @@ func no_health():
 	#Create explosion when leaving the scene (on death)
 	_instantiate_explosion(0, 0, 4)
 	for i in range(1, 3):
-		await get_tree().create_timer(0.23, false).timeout
+		await get_tree().create_timer(0.25, false).timeout
 		
 		for d in range(0, 3): 
 			_instantiate_explosion(i, d, 3) 
@@ -94,7 +94,7 @@ func _instantiate_explosion(i, d, am):
 	#Update explosion values
 	new_explosion.visible = true
 	var explode_dir = (((2 * PI) / am) * d) + dir_1
-	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 170 * i)
+	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 160 * i)
 	new_explosion.global_position = global_position + Vector2(postion_correction.x, postion_correction.y / 2)
 	new_explosion.rotation = 0
 	new_explosion.default_power = 18

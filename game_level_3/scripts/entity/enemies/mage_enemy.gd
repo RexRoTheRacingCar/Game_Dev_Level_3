@@ -190,6 +190,6 @@ func hit_signalled(hurtbox : HurtboxComponent):
 func no_health():
 	super.no_health()
 	
-	_spawn_magic_explosion(global_position, true)
+	_spawn_magic_explosion(global_position, false)
 	
 	queue_free()
