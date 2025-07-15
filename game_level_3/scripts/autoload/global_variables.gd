@@ -45,6 +45,10 @@ var player_max_ammo : int
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 
 
+#Global Signals
+@warning_ignore("unused_signal")
+signal shop_reroll
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
@@ -117,3 +121,10 @@ func get_nav_mesh_point(nav_map, target_point : Vector2, min_dist_from_edge : fl
 #---------------------------------------------------------------------------------------------------------------------------
 func weighted_lerp(weight : float, delta : float) -> float:
 	return 1.0 - exp(-weight * delta)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _unhandled_input(event):
+	if event.is_action_pressed("unsure"):
+		emit_signal("shop_reroll")
+		

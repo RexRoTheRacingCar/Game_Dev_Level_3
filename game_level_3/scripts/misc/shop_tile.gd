@@ -22,6 +22,7 @@ var price : int
 @export var item_pool : RandomItemResource
 const DUST_PARTICLE : PackedScene = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const LOCKED_INDICATOR = preload("res://scenes/misc/locked_indicator.tscn")
+const REROLL_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
 
 var text_state : String = "name"
 var swap_time : float = 3.0
@@ -31,8 +32,11 @@ var is_hidden : bool = false
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	
+	Global.connect("shop_reroll", _shop_rerolled)
 	particle_1.self_modulate = Color(1, 1, 1, 1)
 	
+	is_hidden = false
 	if randf() >= Global.hidden_chance:
 		is_hidden = true
 	
@@ -47,6 +51,24 @@ func _ready():
 	
 	swap_timer.start(swap_time * 2.0)
 	swap_timer.connect("timeout", _timer_swapped)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _shop_rerolled():
+	if collected == false:
+		is_hidden = false
+		if randf() >= Global.hidden_chance:
+			is_hidden = true
+		
+		get_random_item()
+		_update_display()
+		
+		#Spawn particle effect
+		var new_particle = REROLL_PARTICLES.instantiate()
+		get_parent().call_deferred("add_child", new_particle)
+		new_particle.global_position = Vector2(global_position.x, global_position.y - 30)
+		new_particle.scale *= 1.75
+		new_particle.z_index += 1
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +93,6 @@ func _update_display():
 		price = randi_range(10, 25)
 		coins.text = str(price)
 		item.text = "Random?"
-		
 
 
 #---------------------------------------------------------------------------------------------------------------------------
