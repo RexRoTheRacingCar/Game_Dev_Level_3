@@ -18,6 +18,7 @@ func _ready():
 		config.set_value("keybinding", "primary_attack", "mouse_1")
 		config.set_value("keybinding", "secondary_attack", "mouse_2")
 		config.set_value("keybinding", "reload", "mouse_3")
+		config.set_value("keybinding", "reroll", "Q")
 		config.set_value("keybinding", "esc", "Escape")
 		config.set_value("keybinding", "open_debug", "Ctrl")
 		

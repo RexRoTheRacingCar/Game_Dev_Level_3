@@ -24,6 +24,7 @@ var active_enemy_array : Array
 
 var global_map
 var destructable_layer : TileMapLayer
+var current_room_type : String
 
 var game_timer : float = 0.0
 
@@ -40,6 +41,7 @@ var player_hp : int
 var player_max_hp : int
 var player_ammo : int
 var player_max_ammo : int
+var player_rerolls : int 
 
 #Only use in global script!!!
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
@@ -125,6 +127,7 @@ func weighted_lerp(weight : float, delta : float) -> float:
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
-	if event.is_action_pressed("unsure"):
+	if event.is_action_pressed("reroll") and Global.current_room_type == "shop" and Global.player_rerolls > 0:
 		emit_signal("shop_reroll")
+		Global.player_rerolls -= 1
 		

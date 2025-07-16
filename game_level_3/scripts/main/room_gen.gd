@@ -68,12 +68,15 @@ func generate_room():
 	if rand_room_type >= shop_chance:
 		rand_select = randi_range(0, fight_room_array.size() - 1)
 		current_room = fight_room_array[rand_select].instantiate()
+		Global.current_room_type = "fight"
 	else:
 		rand_select = randi_range(0, shop_room_array.size() - 1)
 		current_room = shop_room_array[rand_select].instantiate()
+		Global.current_room_type = "shop"
 	
 	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
 	Global.global_map = current_room_mesh
 	Global.destructable_layer = current_room.destructable_tilemap
+	

@@ -17,9 +17,10 @@ var input_actions = {
 	"dash" : "Dash",
 	"primary_attack" : "Primary Attack",
 	"secondary_attack" : "Secondary Attack",
+	"reload" : "Reload",
+	"reroll" : "Reroll Upgrades",
 	"esc" : "Escape Menu",
 	"open_debug" : "Debug Menu",
-	
 }
 
 @warning_ignore("unused_signal")

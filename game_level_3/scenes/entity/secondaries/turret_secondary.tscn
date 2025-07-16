@@ -164,7 +164,7 @@ _data = {
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_kun16")
-shoot_time = 0.25
+shoot_time = 0.3
 anim_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

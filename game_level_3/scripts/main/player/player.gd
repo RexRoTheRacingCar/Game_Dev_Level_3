@@ -77,6 +77,8 @@ func _ready():
 	p_knockback_taken = Vector2.ZERO
 	velocity = Vector2.ZERO
 	
+	Global.player_rerolls = 1
+	
 	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 	
 	#Signal connecting

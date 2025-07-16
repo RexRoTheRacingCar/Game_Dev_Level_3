@@ -7,6 +7,7 @@ extends CanvasLayer
 
 @export var coins : Label
 @export var bullets : Label
+@export var rerolls : Label
 @export var game_time : Label
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -21,6 +22,7 @@ func _process(delta):
 	
 	coins.text = str(Global.player_coins)
 	bullets.text = str(Global.player_ammo, " / ", Global.player_max_ammo)
+	rerolls.text = str(Global.player_rerolls)
 	
 	#Game Timer
 	game_time.visible = GlobalSettings.show_stopwatch
