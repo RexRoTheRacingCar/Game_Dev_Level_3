@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://r53nt5uliuqf" path="res://scenes/misc/line_of_sight.tscn" id="8_8bplp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb74s"]
-radius = 11.0
+radius = 16.0312
 
 [sub_resource type="Gradient" id="Gradient_b4agg"]
 interpolation_mode = 2
@@ -60,7 +60,7 @@ corner_radius_bottom_right = 8
 radius = 23.0868
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
-radius = 17.0294
+radius = 18.0
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -140,7 +140,7 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -4)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_eb74s")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
@@ -203,7 +203,7 @@ hurt_knockback = 100.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -9)
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_icdur")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]

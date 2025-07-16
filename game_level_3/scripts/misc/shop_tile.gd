@@ -21,8 +21,8 @@ var price : int
 #Scenes & Resources
 @export var item_pool : RandomItemResource
 const DUST_PARTICLE : PackedScene = preload("res://scenes/entity/particles/dust_splash1.tscn")
-const LOCKED_INDICATOR = preload("res://scenes/misc/locked_indicator.tscn")
-const REROLL_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
+const LOCKED_INDICATOR = preload("res://scenes/entity/particles/locked_indicator.tscn")
+const REROLL_INDICATOR = preload("res://scenes/entity/particles/reroll_indicator.tscn")
 
 var text_state : String = "name"
 var swap_time : float = 3.0
@@ -64,11 +64,9 @@ func _shop_rerolled():
 		_update_display()
 		
 		#Spawn particle effect
-		var new_particle = REROLL_PARTICLES.instantiate()
-		get_parent().call_deferred("add_child", new_particle)
-		new_particle.global_position = Vector2(global_position.x, global_position.y - 30)
-		new_particle.scale *= 1.75
-		new_particle.z_index += 1
+		var new_reroll_scene = REROLL_INDICATOR.instantiate()
+		get_parent().call_deferred("add_child", new_reroll_scene)
+		new_reroll_scene.global_position = Vector2(global_position.x, global_position.y - 35)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

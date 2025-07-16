@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RoomArray" load_steps=3 format=3 uid="uid://b760pxxko1wpg"]
+[gd_resource type="Resource" script_class="RoomArray" load_steps=4 format=3 uid="uid://b760pxxko1wpg"]
 
 [ext_resource type="PackedScene" uid="uid://bd4imekclpmdx" path="res://scenes/misc/rooms/shop_rooms/shop_room_1.tscn" id="1_456kk"]
+[ext_resource type="PackedScene" uid="uid://d4l80my67yk55" path="res://scenes/misc/rooms/shop_rooms/shop_room_2.tscn" id="2_44r07"]
 [ext_resource type="Script" path="res://scripts/misc/room_gen_list.gd" id="7_gmisf"]
 
 [resource]
 script = ExtResource("7_gmisf")
 array_type = "Shop"
-room_array = Array[PackedScene]([ExtResource("1_456kk")])
+room_array = Array[PackedScene]([ExtResource("1_456kk"), ExtResource("2_44r07")])
