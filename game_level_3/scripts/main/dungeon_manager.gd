@@ -9,7 +9,8 @@ extends Node2D
 var room_generating : bool = false
 var transitioning : bool = false
 
-const PORTAL = preload("res://scenes/misc/portal.tscn")
+const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
+const PORTAL_BASIC = preload("res://scenes/misc/portal_basic.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -37,13 +38,17 @@ func _reset_room():
 	await get_tree().physics_frame
 	
 	#Teleport player to random position on NavMesh
-	PLAYER.global_position = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 	GAME_MANAGER.max_waves = randi_range(1, 3)
+	
+	var posible_player_positions : Array = ROOM_MANAGER.current_room.portal_spawn_array
+	PLAYER.global_position = posible_player_positions[randi_range(0, posible_player_positions.size() - 1)].global_position
+	
 	Global.current_max_waves = GAME_MANAGER.max_waves
 	Global.wave_counter = 0
 	Global.enemy_wave = false
 	
 	room_generating = false
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -70,20 +75,39 @@ func _process(delta):
 			#Go to next room before starting next wave
 			elif Global.wave_counter >= GAME_MANAGER.max_waves:
 				match Global.delete_wave_settings:
-					"Instant Transition" :
+					"Instant Transition" : #Instant fade to new room (Trial 1)
 						_new_room_transition()
 					
-					"Portal 1" :
+					"Portal Basic" : #Spawn portal at random position on nav mesh, away from player (Trial 2)
 						if transitioning == false:
 							transitioning = true
-							var new_portal = PORTAL.instantiate()
+							var new_portal = PORTAL_BASIC.instantiate()
 							get_tree().root.get_node("/root/Game/").add_child(new_portal)
+							
+							Global.emit_signal("room_cleared")
+					
+					"Portal Advanced" : #Spawn portals at set positions (Trial 3)
+						if transitioning == false:
+							transitioning = true
+							_spawn_set_position_portals()
+							
+							Global.emit_signal("room_cleared")
 	
 	
 	#If enemies have been on screen for a while, spawn arrows to help guide the player
 	if Global.enemy_count > 0 and Global.wave_time > (GAME_MANAGER.min_time_till_arrows + Global.enemy_count) and GAME_MANAGER.arrows_generated == false:
 		GAME_MANAGER.arrows_generated = true
 		GAME_MANAGER._create_arrows()
+
+
+#Spawns advanced portals based on a preset array on portal positions
+#---------------------------------------------------------------------------------------------------------------------------
+func _spawn_set_position_portals():
+	var portal_array : Array = ROOM_MANAGER.current_room.portal_spawn_array
+	for positions in portal_array.size():
+		var new_portal = PORTAL_ADVANCED.instantiate()
+		new_portal.global_position = portal_array[positions].global_position
+		get_tree().root.get_node("/root/Game/").add_child(new_portal)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

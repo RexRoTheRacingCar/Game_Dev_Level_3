@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://1owp7sjtvv5m"]
 
-[ext_resource type="Script" path="res://scripts/misc/room.gd" id="1_x0use"]
+[ext_resource type="Script" path="res://scripts/misc/room_gen/room.gd" id="1_x0use"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="1_xv5e0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l13gh"]

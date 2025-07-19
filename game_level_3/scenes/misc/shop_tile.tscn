@@ -12,12 +12,12 @@ resource_local_to_scene = true
 atlas = SubResource("CompressedTexture2D_p81b7")
 region = Rect2(480, 180, 120, 120)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tycpq"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0w13x"]
 load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fclsx"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_tycpq")
+atlas = SubResource("CompressedTexture2D_0w13x")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="Gradient" id="Gradient_nywwv"]

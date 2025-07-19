@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=4 uid="uid://dxjsma141amsb"]
 
-[ext_resource type="Script" path="res://scripts/misc/room.gd" id="1_f3f8t"]
+[ext_resource type="Script" path="res://scripts/misc/room_gen/room.gd" id="1_f3f8t"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="1_ro07n"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4ltyq"]
@@ -14,6 +14,21 @@ agent_radius = 16.0
 y_sort_enabled = true
 script = ExtResource("1_f3f8t")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
+
+[node name="PortalSpawnFolder" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(0, -390)
+
+[node name="Marker2D2" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(0, 390)
+
+[node name="Marker2D3" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(780, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(-780, 0)
 
 [node name="WallFolder" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -64,6 +79,7 @@ tile_map_data = PackedByteArray("AAACAAgAAAAFAAUAAAACAAkAAAAFAAUAAAAHAAMAAAAFAAU
 tile_set = ExtResource("1_ro07n")
 
 [node name="MainNavigation" type="NavigationRegion2D" parent="FloorFolder/MainTilemap"]
+visible = false
 z_index = 20
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")

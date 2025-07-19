@@ -15,6 +15,7 @@ var random_offset : float
 func _ready() -> void:
 	set_process(false)
 	
+	Global.connect("room_cleared", _on_body_entered.bind(Global.player))
 	monitoring = true
 	$CollectionRadius.monitoring = false
 	

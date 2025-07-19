@@ -7,9 +7,13 @@ var room_nav_mesh : RID #The actual NavMesh
 @onready var destructable_tilemap : TileMapLayer = $FloorFolder/DestructableMap
 var destructable_detection_layer : TileMapLayer
 
+@onready var portal_spawn_folder : Node2D = %PortalSpawnFolder
+var portal_spawn_array : Array = []
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	room_nav_mesh = get_world_2d().get_navigation_map()
+	portal_spawn_array = portal_spawn_folder.get_children()
 	
 	if destructable_tilemap:
 		_create_destructable_tiles()

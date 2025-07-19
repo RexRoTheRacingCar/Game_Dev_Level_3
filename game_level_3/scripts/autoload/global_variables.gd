@@ -1,7 +1,7 @@
 ############################## Main Global Variables ##############################
 extends Node
 
-var delete_wave_settings : String
+var delete_wave_settings : String = "Portal Advanced"
 
 #World global variables
 var current_main_scene : String :
@@ -19,8 +19,8 @@ var current_main_scene : String :
 
 var enemy_count : int
 var enemy_wave : bool
-var wave_time : float
 var wave_counter : int = 0
+var wave_time : float
 var current_max_waves : int = 0
 var active_enemy_array : Array
 
@@ -56,14 +56,14 @@ signal shop_reroll
 signal room_changed
 @warning_ignore("unused_signal")
 signal portal_entered
+@warning_ignore("unused_signal")
+signal room_cleared
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
 	Engine.time_scale = 1
-	
-	delete_wave_settings = "Portal 1"
 
 
 #---------------------------------------------------------------------------------------------------------------------------

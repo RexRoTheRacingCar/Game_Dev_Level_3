@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bj12xr8k3xvv"]
 
-[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_gglqi"]
-[ext_resource type="Script" path="res://scripts/misc/portal.gd" id="1_n0edc"]
+[ext_resource type="Script" path="res://scripts/misc/room_gen/portal_basic.gd" id="1_cjcii"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_fe7xk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2hg4"]
-atlas = ExtResource("1_gglqi")
+atlas = ExtResource("2_fe7xk")
 region = Rect2(400, 400, 200, 200)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5rvrf"]
@@ -145,10 +145,12 @@ _data = {
 "idle_portal": SubResource("Animation_wodao")
 }
 
-[node name="Portal" type="Node2D"]
-script = ExtResource("1_n0edc")
+[node name="BasicPortal" type="Node2D" node_paths=PackedStringArray("HITBOX")]
+y_sort_enabled = true
+script = ExtResource("1_cjcii")
+HITBOX = NodePath("PlayerDetect")
 
-[node name="Sprites" type="CanvasGroup" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
 
 [node name="PortalSprite1" type="Sprite2D" parent="Sprites"]
 texture = SubResource("AtlasTexture_y2hg4")

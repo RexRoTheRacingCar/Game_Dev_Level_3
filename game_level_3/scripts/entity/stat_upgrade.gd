@@ -12,13 +12,15 @@ extends Area2D
 #Used to update the sprite if updated in the editor
 @export var needs_update : bool = false
 var collected : bool = false
+var current_scale : float = 0.0
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
-	sprite.texture = upgrade.texture
+	
 	collected = false
+	sprite.texture = upgrade.texture
 	$GPUParticles2D.emitting = true
 	
 	call_deferred("start")
@@ -27,7 +29,7 @@ func _ready() -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func start():
 	animation_player.speed_scale = randf_range(0.9, 1.1)
-	animation_player.play("idle")
+	animation_player.queue("idle")
 	
 	#Misc for paritcle effects
 	if upgrade.rarity == "Rare":
@@ -39,12 +41,15 @@ func start():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	#Only runs when in the editor
 	if Engine.is_editor_hint():
 		if needs_update:
 			sprite.texture = upgrade.texture
 			needs_update = false
+	
+	current_scale = lerpf(current_scale, 0.5, Global.weighted_lerp(10.0, delta))
+	scale = Vector2(current_scale, current_scale)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

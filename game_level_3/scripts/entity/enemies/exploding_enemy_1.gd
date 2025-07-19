@@ -119,7 +119,7 @@ func _on_dive_detection_body_entered(body):
 		
 		await get_tree().create_timer(TWEEN_TIME + 0.05, false).timeout
 		
-		if state == DIVING:
+		if dir_1 == get_angle_to(Vector2(player_angle_pos.x, (player_angle_pos.y * 2) - global_position.y)):
 			return
 		
 		#Get direction towards player

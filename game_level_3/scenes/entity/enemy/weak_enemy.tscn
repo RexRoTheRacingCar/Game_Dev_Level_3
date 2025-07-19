@@ -23,7 +23,7 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpbxh"]
-radius = 16.0312
+radius = 19.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i161s"]
 radius = 14.0

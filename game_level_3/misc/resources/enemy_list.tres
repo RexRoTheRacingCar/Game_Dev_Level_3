@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="RoomArray" load_steps=8 format=3 uid="uid://cw2bmycje13t1"]
 
-[ext_resource type="Script" path="res://scripts/misc/room_gen_list.gd" id="1_lui8k"]
 [ext_resource type="PackedScene" uid="uid://dfhtc088cgns5" path="res://scenes/entity/enemy/brute_enemy.tscn" id="2_i1h4a"]
 [ext_resource type="PackedScene" uid="uid://bny6ynmi2tsa7" path="res://scenes/entity/enemy/exploding_enemy_1.tscn" id="3_ry580"]
 [ext_resource type="PackedScene" uid="uid://jkr0v7p7k4en" path="res://scenes/entity/enemy/bomber_enemy.tscn" id="4_1puay"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="4_gik4n"]
 [ext_resource type="PackedScene" uid="uid://cnjv474qy6xes" path="res://scenes/entity/enemy/ranged_enemy.tscn" id="6_iqp3v"]
 [ext_resource type="PackedScene" uid="uid://d4lobqmm5y1pg" path="res://scenes/entity/enemy/mage_enemy.tscn" id="6_m15oo"]
+[ext_resource type="Script" path="res://scripts/misc/room_gen/room_gen_list.gd" id="7_uhj3m"]
 
 [resource]
-script = ExtResource("1_lui8k")
+script = ExtResource("7_uhj3m")
 array_type = "Enemies"
 room_array = Array[PackedScene]([ExtResource("6_iqp3v"), ExtResource("4_1puay"), ExtResource("2_i1h4a"), ExtResource("3_ry580"), ExtResource("6_m15oo"), ExtResource("4_gik4n")])

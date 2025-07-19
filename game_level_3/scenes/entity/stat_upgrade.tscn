@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_yd28e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vur6x"]
-size = Vector2(96, 45.5)
+size = Vector2(108, 62.5)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gc7rv"]
 load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
@@ -236,7 +236,7 @@ sprite = NodePath("Sprite2D")
 needs_update = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 24.75)
+position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_vur6x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -257,7 +257,6 @@ explosiveness = 0.1
 libraries = {
 "": SubResource("AnimationLibrary_wg86a")
 }
-speed_scale = 1.07541
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 scale = Vector2(8.4, 10.6)

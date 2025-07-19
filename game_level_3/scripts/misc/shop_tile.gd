@@ -143,7 +143,6 @@ func get_random_item():
 			items_array.append(n)
 	
 	#Choose a random item from the list
-	print(rarity)
 	var selection = randi() % items_array.size()
 	display_item = items_array[selection]
 	
