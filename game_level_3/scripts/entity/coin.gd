@@ -21,7 +21,7 @@ func _ready() -> void:
 	#Setup coin at spawn
 	target_hit = false
 	sprite.visible = true
-	particles.emitting = !GlobalSettings.limited_particles
+	particles.emitting = false
 	
 	randomize()
 	random_offset = randf_range(0.5, 2.0)
@@ -30,6 +30,8 @@ func _ready() -> void:
 	animation_player.speed_scale = random_offset
 	animation_player.play("spawn")
 	animation_player.queue("RESET")
+	
+	Global.connect("room_changed", queue_free)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -67,4 +69,5 @@ func _on_body_entered(body : Player):
 	target = body
 	set_process(true)
 	
+	particles.emitting = !GlobalSettings.limited_particles
 	$CollectionRadius.monitoring = true

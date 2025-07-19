@@ -7,6 +7,9 @@ extends Node2D
 @export var PLAYER : Player
 
 var room_generating : bool = false
+var transitioning : bool = false
+
+const PORTAL = preload("res://scenes/misc/portal.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -15,7 +18,10 @@ func _ready():
 	Global.enemy_wave = false
 	Global.player = PLAYER
 	
+	Global.connect("portal_entered", _new_room_transition)
+	
 	room_generating = true
+	transitioning = false
 	
 	_reset_room()
 
@@ -24,6 +30,7 @@ func _ready():
 #Generate a new room
 func _reset_room():
 	ROOM_MANAGER.generate_room()
+	Global.emit_signal("room_changed")
 	
 	await get_tree().physics_frame
 	await get_tree().physics_frame
@@ -62,16 +69,29 @@ func _process(delta):
 			
 			#Go to next room before starting next wave
 			elif Global.wave_counter >= GAME_MANAGER.max_waves:
-				Global.enemy_wave = true
-				room_generating = true
-				
-				await get_tree().create_timer(1.0, true).timeout 
-				
-				_reset_room()
-		
+				match Global.delete_wave_settings:
+					"Instant Transition" :
+						_new_room_transition()
+					
+					"Portal 1" :
+						if transitioning == false:
+							transitioning = true
+							var new_portal = PORTAL.instantiate()
+							get_tree().root.get_node("/root/Game/").add_child(new_portal)
+	
 	
 	#If enemies have been on screen for a while, spawn arrows to help guide the player
 	if Global.enemy_count > 0 and Global.wave_time > (GAME_MANAGER.min_time_till_arrows + Global.enemy_count) and GAME_MANAGER.arrows_generated == false:
 		GAME_MANAGER.arrows_generated = true
 		GAME_MANAGER._create_arrows()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _new_room_transition():
+	Global.enemy_wave = true
+	room_generating = true
 	
+	await get_tree().create_timer(1.0, true).timeout 
+	
+	_reset_room()
+	transitioning = false

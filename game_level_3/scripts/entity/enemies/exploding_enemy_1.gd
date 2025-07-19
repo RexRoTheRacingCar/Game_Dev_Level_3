@@ -112,7 +112,6 @@ func _on_dive_detection_body_entered(body):
 		detected = true
 		
 		#Tween speed to 0 
-		#Speed Tween
 		var TWEEN_TIME := 0.4
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT).set_parallel(true)

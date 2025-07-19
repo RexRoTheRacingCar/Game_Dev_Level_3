@@ -11,7 +11,8 @@ var power : float = 0.0
 @export var vis_node : VisibleOnScreenNotifier2D
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _particle_check():
+#Check if all particle nodes can emit particles based on settings
+func _particle_check(): 
 	if particle_nodes.is_empty() == false:
 		if GlobalSettings.limited_particles == true:
 			for emitter in particle_nodes.size():
@@ -26,4 +27,5 @@ func _particle_check():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _apply_mult():
+	Global.connect("room_changed", queue_free)
 	power = default_power * PlayerUpgradeStats.power_mult

@@ -6,7 +6,8 @@ extends GPUParticles2D
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	emitting = true
-	self.connect("finished", _on_finished)
+	self.connect("finished", queue_free)
+	Global.connect("room_changed", queue_free)
 	
 	if shake_on_start != 0.0:
 		Camera.apply_camera_shake(shake_on_start)
@@ -14,8 +15,3 @@ func _ready():
 	if GlobalSettings.limited_particles == true:
 		@warning_ignore("integer_division")
 		amount = round(amount / 2)
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-func _on_finished():
-	queue_free()

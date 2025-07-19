@@ -1,6 +1,8 @@
 ############################## Main Global Variables ##############################
 extends Node
 
+var delete_wave_settings : String
+
 #World global variables
 var current_main_scene : String :
 	set(new_value):
@@ -47,14 +49,21 @@ var player_rerolls : int
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 
 
-#Global Signals
+#Global Signals (The signals are used, warning ignore is to stop sending warnings in the debug menu)
 @warning_ignore("unused_signal")
 signal shop_reroll
+@warning_ignore("unused_signal")
+signal room_changed
+@warning_ignore("unused_signal")
+signal portal_entered
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
 	Engine.time_scale = 1
+	
+	delete_wave_settings = "Portal 1"
 
 
 #---------------------------------------------------------------------------------------------------------------------------

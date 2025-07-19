@@ -48,7 +48,7 @@ func _ready():
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	#Update can_see_player variable
-	can_see_player = line_of_sight.target_check(Global.player_position, global_position)
+	can_see_player = line_of_sight.target_check(Global.player_position - global_position, global_position)
 	var distance = global_position.distance_to(Global.player_position)
 	
 	#If Area Of Sight returns with a target
@@ -60,12 +60,12 @@ func _physics_process(delta: float) -> void:
 				speed = lerp(speed, pursuit_speed, Global.weighted_lerp(10, delta))
 				
 				#Check if enemy should switch states
-				if distance < orbit_distance * 1.1:
+				if distance < orbit_distance * 1.1 and can_see_player == true:
 					_rand_orbit()
 					state = IN_RANGE
 					move_timer = 0.0
 			
-			IN_RANGE:
+			IN_RANGE: #Enemy is in_range with the player
 				shoot_timer += delta
 				move_timer += delta / 3.0
 				
@@ -79,15 +79,15 @@ func _physics_process(delta: float) -> void:
 				speed = lerp(speed, pursuit_speed / 1.2, Global.weighted_lerp(8, delta))
 				
 				#Check if enemy should switch states
-				if distance < orbit_distance / 2:
+				if distance < orbit_distance / 2 and can_see_player == true:
 					fleeing_particles.emitting = true
 					state = FLEEING
 				
-				if distance > orbit_distance * 1.3:
+				if distance > orbit_distance * 1.3 or can_see_player == false:
 					state = PURSUIT
 			
-			FLEEING:
-				shoot_timer += delta * 2
+			FLEEING: #Enemy is too close to the player
+				shoot_timer += delta * 2.25
 				speed = lerp(speed, fleeing_speed, Global.weighted_lerp(10, delta))
 				
 				var vec_dir : Vector2 = (global_position - Global.player_position).normalized()
@@ -100,8 +100,8 @@ func _physics_process(delta: float) -> void:
 		
 		_move_enemy(delta)
 	
-	#The enemy shoot timer
-	if shoot_timer > shoot_speed:
+	#The enemy shoot timer + Line of Sight check
+	if shoot_timer > shoot_speed and can_see_player == true:
 		shoot_timer = 0.0
 		_shoot_at_player(distance)
 	
@@ -130,9 +130,7 @@ func _move_enemy(delta : float):
 func _shoot_at_player(distance : float): 
 	#Find bullet angle
 	var new_bullet = GLOWING_BULLET.instantiate()
-	var offset : Vector2 = Global.player_position - global_position
-	offset = Vector2(offset.x, offset.y * 2)
-	var dir = get_angle_to(Global.player_position + offset + Global.player_velocity * (distance / (new_bullet.initial_speed)))
+	var dir = get_angle_to(Global.player_position + Global.player_velocity * (distance / (new_bullet.initial_speed)))
 	
 	#Weapon recoil
 	knockback_taken = Vector2.RIGHT.rotated(dir) * -100
