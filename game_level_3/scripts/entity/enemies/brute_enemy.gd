@@ -15,6 +15,9 @@ var detecting : bool = false
 var dir := Vector2.ZERO
 var timer : float = 0.0
 
+@export var DEFAULT_DAMAGE : int = 6
+@export var CHARGE_DAMAGE : int = 10
+
 enum {
 	PURSUIT,
 	CHARGING, 
@@ -34,7 +37,7 @@ func _ready():
 	speed = DEFAULT_SPEED
 	target_speed = DEFAULT_SPEED
 	
-	hurtbox_component.hurt_damage = 5
+	hurtbox_component.hurt_damage = DEFAULT_DAMAGE
 	
 	CHARGE_PARTICLE.emitting = false
 	if GlobalSettings.limited_particles == true:
@@ -86,14 +89,14 @@ func _physics_process(delta: float) -> void:
 						velocity = Vector2.ZERO
 						
 						hurtbox_component.set_collision_layer_value(4, true)
-						hurtbox_component.hurt_damage = 8
+						hurtbox_component.hurt_damage = CHARGE_DAMAGE
 						CHARGE_PARTICLE.emitting = true 
 						
 						timer = 0.0
 					
 					if speed >= CHARGE_SPEED - 5.0 and timer >= CHARGE_TIME:
 						hurtbox_component.set_collision_layer_value(4, false)
-						hurtbox_component.hurt_damage = 5
+						hurtbox_component.hurt_damage = DEFAULT_DAMAGE
 						CHARGE_PARTICLE.emitting = false
 						
 						speed = CHARGE_SPEED / -2
@@ -118,7 +121,7 @@ func _physics_process(delta: float) -> void:
 						target_speed = 0
 						
 						hurtbox_component.set_collision_layer_value(4, false)
-						hurtbox_component.hurt_damage = 5
+						hurtbox_component.hurt_damage = DEFAULT_DAMAGE
 						
 						#Effects on impact
 						CHARGE_PARTICLE.emitting = false

@@ -20,7 +20,7 @@ var arrows_generated : bool = false
 
 @export_group("Customisable Waves")
 @export var generate_waves : bool
-var max_waves : int = 3
+@export var max_waves : int = 2
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():

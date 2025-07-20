@@ -75,10 +75,10 @@ func _process(delta):
 			#Go to next room before starting next wave
 			elif Global.wave_counter >= GAME_MANAGER.max_waves:
 				match Global.delete_wave_settings:
-					"Instant Transition" : #Instant fade to new room (Trial 1)
+					"1" : #Instant fade to new room (Trial 1)
 						_new_room_transition()
 					
-					"Portal Basic" : #Spawn portal at random position on nav mesh, away from player (Trial 2)
+					"2" : #Spawn portal at random position on nav mesh, away from player (Trial 2)
 						if transitioning == false:
 							transitioning = true
 							var new_portal = PORTAL_BASIC.instantiate()
@@ -86,7 +86,7 @@ func _process(delta):
 							
 							Global.emit_signal("room_cleared")
 					
-					"Portal Advanced" : #Spawn portals at set positions (Trial 3)
+					"3" : #Spawn portals at set positions (Trial 3)
 						if transitioning == false:
 							transitioning = true
 							_spawn_set_position_portals()
