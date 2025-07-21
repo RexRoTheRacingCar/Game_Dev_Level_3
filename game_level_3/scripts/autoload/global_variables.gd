@@ -34,7 +34,7 @@ var hidden_chance : float = 0.925 #Range from 0.0 to 1.0
 var knockback_ease : float = 7.5
 
 #Player global variables
-var player
+var player : Player
 var player_dead : bool
 var player_position : Vector2
 var player_velocity : Vector2

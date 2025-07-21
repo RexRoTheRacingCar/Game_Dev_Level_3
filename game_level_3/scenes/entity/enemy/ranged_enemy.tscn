@@ -109,7 +109,6 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_g3wwa")
 pursuit_speed = 200.0
 fleeing_speed = 375.0
-shoot_speed = 2.5
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")

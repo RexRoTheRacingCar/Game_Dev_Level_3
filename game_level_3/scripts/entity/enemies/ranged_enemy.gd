@@ -7,10 +7,9 @@ extends Entity
 var speed : float = 250.0
 var shoot_move_speed : float = 0.0
 
-var orbit_distance : float = 400
+var orbit_distance : float = 425
 var move_timer : float = 0.0
 var circling_directon : float = 1.0
-
 
 @export_group("Enemy Misc")
 @export var shoot_speed : float = 2.0
@@ -58,12 +57,14 @@ func _physics_process(delta: float) -> void:
 				_navigation_check(Global.player_position, min_nav_time, max_nav_time)
 				
 				speed = lerp(speed, pursuit_speed, Global.weighted_lerp(10, delta))
+				if can_see_player == true:
+					shoot_timer += delta / 2
 				
-				#Check if enemy should switch states
-				if distance < orbit_distance * 1.1 and can_see_player == true:
-					_rand_orbit()
-					state = IN_RANGE
-					move_timer = 0.0
+					#Check if enemy should switch states
+					if distance < orbit_distance * 1.1:
+						_rand_orbit()
+						state = IN_RANGE
+						move_timer = 0.0
 			
 			IN_RANGE: #Enemy is in_range with the player
 				shoot_timer += delta

@@ -2,18 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/portal_advanced.gd" id="1_5l1n2"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_gteti"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_ht6f1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2hg4"]
 atlas = ExtResource("2_gteti")
 region = Rect2(400, 400, 200, 200)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tycpq"]
-load_path = "res://.godot/imported/pickups.png-6b2de326871747c0df94daccc19305b2.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqiyw"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_tycpq")
-region = Rect2(0, 0, 100, 100)
+atlas = ExtResource("3_ht6f1")
+region = Rect2(300, 200, 100, 100)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ollhu"]
 bg_color = Color(0.0693, 0.099825, 0.11, 0.654902)
@@ -317,6 +315,5 @@ libraries = {
 "": SubResource("AnimationLibrary_t7n6r")
 }
 autoplay = "idle_portal"
-speed_scale = 0.75
 
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

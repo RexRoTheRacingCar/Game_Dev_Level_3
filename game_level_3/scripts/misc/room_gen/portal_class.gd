@@ -12,13 +12,14 @@ const GUIDING_ARROW = preload("res://scenes/misc/guiding_arrow.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
-	current_alpha = lerpf(target_alpha, target_alpha, Global.weighted_lerp(0.5, delta))
+	current_alpha = lerpf(current_alpha, target_alpha, Global.weighted_lerp(5, delta))
 	modulate = Color(1.0, 1.0, 1.0, current_alpha)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _portal_prep():
 	Global.connect("room_changed", queue_free)
+	Global.connect("portal_entered", _other_portal_entered)
 	
 	current_alpha = 0.0
 	target_alpha = 1.0
@@ -56,6 +57,13 @@ func _find_rand_position():
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_player_detect_body_entered(_body : Player):
 	if has_detected_player == false:
+		has_detected_player = true
 		target_alpha = 0.0
 		Global.emit_signal("portal_entered")
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _other_portal_entered():
+	if has_detected_player == false:
 		has_detected_player = true
+		target_alpha = 0.0
