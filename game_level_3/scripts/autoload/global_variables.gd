@@ -1,7 +1,7 @@
 ############################## Main Global Variables ##############################
 extends Node
 
-var delete_wave_settings : String = "Portal Advanced"
+var delete_wave_settings : String = "2"
 
 #World global variables
 var current_main_scene : String :

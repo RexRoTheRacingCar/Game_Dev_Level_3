@@ -117,7 +117,7 @@ offset = Vector2(0, -11)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_kkxus")]
 health_bar = NodePath("ProgressBar")
-max_health = 25
+max_health = 22
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20

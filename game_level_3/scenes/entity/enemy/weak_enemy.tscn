@@ -73,7 +73,7 @@ collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_grsan")
-speed = 450.0
+speed = 475.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -152,7 +152,7 @@ shape = SubResource("CircleShape2D_vpbxh")
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_amnhu")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 4
+hurt_damage = 5
 hurt_knockback = 100.0
 knockback_type = "center"
 

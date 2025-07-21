@@ -13,6 +13,7 @@ func _ready():
 	Global.current_main_scene = "Start Menu"
 	get_tree().paused = false
 	
+	
 	connect_buttons()
 
 
