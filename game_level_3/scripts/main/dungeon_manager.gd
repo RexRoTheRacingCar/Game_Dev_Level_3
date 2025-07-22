@@ -38,7 +38,7 @@ func _reset_room():
 	await get_tree().physics_frame
 	
 	#Teleport player to random position on NavMesh
-	GAME_MANAGER.max_waves = randi_range(1, 3)
+	GAME_MANAGER.max_waves = randi_range(1, 2)
 	
 	var posible_player_positions : Array = ROOM_MANAGER.current_room.portal_spawn_array
 	PLAYER.global_position = posible_player_positions[randi_range(0, posible_player_positions.size() - 1)].global_position

@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
-[ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_lo2ak"]
+[ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="3_s8akm"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
-[ext_resource type="Resource" uid="uid://bb0idptocjnwt" path="res://misc/resources/secondaries/turret_secondary.tres" id="5_yscec"]
+[ext_resource type="Resource" uid="uid://pmgh1c8hse5n" path="res://misc/resources/secondaries/pulse_secondary.tres" id="5_52k6h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
 atlas = ExtResource("2_arape")
@@ -34,10 +34,10 @@ P_ACCEL = 6500
 P_FRICTION = 25000
 
 [node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
-current_weapon = ExtResource("3_lo2ak")
+current_weapon = ExtResource("3_s8akm")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
-current_secondary = ExtResource("5_yscec")
+current_secondary = ExtResource("5_52k6h")
 
 [node name="DashTimer" type="Timer" parent="."]
 
