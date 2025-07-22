@@ -88,7 +88,7 @@ func _update_display():
 	else:
 		reward_sprite.texture.region = Rect2(600, 100, 100, 100)
 		#Pricing
-		price = randi_range(10, 25)
+		price = randi_range(15, 30)
 		coins.text = str(price)
 		item.text = "Random?"
 

@@ -131,12 +131,15 @@ func _move_enemy(delta : float):
 func _shoot_at_player(distance : float): 
 	#Find bullet angle
 	var new_bullet = GLOWING_BULLET.instantiate()
-	var dir = get_angle_to(Global.player_position + Global.player_velocity * (distance / (new_bullet.initial_speed)))
+	var offset : Vector2 = Global.player_position - global_position
+	offset = Vector2(offset.x, offset.y * 2)
+	var dir = get_angle_to(Global.player_position + offset + Global.player_velocity * (distance / (new_bullet.initial_speed * 0.8)))
 	
 	#Weapon recoil
 	knockback_taken = Vector2.RIGHT.rotated(dir) * -100
 	
 	#Apply variables to newly instanced bullet
+	new_bullet.accuracy /= 2
 	new_bullet.rotation = dir
 	new_bullet.global_position = global_position
 	

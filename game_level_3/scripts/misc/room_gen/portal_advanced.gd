@@ -30,7 +30,6 @@ func _ready():
 		get_random_non_upgrade()
 
 
-
 #---------------------------------------------------------------------------------------------------------------------------
 #Choose a random item from an item pool with a rarity system
 func get_random_item():
@@ -39,9 +38,9 @@ func get_random_item():
 	var items_array : Array = []
 	
 	#Add chosen rarity items to list
-	for n in temp_array:
-		if n.rarity == rarity:
-			items_array.append(n)
+	for item in temp_array:
+		if item.rarity == rarity:
+			items_array.append(item)
 	
 	#Choose a random item from the list
 	var selection = randi() % items_array.size()

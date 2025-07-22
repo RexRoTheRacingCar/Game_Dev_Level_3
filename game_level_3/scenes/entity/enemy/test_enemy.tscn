@@ -85,6 +85,7 @@ navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 area_of_sight = NodePath("AreaOfSight")
 shake_on_hit = 1.0
+coin_max = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

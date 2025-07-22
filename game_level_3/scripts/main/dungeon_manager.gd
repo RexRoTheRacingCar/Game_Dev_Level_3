@@ -41,14 +41,15 @@ func _reset_room():
 	GAME_MANAGER.max_waves = randi_range(1, 2)
 	
 	var posible_player_positions : Array = ROOM_MANAGER.current_room.portal_spawn_array
-	PLAYER.global_position = posible_player_positions[randi_range(0, posible_player_positions.size() - 1)].global_position
+	PLAYER.global_position = posible_player_positions[
+		randi_range(0, posible_player_positions.size() - 1)
+		].global_position
 	
 	Global.current_max_waves = GAME_MANAGER.max_waves
 	Global.wave_counter = 0
 	Global.enemy_wave = false
 	
 	room_generating = false
-
 
 
 #---------------------------------------------------------------------------------------------------------------------------

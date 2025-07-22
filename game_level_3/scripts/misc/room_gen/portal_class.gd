@@ -26,13 +26,7 @@ func _portal_prep():
 	modulate = Color(1.0, 1.0, 1.0, 0.0)
 	
 	set_process(true)
-	
-	#Add arrow scene that points at portal
-	var arrow = GUIDING_ARROW.instantiate()
-	arrow.follow_target = Global.player
-	arrow.point_target = self
-	arrow.modulate = Color(0, 0.8, 1.0)
-	get_tree().root.get_node("/root/Game/").add_child(arrow)
+	_spawn_arrow()
 	
 	HITBOX.monitoring = false
 	HITBOX.monitorable = false
@@ -67,3 +61,13 @@ func _other_portal_entered():
 	if has_detected_player == false:
 		has_detected_player = true
 		target_alpha = 0.0
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _spawn_arrow():
+	#Add arrow scene that points at portal
+	var arrow = GUIDING_ARROW.instantiate()
+	arrow.follow_target = Global.player
+	arrow.point_target = self
+	arrow.modulate = Color(0, 0.8, 1.0)
+	get_tree().root.get_node("/root/Game/").add_child(arrow)

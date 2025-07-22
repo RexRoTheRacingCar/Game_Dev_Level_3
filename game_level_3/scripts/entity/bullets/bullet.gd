@@ -44,12 +44,12 @@ signal delete_bullet_signal
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
-	visible = false
+	randomize()
 	
+	visible = false
 	collide_array.clear()
 	current_pierce_count = 1
 	collision_hit = false
-	
 	speed = initial_speed
 	
 	if hurtbox:

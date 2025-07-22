@@ -93,8 +93,8 @@ area_of_sight = NodePath("AreaOfSight")
 knockback_resistance = 0.9
 shake_on_hit = 3.5
 shake_on_death = 10.0
-coin_min = 4
-coin_max = 5
+coin_min = 2
+coin_max = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

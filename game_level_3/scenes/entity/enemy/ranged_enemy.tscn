@@ -119,11 +119,10 @@ min_nav_time = 0.15
 max_nav_time = 0.25
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
-knockback_resistance = 1.25
+knockback_resistance = 1.15
 shake_on_hit = 3.0
 shake_on_death = 5.0
-coin_min = 3
-coin_max = 4
+coin_min = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

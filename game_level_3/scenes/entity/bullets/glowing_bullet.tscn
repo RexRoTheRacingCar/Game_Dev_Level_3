@@ -56,10 +56,11 @@ sprite = NodePath("Sprite")
 particle = NodePath("Sprite/GPUParticles2D")
 default_damage = 6
 default_lifetime = 1.25
-default_knockback = 15.0
+default_knockback = 10.0
 initial_speed = 550.0
 target_speed = 550.0
 lerp_speed = 10.0
+accuracy = 0.15
 can_skew = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
