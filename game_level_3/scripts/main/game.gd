@@ -9,6 +9,7 @@ func _ready():
 	Global.current_main_scene = "Game"
 	Global.player_dead = false
 	Global.player_coins = 0
+	Global.rooms_cleared = -1
 	PlayerUpgradeStats.power_mult = 1.0
 
 

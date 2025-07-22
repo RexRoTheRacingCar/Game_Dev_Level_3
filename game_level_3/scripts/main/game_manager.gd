@@ -20,7 +20,7 @@ var arrows_generated : bool = false
 
 @export_group("Customisable Waves")
 @export var generate_waves : bool
-@export var max_waves : int = 2
+@export var max_waves : int = 3
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -58,7 +58,9 @@ func _generate_wave():
 		enemy_array.remove_at(rand_selection)
 	
 	#Spawn random enemies from new random list
-	for enemy in range(minimum_enemies, maximum_enemies):
+	@warning_ignore("integer_division")
+	var max_possible_enemies = round((maximum_enemies + Global.rooms_cleared) / round((Global.current_max_waves / Global.wave_counter)))
+	for enemy in range(minimum_enemies, max_possible_enemies):
 		var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
 		var rand_postion = Global.rand_nav_mesh_point(ROOM_GENERATOR.current_room_mesh, 2, false) #Find random position
 		var new_enemy = Global.spawn_particle(rand_postion, self, SPAWN_ANIMATION) #Spawn enemy

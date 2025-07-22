@@ -27,7 +27,6 @@ ROOM_GENERATOR = NodePath("../RoomGenerator")
 PLAYER = NodePath("../Player")
 maximum_enemies = 7
 generate_waves = true
-max_waves = 3
 
 [node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]
 shop_chance = 0.35
