@@ -21,6 +21,7 @@ var maximum_reward_rooms : int = 0
 #MIGHT NOT USE ^
 
 var room_counter : int = 0
+var room_save : PackedScene
 
 #Room arrays saving room resource arrays and modifying them. 
 var fight_room_array : Array = []
@@ -62,20 +63,34 @@ func generate_room():
 		current_room.queue_free()
 		
 		current_room = null
+	
+	#Select a type of room based on a random float
 	var rand_room_type := randf()
-	var rand_select : int
 	
 	if rand_room_type >= shop_chance:
-		rand_select = randi_range(0, fight_room_array.size() - 1)
-		current_room = fight_room_array[rand_select].instantiate()
+		current_room = select_room(fight_room_array)
 		Global.current_room_type = "fight"
+		
 	else:
-		rand_select = randi_range(0, shop_room_array.size() - 1)
-		current_room = shop_room_array[rand_select].instantiate()
+		current_room = select_room(shop_room_array)
 		Global.current_room_type = "shop"
 	
+	#Load room into the game and update Global Variables
 	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
 	Global.global_map = current_room_mesh
 	Global.destructable_layer = current_room.destructable_tilemap
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Select a random room from selection, make sure it doesn't load same room 
+func select_room(room_array : Array):
+	var placeholder_array : Array = room_array.duplicate()
+	placeholder_array.erase(room_save)
+	
+	var rand_select : int = randi_range(0, placeholder_array.size() - 1)
+	room_save = placeholder_array[rand_select]
+	var selected_room = placeholder_array[rand_select].instantiate()
+	
+	return selected_room

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_gnln0")
 default_bullet_amount = 1
-default_spread = 5.0
+default_spread = 8.0
 default_burst_amount = 1
 default_firerate = 0.05
 default_reload_time = 1.2

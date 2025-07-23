@@ -61,8 +61,7 @@ func weapon_controls(secondary_active):
 	#Reloading functionality
 	if (
 		(Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and ammo <= 0)) and
-		reloading == false and 
-		secondary_active == false
+		reloading == false and secondary_active == false
 		):
 		
 		reload_label.visible = true

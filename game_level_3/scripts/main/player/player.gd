@@ -84,6 +84,7 @@ func _ready():
 	#Signal connecting
 	P_HITBOX_COMPONENT.hitbox_entered.connect(player_hit_signalled)
 	P_HEALTH_COMPONENT.zero_health.connect(player_no_health)
+	Global.connect("room_changed", _portal_visibility_delay)
 	
 	await get_tree().create_timer(0.09, false).timeout 
 	
@@ -111,7 +112,6 @@ func _physics_process(delta):
 	var _error = move_and_slide()
 	
 	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, Global.weighted_lerp(5, delta))
-	
 	
 	#Global Variable Management
 	Global.player_position = global_position
@@ -153,6 +153,8 @@ func secondary_manage(delta):
 			
 		p_secondary_active = P_SECONDARY_CONTROLLER.is_charging
 		P_SECONDARY_CONTROLLER.secondary_controls(delta)
+	else:
+		P_SECONDARY_CONTROLLER.modulate_lerp(delta)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -208,10 +210,16 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 func player_no_health():
 	print("Player Died")
 	Global.player_dead = true
-	#get_tree().quit()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Player dash timer signal
 func _on_dash_timer_timeout():
 	p_consecutive_dash = 0
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _portal_visibility_delay():
+	visible = false
+	await get_tree().create_timer(0.1, false).timeout
+	visible = true

@@ -115,6 +115,8 @@ func _special_move(_delta : float):
 		global_position = new_pos
 		_spawn_magic_explosion(old_pos, false)
 		_spawn_magic_explosion(new_pos, false)
+		
+		knockback_taken = Vector2.ZERO
 	
 	else:
 		#SUMMON PREP

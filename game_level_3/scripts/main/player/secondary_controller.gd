@@ -67,7 +67,7 @@ func secondary_controls(delta : float):
 			else:
 				charge_progress = 0
 		
-		sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(25, delta))
+		modulate_lerp(delta)
 		
 		charge_progress -= 0.5 * delta
 		charge_progress = clamp(charge_progress, 0.0, current_secondary.charge_time)
@@ -126,3 +126,8 @@ func _get_position_type() -> Vector2:
 		return Global.player_position
 	
 	return Vector2.ZERO
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func modulate_lerp(delta):
+	sprite_2d.self_modulate = lerp(sprite_2d.self_modulate, Color(1, 1, 1, 0), Global.weighted_lerp(30, delta))
