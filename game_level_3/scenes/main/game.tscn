@@ -32,10 +32,6 @@ generate_waves = true
 shop_chance = 0.35
 
 [node name="Player" parent="DungeonManager" instance=ExtResource("1_vr3do")]
-p_speed = null
-p_dash_delay = null
-p_max_dash = null
-p_damage_resistance = null
 
 [node name="Camera2D" parent="DungeonManager/Player" instance=ExtResource("4_ol12e")]
 

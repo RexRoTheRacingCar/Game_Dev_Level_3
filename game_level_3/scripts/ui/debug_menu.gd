@@ -22,10 +22,12 @@ var fps : String
 func _ready():
 	is_enabled = false
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _unhandled_input(event): #Change pause status based on "pause" pressed
 	if event.is_action_pressed("open_debug"):
 		is_enabled = !is_enabled 
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
