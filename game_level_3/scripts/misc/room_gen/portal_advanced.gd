@@ -81,6 +81,7 @@ func _spawn_room_reward():
 		var new_reward = REWARD_SCENE.instantiate()
 		new_reward.global_position = Global.player_position
 		new_reward.upgrade = reward_item
+		new_reward.track_player = true
 		get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_reward)
 	
 	#If non_upgrade

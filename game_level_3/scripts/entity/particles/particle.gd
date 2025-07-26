@@ -13,5 +13,4 @@ func _ready():
 		Camera.apply_camera_shake(shake_on_start)
 	
 	if GlobalSettings.limited_particles == true:
-		@warning_ignore("integer_division")
-		amount = round(amount / 2)
+		amount = int(round(float(amount) / 2))

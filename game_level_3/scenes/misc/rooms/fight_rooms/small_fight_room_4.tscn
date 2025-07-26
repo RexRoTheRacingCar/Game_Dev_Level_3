@@ -6,7 +6,7 @@
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4ltyq"]
 vertices = PackedVector2Array(0, -492.109, 264.219, -360, 224, -339.891, -44, -309.891, -204.219, -390, 224, -320.109, 453.219, -205.5, 422, -189.891, 422, -170.109, 453.219, -154.5, 224, -39.8906, 224, -20.1094, 264.219, 0, 0, 132.109, -720, 132.109, -984.219, 0, -780, -102.109, -600, -12.1094, -660, 102.109, -44, -290.109, -411, 226.609, -360, 201.109, -60, 102.109, -309, 226.609)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(11, 12, 13), PackedInt32Array(14, 15, 16, 17, 18), PackedInt32Array(3, 2, 5, 19), PackedInt32Array(20, 18, 17, 19, 21), PackedInt32Array(22, 23, 21, 19, 5), PackedInt32Array(13, 22, 5, 10), PackedInt32Array(5, 7, 8, 10), PackedInt32Array(13, 10, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1097, -11, -787, -160, -657, -101, -162, -347, -291, -409, -4, -551, 361, -360, 283, -334, 597, -196, 283, -50, 351, -16, -9, 171, -55, 138, -366, 276, -651, 135, -730, 180)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1069, -7, -787, -160, -601, -62, -105, -307, -269, -392, 5, -526, 322, -369, 263, -335, 577, -194, 283, -50, 351, -16, 3, 163, -55, 138, -366, 276, -651, 135, -728, 165)])
 source_geometry_mode = 2
 agent_radius = 16.0
 
@@ -19,9 +19,13 @@ room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="PortalSpawnFolder"]
-position = Vector2(-240, -120)
+position = Vector2(-780, 0)
 
 [node name="Marker2D2" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(0, -390)
+
+[node name="Marker2D3" type="Marker2D" parent="PortalSpawnFolder"]
+position = Vector2(-240, -120)
 
 [node name="WallFolder" type="Node2D" parent="."]
 y_sort_enabled = true

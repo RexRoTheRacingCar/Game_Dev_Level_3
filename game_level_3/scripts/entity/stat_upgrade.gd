@@ -14,6 +14,7 @@ extends Area2D
 var collected : bool = false
 var current_scale : float = 0.0
 
+var track_player : bool = false
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -50,6 +51,9 @@ func _process(delta: float) -> void:
 	
 	current_scale = lerpf(current_scale, 0.5, Global.weighted_lerp(10.0, delta))
 	scale = Vector2(current_scale, current_scale)
+	
+	if track_player == true:
+		global_position = Global.player_position
 
 
 #---------------------------------------------------------------------------------------------------------------------------

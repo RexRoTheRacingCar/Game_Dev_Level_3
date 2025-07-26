@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://bg6w0oh5uj7on"]
+
+[ext_resource type="Script" path="res://scripts/entity/bullets/ghost_bullet.gd" id="1_0yeye"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_ccan0"]
+[ext_resource type="PackedScene" uid="uid://guq4cs78isyh" path="res://scenes/components/line_component.tscn" id="2_pvw4c"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_rn0lo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afjfi"]
+atlas = ExtResource("2_ccan0")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_etto7"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
+radius = 1.0
+
+[node name="GhostBullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_0yeye")
+hurtbox = NodePath("HurtboxComponent")
+death_timer_node = NodePath("DeleteTimer")
+collision_timer_node = NodePath("CollisionTimer")
+sprite = NodePath("Sprite")
+initial_speed = 650.0
+target_speed = 50.0
+lerp_speed = 1.25
+accuracy = 0.0
+can_skew = false
+
+[node name="Line2D" parent="." instance=ExtResource("2_pvw4c")]
+show_behind_parent = true
+z_index = -1
+width = 12.0
+length = 32
+twirl_amplitude = 12.0
+twirl_freq = 2.0
+
+[node name="Line2D2" parent="." instance=ExtResource("2_pvw4c")]
+show_behind_parent = true
+z_index = -1
+width = 20.0
+length = 16
+twirl_amplitude = 10.0
+twirl_freq = 8.0
+offset = Vector2(12, 0)
+
+[node name="Line2D3" parent="." instance=ExtResource("2_pvw4c")]
+show_behind_parent = true
+z_index = -1
+width = 20.0
+length = 16
+twirl_amplitude = 10.0
+twirl_freq = 8.0
+offset = Vector2(-12, 0)
+
+[node name="Line2D4" parent="." instance=ExtResource("2_pvw4c")]
+show_behind_parent = true
+z_index = -1
+width = 20.0
+length = 16
+twirl_amplitude = 10.0
+twirl_freq = 8.0
+offset = Vector2(0, 12)
+
+[node name="Line2D5" parent="." instance=ExtResource("2_pvw4c")]
+show_behind_parent = true
+z_index = -1
+width = 20.0
+length = 16
+twirl_amplitude = 10.0
+twirl_freq = 8.0
+offset = Vector2(0, -12)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.4, 0.4)
+texture = SubResource("AtlasTexture_afjfi")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+scale = Vector2(1, 0.999999)
+collision_layer = 3
+monitorable = false
+script = ExtResource("3_rn0lo")
+knockback_type = "velocity"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 2.27373e-13)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_etto7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5tywq")
+disabled = true
+
+[node name="DeleteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_entered"]
+[connection signal="body_exited" from="HurtboxComponent" to="HurtboxComponent" method="_on_body_exited"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]
+[connection signal="timeout" from="CollisionTimer" to="." method="_on_collision_timer_timeout"]

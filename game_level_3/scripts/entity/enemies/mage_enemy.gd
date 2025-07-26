@@ -91,8 +91,7 @@ func _special_move(_delta : float):
 	
 	await get_tree().create_timer(TWEEN_TIME, false).timeout
 	
-	@warning_ignore("integer_division")
-	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= health_component.max_health / 2)):
+	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= float(health_component.max_health) / 2)):
 		#TELEPORT PREP
 		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 		var teleport_1 = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))

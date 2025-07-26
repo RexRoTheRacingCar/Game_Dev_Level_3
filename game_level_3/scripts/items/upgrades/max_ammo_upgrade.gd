@@ -8,5 +8,5 @@ class_name PlayerMaxAmmoUpgrade
 #Apply bullet upgrade to player
 func apply_player_upgrade(player: Player):
 	@warning_ignore("integer_division")
-	var max_ammo_calc : int = roundi(player.P_WEAPON_CONTROLLER.max_ammo / player_max_ammo_increase)
+	var max_ammo_calc : int = roundi(float(player.P_WEAPON_CONTROLLER.max_ammo) / player_max_ammo_increase)
 	player.P_WEAPON_CONTROLLER.max_ammo += clampi(max_ammo_calc, 1, 25)

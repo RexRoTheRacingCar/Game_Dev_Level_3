@@ -58,8 +58,7 @@ func _generate_wave():
 		enemy_array.remove_at(rand_selection)
 	
 	#Spawn random enemies from new random list
-	@warning_ignore("integer_division")
-	var max_possible_enemies = round((maximum_enemies + Global.rooms_cleared) / round((Global.current_max_waves / Global.wave_counter)))
+	var max_possible_enemies : int = roundi(roundf((maximum_enemies + Global.rooms_cleared)) / roundf((float(Global.current_max_waves) / float(Global.wave_counter))))
 	max_possible_enemies = clampi(max_possible_enemies, 1, max_possible_enemies)
 	
 	for enemy in randi_range(minimum_enemies, max_possible_enemies):

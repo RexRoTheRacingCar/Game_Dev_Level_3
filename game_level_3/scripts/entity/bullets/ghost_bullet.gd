@@ -1,9 +1,10 @@
-############################## Glowing Bullet ##############################
+############################## Ghost Bullet ##############################
 extends Bullet
 
-var timer : float = 0.0
+var angle : float = 0.0
 
 const POP_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
+@onready var line = $Line2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -12,17 +13,20 @@ func _ready():
 	set_physics_process(false)
 	super._ready()
 	set_physics_process(true)
-
+	
+	line.twirl_amplitude = randf_range(-16, 16)
+	line.twirl_freq = randf_range(4.0, 12.0)
+	
+	var scale_tween = create_tween()
+	scale_tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN).set_parallel(false)
+	scale_tween.tween_property(sprite, "scale", Vector2(0.1, 0.1), 3.0).from_current()
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	super._physics_process(delta)
 	_lerp_speed(delta)
 	
-	timer += delta
-	sprite.rotation = timer * 4
-	var sin_scale = (0.03 * sin(timer * 44)) + 0.22
-	sprite.scale = Vector2(sin_scale, sin_scale)
+	rotation += angle * delta
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -34,5 +38,6 @@ func actually_hit():
 func _bullet_death():
 	var pop_scene = _new_scene(POP_PARTICLES)
 	pop_scene.global_position = global_position
+	pop_scene.modulate = Color(0.63, 0.988, 1.0)
 	
 	queue_free()

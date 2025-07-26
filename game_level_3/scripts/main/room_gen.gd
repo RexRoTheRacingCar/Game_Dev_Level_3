@@ -31,7 +31,7 @@ var reward_room_array : Array = []
 var current_room = null
 var current_room_mesh = null
 
-@export var shop_chance : float = 0.5
+@export var shop_chance : float = 0.35
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():

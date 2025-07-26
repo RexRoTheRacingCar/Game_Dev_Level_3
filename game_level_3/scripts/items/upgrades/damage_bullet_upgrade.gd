@@ -7,6 +7,5 @@ class_name DamageBulletUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet
 func apply_upgrade(bullet: Bullet):
-	@warning_ignore("integer_division")
-	var dmg : int = ceil(bullet.default_damage / damage_increase)
+	var dmg : int = int(ceil(float(bullet.default_damage) / damage_increase))
 	bullet.damage += clamp(dmg, 1, 999999)
