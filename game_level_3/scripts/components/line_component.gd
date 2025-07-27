@@ -10,6 +10,14 @@ var point = Vector2()
 var time : float = 0.0
 
 @export var offset : Vector2 = Vector2.ZERO
+var rand : float
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _ready():
+	randomize()
+	rand = randf_range(-100.0, 100.0)
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
@@ -18,8 +26,8 @@ func _process(delta):
 	
 	time += delta
 	
-	var twirl_sine : float = twirl_amplitude * sin(time * twirl_freq)
-	var twirl_cos : float = twirl_amplitude * cos(time * twirl_freq)
+	var twirl_sine : float = twirl_amplitude * sin(time * twirl_freq + rand)
+	var twirl_cos : float = twirl_amplitude * cos(time * twirl_freq + rand)
 	var twirl_pos : Vector2 = Vector2(twirl_sine, twirl_cos / 2)
 	add_point((get_parent().global_position / get_parent().scale) + twirl_pos + offset) #Add trail
 	

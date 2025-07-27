@@ -8,11 +8,11 @@
 atlas = ExtResource("3_t76va")
 region = Rect2(0, 200, 200, 200)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1b7hu"]
-radius = 25.7099
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkhry"]
+size = Vector2(45, 45)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
-radius = 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h03jp"]
+size = Vector2(2, 2)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
 y_sort_enabled = true
@@ -40,7 +40,6 @@ scale = Vector2(0.27, 0.27)
 texture = SubResource("AtlasTexture_mojfy")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
-visible = false
 scale = Vector2(1, 0.999999)
 collision_layer = 8
 collision_mask = 8
@@ -51,10 +50,10 @@ knockback_type = "velocity"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -2.27374e-13)
 rotation = 1.5708
-shape = SubResource("CircleShape2D_1b7hu")
+shape = SubResource("RectangleShape2D_rkhry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5tywq")
+shape = SubResource("RectangleShape2D_h03jp")
 disabled = true
 
 [node name="DeleteTimer" type="Timer" parent="."]

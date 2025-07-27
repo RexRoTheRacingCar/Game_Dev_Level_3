@@ -1,0 +1,285 @@
+[gd_scene load_steps=15 format=3 uid="uid://dysffqx4sviud"]
+
+[ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_crqqr"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="1_jfki6"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_bgydn"]
+
+[sub_resource type="Animation" id="Animation_gwkiu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtboxComponent:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireFunnelFire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireParticle1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireParticle2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FireParticle3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireParticle4:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7josw"]
+resource_name = "fire_animation"
+length = 2.75
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtboxComponent:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.3, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireFunnelFire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.75, 2.25, 2.65, 2.75),
+"transitions": PackedFloat32Array(1, 3.36359, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireParticle1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FireParticle2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FireParticle3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FireParticle4:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.15),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2n3q"]
+_data = {
+"RESET": SubResource("Animation_gwkiu"),
+"fire_animation": SubResource("Animation_7josw")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_014hb"]
+atlas = ExtResource("1_crqqr")
+region = Rect2(360, 780, 120, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eegk"]
+atlas = ExtResource("1_crqqr")
+region = Rect2(360, 840, 120, 60)
+
+[sub_resource type="Gradient" id="Gradient_ouvxu"]
+offsets = PackedFloat32Array(0, 0.212389, 0.530973, 1)
+colors = PackedColorArray(1, 0.133333, 0, 1, 1, 0.7535, 0.13, 1, 0.44, 0.44, 0.44, 1, 0.48, 0.46272, 0.4368, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_emfty"]
+gradient = SubResource("Gradient_ouvxu")
+
+[sub_resource type="Curve" id="Curve_4wr7x"]
+_data = [Vector2(0, 0), 0.0, 21.7177, 0, 0, Vector2(1e-05, 0.00377357), 11.0073, 11.0073, 0, 0, Vector2(0.238636, 1), 0.117203, 0.117203, 0, 0, Vector2(1, 0.320755), -1.59396, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_sjsld"]
+curve = SubResource("Curve_4wr7x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6mwdw"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 8.0
+initial_velocity_min = 125.0
+initial_velocity_max = 300.0
+angular_velocity_min = -268.32
+angular_velocity_max = 263.85
+gravity = Vector3(0, 250, 0)
+linear_accel_min = -24.84
+linear_accel_max = 17.4
+scale_min = 0.3
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_sjsld")
+color_ramp = SubResource("GradientTexture1D_emfty")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlmtk"]
+atlas = ExtResource("3_bgydn")
+region = Rect2(0, 300, 50, 50)
+
+[node name="FireFunnelTile" type="Node2D"]
+y_sort_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p2n3q")
+}
+autoplay = "fire_animation"
+
+[node name="FireFunnelBlank" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_014hb")
+
+[node name="FireFunnelFire" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6eegk")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 10
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_jfki6")
+hurt_damage = 5
+hurt_knockback = 50.0
+knockback_type = "center"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(0, -25, 50, 0, 0, 25, -50, 0)
+
+[node name="FireParticle1" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 18)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_6mwdw")
+texture = SubResource("AtlasTexture_tlmtk")
+one_shot = true
+speed_scale = 1.45
+explosiveness = 0.6
+randomness = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="FireParticle2" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(30, 3)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_6mwdw")
+texture = SubResource("AtlasTexture_tlmtk")
+one_shot = true
+speed_scale = 1.45
+explosiveness = 0.6
+randomness = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="FireParticle3" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-30, 3)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_6mwdw")
+texture = SubResource("AtlasTexture_tlmtk")
+one_shot = true
+speed_scale = 1.45
+explosiveness = 0.6
+randomness = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="FireParticle4" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -12)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_6mwdw")
+texture = SubResource("AtlasTexture_tlmtk")
+one_shot = true
+speed_scale = 1.45
+explosiveness = 0.6
+randomness = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)

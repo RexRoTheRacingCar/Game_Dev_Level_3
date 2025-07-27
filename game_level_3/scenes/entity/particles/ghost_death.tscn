@@ -1,0 +1,550 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqy3hmyns0wgd"]
+
+[ext_resource type="PackedScene" uid="uid://guq4cs78isyh" path="res://scenes/components/line_component.tscn" id="1_lyenq"]
+
+[sub_resource type="Animation" id="Animation_ob1wn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LineMarker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LineMarker2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LineMarker3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LineMarker4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LineMarker5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LineMarker6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LineMarker7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LineMarker8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LineMarker1/Line2D:width")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LineMarker2/Line2D:width")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LineMarker3/Line2D:width")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LineMarker4/Line2D:width")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LineMarker5/Line2D:width")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LineMarker6/Line2D:width")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LineMarker7/Line2D:width")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LineMarker8/Line2D:width")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LineMarker9/Line2D:width")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+
+[sub_resource type="Animation" id="Animation_ca50s"]
+resource_name = "death_animation"
+length = 2.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LineMarker1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.35, 2.1),
+"transitions": PackedFloat32Array(0.189465, 3.36359, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(24, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LineMarker2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.35, 2.1),
+"transitions": PackedFloat32Array(0.189465, 3.36359, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-24, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LineMarker3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.35, 2.1),
+"transitions": PackedFloat32Array(0.189465, 3.36359, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 24), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LineMarker4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.35, 2.1),
+"transitions": PackedFloat32Array(0.189465, 3.36359, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -24), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LineMarker5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1),
+"transitions": PackedFloat32Array(0.189465, 4.2871, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.422, 20.422), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LineMarker6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1),
+"transitions": PackedFloat32Array(0.189465, 4.2871, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20.422, 20.422), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LineMarker7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1),
+"transitions": PackedFloat32Array(0.189465, 4.2871, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.422, -20.422), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LineMarker8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1),
+"transitions": PackedFloat32Array(0.189465, 4.2871, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20.422, -20.422), Vector2(0, 0)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LineMarker1/Line2D:width")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LineMarker2/Line2D:width")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LineMarker3/Line2D:width")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LineMarker4/Line2D:width")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LineMarker5/Line2D:width")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LineMarker6/Line2D:width")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LineMarker7/Line2D:width")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LineMarker8/Line2D:width")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LineMarker9/Line2D:width")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1.6, 2.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [15.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxl8k"]
+_data = {
+"RESET": SubResource("Animation_ob1wn"),
+"death_animation": SubResource("Animation_ca50s")
+}
+
+[sub_resource type="Curve" id="Curve_s8caf"]
+_data = [Vector2(0, 0), 0.0, 4.93273, 0, 0, Vector2(0.503086, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.93947, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_m138c"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.492537, 1)
+colors = PackedColorArray(0.78, 0.970667, 1, 1, 0.58, 0.734, 1, 1, 0.76, 0.816, 1, 1)
+
+[node name="GhostDeath" type="Node2D"]
+z_index = -1
+y_sort_enabled = true
+scale = Vector2(2.75, 1.375)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cxl8k")
+}
+autoplay = "death_animation"
+speed_scale = 1.75
+
+[node name="LineMarker1" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker1" instance=ExtResource("1_lyenq")]
+width = 15.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 14
+twirl_amplitude = 10.0
+twirl_freq = 4.0
+
+[node name="LineMarker2" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker2" instance=ExtResource("1_lyenq")]
+width = 15.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 14
+twirl_amplitude = 10.0
+twirl_freq = 4.0
+
+[node name="LineMarker3" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker3" instance=ExtResource("1_lyenq")]
+width = 15.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 14
+twirl_amplitude = 10.0
+twirl_freq = 4.0
+
+[node name="LineMarker4" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker4" instance=ExtResource("1_lyenq")]
+width = 15.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 14
+twirl_amplitude = 10.0
+twirl_freq = 4.0
+
+[node name="LineMarker5" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker5" instance=ExtResource("1_lyenq")]
+width = 7.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 16
+twirl_amplitude = -11.0
+twirl_freq = 8.0
+
+[node name="LineMarker6" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker6" instance=ExtResource("1_lyenq")]
+width = 7.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 17
+twirl_amplitude = -11.0
+twirl_freq = 8.0
+
+[node name="LineMarker7" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker7" instance=ExtResource("1_lyenq")]
+width = 7.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 17
+twirl_amplitude = -11.0
+twirl_freq = 8.0
+
+[node name="LineMarker8" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker8" instance=ExtResource("1_lyenq")]
+width = 7.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 17
+twirl_amplitude = -11.0
+twirl_freq = 8.0
+
+[node name="LineMarker9" type="Marker2D" parent="."]
+
+[node name="Line2D" parent="LineMarker9" instance=ExtResource("1_lyenq")]
+width = 7.0
+width_curve = SubResource("Curve_s8caf")
+gradient = SubResource("Gradient_m138c")
+length = 15
+twirl_amplitude = -12.0
+twirl_freq = 11.0

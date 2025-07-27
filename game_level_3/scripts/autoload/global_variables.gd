@@ -46,6 +46,8 @@ var player_ammo : int
 var player_max_ammo : int
 var player_rerolls : int 
 
+var gems : int = 0
+
 #Only use in global script!!!
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 

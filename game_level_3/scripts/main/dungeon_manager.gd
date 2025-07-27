@@ -32,6 +32,7 @@ func _ready():
 func _reset_room():
 	ROOM_MANAGER.generate_room()
 	Global.rooms_cleared += 1
+	Global.gems += 1
 	Global.emit_signal("room_changed")
 	
 	await get_tree().physics_frame

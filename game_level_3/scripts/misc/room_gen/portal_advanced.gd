@@ -13,7 +13,7 @@ var non_upgrade_reward_dict : Dictionary = {
 	0 : "Coins",
 	1 : "Healing",
 	2 : "Rerolls",
-	
+	3 : "Gems",
 }
 var rand_select
 var rand_reward_chance : float
@@ -65,6 +65,9 @@ func get_random_non_upgrade():
 		"Rerolls" : 
 			reward_sprite.texture.region = Rect2(400, 200, 100, 100)
 			item_label.text = "Rerolls"
+		"Gems" :
+			reward_sprite.texture.region = Rect2(500, 200, 100, 100)
+			item_label.text = "Gems"
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -93,6 +96,8 @@ func _spawn_room_reward():
 				Global.player.P_HEALTH_COMPONENT.health += 50
 			"Rerolls" : 
 				Global.player_rerolls += 2
+			"Gems" :
+				Global.gems += 5
 
 
 #---------------------------------------------------------------------------------------------------------------------------

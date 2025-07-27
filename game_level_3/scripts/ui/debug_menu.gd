@@ -14,6 +14,7 @@ var is_enabled = false :
 @onready var WAVE_COUNTER = %WaveCounter
 @onready var MAX_WAVES = %MaxWaves
 @onready var POWER_MULT = %PowerMult
+@onready var rooms_cleared = %RoomsCleared
 
 var fps : String
 
@@ -41,6 +42,7 @@ func _process(delta):
 		WAVE_COUNTER.text = str("Wave Count : ", Global.wave_counter)
 		MAX_WAVES.text = str("Current Max Waves : ", Global.current_max_waves)
 		POWER_MULT.text = str("Player PWR MULT : ", PlayerUpgradeStats.power_mult)
+		rooms_cleared.text = str("Rooms Cleared : ", Global.rooms_cleared)
 
 
 func _on_h_slider_value_changed(value):

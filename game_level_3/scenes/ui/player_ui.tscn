@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bom22ublhv6f4"]
+[gd_scene load_steps=9 format=3 uid="uid://bom22ublhv6f4"]
 
 [ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="1_cms01"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_6yvmt"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d65i"]
 atlas = ExtResource("2_6yvmt")
 region = Rect2(400, 200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2811"]
+atlas = ExtResource("2_6yvmt")
+region = Rect2(500, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbw1i"]
 atlas = ExtResource("2_6yvmt")
@@ -26,13 +30,14 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 atlas = ExtResource("2_6yvmt")
 region = Rect2(200, 200, 100, 100)
 
-[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("player_hp", "player_health_bar", "coins", "bullets", "rerolls", "game_time")]
+[node name="PlayerUI" type="CanvasLayer" node_paths=PackedStringArray("player_hp", "player_health_bar", "coins", "gems", "bullets", "rerolls", "game_time")]
 follow_viewport_enabled = true
 script = ExtResource("1_cms01")
-player_hp = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1/PlayerHP")
-player_health_bar = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/Coins/PlayerHealthBar")
-coins = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/Coins2/Coins")
-bullets = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1/BulletSplit/Bullets")
+player_hp = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1/PlayerHP")
+player_health_bar = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/PlayerHealthBar")
+coins = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/Coins/Coins")
+gems = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/GemSplit/Gems")
+bullets = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1/BulletSplit/Bullets")
 rerolls = NodePath("MainControl/UIMargin/BottomHBox/BottomVBox/RerollSplit/Rerolls")
 game_time = NodePath("MainControl/UIMargin/TopHBox/GameTime")
 
@@ -89,11 +94,34 @@ texture = SubResource("AtlasTexture_4d65i")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Coins2" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
+[node name="GemSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Coins" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins2"]
+[node name="Gems" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/GemSplit"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Gems
+"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomVBox/GemSplit"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_e2811")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Coins" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Coins" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -102,7 +130,7 @@ theme_override_constants/outline_size = 10
 text = "Coins"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins2"]
+[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -111,11 +139,11 @@ texture = SubResource("AtlasTexture_cbw1i")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Coins" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
+[node name="BottomRow" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerHealthBar" type="ProgressBar" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins"]
+[node name="PlayerHealthBar" type="ProgressBar" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow"]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_74qv3")
@@ -124,12 +152,12 @@ step = 1.0
 value = 90.0
 show_percentage = false
 
-[node name="HSplit1" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins"]
+[node name="HSplit1" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 split_offset = 12
 
-[node name="PlayerHP" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1"]
+[node name="PlayerHP" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -137,11 +165,11 @@ theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Player HP"
 
-[node name="BulletSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1"]
+[node name="BulletSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Bullets" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1/BulletSplit"]
+[node name="Bullets" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1/BulletSplit"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,7 +179,7 @@ text = "Bullets
 "
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins/HSplit1/BulletSplit"]
+[node name="TextureRect" type="TextureRect" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1/BulletSplit"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 8

@@ -12,8 +12,8 @@ region = Rect2(200, 200, 100, 100)
 a = Vector2(-8.70745e-05, -15)
 b = Vector2(2.15252e-05, 15)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
-radius = 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ul68"]
+size = Vector2(2, 2)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
 y_sort_enabled = true
@@ -52,7 +52,7 @@ rotation = 1.5708
 shape = SubResource("SegmentShape2D_t20aj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5tywq")
+shape = SubResource("RectangleShape2D_6ul68")
 disabled = true
 
 [node name="DeleteTimer" type="Timer" parent="."]

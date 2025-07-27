@@ -19,9 +19,11 @@ var shoot_timer : float = 0.0
 
 @onready var sprite = $Sprite2D
 @onready var teleport_timer = $TeleportTimer
+@onready var collision = $CollisionShape2D
 
 const GHOST_BULLET = preload("res://scenes/entity/bullets/ghost_bullet.tscn")
 const POP_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
+const GHOST_DEATH = preload("res://scenes/entity/particles/ghost_death.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -38,6 +40,7 @@ func _ready():
 	
 	hitbox_component.monitoring = true
 	hurtbox_component.monitorable = true
+	collision.disabled = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -84,7 +87,7 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 		alpha_target = 0.075
 		
 		#If out of range for a while
-		if invisible_timer > 7.5:
+		if invisible_timer > 7.5 and player_distance > invisble_distance * 1.5:
 			_invisible_setup()
 			is_invisible = true
 
@@ -99,6 +102,7 @@ func _invisible_setup():
 	
 	hitbox_component.monitoring = false
 	hurtbox_component.monitorable = false
+	collision.disabled = true
 	
 	var particle = spawn_scene(POP_PARTICLES, get_tree().root.get_node("/root/Game/"))
 	particle.global_position = global_position
@@ -115,16 +119,18 @@ func _on_teleport_timer_timeout():
 	
 	await get_tree().create_timer(1.0, false).timeout
 	
-	var particle = spawn_scene(POP_PARTICLES, get_tree().root.get_node("/root/Game/"))
-	particle.global_position = global_position
-	particle.modulate = Color(1, 1, 1, 1)
-	
 	speed_mult_target = 1.0
 	alpha_target = 1.0
 	invisible_timer = 0.0
 	is_invisible = false
+	
 	hitbox_component.monitoring = true
 	hurtbox_component.monitorable = true
+	collision.disabled = false
+	
+	var particle = spawn_scene(POP_PARTICLES, get_tree().root.get_node("/root/Game/"))
+	particle.global_position = global_position
+	particle.modulate = Color(1, 1, 1, 1)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -160,9 +166,8 @@ func _shoot_at_player(distance : float):
 		new_bullet.initial_speed -= 60 * (bullet_float ** 2)
 		var bullet_scale : float  =((-bullet_float ** 2) / 20) + 0.85
 		new_bullet.scale = Vector2(bullet_scale, bullet_scale)
-		#new_bullet.VISUALS.scale = Vector2(bullet_scale, bullet_scale)
 		new_bullet.global_position = global_position
-	
+		
 		#Add bullet to tree
 		get_tree().root.get_node("/root/Game/").add_child(new_bullet)
 		
@@ -176,9 +181,14 @@ func _shoot_at_player(distance : float):
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
+	sprite.modulate = Color(1, 1, 1, 1)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	
+	var ghost_death = spawn_scene(GHOST_DEATH, get_tree().root.get_node("/root/Game/"))
+	ghost_death.global_position = global_position / ghost_death.scale
+	
 	queue_free()

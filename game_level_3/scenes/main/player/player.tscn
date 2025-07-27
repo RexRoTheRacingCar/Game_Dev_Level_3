@@ -30,12 +30,8 @@ P_SECONDARY_CONTROLLER = NodePath("SecondaryController")
 P_DASH_TIMER = NodePath("DashTimer")
 P_HITBOX_COMPONENT = NodePath("HitboxComponent")
 P_HEALTH_COMPONENT = NodePath("HealthComponent")
-p_speed = null
 P_ACCEL = 6500
 P_FRICTION = 25000
-p_dash_delay = null
-p_max_dash = null
-p_damage_resistance = null
 
 [node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
 current_weapon = ExtResource("3_s8akm")

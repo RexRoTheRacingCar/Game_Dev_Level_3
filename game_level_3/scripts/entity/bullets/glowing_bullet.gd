@@ -21,7 +21,7 @@ func _physics_process(delta):
 	
 	timer += delta
 	sprite.rotation = timer * 4
-	var sin_scale = (0.03 * sin(timer * 44)) + 0.22
+	var sin_scale = (0.035 * sin(timer * 44)) + 0.23
 	sprite.scale = Vector2(sin_scale, sin_scale)
 
 

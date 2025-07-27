@@ -177,7 +177,7 @@ _data = {
 "price_to_name": SubResource("Animation_eom5y")
 }
 
-[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "shop_tile") groups=["navigation_polygon_source_geometry_group", "walls"]]
+[node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "shop_tile") groups=["blocked", "navigation_polygon_source_geometry_group", "walls"]]
 collision_layer = 25
 collision_mask = 0
 script = ExtResource("1_pfyx2")

@@ -10,10 +10,10 @@ atlas = ExtResource("2_ccan0")
 region = Rect2(600, 0, 200, 200)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_etto7"]
-radius = 21.0
+radius = 15.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5tywq"]
-radius = 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ugwx"]
+size = Vector2(2, 2)
 
 [node name="GhostBullet" type="CharacterBody2D" node_paths=PackedStringArray("hurtbox", "death_timer_node", "collision_timer_node", "sprite")]
 y_sort_enabled = true
@@ -23,6 +23,8 @@ hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
+default_damage = 6
+default_knockback = 200.0
 initial_speed = 650.0
 target_speed = 50.0
 lerp_speed = 1.25
@@ -34,8 +36,8 @@ show_behind_parent = true
 z_index = -1
 width = 12.0
 length = 32
-twirl_amplitude = 12.0
-twirl_freq = 2.0
+twirl_amplitude = 15.0
+twirl_freq = 3.0
 
 [node name="Line2D2" parent="." instance=ExtResource("2_pvw4c")]
 show_behind_parent = true
@@ -44,16 +46,16 @@ width = 20.0
 length = 16
 twirl_amplitude = 10.0
 twirl_freq = 8.0
-offset = Vector2(12, 0)
+offset = Vector2(9, 0)
 
 [node name="Line2D3" parent="." instance=ExtResource("2_pvw4c")]
 show_behind_parent = true
 z_index = -1
 width = 20.0
 length = 16
-twirl_amplitude = 10.0
+twirl_amplitude = -10.0
 twirl_freq = 8.0
-offset = Vector2(-12, 0)
+offset = Vector2(-9, 0)
 
 [node name="Line2D4" parent="." instance=ExtResource("2_pvw4c")]
 show_behind_parent = true
@@ -62,16 +64,16 @@ width = 20.0
 length = 16
 twirl_amplitude = 10.0
 twirl_freq = 8.0
-offset = Vector2(0, 12)
+offset = Vector2(0, 9)
 
 [node name="Line2D5" parent="." instance=ExtResource("2_pvw4c")]
 show_behind_parent = true
 z_index = -1
 width = 20.0
 length = 16
-twirl_amplitude = 10.0
+twirl_amplitude = -10.0
 twirl_freq = 8.0
-offset = Vector2(0, -12)
+offset = Vector2(0, -9)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -86,12 +88,12 @@ script = ExtResource("3_rn0lo")
 knockback_type = "velocity"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 2.27373e-13)
+position = Vector2(0, -1.35525e-20)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_etto7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5tywq")
+shape = SubResource("RectangleShape2D_4ugwx")
 disabled = true
 
 [node name="DeleteTimer" type="Timer" parent="."]

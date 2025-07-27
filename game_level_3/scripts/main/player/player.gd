@@ -76,6 +76,7 @@ func _ready():
 	p_vel_prep = Vector2.ZERO
 	p_knockback_taken = Vector2.ZERO
 	velocity = Vector2.ZERO
+	P_HITBOX_COMPONENT.monitoring = false
 	
 	Global.player_rerolls = 3
 	
@@ -84,7 +85,7 @@ func _ready():
 	#Signal connecting
 	P_HITBOX_COMPONENT.hitbox_entered.connect(player_hit_signalled)
 	P_HEALTH_COMPONENT.zero_health.connect(player_no_health)
-	Global.connect("room_changed", _portal_visibility_delay)
+	Global.connect("portal_entered", _portal_visibility_delay)
 	
 	await get_tree().create_timer(0.09, false).timeout 
 	
@@ -220,6 +221,8 @@ func _on_dash_timer_timeout():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _portal_visibility_delay():
+	P_HITBOX_COMPONENT.monitoring = false
 	visible = false
-	await get_tree().create_timer(0.1, false).timeout
+	await get_tree().create_timer(1.1, false).timeout
+	P_HITBOX_COMPONENT.monitoring = true
 	visible = true

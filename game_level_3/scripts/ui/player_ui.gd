@@ -6,6 +6,7 @@ extends CanvasLayer
 @export var player_health_bar : ProgressBar
 
 @export var coins : Label
+@export var gems : Label
 @export var bullets : Label
 @export var rerolls : Label
 @export var game_time : Label
@@ -21,6 +22,7 @@ func _process(delta):
 	player_health_bar.value = Global.player_hp
 	
 	coins.text = str(Global.player_coins)
+	gems.text = str(Global.gems)
 	bullets.text = str(Global.player_ammo, " / ", Global.player_max_ammo)
 	rerolls.text = str(Global.player_rerolls)
 	
