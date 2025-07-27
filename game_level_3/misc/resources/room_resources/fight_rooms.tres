@@ -15,4 +15,4 @@
 [resource]
 script = ExtResource("1_bw7kj")
 array_type = "Fight"
-room_array = Array[PackedScene]([ExtResource("10_yy8op"), ExtResource("4_rfjtq"), ExtResource("3_boi2o"), ExtResource("4_ntcmh"), ExtResource("5_w3vao"), ExtResource("8_eyru3"), ExtResource("5_gdqwd"), ExtResource("6_2a1cs"), ExtResource("7_oq6ty"), ExtResource("9_xu3ce")])
+room_array = Array[PackedScene]([ExtResource("4_rfjtq"), ExtResource("3_boi2o"), ExtResource("4_ntcmh"), ExtResource("5_w3vao"), ExtResource("8_eyru3"), ExtResource("10_yy8op"), ExtResource("5_gdqwd"), ExtResource("6_2a1cs"), ExtResource("7_oq6ty"), ExtResource("9_xu3ce")])

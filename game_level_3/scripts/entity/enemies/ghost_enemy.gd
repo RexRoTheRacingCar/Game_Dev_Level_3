@@ -90,6 +90,11 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 		if invisible_timer > 7.5 and player_distance > invisble_distance * 1.5:
 			_invisible_setup()
 			is_invisible = true
+	
+	if player_distance < invisble_distance * 1.05 or player_visible == true:
+		hitbox_component.monitoring = true
+	else:
+		hitbox_component.monitoring = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -100,7 +105,6 @@ func _invisible_setup():
 	speed_mult_target = 0.0
 	invisible_timer = 0.0
 	
-	hitbox_component.monitoring = false
 	hurtbox_component.monitorable = false
 	collision.disabled = true
 	
@@ -124,7 +128,6 @@ func _on_teleport_timer_timeout():
 	invisible_timer = 0.0
 	is_invisible = false
 	
-	hitbox_component.monitoring = true
 	hurtbox_component.monitorable = true
 	collision.disabled = false
 	

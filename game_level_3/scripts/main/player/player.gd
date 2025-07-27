@@ -18,6 +18,7 @@ class_name Player
 @export var P_ACCEL : int = 3000
 @export var P_FRICTION : int = 20000
 var p_vel_prep : Vector2 
+var p_can_move : bool = true
 
 
 #Setter variables
@@ -62,6 +63,7 @@ var p_secondary_active : bool = false
 var p_knockback_taken : Vector2 = Vector2.ZERO
 
 const PLAYER_HIT_FLASH = preload("res://scenes/entity/particles/player_hit_flash.tscn")
+@onready var collision_shape : CollisionPolygon2D = $CollisionPolygon2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -70,6 +72,7 @@ func _ready():
 	#Variable prep
 	p_is_dashing = false
 	p_consecutive_dash = 0
+	p_can_move = false
 	
 	p_upgrades = null
 	
@@ -90,29 +93,33 @@ func _ready():
 	await get_tree().create_timer(0.09, false).timeout 
 	
 	call_deferred("set_physics_process", true)
+	P_HITBOX_COMPONENT.monitoring = true
+	collision_shape.disabled = false
+	p_can_move = true
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):
 	#Player movement
-	var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
-	player_movement(p_input, delta)
+	if p_can_move == true:
+		var p_input = Input.get_vector("left", "right", "up", "down") #Get movement vector
+		player_movement(p_input, delta)
 	
-	#Player roll
-	if Input.is_action_just_pressed("dash"):
-		player_dash(p_input)
+		#Player roll
+		if Input.is_action_just_pressed("dash"):
+			player_dash(p_input)
+	
+		#Velocity manage
+		velocity = p_vel_prep 
+		velocity += p_knockback_taken
+		velocity.y /= 2 #Make velocity isometric
+		var _error = move_and_slide()
+	
+	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, Global.weighted_lerp(5, delta))
 	
 	#Player shooting
 	P_WEAPON_CONTROLLER.weapon_controls(p_secondary_active)
 	secondary_manage(delta)
-	
-	#Velocity manage
-	velocity = p_vel_prep 
-	velocity += p_knockback_taken
-	velocity.y /= 2 #Make velocity isometric
-	var _error = move_and_slide()
-	
-	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, Global.weighted_lerp(5, delta))
 	
 	#Global Variable Management
 	Global.player_position = global_position
@@ -222,7 +229,13 @@ func _on_dash_timer_timeout():
 #---------------------------------------------------------------------------------------------------------------------------
 func _portal_visibility_delay():
 	P_HITBOX_COMPONENT.monitoring = false
+	collision_shape.call_deferred("disabled", true)
+	p_can_move = false
 	visible = false
-	await get_tree().create_timer(1.1, false).timeout
+	
+	await get_tree().create_timer(1.2, false).timeout
+	
 	P_HITBOX_COMPONENT.monitoring = true
+	collision_shape.call_deferred("disabled", false)
+	p_can_move = true
 	visible = true

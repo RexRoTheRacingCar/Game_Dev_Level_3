@@ -88,7 +88,6 @@ area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
 shake_on_hit = 0.0
 shake_on_death = 2.0
-coin_min = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

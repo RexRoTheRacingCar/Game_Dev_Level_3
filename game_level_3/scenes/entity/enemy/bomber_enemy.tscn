@@ -86,6 +86,7 @@ max_nav_time = 0.8
 area_of_sight = NodePath("AreaOfSight")
 shake_on_hit = 4.0
 shake_on_death = 5.0
+coin_max = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

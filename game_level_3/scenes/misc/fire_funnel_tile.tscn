@@ -233,6 +233,7 @@ knockback_type = "center"
 polygon = PackedVector2Array(0, -25, 50, 0, 0, 25, -50, 0)
 
 [node name="FireParticle1" type="GPUParticles2D" parent="."]
+z_index = 3
 y_sort_enabled = true
 position = Vector2(0, 18)
 emitting = false
@@ -246,6 +247,7 @@ randomness = 0.4
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="FireParticle2" type="GPUParticles2D" parent="."]
+z_index = 3
 y_sort_enabled = true
 position = Vector2(30, 3)
 emitting = false
@@ -259,6 +261,7 @@ randomness = 0.4
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="FireParticle3" type="GPUParticles2D" parent="."]
+z_index = 3
 y_sort_enabled = true
 position = Vector2(-30, 3)
 emitting = false
@@ -272,6 +275,7 @@ randomness = 0.4
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="FireParticle4" type="GPUParticles2D" parent="."]
+z_index = 3
 y_sort_enabled = true
 position = Vector2(0, -12)
 emitting = false

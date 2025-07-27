@@ -121,7 +121,6 @@ min_nav_time = 0.35
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
 shake_on_hit = 3.0
-coin_min = 2
 coin_max = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
