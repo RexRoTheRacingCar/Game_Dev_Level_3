@@ -229,13 +229,14 @@ func _on_dash_timer_timeout():
 #---------------------------------------------------------------------------------------------------------------------------
 func _portal_visibility_delay():
 	P_HITBOX_COMPONENT.monitoring = false
-	collision_shape.call_deferred("disabled", true)
 	p_can_move = false
 	visible = false
 	
-	await get_tree().create_timer(1.2, false).timeout
+	await get_tree().create_timer(0.2, false).timeout
+	collision_shape.set_deferred("disabled", true)
+	await get_tree().create_timer(0.9, false).timeout
 	
 	P_HITBOX_COMPONENT.monitoring = true
-	collision_shape.call_deferred("disabled", false)
+	collision_shape.set_deferred("disabled", false)
 	p_can_move = true
 	visible = true

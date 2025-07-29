@@ -84,6 +84,7 @@ navigation_layers = 2
 
 [node name="DestructableMap" type="TileMapLayer" parent="FloorFolder"]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD3/wUAAwACAAAAAAD3/wgAAwACAAAAAAD7//j/AwACAAAAAAD6//j/AwAEAAAAAAD3//v/AwAEAAAAAAD3/wYAAwAEAAAAAAAAAAMAAwAEAAAAAAAAAP3/AwABAAQAAAABAP7/AwABAAQAAAD///n/AwABAAQAAAD3//j/AwABAAQAAAD7/wgAAwABAAQAAAD//wcAAwABAAQAAAD+/wcAAwAEAAAAAAA=")
 tile_set = ExtResource("2_vtbp5")
 
 [node name="HitboxTilemap" type="TileMapLayer" parent="FloorFolder/DestructableMap"]

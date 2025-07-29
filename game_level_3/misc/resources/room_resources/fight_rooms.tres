@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RoomArray" load_steps=12 format=3 uid="uid://cr4s0xjpk51tr"]
+[gd_resource type="Resource" script_class="RoomArray" load_steps=13 format=3 uid="uid://cr4s0xjpk51tr"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/room_gen_list.gd" id="1_bw7kj"]
 [ext_resource type="PackedScene" uid="uid://dq8klrkh683h1" path="res://scenes/misc/rooms/fight_rooms/medium_fight_room_1.tscn" id="3_boi2o"]
@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://d4dhgh05wbmad" path="res://scenes/misc/rooms/fight_rooms/medium_fight_room_4.tscn" id="8_eyru3"]
 [ext_resource type="PackedScene" uid="uid://dx8qouowcafhk" path="res://scenes/misc/rooms/fight_rooms/small_fight_room_4.tscn" id="9_xu3ce"]
 [ext_resource type="PackedScene" uid="uid://dbwe268l3sfx6" path="res://scenes/misc/rooms/fight_rooms/medium_fight_room_5.tscn" id="10_yy8op"]
+[ext_resource type="PackedScene" uid="uid://bknnoghw4nabs" path="res://scenes/misc/rooms/fight_rooms/small_fight_room_5.tscn" id="11_2ukdw"]
 
 [resource]
 script = ExtResource("1_bw7kj")
 array_type = "Fight"
-room_array = Array[PackedScene]([ExtResource("4_rfjtq"), ExtResource("3_boi2o"), ExtResource("4_ntcmh"), ExtResource("5_w3vao"), ExtResource("8_eyru3"), ExtResource("10_yy8op"), ExtResource("5_gdqwd"), ExtResource("6_2a1cs"), ExtResource("7_oq6ty"), ExtResource("9_xu3ce")])
+room_array = Array[PackedScene]([ExtResource("4_rfjtq"), ExtResource("3_boi2o"), ExtResource("4_ntcmh"), ExtResource("5_w3vao"), ExtResource("8_eyru3"), ExtResource("10_yy8op"), ExtResource("5_gdqwd"), ExtResource("6_2a1cs"), ExtResource("7_oq6ty"), ExtResource("9_xu3ce"), ExtResource("11_2ukdw")])

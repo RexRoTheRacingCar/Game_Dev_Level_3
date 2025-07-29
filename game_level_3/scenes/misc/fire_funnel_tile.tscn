@@ -225,7 +225,7 @@ collision_layer = 10
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_jfki6")
-hurt_damage = 5
+hurt_damage = 7
 hurt_knockback = 50.0
 knockback_type = "center"
 
