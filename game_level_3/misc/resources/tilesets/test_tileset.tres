@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://fxfnm3yb88aw"]
+[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://fxfnm3yb88aw"]
 
 [ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="1_5u8u2"]
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_qscnk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnagmw10hmt4" path="res://scenes/components/destructable_component.tscn" id="3_x8481"]
 [ext_resource type="PackedScene" uid="uid://dysffqx4sviud" path="res://scenes/misc/fire_funnel_tile.tscn" id="4_0y4qs"]
 [ext_resource type="Texture2D" uid="uid://df35dx1aayhsk" path="res://assets/art/enviroment/iso_destructable_tileset.png" id="4_5b3hn"]
+[ext_resource type="PackedScene" uid="uid://dg811lgp4seux" path="res://scenes/misc/torch_tile.tscn" id="5_r7y82"]
 [ext_resource type="PackedScene" uid="uid://cuvtgw8jvwlxa" path="res://scenes/entity/particles/wood_break1.tscn" id="5_rfkiw"]
 [ext_resource type="PackedScene" uid="uid://b1u5aw4wug8o5" path="res://scenes/entity/secondaries/explosion.tscn" id="6_5mihc"]
 
@@ -364,6 +365,7 @@ resource_name = "SceneTiles"
 scenes/1/scene = ExtResource("2_5wp4y")
 scenes/2/scene = ExtResource("3_x8481")
 scenes/3/scene = ExtResource("4_0y4qs")
+scenes/4/scene = ExtResource("5_r7y82")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gj8i8"]
 vertices = PackedVector2Array(60, 0, 0, 30, -60, 0, 0, -30)

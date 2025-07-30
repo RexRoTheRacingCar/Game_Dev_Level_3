@@ -1,0 +1,149 @@
+[gd_scene load_steps=15 format=3 uid="uid://dg811lgp4seux"]
+
+[ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_48fmo"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_53tkp"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_qakpu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmrfd"]
+atlas = ExtResource("1_48fmo")
+region = Rect2(840, 660, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5473"]
+atlas = ExtResource("2_qakpu")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="Gradient" id="Gradient_yikq0"]
+offsets = PackedFloat32Array(0, 0.381295, 1)
+colors = PackedColorArray(1, 0.5, 0.25, 1, 1, 0.8575, 0.05, 1, 0.72, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lsovd"]
+gradient = SubResource("Gradient_yikq0")
+
+[sub_resource type="Curve" id="Curve_p8j5e"]
+_data = [Vector2(0, 0), 0.0, 21.7177, 0, 0, Vector2(1e-05, 0.00377357), 11.0073, 11.0073, 0, 0, Vector2(0.238636, 1), 0.117203, 0.117203, 0, 0, Vector2(1, 0.320755), -1.59396, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_y6aio"]
+curve = SubResource("Curve_p8j5e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uwvjf"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 2, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 8.0
+initial_velocity_max = 50.0
+angular_velocity_min = -268.32
+angular_velocity_max = 263.85
+gravity = Vector3(0, -65, 0)
+linear_accel_min = -20.0
+linear_accel_max = 20.0
+scale_min = 0.3
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_y6aio")
+color_ramp = SubResource("GradientTexture1D_lsovd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1hrl"]
+atlas = ExtResource("2_53tkp")
+region = Rect2(0, 300, 50, 50)
+
+[sub_resource type="Animation" id="Animation_dpay2"]
+resource_name = "torch"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TorchFireSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.21, 0.21), Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TorchFireSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.568, 0.28, 0.780392), Color(1, 0.455667, 0.29, 0.866667), Color(1, 0.568, 0.28, 0.780392)]
+}
+
+[sub_resource type="Animation" id="Animation_1ke62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TorchFireSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15, 0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TorchFireSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4outi"]
+_data = {
+"RESET": SubResource("Animation_1ke62"),
+"torch": SubResource("Animation_dpay2")
+}
+
+[node name="TorchTile" type="StaticBody2D" groups=["blocked", "navigation_polygon_source_geometry_group", "walls"]]
+collision_layer = 57
+collision_mask = 0
+
+[node name="TorchSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = SubResource("AtlasTexture_bmrfd")
+
+[node name="TorchFireSprite" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -61)
+scale = Vector2(0.15, 0.15)
+texture = SubResource("AtlasTexture_m5473")
+
+[node name="FireParticle1" type="GPUParticles2D" parent="."]
+z_index = 3
+y_sort_enabled = true
+position = Vector2(0, -55)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_uwvjf")
+texture = SubResource("AtlasTexture_t1hrl")
+lifetime = 0.8
+speed_scale = 1.45
+randomness = 0.3
+visibility_rect = Rect2(-100, -150, 200, 300)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-10, 0, 0, -5, 10, 0, 0, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4outi")
+}
+autoplay = "torch"
+speed_scale = 1.6

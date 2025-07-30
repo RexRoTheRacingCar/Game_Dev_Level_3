@@ -79,8 +79,8 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 			#Not enough ammo (Teleports away)
 			else:
 				_invisible_setup()
-		
-		
+	
+	
 	#If enemy is invisible
 	if is_invisible == false and (player_distance > invisble_distance or player_visible == false):
 		invisible_timer += delta

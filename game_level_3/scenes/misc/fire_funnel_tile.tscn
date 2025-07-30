@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dysffqx4sviud"]
+[gd_scene load_steps=17 format=3 uid="uid://dysffqx4sviud"]
 
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_crqqr"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="1_jfki6"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_ke4gy"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_bgydn"]
 
 [sub_resource type="Animation" id="Animation_gwkiu"]
@@ -77,6 +78,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FireGlow:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.533232, 0.283095, 0.807094)]
 }
 
 [sub_resource type="Animation" id="Animation_7josw"]
@@ -156,12 +169,28 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FireGlow:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.85, 2.35, 2.5, 2.75),
+"transitions": PackedFloat32Array(2, 4.14107, 0.420448, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 0.787833, 0.33, 0.0862745), Color(1, 0.532, 0.28, 0.513726), Color(1, 0.424, 0.28, 0.670588), Color(1, 0.6865, 0.43, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p2n3q"]
 _data = {
 "RESET": SubResource("Animation_gwkiu"),
 "fire_animation": SubResource("Animation_7josw")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl7s2"]
+atlas = ExtResource("1_ke4gy")
+region = Rect2(400, 0, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_014hb"]
 atlas = ExtResource("1_crqqr")
@@ -175,14 +204,14 @@ region = Rect2(360, 840, 120, 60)
 offsets = PackedFloat32Array(0, 0.212389, 0.530973, 1)
 colors = PackedColorArray(1, 0.133333, 0, 1, 1, 0.7535, 0.13, 1, 0.44, 0.44, 0.44, 1, 0.48, 0.46272, 0.4368, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_emfty"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lgxyq"]
 gradient = SubResource("Gradient_ouvxu")
 
 [sub_resource type="Curve" id="Curve_4wr7x"]
 _data = [Vector2(0, 0), 0.0, 21.7177, 0, 0, Vector2(1e-05, 0.00377357), 11.0073, 11.0073, 0, 0, Vector2(0.238636, 1), 0.117203, 0.117203, 0, 0, Vector2(1, 0.320755), -1.59396, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_sjsld"]
+[sub_resource type="CurveTexture" id="CurveTexture_t8t1h"]
 curve = SubResource("Curve_4wr7x")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6mwdw"]
@@ -198,8 +227,8 @@ linear_accel_min = -24.84
 linear_accel_max = 17.4
 scale_min = 0.3
 scale_max = 0.6
-scale_curve = SubResource("CurveTexture_sjsld")
-color_ramp = SubResource("GradientTexture1D_emfty")
+scale_curve = SubResource("CurveTexture_t8t1h")
+color_ramp = SubResource("GradientTexture1D_lgxyq")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlmtk"]
 atlas = ExtResource("3_bgydn")
@@ -213,6 +242,13 @@ libraries = {
 "": SubResource("AnimationLibrary_p2n3q")
 }
 autoplay = "fire_animation"
+
+[node name="FireGlow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.533232, 0.283095, 0.807094)
+z_index = 1
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(0.5, 0.25)
+texture = SubResource("AtlasTexture_fl7s2")
 
 [node name="FireFunnelBlank" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_014hb")
