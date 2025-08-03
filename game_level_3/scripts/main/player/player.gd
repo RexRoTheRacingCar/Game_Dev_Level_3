@@ -231,6 +231,7 @@ func _portal_visibility_delay():
 	P_HITBOX_COMPONENT.monitoring = false
 	p_can_move = false
 	visible = false
+	velocity = Vector2.ZERO
 	
 	await get_tree().create_timer(0.2, false).timeout
 	collision_shape.set_deferred("disabled", true)

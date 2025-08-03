@@ -67,13 +67,12 @@ func generate_room():
 	#Select a type of room based on a random float
 	var rand_room_type := randf()
 	
-	if rand_room_type >= shop_chance:
-		current_room = select_room(fight_room_array)
-		Global.current_room_type = "fight"
-		
-	else:
+	if rand_room_type <= shop_chance:
 		current_room = select_room(shop_room_array)
 		Global.current_room_type = "shop"
+	else:
+		current_room = select_room(fight_room_array)
+		Global.current_room_type = "fight"
 	
 	#Load room into the game and update Global Variables
 	add_child(current_room)

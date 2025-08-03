@@ -19,10 +19,10 @@ room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="PortalSpawnFolder"]
-position = Vector2(120, 0)
+position = Vector2(660, 0)
 
 [node name="Marker2D2" type="Marker2D" parent="PortalSpawnFolder"]
-position = Vector2(-120, 0)
+position = Vector2(-660, 0)
 
 [node name="WallFolder" type="Node2D" parent="."]
 y_sort_enabled = true

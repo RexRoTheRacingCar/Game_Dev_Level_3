@@ -10,10 +10,10 @@ var room_generating : bool = false
 var transitioning : bool = false
 
 const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
-const PORTAL_BASIC = preload("res://scenes/misc/portal_basic.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	randomize()
 	Global.wave_counter = 0
 	Global.enemy_count = 0 
 	Global.enemy_wave = false
@@ -77,25 +77,11 @@ func _process(delta):
 			
 			#Go to next room before starting next wave
 			elif Global.wave_counter >= GAME_MANAGER.max_waves:
-				match Global.delete_wave_settings:
-					"1" : #Instant fade to new room (Trial 1)
-						_new_room_transition()
+				if transitioning == false:
+					transitioning = true
+					_spawn_set_position_portals()
 					
-					"2" : #Spawn portal at random position on nav mesh, away from player (Trial 2)
-						if transitioning == false:
-							transitioning = true
-							var new_portal = PORTAL_BASIC.instantiate()
-							get_tree().root.get_node("/root/Game/").add_child(new_portal)
-							
-							Global.emit_signal("room_cleared")
-					
-					"3" : #Spawn portals at set positions (Trial 3)
-						if transitioning == false:
-							transitioning = true
-							_spawn_set_position_portals()
-							
-							Global.emit_signal("room_cleared")
-	
+					Global.emit_signal("room_cleared")
 	
 	#If enemies have been on screen for a while, spawn arrows to help guide the player
 	if Global.enemy_count > 0 and Global.wave_time > (GAME_MANAGER.min_time_till_arrows + Global.enemy_count) and GAME_MANAGER.arrows_generated == false:
