@@ -93,17 +93,21 @@ func spawn_scene(scene : PackedScene, parent : Node):
 #---------------------------------------------------------------------------------------------------------------------------
 #Navigation functions
 func _navigation_check(target_pos : Vector2, timer_min : float, timer_max : float):
-	navigation_agent.target_position = target_pos
 	if navigation_agent.is_navigation_finished():
+		navigation_agent.target_position = target_pos
 		return
 	
 	#Update navigation on timer
 	if can_navigate == false:
+		navigation_agent.target_position = target_pos
+		
 		current_agent_position = global_position
 		next_path_position = navigation_agent.get_next_path_position()
 		
 		can_navigate = true
-		nav_timer.start(randf_range(timer_min, timer_max))
+		var distance_to_target : float = global_position.distance_to(target_pos)
+		var max_timer_distance : float = clampf(timer_max + ((distance_to_target ** 2) / 1500000), timer_min, 6.0)
+		nav_timer.start(randf_range(timer_min, max_timer_distance))
 
 
 #---------------------------------------------------------------------------------------------------------------------------
