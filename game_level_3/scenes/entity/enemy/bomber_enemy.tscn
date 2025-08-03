@@ -164,10 +164,6 @@ knockback_type = "center"
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_sfyi6")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
-position = Vector2(0, 0.999998)
-scale = Vector2(2.2, 2.3)
-
 [node name="AreaOfSight" parent="." instance=ExtResource("4_sv177")]
 collision_layer = 0
 collision_mask = 33

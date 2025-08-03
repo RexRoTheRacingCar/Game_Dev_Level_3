@@ -100,11 +100,7 @@ path_max_distance = 150.0
 navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
-simplify_epsilon = 2.118
-debug_use_custom = true
-debug_path_custom_color = Color(0.978863, 0, 0.0976624, 1)
-debug_path_custom_point_size = 6.0
-debug_path_custom_line_width = 2.0
+simplify_epsilon = 3.0
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -166,10 +162,6 @@ knockback_type = "center"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_v3h61")
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
-position = Vector2(0, 0.999998)
-scale = Vector2(2.2, 2.3)
 
 [node name="AreaOfSight" parent="." instance=ExtResource("7_v0aed")]
 collision_layer = 0

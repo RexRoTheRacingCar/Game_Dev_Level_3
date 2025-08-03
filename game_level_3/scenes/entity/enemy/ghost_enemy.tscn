@@ -95,7 +95,7 @@ path_max_distance = 150.0
 navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
-simplify_epsilon = 2.118
+simplify_epsilon = 3.0
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -141,7 +141,6 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("6_1d0d1")]
-visible = false
 collision_layer = 0
 collision_mask = 8
 hit_delay = 0.01
@@ -152,7 +151,6 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_mwd6q")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_be5s4")]
-visible = false
 collision_layer = 2
 collision_mask = 0
 hurt_damage = 3
@@ -161,10 +159,6 @@ knockback_type = "center"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_icdur")
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="HurtboxComponent"]
-position = Vector2(0, 0.999998)
-scale = Vector2(2.2, 2.3)
 
 [node name="AreaOfSight" parent="." instance=ExtResource("8_rbtc6")]
 collision_layer = 0

@@ -22,6 +22,7 @@ var rand_reward_chance : float
 func _ready():
 	randomize()
 	_portal_prep()
+	reward_sprite.scale = Vector2(0.75, 0.75)
 	
 	rand_reward_chance = randf()
 	if rand_reward_chance >= non_upgrade_reward_chance:
@@ -104,5 +105,6 @@ func _spawn_room_reward():
 func _other_portal_entered():
 	if has_detected_player == false:
 		reward_sprite.texture.region = Rect2(300, 200, 100, 100)
+		reward_sprite.scale = Vector2(1, 1)
 	
 	super._other_portal_entered()
