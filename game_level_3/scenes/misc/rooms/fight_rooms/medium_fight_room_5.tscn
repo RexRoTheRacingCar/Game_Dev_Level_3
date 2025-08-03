@@ -10,7 +10,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1672, -8, -887, 432, -
 source_geometry_mode = 2
 agent_radius = 16.0
 
-[node name="MediumFightRoom2" type="Node2D" node_paths=PackedStringArray("room_nav_region")]
+[node name="MediumFightRoom" type="Node2D" node_paths=PackedStringArray("room_nav_region")]
 y_sort_enabled = true
 script = ExtResource("1_dgc43")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
@@ -79,6 +79,7 @@ tile_map_data = PackedByteArray("AAD8/wkAAAACAAUAAAD8/woAAAACAAUAAAD9/wkAAAACAAU
 tile_set = ExtResource("2_l2fec")
 
 [node name="MainNavigation" type="NavigationRegion2D" parent="FloorFolder/MainTilemap"]
+visible = false
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_4ltyq")
 navigation_layers = 2

@@ -10,7 +10,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-2412, -12, -1989, -211
 source_geometry_mode = 2
 agent_radius = 16.0
 
-[node name="LargeFightRoom1" type="Node2D" node_paths=PackedStringArray("room_nav_region")]
+[node name="LargeFightRoom" type="Node2D" node_paths=PackedStringArray("room_nav_region")]
 y_sort_enabled = true
 script = ExtResource("1_8icl6")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
