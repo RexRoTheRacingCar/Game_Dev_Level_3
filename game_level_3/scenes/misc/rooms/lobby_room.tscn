@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=4 uid="uid://beokc1lgsn058"]
+[gd_scene load_steps=8 format=4 uid="uid://beokc1lgsn058"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/room.gd" id="1_jiflk"]
+[ext_resource type="PackedScene" uid="uid://burt04gq6di4m" path="res://scenes/misc/shop_tile.tscn" id="2_48qe5"]
 [ext_resource type="TileSet" uid="uid://fxfnm3yb88aw" path="res://misc/resources/tilesets/test_tileset.tres" id="2_t0jh4"]
+[ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_ocswl"]
+[ext_resource type="Resource" uid="uid://wsp2b187sq6m" path="res://misc/resources/weapons/bubble_gun.tres" id="4_gm4eg"]
+[ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="5_34746"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4ltyq"]
 source_geometry_mode = 2
@@ -11,6 +15,29 @@ agent_radius = 16.0
 y_sort_enabled = true
 script = ExtResource("1_jiflk")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
+
+[node name="ShopTiles" type="Node2D" parent="."]
+
+[node name="Weapon1" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(-180, -330)
+display_item = ExtResource("3_ocswl")
+
+[node name="Weapon2" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(-420, -210)
+display_item = ExtResource("4_gm4eg")
+
+[node name="Weapon3" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(-660, -90)
+display_item = ExtResource("5_34746")
+
+[node name="Seconadary2" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(420, -210)
+
+[node name="Seconadary1" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(180, -330)
+
+[node name="Seconadary3" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(660, -90)
 
 [node name="PortalSpawnFolder" type="Node2D" parent="."]
 unique_name_in_owner = true

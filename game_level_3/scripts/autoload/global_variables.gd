@@ -26,6 +26,7 @@ var rooms_cleared : int = 0
 var global_map
 var destructable_layer : TileMapLayer
 var current_room_type : String
+var shops_in_room : int = 0
 
 var game_timer : float = 0.0
 
@@ -137,6 +138,6 @@ func weighted_lerp(weight : float, delta : float) -> float:
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _unhandled_input(event):
-	if event.is_action_pressed("reroll") and Global.current_room_type == "shop" and Global.player_rerolls > 0:
+	if event.is_action_pressed("reroll") and Global.current_room_type == "shop" and Global.player_rerolls > 0 and Global.shops_in_room > 0:
 		emit_signal("shop_reroll")
 		Global.player_rerolls -= 1

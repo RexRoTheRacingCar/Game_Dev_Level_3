@@ -1,8 +1,7 @@
 ############################## Shop Tile ##############################
 extends StaticBody2D
 
-
-var display_item : Item
+@export var display_item : Item
 var price : int
 
 #Nodes
@@ -11,6 +10,7 @@ var price : int
 
 @onready var coins = %Coins
 @onready var item = %Item
+@onready var icon = %Icon
 @onready var swap_timer = %SwapTimer
 
 @onready var collision = $CollisionPolygon2D
@@ -33,14 +33,23 @@ var is_hidden : bool = false
 func _ready():
 	randomize()
 	
-	Global.connect("shop_reroll", _shop_rerolled)
+	Global.shops_in_room += 1
+	self.connect("tree_exited", _shop_deleted)
 	particle_1.self_modulate = Color(1, 1, 1, 1)
 	
-	is_hidden = false
-	if randf() >= Global.hidden_chance:
-		is_hidden = true
-	
-	get_random_item()
+	if display_item:
+		is_hidden = false
+		shop_tile.texture.region = Rect2(480, 780, 120, 120)
+		icon.texture.region = Rect2(500, 200, 100, 100)
+		
+	else:
+		Global.connect("shop_reroll", _shop_rerolled)
+		
+		is_hidden = false
+		if randf() >= Global.hidden_chance:
+			is_hidden = true
+		
+		get_random_item()
 
 	reward_sprite.visible = true
 	shop_tile.visible = true 
@@ -77,13 +86,17 @@ func _update_display():
 	#Display Tile
 	shop_tile.texture.region = Rect2(480, 180, 120, 120)
 	
-	reward_sprite.texture = display_item.texture.duplicate()
+	if display_item.texture:
+		reward_sprite.texture = display_item.texture.duplicate()
 	
 	if is_hidden == false:
 		reward_sprite.self_modulate = Color(0.55, 0.55, 0.55, 0.92)
 		#Pricing
 		price = display_item.item_cost
-		coins.text = str(price)
+		if price == 0:
+			coins.text = "Free!"
+		else:
+			coins.text = str(price)
 		item.text = display_item.item_name
 	else:
 		reward_sprite.texture.region = Rect2(600, 100, 100, 100)
@@ -166,3 +179,8 @@ func _timer_swapped():
 		text_state = "price"
 	
 	swap_timer.start(swap_time)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _shop_deleted():
+	Global.shops_in_room -= 1
