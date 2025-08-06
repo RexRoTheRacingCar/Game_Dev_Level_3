@@ -60,10 +60,15 @@ func _button_pressed(btn_id : int):
 			input_settings.visible = true
 			panel_container.visible = false
 		
-		3: #Main Menu
+		3: #Reset To Lobby
+			Global.reset_to_lobby.emit()
+			Global.player.p_can_move = false
+			_force_menu_input()
+		
+		4: #Main Menu
 			var _new_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")
-			
-		4: #Quit Game
+		
+		5: #Quit Game
 			get_tree().quit()
 
 

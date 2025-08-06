@@ -17,6 +17,7 @@ const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	global_position = Global.get_nav_mesh_point(Global.global_map, global_position, 10)
+	Global.connect("reset_to_lobby", queue_free)
 	
 	target_array = []
 	

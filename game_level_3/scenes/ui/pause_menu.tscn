@@ -70,6 +70,10 @@ text = "Settings"
 layout_mode = 2
 text = "Controls"
 
+[node name="ResetToLobbyBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Reset To Lobby"
+
 [node name="StartMenuBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"

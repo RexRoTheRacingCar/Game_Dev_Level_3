@@ -45,6 +45,8 @@ func _ready():
 	Global.enemy_count += 1
 	Global.active_enemy_array.append(self)
 	
+	Global.connect("reset_to_lobby", queue_free)
+	
 	can_navigate = false
 	current_agent_position = global_position
 	next_path_position = navigation_agent.get_next_path_position()

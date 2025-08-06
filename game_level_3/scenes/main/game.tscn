@@ -14,11 +14,12 @@
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 
-[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER") instance=ExtResource("2_r7fuv")]
+[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER", "PLAYER_UI") instance=ExtResource("2_r7fuv")]
 y_sort_enabled = true
 GAME_MANAGER = NodePath("GameManager")
 ROOM_MANAGER = NodePath("RoomGenerator")
 PLAYER = NodePath("Player")
+PLAYER_UI = NodePath("../PlayerUI")
 
 [node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")

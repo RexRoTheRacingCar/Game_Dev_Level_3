@@ -11,9 +11,20 @@ extends CanvasLayer
 @export var rerolls : Label
 @export var game_time : Label
 
+var can_count : bool = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _ready():
+	Global.reset_to_lobby.connect(_disable_timer)
+
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _process(delta):
-	Global.game_timer += delta
+	if can_count == true:
+		Global.game_timer += delta
+	else:
+		Global.game_timer = 0.0
 	
 	#Updating UI text and other GUI
 	player_hp.text = str(Global.player_hp, " / ", Global.player_max_hp)
@@ -34,4 +45,8 @@ func _process(delta):
 		var mins = fmod(Global.game_timer, 60 * 60) / 60
 		var time_passed = "%02d : %02d : %03d" % [mins, secs, mils]
 		game_time.text = str(time_passed)
-		
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _disable_timer():
+	can_count = false

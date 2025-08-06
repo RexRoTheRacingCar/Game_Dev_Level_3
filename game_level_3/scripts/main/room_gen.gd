@@ -33,6 +33,8 @@ var current_room_mesh = null
 
 @export var shop_chance : float = 0.35
 
+const LOBBY_ROOM = preload("res://scenes/misc/rooms/lobby_room.tscn")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
@@ -61,7 +63,6 @@ func _update_room_arrays():
 func generate_room():
 	if current_room != null:
 		current_room.queue_free()
-		
 		current_room = null
 	
 	#Select a type of room based on a random float
@@ -76,6 +77,21 @@ func generate_room():
 	
 	#Load room into the game and update Global Variables
 	add_child(current_room)
+	
+	current_room_mesh = current_room.room_nav_mesh
+	Global.global_map = current_room_mesh
+	Global.destructable_layer = current_room.destructable_tilemap
+
+
+#Load the starting lobby screen
+#---------------------------------------------------------------------------------------------------------------------------
+func load_lobby_room():
+	if current_room != null:
+		current_room.queue_free()
+		current_room = null
+	
+	current_room = LOBBY_ROOM.instantiate()
+	call_deferred("add_child", current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
 	Global.global_map = current_room_mesh

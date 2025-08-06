@@ -32,18 +32,6 @@ var camera_shake : float
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _ready():
-	_load_default_values()
-	
-	can_shoot = true
-	reloading = false
-	reload_label.visible = false
-	
-	ammo = max_ammo
-	bullet_upgrade_array = []
-
-
-#---------------------------------------------------------------------------------------------------------------------------
 func _load_default_values():
 	bullet_amount = current_weapon.default_bullet_amount
 	spread_amount = current_weapon.default_spread
@@ -54,6 +42,13 @@ func _load_default_values():
 	
 	bullet_scene = current_weapon.default_bullet
 	camera_shake = current_weapon.camera_shake
+	
+	can_shoot = true
+	reloading = false
+	reload_label.visible = false
+	
+	ammo = max_ammo
+	bullet_upgrade_array = []
 
 
 #---------------------------------------------------------------------------------------------------------------------------

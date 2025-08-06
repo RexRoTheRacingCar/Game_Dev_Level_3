@@ -1,6 +1,7 @@
 ############################## Advanced Portal ##############################
 extends PortalBase
 
+@export var is_lobby_portal : bool = false
 @export var item_rewards : RandomItemResource = preload("res://misc/resources/shop_item_pool.tres")
 @onready var reward_sprite = $Sprites/Reward
 var reward_item : Item
@@ -24,11 +25,15 @@ func _ready():
 	_portal_prep()
 	reward_sprite.scale = Vector2(0.75, 0.75)
 	
-	rand_reward_chance = randf()
-	if rand_reward_chance >= non_upgrade_reward_chance:
-		get_random_item()
+	if is_lobby_portal == false:
+		rand_reward_chance = randf()
+		if rand_reward_chance >= non_upgrade_reward_chance:
+			get_random_item()
+		else:
+			get_random_non_upgrade()
 	else:
-		get_random_non_upgrade()
+		reward_sprite.texture.region = Rect2(100, 300, 100, 100)
+		item_label.text = " - BEGIN - "
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -80,31 +85,32 @@ func _on_player_detect_body_entered(body : Player):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _spawn_room_reward():
-	#If upgrade
-	if rand_reward_chance >= non_upgrade_reward_chance:
-		var new_reward = REWARD_SCENE.instantiate()
-		new_reward.global_position = Global.player_position
-		new_reward.upgrade = reward_item
-		new_reward.track_player = true
-		get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_reward)
-	
-	#If non_upgrade
-	else:
-		match non_upgrade_reward_dict[rand_select]:
-			"Coins" : 
-				Global.player_coins += 50
-			"Healing" : 
-				Global.player.P_HEALTH_COMPONENT.health += 50
-			"Rerolls" : 
-				Global.player_rerolls += 2
-			"Gems" :
-				Global.gems += 5
+	if reward_item:
+		#If upgrade
+		if rand_reward_chance >= non_upgrade_reward_chance:
+			var new_reward = REWARD_SCENE.instantiate()
+			new_reward.global_position = Global.player_position
+			new_reward.upgrade = reward_item
+			new_reward.track_player = true
+			get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_reward)
+		
+		#If non_upgrade
+		else:
+			match non_upgrade_reward_dict[rand_select]:
+				"Coins" : 
+					Global.player_coins += 50
+				"Healing" : 
+					Global.player.P_HEALTH_COMPONENT.health += 50
+				"Rerolls" : 
+					Global.player_rerolls += 2
+				"Gems" :
+					Global.gems += 5
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _other_portal_entered():
 	if has_detected_player == false:
 		reward_sprite.texture.region = Rect2(300, 200, 100, 100)
-		reward_sprite.scale = Vector2(1, 1)
+		reward_sprite.scale = Vector2(1.1, 1.1)
 	
 	super._other_portal_entered()

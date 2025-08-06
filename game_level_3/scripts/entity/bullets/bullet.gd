@@ -36,15 +36,15 @@ var fake_velocity : Vector2 = Vector2.ZERO
 var collide_array : Array = []
 var collision_hit : bool = false
 
-
 #Signal used in other bullet scripts
-@warning_ignore("unused_signal")
 signal delete_bullet_signal
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	
+	Global.connect("reset_to_lobby", queue_free)
 	
 	visible = false
 	collide_array.clear()

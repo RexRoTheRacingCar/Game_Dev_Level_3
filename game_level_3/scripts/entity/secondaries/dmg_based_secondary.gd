@@ -9,6 +9,8 @@ class_name DamageBasedSecondary
 func _ready():
 	_apply_mult()
 	
+	Global.connect("reset_to_lobby", queue_free)
+	
 	if particle_nodes.is_empty() == false and particle_folder:
 		particle_nodes = particle_folder.get_children()
 	

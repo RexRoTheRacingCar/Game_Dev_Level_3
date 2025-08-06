@@ -16,6 +16,9 @@ var target_alpha : float = 0.0
 func _ready():
 	alpha = 0.0
 	target_alpha = 0.0
+	
+	Global.connect("room_changed", queue_free)
+	Global.connect("reset_to_lobby", queue_free)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

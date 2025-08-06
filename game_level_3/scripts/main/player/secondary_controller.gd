@@ -17,9 +17,9 @@ var cooldown_active : bool = false
 
 var progress : float = 0.0
 
-
 #---------------------------------------------------------------------------------------------------------------------------
-func _ready():
+func _reset_secondary_controller():
+	progress = 0.0
 	charge_progress = 0.0
 	is_charging = false
 	cooldown_active = false

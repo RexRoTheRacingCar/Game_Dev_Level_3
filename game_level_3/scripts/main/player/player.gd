@@ -58,6 +58,7 @@ var p_upgrades : BaseUpgrade = null : #Apply upgrades to player
 @export var p_dash_delay : float = 0.6
 @export var p_max_dash : int = 1
 @export var p_damage_resistance : float = 1.0
+@export var defualt_hp : int = 50
 
 var p_secondary_active : bool = false
 var p_knockback_taken : Vector2 = Vector2.ZERO
@@ -69,21 +70,7 @@ const PLAYER_HIT_FLASH = preload("res://scenes/entity/particles/player_hit_flash
 func _ready():
 	set_physics_process(false)
 	
-	#Variable prep
-	p_is_dashing = false
-	p_consecutive_dash = 0
 	p_can_move = false
-	
-	p_upgrades = null
-	
-	p_vel_prep = Vector2.ZERO
-	p_knockback_taken = Vector2.ZERO
-	velocity = Vector2.ZERO
-	P_HITBOX_COMPONENT.monitoring = false
-	
-	Global.player_rerolls = 3
-	
-	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 	
 	#Signal connecting
 	P_HITBOX_COMPONENT.hitbox_entered.connect(player_hit_signalled)
@@ -93,9 +80,35 @@ func _ready():
 	await get_tree().create_timer(0.09, false).timeout 
 	
 	call_deferred("set_physics_process", true)
-	P_HITBOX_COMPONENT.monitoring = true
-	collision_shape.disabled = false
+	
+	_reset_player()
+
+
+#Reset the player when game/lobby is loaded
+#---------------------------------------------------------------------------------------------------------------------------
+func _reset_player():
+	#Variable prep
+	p_is_dashing = false
+	p_consecutive_dash = 0
 	p_can_move = true
+	visible = true
+	
+	p_upgrades = null
+	
+	p_vel_prep = Vector2.ZERO
+	p_knockback_taken = Vector2.ZERO
+	velocity = Vector2.ZERO
+	
+	P_HITBOX_COMPONENT.set_deferred("monitoring", false)
+	P_WEAPON_CONTROLLER.bullet_upgrade_array = []
+	P_WEAPON_CONTROLLER._load_default_values()
+	P_SECONDARY_CONTROLLER._reset_secondary_controller()
+	P_HEALTH_COMPONENT._reset_health()
+	
+	collision_shape.disabled = false
+	Global.player_rerolls = 3
+	
+	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -114,12 +127,12 @@ func _physics_process(delta):
 		velocity += p_knockback_taken
 		velocity.y /= 2 #Make velocity isometric
 		var _error = move_and_slide()
+		
+		#Player shooting
+		P_WEAPON_CONTROLLER.weapon_controls(p_secondary_active)
+		secondary_manage(delta)
 	
 	p_knockback_taken = lerp(p_knockback_taken, Vector2.ZERO, Global.weighted_lerp(5, delta))
-	
-	#Player shooting
-	P_WEAPON_CONTROLLER.weapon_controls(p_secondary_active)
-	secondary_manage(delta)
 	
 	#Global Variable Management
 	Global.player_position = global_position
@@ -216,6 +229,12 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 #Player has 0 HP
 func player_no_health():
 	print("Player Died")
+	visible = false
+	p_can_move = false
+	p_knockback_taken = Vector2.ZERO
+	
+	await get_tree().create_timer(1.0, false).timeout
+	
 	Global.player_dead = true
 
 

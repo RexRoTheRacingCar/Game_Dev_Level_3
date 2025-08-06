@@ -23,6 +23,10 @@ Camera="*res://scripts/main/camera.gd"
 PlayerUpgradeStats="*res://scripts/autoload/player_upgrade_stats.gd"
 ConfigFileHandler="*res://scripts/autoload/config_file_handler.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1920

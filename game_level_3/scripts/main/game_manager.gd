@@ -17,6 +17,7 @@ const SPAWN_ANIMATION = preload("res://scenes/entity/spawn_animation.tscn")
 
 var is_generating : bool = false
 var arrows_generated : bool = false
+var loop_breaker : bool = false
 
 @export_group("Customisable Waves")
 @export var generate_waves : bool
@@ -25,7 +26,6 @@ var arrows_generated : bool = false
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
-	set_process(false)
 	
 	arrows_generated = false
 	is_generating = false
@@ -45,6 +45,8 @@ func _generate_wave():
 	arrows_generated = false
 	
 	await get_tree().create_timer(1.0, false).timeout
+	
+	if loop_breaker == true: return
 	
 	#Wave spawn time variation
 	var generating_delay = (randf_range(0.1, 1.0) ** 6) + 0.1
@@ -68,6 +70,7 @@ func _generate_wave():
 		new_enemy.enemy_scene = selected_enemy #Update spawn anim to spawn slected enemy
 		
 		await get_tree().create_timer(generating_delay, false).timeout #Await a small delay
+		if loop_breaker == true: return
 	
 	await get_tree().create_timer(3.0, false).timeout
 	

@@ -38,10 +38,10 @@ current_secondary = ExtResource("5_52k6h")
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.20371e-35, 1.00635)
-scale = Vector2(0.0412797, 0.0412797)
+position = Vector2(0, 22.9615)
+scale = Vector2(0.0431433, 0.0431433)
 texture = ExtResource("6_5nlbj")
-offset = Vector2(1.08991e-06, -31.4286)
+offset = Vector2(1.08991e-06, -515.928)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-18, 10.5, 0, 1.5, 18, 10.5, 0, 19.5)

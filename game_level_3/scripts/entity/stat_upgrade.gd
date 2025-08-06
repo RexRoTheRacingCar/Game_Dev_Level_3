@@ -25,6 +25,8 @@ func _ready() -> void:
 	$GPUParticles2D.emitting = true
 	
 	call_deferred("start")
+	
+	Global.connect("reset_to_lobby", queue_free)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

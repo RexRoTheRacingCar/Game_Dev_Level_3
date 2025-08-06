@@ -44,6 +44,7 @@ func _ready():
 		
 	else:
 		Global.connect("shop_reroll", _shop_rerolled)
+		shop_tile.texture.region = Rect2(480, 180, 120, 120)
 		
 		is_hidden = false
 		if randf() >= Global.hidden_chance:
@@ -83,8 +84,6 @@ func _shop_rerolled():
 func _update_display():
 	text_state = "name"
 	animation_player.play("price_to_name")
-	#Display Tile
-	shop_tile.texture.region = Rect2(480, 180, 120, 120)
 	
 	if display_item.texture:
 		reward_sprite.texture = display_item.texture.duplicate()

@@ -33,6 +33,7 @@ func _ready() -> void:
 	animation_player.queue("RESET")
 	
 	Global.connect("room_changed", queue_free)
+	Global.connect("reset_to_lobby", queue_free)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
