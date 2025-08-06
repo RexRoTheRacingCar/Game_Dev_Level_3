@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=11 format=3 uid="uid://bhusb8ekekxkj"]
 
-[ext_resource type="Script" path="res://scripts/main/game.gd" id="1_cy04u"]
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player/player.tscn" id="1_vr3do"]
 [ext_resource type="PackedScene" uid="uid://ckjdjuavq4s2e" path="res://scenes/main/room_generator.tscn" id="2_i5teo"]
@@ -14,7 +13,6 @@
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_cy04u")
 
 [node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER") instance=ExtResource("2_r7fuv")]
 y_sort_enabled = true

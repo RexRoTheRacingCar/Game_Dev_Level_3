@@ -35,7 +35,12 @@ var knockback_ease : float = 7.5
 
 #Player global variables
 var player : Player
-var player_dead : bool
+var player_dead : bool :
+	set(new_value):
+		player_dead = new_value
+		if player_dead == true:
+			emit_signal("reset_to_menu")
+
 var player_position : Vector2
 var player_velocity : Vector2
 var player_coins : int
@@ -51,7 +56,7 @@ var gems : int = 0
 var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 
 
-#Global Signals (The signals are used, warning ignore is to stop sending warnings in the debug menu)
+#Global Signals (The signals are used in other scripts, warning ignore is to stop warnings in the debug menu)
 @warning_ignore("unused_signal")
 signal shop_reroll
 @warning_ignore("unused_signal")
@@ -60,6 +65,8 @@ signal room_changed
 signal portal_entered
 @warning_ignore("unused_signal")
 signal room_cleared
+@warning_ignore("unused_signal")
+signal reset_to_menu
 
 
 #---------------------------------------------------------------------------------------------------------------------------

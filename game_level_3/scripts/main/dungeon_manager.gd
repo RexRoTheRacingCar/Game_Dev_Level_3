@@ -19,7 +19,15 @@ func _ready():
 	Global.enemy_wave = false
 	Global.player = PLAYER
 	
+	Global.current_main_scene = "Game"
+	Global.player_dead = false
+	Global.player_coins = 0
+	Global.rooms_cleared = 0
+	Global.gems = 0
+	PlayerUpgradeStats.power_mult = 1.0
+	
 	Global.connect("portal_entered", _new_room_transition)
+	Global.connect("reset_to_menu", _reset_to_main_menu)
 	
 	room_generating = true
 	transitioning = false
@@ -108,3 +116,9 @@ func _new_room_transition():
 	
 	_reset_room()
 	transitioning = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _reset_to_main_menu():
+	Global.current_main_scene = "Start Menu"
+	var _main_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")

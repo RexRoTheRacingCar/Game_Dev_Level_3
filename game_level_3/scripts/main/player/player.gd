@@ -205,7 +205,6 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 			P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay / 5)
 			$PlaceholderSprite2D.self_modulate = Color("00FF00")
 		
-		
 		await get_tree().create_timer(0.9, false).timeout
 		$PlaceholderSprite2D.self_modulate = Color("ffffff")
 		

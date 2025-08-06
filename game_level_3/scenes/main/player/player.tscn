@@ -1,17 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://biv2erpftkxlb"]
+[gd_scene load_steps=11 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
-[ext_resource type="Texture2D" uid="uid://dhm06xn06v6rw" path="res://assets/iso_test.png" id="2_arape"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
 [ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="3_s8akm"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 [ext_resource type="Resource" uid="uid://pmgh1c8hse5n" path="res://misc/resources/secondaries/pulse_secondary.tres" id="5_52k6h"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rokkj"]
-atlas = ExtResource("2_arape")
-region = Rect2(0, 0, 120, 120)
+[ext_resource type="Texture2D" uid="uid://d3wctobnqykjb" path="res://assets/art/entity/lookatyou.png" id="6_5nlbj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukb0n"]
 radius = 16.0
@@ -42,10 +38,9 @@ current_secondary = ExtResource("5_52k6h")
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="PlaceholderSprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.13, 0.13, 1)
-position = Vector2(-1.20371e-35, 11)
-scale = Vector2(0.35, 0.35)
-texture = SubResource("AtlasTexture_rokkj")
+position = Vector2(-1.20371e-35, 1.00635)
+scale = Vector2(0.0412797, 0.0412797)
+texture = ExtResource("6_5nlbj")
 offset = Vector2(1.08991e-06, -31.4286)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
