@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bom22ublhv6f4"]
+[gd_scene load_steps=10 format=3 uid="uid://bom22ublhv6f4"]
 
 [ext_resource type="Script" path="res://scripts/ui/player_ui.gd" id="1_cms01"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="2_3inlh"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_6yvmt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d65i"]
@@ -50,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_3inlh")
 
 [node name="UIMargin" type="MarginContainer" parent="MainControl"]
 layout_mode = 1
@@ -163,7 +165,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
-text = "Player HP"
+text = "50 I 50"
 
 [node name="BulletSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
 layout_mode = 2

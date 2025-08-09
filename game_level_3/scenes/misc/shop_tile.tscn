@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://burt04gq6di4m"]
+[gd_scene load_steps=24 format=3 uid="uid://burt04gq6di4m"]
 
 [ext_resource type="Script" path="res://scripts/misc/shop_tile.gd" id="1_pfyx2"]
 [ext_resource type="Resource" uid="uid://v4ljbmcc8dtf" path="res://misc/resources/shop_item_pool.tres" id="2_o3642"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_oao8i"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="4_mfm3d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p81b7"]
 load_path = "res://.godot/imported/iso_green_set.png-4817c5288525ba079934765ca6e40ecb.ctex"
@@ -303,6 +304,7 @@ offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_mfm3d")
 theme_override_styles/panel = SubResource("StyleBoxFlat_5rine")
 metadata/_edit_use_anchors_ = true
 

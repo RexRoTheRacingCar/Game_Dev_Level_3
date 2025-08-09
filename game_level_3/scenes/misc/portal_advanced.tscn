@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://chxfphylgjutc"]
+[gd_scene load_steps=12 format=3 uid="uid://chxfphylgjutc"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/portal_advanced.gd" id="1_5l1n2"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_gteti"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_ht6f1"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="4_r08e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2hg4"]
 atlas = ExtResource("2_gteti")
@@ -275,6 +276,7 @@ offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_r08e0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ollhu")
 metadata/_edit_use_anchors_ = true
 

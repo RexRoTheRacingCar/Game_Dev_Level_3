@@ -27,14 +27,14 @@ func _process(delta):
 		Global.game_timer = 0.0
 	
 	#Updating UI text and other GUI
-	player_hp.text = str(Global.player_hp, " / ", Global.player_max_hp)
+	player_hp.text = str(Global.player_hp, "  I  ", Global.player_max_hp)
 	
 	player_health_bar.max_value = Global.player_max_hp
 	player_health_bar.value = Global.player_hp
 	
 	coins.text = str(Global.player_coins)
 	gems.text = str(Global.gems)
-	bullets.text = str(Global.player_ammo, " / ", Global.player_max_ammo)
+	bullets.text = str(Global.player_ammo, "  I  ", Global.player_max_ammo)
 	rerolls.text = str(Global.player_rerolls)
 	
 	#Game Timer

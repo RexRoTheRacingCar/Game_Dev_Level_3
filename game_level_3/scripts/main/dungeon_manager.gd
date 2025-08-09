@@ -13,6 +13,9 @@ var is_in_lobby : bool = false
 
 const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
 
+@onready var room_fade_animation = %RoomAnimationPlayer
+@onready var overlay_second = $"../RoomTransition/OverlayOpening"
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
@@ -23,15 +26,19 @@ func _ready():
 	Global.portal_entered.connect(_new_room_transition)
 	Global.reset_to_lobby.connect(_load_lobby)
 	
-	modulate = Color(0, 0, 0, 1)
+	overlay_second.modulate = Color(0, 0, 0, 1)
 	
 	transitioning = false
 	
 	_load_lobby()
-
+	
+	await get_tree().create_timer(1.0, true).timeout
+	var tween = create_tween()
+	tween.tween_property(overlay_second, "modulate", Color(0, 0, 0, 0), 1.0).from_current()
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _load_lobby():
+	room_fade_animation.play("room_fade")
 	is_in_lobby = true
 	room_generating = true
 	GAME_MANAGER.generate_waves = false
@@ -105,11 +112,6 @@ func _reset_room():
 func _process(delta):
 	Global.wave_time += delta #Wave timer
 	
-	if room_generating == false:
-		modulate = lerp(modulate, Color(1, 1, 1), 0.25)
-	else:
-		modulate = lerp(modulate, Color(0, 0, 0), 0.25)
-	
 	#WAVE GENERATION CONDITIONS
 	if Global.enemy_count == 0 and GAME_MANAGER.is_generating == false and GAME_MANAGER.generate_waves == true:
 		#If no room is being generated
@@ -152,6 +154,7 @@ func _spawn_set_position_portals():
 func _new_room_transition():
 	Global.enemy_wave = true
 	room_generating = true
+	room_fade_animation.play("room_fade")
 	
 	await get_tree().create_timer(1.0, true).timeout
 	

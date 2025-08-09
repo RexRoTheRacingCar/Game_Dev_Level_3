@@ -1,26 +1,58 @@
 [gd_scene load_steps=5 format=3 uid="uid://bis2m242j5a7j"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lm4ab"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="1_u7die"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my5rr"]
-bg_color = Color(1, 1, 1, 0.427451)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48que"]
+bg_color = Color(0.32, 0.32, 0.32, 0.392157)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color(0.91, 0.91, 0.91, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 3.0
+expand_margin_top = 6.0
+expand_margin_right = 3.0
+expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwtly"]
-bg_color = Color(1, 1, 1, 0.6)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4kdg"]
+bg_color = Color(0, 0, 0, 0.54902)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hllf"]
-bg_color = Color(0, 0, 0, 0.472)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cjv2"]
+bg_color = Color(0, 0, 0, 0.196078)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="InputButton" type="Button"]
 custom_minimum_size = Vector2(0, 52)
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 52.0
 grow_horizontal = 2
 focus_mode = 0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lm4ab")
-theme_override_styles/hover = SubResource("StyleBoxFlat_my5rr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vwtly")
-theme_override_styles/normal = SubResource("StyleBoxFlat_2hllf")
+theme = ExtResource("1_u7die")
+theme_override_styles/hover = SubResource("StyleBoxFlat_48que")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c4kdg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0cjv2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -37,6 +69,11 @@ theme_override_constants/margin_bottom = 6
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
+[node name="Spacer1" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+mouse_filter = 1
+
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -44,7 +81,7 @@ mouse_filter = 1
 text = "Action Name"
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -55,3 +92,8 @@ mouse_filter = 1
 text = "Input Key
 "
 vertical_alignment = 1
+
+[node name="Spacer3" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+mouse_filter = 1

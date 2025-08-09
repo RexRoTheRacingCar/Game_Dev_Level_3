@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0l6em4pg4dha"]
+[gd_scene load_steps=8 format=3 uid="uid://b0l6em4pg4dha"]
 
 [ext_resource type="Script" path="res://scripts/main/player/secondary_controller.gd" id="1_18fdd"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="2_1l1j7"]
 [ext_resource type="PackedScene" uid="uid://01j0ju22xu5y" path="res://scenes/entity/enemy/test_enemy.tscn" id="3_yrqo0"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="4_dcl6d"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="5_o33kb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y2g3e"]
 atlas = ExtResource("4_dcl6d")
@@ -16,6 +17,7 @@ secondary_attack = ExtResource("3_yrqo0")
 secondary_outline = SubResource("AtlasTexture_y2g3e")
 cooldown = 2.0
 charge_time = 1.0
+max_charge_req = false
 spawn_location_type = 2
 shake_on_use = 12.0
 scale_based = true
@@ -35,7 +37,9 @@ offset_left = -48.0
 offset_top = -24.0
 offset_right = -40.0
 offset_bottom = 24.0
+theme = ExtResource("5_o33kb")
 max_value = 5.0
+value = 2.0
 fill_mode = 3
 show_percentage = false
 metadata/_edit_use_anchors_ = true

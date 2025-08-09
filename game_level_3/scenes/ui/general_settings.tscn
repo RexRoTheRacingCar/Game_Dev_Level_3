@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7b3fdg50aw5p"]
+[gd_scene load_steps=3 format=3 uid="uid://7b3fdg50aw5p"]
 
 [ext_resource type="Script" path="res://scripts/ui/general_settings.gd" id="1_i5r8i"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="2_te83p"]
 
 [node name="GeneralSettings" type="Control"]
 process_mode = 3
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_te83p")
 script = ExtResource("1_i5r8i")
 
 [node name="TextureRect" type="ColorRect" parent="."]
@@ -19,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0085, 0, 0.03, 1)
+color = Color(0.03, 0, 0, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -68,7 +70,7 @@ size_flags_horizontal = 3
 [node name="SubtitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Screen / Window"
+text = "Window"
 horizontal_alignment = 1
 
 [node name="Resolution" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions"]
@@ -92,12 +94,12 @@ custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 selected = 0
 item_count = 4
-popup/item_0/text = "1920 x 1080"
-popup/item_1/text = "1536 x 864"
+popup/item_0/text = "  1920 x 1080"
+popup/item_1/text = "  1536 x 864"
 popup/item_1/id = 1
-popup/item_2/text = "1366 x 768"
+popup/item_2/text = "  1366 x 768"
 popup/item_2/id = 2
-popup/item_3/text = "1280 x 720"
+popup/item_3/text = "  1280 x 720"
 popup/item_3/id = 3
 
 [node name="Fullscreen" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions"]

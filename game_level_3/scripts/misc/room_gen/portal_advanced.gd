@@ -85,7 +85,7 @@ func _on_player_detect_body_entered(body : Player):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _spawn_room_reward():
-	if reward_item:
+	if is_lobby_portal == false:
 		#If upgrade
 		if rand_reward_chance >= non_upgrade_reward_chance:
 			var new_reward = REWARD_SCENE.instantiate()

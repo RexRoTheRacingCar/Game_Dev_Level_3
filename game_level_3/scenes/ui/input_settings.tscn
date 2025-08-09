@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbve6xlnimkfn"]
+[gd_scene load_steps=4 format=3 uid="uid://bbve6xlnimkfn"]
 
 [ext_resource type="Script" path="res://scripts/ui/input_settings.gd" id="1_i4i8r"]
 [ext_resource type="PackedScene" uid="uid://bis2m242j5a7j" path="res://scenes/ui/input_button.tscn" id="2_hl6gy"]
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="3_e01hb"]
 
 [node name="InputSettings" type="Control"]
 process_mode = 3
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_e01hb")
 script = ExtResource("1_i4i8r")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -20,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.00784314, 0, 0.0313726, 1)
+color = Color(0.03, 0, 0, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -88,6 +90,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme = ExtResource("3_e01hb")
 text = "Reset to Defaults"
 
 [node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox"]
@@ -95,6 +98,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme = ExtResource("3_e01hb")
 text = "Close Menu"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/ResetButton" to="." method="_on_reset_button_pressed"]
