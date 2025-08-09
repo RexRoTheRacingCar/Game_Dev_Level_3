@@ -23,6 +23,9 @@ var rand_flip : float
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	Global.connect("room_changed", queue_free)
+	Global.connect("reset_to_lobby", queue_free)
+	
 	#Go to start position
 	global_position = spawn_pos
 	distance = spawn_pos.distance_to(target_pos)

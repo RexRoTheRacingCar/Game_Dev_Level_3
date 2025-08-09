@@ -116,7 +116,7 @@ visible = false
 layout_mode = 1
 
 [node name="RoomTransition" type="CanvasLayer" parent="."]
-layer = 2
+layer = 3
 
 [node name="RoomAnimationPlayer" type="AnimationPlayer" parent="RoomTransition"]
 unique_name_in_owner = true

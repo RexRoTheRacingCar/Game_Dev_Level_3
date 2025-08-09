@@ -9,6 +9,7 @@ class_name DamageBasedSecondary
 func _ready():
 	_apply_mult()
 	
+	Global.connect("room_changed", queue_free)
 	Global.connect("reset_to_lobby", queue_free)
 	
 	if particle_nodes.is_empty() == false and particle_folder:

@@ -64,6 +64,7 @@ var p_secondary_active : bool = false
 var p_knockback_taken : Vector2 = Vector2.ZERO
 
 const PLAYER_HIT_FLASH = preload("res://scenes/entity/particles/player_hit_flash.tscn")
+const DEATH_SCREEN = preload("res://scenes/ui/death_screen.tscn")
 @onready var collision_shape : CollisionPolygon2D = $CollisionPolygon2D
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -228,10 +229,12 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 #---------------------------------------------------------------------------------------------------------------------------
 #Player has 0 HP
 func player_no_health():
-	print("Player Died")
 	visible = false
 	p_can_move = false
 	p_knockback_taken = Vector2.ZERO
+	
+	var death_screen = DEATH_SCREEN.instantiate()
+	get_tree().root.get_node("/root/Game/").call_deferred("add_child", death_screen)
 	
 	await get_tree().create_timer(1.0, false).timeout
 	
