@@ -98,7 +98,7 @@ func _spawn_room_reward():
 		else:
 			match non_upgrade_reward_dict[rand_select]:
 				"Coins" : 
-					Global.player_coins += 50
+					Global.player_coins += 30
 				"Healing" : 
 					Global.player.P_HEALTH_COMPONENT.health += 50
 				"Rerolls" : 

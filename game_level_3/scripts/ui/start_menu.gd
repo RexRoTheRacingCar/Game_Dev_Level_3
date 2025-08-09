@@ -7,14 +7,16 @@ var all_buttons : Array = []
 var all_settings : Array = []
 @onready var settings_options = $SettingsOptions
 
+const LOADING_SCREEN = preload("res://scenes/ui/loading_screen.tscn")
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	Global.current_main_scene = "Start Menu"
 	get_tree().paused = false
 	
-	
 	connect_buttons()
+	all_buttons[0].text = "Start Game"
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -31,7 +33,8 @@ func connect_buttons():
 func _button_pressed(btn_id : int):
 	match btn_id:
 		0: #Start Game
-			var _new_game = get_tree().change_scene_to_file("res://scenes/main/game.tscn")
+			Global.scene_to_load = "res://scenes/main/game.tscn"
+			get_tree().change_scene_to_packed(LOADING_SCREEN)
 		
 		1: #Settings
 			var gen_menu_id = all_settings.rfind(%GeneralSettings)

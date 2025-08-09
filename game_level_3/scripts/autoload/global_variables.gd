@@ -2,6 +2,7 @@
 extends Node
 
 #World global variables
+var scene_to_load : String = ""
 var current_main_scene : String :
 	set(new_value):
 		current_main_scene = new_value
