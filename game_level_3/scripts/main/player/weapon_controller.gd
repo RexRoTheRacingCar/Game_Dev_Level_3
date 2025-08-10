@@ -18,7 +18,6 @@ var spread_amount : float = 15.0
 var bullet_amount : int : 
 	set(new_value): #Update the bullet spread basd on bullet amount
 		bullet_amount = new_value
-		@warning_ignore("integer_division")
 		spread_amount = ((spread_amount * bullet_amount) - spread_amount) / (bullet_amount * 1.5)
 var burst_amount : int
 var firerate : float

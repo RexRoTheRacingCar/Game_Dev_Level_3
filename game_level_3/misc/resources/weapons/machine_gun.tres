@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponType" load_steps=3 format=3 uid="uid://baw7lvm3snw2v"]
+[gd_resource type="Resource" script_class="WeaponType" load_steps=6 format=3 uid="uid://baw7lvm3snw2v"]
 
 [ext_resource type="PackedScene" uid="uid://brb23yhtndmma" path="res://scenes/entity/bullets/thin_bullet.tscn" id="1_rcnt6"]
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_gnln0"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_k7v75"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_l7rem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tplsv"]
+atlas = ExtResource("4_l7rem")
+region = Rect2(400, 300, 100, 100)
 
 [resource]
 script = ExtResource("2_gnln0")
@@ -15,5 +21,7 @@ default_bullet = ExtResource("1_rcnt6")
 camera_shake = 4.0
 item_name = "Machine Gun"
 rarity = "Common"
+item_type = ExtResource("2_k7v75")
 item_cost = 10
-upgrade_type = ""
+texture = SubResource("AtlasTexture_tplsv")
+upgrade_type = "weapon"

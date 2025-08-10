@@ -4,17 +4,19 @@ extends Area2D
 
 @export var animation_player : AnimationPlayer
 @export var sprite : Sprite2D
-@export var upgrade : BaseUpgrade:
+@export var upgrade : Item:
 	set(new_value):
 		upgrade = new_value
 		needs_update = true
 
 #Used to update the sprite if updated in the editor
 @export var needs_update : bool = false
-var collected : bool = false
 var current_scale : float = 0.0
-
 var track_player : bool = false
+
+var collected : bool = false
+var delete_on_collection : bool = true
+const COLLECTION_PARTICLE = preload("res://scenes/entity/particles/bubble_pop2.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -60,20 +62,31 @@ func _process(delta: float) -> void:
 
 #---------------------------------------------------------------------------------------------------------------------------
 #When player enteres area
-func _on_body_entered(body):
+func _on_body_entered(body : Player):
 	if not Engine.is_editor_hint():
 		#If colliding with player and isn't already collected
 		if body.name == "Player" and collected == false:
-			collected = true
-			$GPUParticles2D.emitting = false
+			match upgrade.upgrade_type:
+				"p_bullet_upgrades": #Apply to bullet upgrade array
+					body.P_WEAPON_CONTROLLER.bullet_upgrade_array.append(upgrade)
+				
+				"p_upgrades": #Apply directly to player
+					body.p_upgrades = upgrade
+				
+				"weapon": #Replace player's current weaopon
+					body.P_WEAPON_CONTROLLER.current_weapon = upgrade
+					body.P_WEAPON_CONTROLLER._load_default_values()
+				
+				"secondary": #Replace player's current secondary
+					body.P_SECONDARY_CONTROLLER.current_secondary = upgrade
+					body.P_SECONDARY_CONTROLLER._reset_secondary_controller()
 			
-			#Apply to bullet upgrade array
-			if upgrade.upgrade_type == "p_bullet_upgrades":
-				body.P_WEAPON_CONTROLLER.bullet_upgrade_array.append(upgrade)
+			var new_particle = Global.spawn_particle(global_position, self, COLLECTION_PARTICLE)
+			new_particle.scale *= 1.25
+			new_particle.modulate = $GPUParticles2D.self_modulate
 			
-			#Apply directly to player
-			elif upgrade.upgrade_type == "p_upgrades":
-				body.p_upgrades = upgrade
-			
-			animation_player.stop()
-			animation_player.play("collected")
+			if delete_on_collection == true:
+				collected = true
+				$GPUParticles2D.emitting = false
+				animation_player.stop()
+				animation_player.play("collected")

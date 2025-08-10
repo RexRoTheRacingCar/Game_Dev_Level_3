@@ -18,7 +18,7 @@ func _ready():
 #Loading the scene
 func _process(_delta):
 	scene_load_status = ResourceLoader.load_threaded_get_status(scene_name, progress)
-	progress_bar.value = progress[0]
+	progress_bar.value = lerp(progress_bar.value, progress[0], 0.75)
 	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		
 		await get_tree().create_timer(0.1, false).timeout

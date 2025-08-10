@@ -147,7 +147,6 @@ func _spawn_set_position_portals():
 		new_portal.global_position = portal_position_array[positions].global_position
 		new_portal.is_lobby_portal = is_in_lobby
 		get_tree().root.get_node("/root/Game/").add_child(new_portal)
-		
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -252,6 +252,7 @@ _data = {
 }
 
 [node name="ShopTile" type="StaticBody2D" node_paths=PackedStringArray("reward_sprite", "shop_tile") groups=["blocked", "navigation_polygon_source_geometry_group", "walls"]]
+y_sort_enabled = true
 collision_layer = 57
 collision_mask = 0
 script = ExtResource("1_pfyx2")

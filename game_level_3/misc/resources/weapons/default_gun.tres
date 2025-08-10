@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponType" load_steps=3 format=3 uid="uid://fyuhjs8leq0o"]
+[gd_resource type="Resource" script_class="WeaponType" load_steps=6 format=3 uid="uid://fyuhjs8leq0o"]
 
 [ext_resource type="PackedScene" uid="uid://dueeegogx0ea3" path="res://scenes/entity/bullets/default_bullet.tscn" id="1_jpypq"]
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_bx42r"]
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_onx0p"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_3teeb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c03ik"]
+atlas = ExtResource("4_3teeb")
+region = Rect2(400, 300, 100, 100)
 
 [resource]
 script = ExtResource("2_onx0p")
@@ -15,5 +21,7 @@ default_bullet = ExtResource("1_jpypq")
 camera_shake = 3.0
 item_name = "Default Gun"
 rarity = "Common"
+item_type = ExtResource("2_bx42r")
 item_cost = 0
-upgrade_type = ""
+texture = SubResource("AtlasTexture_c03ik")
+upgrade_type = "weapon"

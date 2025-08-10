@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="SecondaryAbility" load_steps=5 format=3 uid="uid://bb0idptocjnwt"]
+[gd_resource type="Resource" script_class="SecondaryAbility" load_steps=7 format=3 uid="uid://bb0idptocjnwt"]
 
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_34che"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="1_hsxci"]
 [ext_resource type="PackedScene" uid="uid://csjvumawbopd5" path="res://scenes/entity/secondaries/turret_secondary.tscn" id="2_glaai"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_iscyd"]
@@ -7,6 +8,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjqs0"]
 atlas = ExtResource("3_iscyd")
 region = Rect2(200, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7slk"]
+atlas = ExtResource("3_iscyd")
+region = Rect2(400, 300, 100, 100)
 
 [resource]
 script = ExtResource("1_hsxci")
@@ -19,3 +24,9 @@ spawn_location_type = 1
 shake_on_use = 0.0
 scale_based = false
 max_scale = 1.0
+item_name = "Turret"
+rarity = "Common"
+item_type = ExtResource("1_34che")
+item_cost = 10
+texture = SubResource("AtlasTexture_q7slk")
+upgrade_type = "secondary"

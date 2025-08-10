@@ -211,7 +211,7 @@ shape = SubResource("CircleShape2D_dkdxq")
 collision_layer = 0
 collision_mask = 33
 monitorable = false
-radius = 2500.0
+radius = 2000.0
 
 [node name="LineOfSight" parent="." instance=ExtResource("8_0ctc8")]
 collision_mask = 32

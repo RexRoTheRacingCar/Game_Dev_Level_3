@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://beokc1lgsn058"]
+[gd_scene load_steps=11 format=4 uid="uid://beokc1lgsn058"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/room.gd" id="1_jiflk"]
 [ext_resource type="PackedScene" uid="uid://burt04gq6di4m" path="res://scenes/misc/shop_tile.tscn" id="2_48qe5"]
@@ -6,6 +6,9 @@
 [ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_ocswl"]
 [ext_resource type="Resource" uid="uid://wsp2b187sq6m" path="res://misc/resources/weapons/bubble_gun.tres" id="4_gm4eg"]
 [ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="5_34746"]
+[ext_resource type="Resource" uid="uid://pmgh1c8hse5n" path="res://misc/resources/secondaries/pulse_secondary.tres" id="6_lnttf"]
+[ext_resource type="Resource" uid="uid://hisavjp8s6ct" path="res://misc/resources/secondaries/heal_aura_secondary.tres" id="7_vbii4"]
+[ext_resource type="Resource" uid="uid://bb0idptocjnwt" path="res://misc/resources/secondaries/turret_secondary.tres" id="8_bkgia"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4ltyq"]
 vertices = PackedVector2Array(266, 129.891, 1104.22, 0, 0, 552.109, 26, 309.891, 240, 142.891, 660, -42.1094, 736, -80.1094, 626, 9.89063, 626, -9.89063, 26, -290.109, 104, -320.109, 180, -282.109, 0, -277.109, 0, -322.891, -26, -309.891, -104, -320.109, -104, -339.891, 0, -552.109, 26, 290.109, 214, 129.891, 0, 322.891, 214, 110.109, 0, 277.109, -214, 129.891, -214, 110.109, -26, 290.109, -240, 142.891, -1104.22, 0, -26, 309.891, 26, -309.891, 104, -339.891, 584, -80.1094, 600, -22.8906, -266, 129.891, 266, 110.109, -344, -200.109, 344, -219.891, 344, -200.109, -420, -162.109, -344, -219.891, 420, -257.891, -214, -110.109, 214, -129.891, 214, -110.109, -240, -97.1094, -214, -129.891, 240, -142.891, -584, -80.1094, 240, -97.1094, 584, -99.8906, 574, -9.89063, -574, -9.89063, -600, -22.8906, -574, 9.89063, 574, 9.89063, -600, 22.8906, 266, -110.109, 266, -129.891, 660, -137.891, -26, -290.109, -180, -282.109, -660, -42.1094, -626, -9.89063, 736, -99.8906, 496, -200.109, 496, -219.891, 256, -320.109, 256, -339.891, 180, -377.891, -180, -377.891, -256, -339.891, -256, -320.109, -420, -257.891, -266, 110.109, -736, -80.1094, -626, 9.89063, 240, 97.1094, 600, 22.8906, -240, 97.1094, 420, -162.109, -240, -142.891, -266, -110.109, -584, -99.8906, -266, -129.891, -660, -137.891, -736, -99.8906, -496, -200.109, -496, -219.891)
@@ -20,6 +23,7 @@ script = ExtResource("1_jiflk")
 room_nav_region = NodePath("FloorFolder/MainTilemap/MainNavigation")
 
 [node name="ShopTiles" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Weapon1" parent="ShopTiles" instance=ExtResource("2_48qe5")]
 position = Vector2(-180, -330)
@@ -33,14 +37,17 @@ display_item = ExtResource("4_gm4eg")
 position = Vector2(-660, -90)
 display_item = ExtResource("5_34746")
 
-[node name="Seconadary2" parent="ShopTiles" instance=ExtResource("2_48qe5")]
-position = Vector2(420, -210)
-
 [node name="Seconadary1" parent="ShopTiles" instance=ExtResource("2_48qe5")]
 position = Vector2(180, -330)
+display_item = ExtResource("6_lnttf")
+
+[node name="Seconadary2" parent="ShopTiles" instance=ExtResource("2_48qe5")]
+position = Vector2(420, -210)
+display_item = ExtResource("7_vbii4")
 
 [node name="Seconadary3" parent="ShopTiles" instance=ExtResource("2_48qe5")]
 position = Vector2(660, -90)
+display_item = ExtResource("8_bkgia")
 
 [node name="PortalSpawnFolder" type="Node2D" parent="."]
 unique_name_in_owner = true

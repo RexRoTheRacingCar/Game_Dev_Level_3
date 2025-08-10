@@ -76,42 +76,25 @@ _data = {
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 
-[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER", "PLAYER_UI") instance=ExtResource("2_r7fuv")]
-y_sort_enabled = true
-GAME_MANAGER = NodePath("GameManager")
-ROOM_MANAGER = NodePath("RoomGenerator")
-PLAYER = NodePath("Player")
-PLAYER_UI = NodePath("../PlayerUI")
-
-[node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
-ROOM_GENERATOR = NodePath("../RoomGenerator")
-PLAYER = NodePath("../Player")
-maximum_enemies = 7
-generate_waves = true
-
-[node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]
-shop_chance = 0.3
-
-[node name="Player" parent="DungeonManager" instance=ExtResource("1_vr3do")]
-
-[node name="Camera2D" parent="DungeonManager/Player" instance=ExtResource("4_ol12e")]
-
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
 follow_viewport_enabled = false
 
-[node name="DebugMenu" parent="PlayerUI" instance=ExtResource("6_w6w6d")]
+[node name="GameMenus" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="DebugMenu" parent="GameMenus" instance=ExtResource("6_w6w6d")]
 visible = false
 
-[node name="PauseMenu" parent="PlayerUI" node_paths=PackedStringArray("general_setttings", "input_settings") instance=ExtResource("6_8na6d")]
+[node name="PauseMenu" parent="GameMenus" node_paths=PackedStringArray("general_setttings", "input_settings") instance=ExtResource("6_8na6d")]
 visible = false
 general_setttings = NodePath("GeneralSettings")
 input_settings = NodePath("InputSettings")
 
-[node name="GeneralSettings" parent="PlayerUI/PauseMenu" instance=ExtResource("10_qyc1a")]
+[node name="GeneralSettings" parent="GameMenus/PauseMenu" instance=ExtResource("10_qyc1a")]
 visible = false
 layout_mode = 1
 
-[node name="InputSettings" parent="PlayerUI/PauseMenu" instance=ExtResource("8_n6g87")]
+[node name="InputSettings" parent="GameMenus/PauseMenu" instance=ExtResource("8_n6g87")]
 visible = false
 layout_mode = 1
 
@@ -139,3 +122,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER", "PLAYER_UI") instance=ExtResource("2_r7fuv")]
+y_sort_enabled = true
+GAME_MANAGER = NodePath("GameManager")
+ROOM_MANAGER = NodePath("RoomGenerator")
+PLAYER = NodePath("Player")
+PLAYER_UI = NodePath("../PlayerUI")
+
+[node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
+ROOM_GENERATOR = NodePath("../RoomGenerator")
+PLAYER = NodePath("../Player")
+maximum_enemies = 7
+generate_waves = true
+
+[node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]
+shop_chance = 0.3
+
+[node name="Player" parent="DungeonManager" instance=ExtResource("1_vr3do")]
+
+[node name="Camera2D" parent="DungeonManager/Player" instance=ExtResource("4_ol12e")]

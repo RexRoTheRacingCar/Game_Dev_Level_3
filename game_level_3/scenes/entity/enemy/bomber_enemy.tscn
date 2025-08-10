@@ -165,9 +165,10 @@ position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_sfyi6")
 
 [node name="AreaOfSight" parent="." instance=ExtResource("4_sv177")]
+visible = false
 collision_layer = 0
 collision_mask = 33
 monitorable = false
-radius = 2500.0
+radius = 2000.0
 
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

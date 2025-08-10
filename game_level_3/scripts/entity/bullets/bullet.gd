@@ -121,7 +121,6 @@ func _update_bullet():
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)
 
 
-
 #---------------------------------------------------------------------------------------------------------------------------
 func on_enemy_hit(body) -> void:
 	if collide_array.find(body) == -1: 
@@ -166,6 +165,7 @@ func _on_delete_timer_timeout():
 	delete_bullet()
 
 
+#---------------------------------------------------------------------------------------------------------------------------
 func _on_collision_timer_timeout():
 	collision_hit = false
 	if collide_array.is_empty() == false and collision_hit == false:

@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="SecondaryAbility" load_steps=5 format=3 uid="uid://pmgh1c8hse5n"]
+[gd_resource type="Resource" script_class="SecondaryAbility" load_steps=8 format=3 uid="uid://pmgh1c8hse5n"]
 
+[ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="1_o74q5"]
 [ext_resource type="Script" path="res://scripts/components/secondary_component.gd" id="1_tcpvg"]
 [ext_resource type="PackedScene" uid="uid://cpm766wlxynum" path="res://scenes/entity/secondaries/test_secondary.tscn" id="2_orpvb"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="3_ba14h"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="5_48i43"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xr7et"]
 atlas = ExtResource("3_ba14h")
 region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyrol"]
+atlas = ExtResource("5_48i43")
+region = Rect2(400, 300, 100, 100)
 
 [resource]
 script = ExtResource("1_tcpvg")
@@ -19,3 +25,9 @@ spawn_location_type = 2
 shake_on_use = 20.0
 scale_based = true
 max_scale = 2.5
+item_name = "Knockback Pulse"
+rarity = "Common"
+item_type = ExtResource("1_o74q5")
+item_cost = 0
+texture = SubResource("AtlasTexture_iyrol")
+upgrade_type = "secondary"

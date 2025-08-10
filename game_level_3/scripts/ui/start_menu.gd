@@ -33,7 +33,7 @@ func _button_pressed(btn_id : int):
 	match btn_id:
 		0: #Start Game
 			Global.scene_to_load = "res://scenes/main/game.tscn"
-			get_tree().change_scene_to_packed(LOADING_SCREEN)
+			get_tree().call_deferred("change_scene_to_packed", LOADING_SCREEN)
 		
 		1: #Settings
 			var gen_menu_id = all_settings.rfind(%GeneralSettings)

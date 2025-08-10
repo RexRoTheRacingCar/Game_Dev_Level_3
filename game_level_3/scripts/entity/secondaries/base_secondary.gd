@@ -28,4 +28,5 @@ func _particle_check():
 #---------------------------------------------------------------------------------------------------------------------------
 func _apply_mult():
 	Global.connect("room_changed", queue_free)
+	Global.connect("reset_to_lobby", queue_free)
 	power = default_power * PlayerUpgradeStats.power_mult

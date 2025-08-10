@@ -23,7 +23,6 @@ var rand_reward_chance : float
 func _ready():
 	randomize()
 	_portal_prep()
-	reward_sprite.scale = Vector2(0.75, 0.75)
 	
 	if is_lobby_portal == false:
 		rand_reward_chance = randf()
@@ -33,7 +32,7 @@ func _ready():
 			get_random_non_upgrade()
 	else:
 		reward_sprite.texture.region = Rect2(100, 300, 100, 100)
-		item_label.text = " - BEGIN - "
+		item_label.text = "   BEGIN   "
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ func _spawn_room_reward():
 		else:
 			match non_upgrade_reward_dict[rand_select]:
 				"Coins" : 
-					Global.player_coins += 30
+					Global.player_coins += 50
 				"Healing" : 
 					Global.player.P_HEALTH_COMPONENT.health += 50
 				"Rerolls" : 
@@ -111,6 +110,5 @@ func _spawn_room_reward():
 func _other_portal_entered():
 	if has_detected_player == false:
 		reward_sprite.texture.region = Rect2(300, 200, 100, 100)
-		reward_sprite.scale = Vector2(1.1, 1.1)
 	
 	super._other_portal_entered()

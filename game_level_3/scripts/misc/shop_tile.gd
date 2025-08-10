@@ -28,6 +28,7 @@ var text_state : String = "name"
 var swap_time : float = 3.0
 var collected : bool = false
 var is_hidden : bool = false
+var is_lobby_tile : bool
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -42,6 +43,8 @@ func _ready():
 		shop_tile.texture.region = Rect2(480, 780, 120, 120)
 		icon.texture.region = Rect2(500, 200, 100, 100)
 		
+		is_lobby_tile = true
+		
 	else:
 		Global.connect("shop_reroll", _shop_rerolled)
 		shop_tile.texture.region = Rect2(480, 180, 120, 120)
@@ -51,6 +54,7 @@ func _ready():
 			is_hidden = true
 		
 		get_random_item()
+		is_lobby_tile = false
 
 	reward_sprite.visible = true
 	shop_tile.visible = true 
@@ -109,8 +113,15 @@ func _update_display():
 #When player enters shop tile radius 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player" and collected == false:
-		if Global.player_coins >= price: #If player can afford upgrade
-			Global.player_coins -= price
+		#If player can afford upgrade
+		if (
+			(Global.player_coins >= price and is_lobby_tile == false) or 
+			(Global.gems >= price and is_lobby_tile == true)
+		):
+			if is_lobby_tile == true:
+				Global.gems -= price
+			else:
+				Global.player_coins -= price
 			collected = true
 			
 			for _shake in range(0, 16):
@@ -140,6 +151,7 @@ func spawn_upgrade(x_offset : float):
 	get_parent().call_deferred("add_child", new_scene)
 	new_scene.global_position = Vector2(global_position.x + x_offset, global_position.y - 30)
 	new_scene.upgrade = display_item
+	new_scene.delete_on_collection = !is_lobby_tile
 
 
 #---------------------------------------------------------------------------------------------------------------------------

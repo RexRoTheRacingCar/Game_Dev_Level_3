@@ -1,5 +1,5 @@
 ############################## Secondary Component ##############################
-extends Resource
+extends Item
 class_name SecondaryAbility
 
 @export_group("The Attacks")
