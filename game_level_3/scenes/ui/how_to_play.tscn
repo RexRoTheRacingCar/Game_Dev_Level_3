@@ -1,0 +1,182 @@
+[gd_scene load_steps=3 format=3 uid="uid://8h77x3g8e54c"]
+
+[ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="1_41dk0"]
+[ext_resource type="Script" path="res://scripts/ui/general_settings.gd" id="2_5jci3"]
+
+[node name="GeneralSettings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_41dk0")
+script = ExtResource("2_5jci3")
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.275521
+anchor_top = 0.0453704
+anchor_right = 0.724479
+anchor_bottom = 0.95463
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 44
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AllOptions" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WindowOptions" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubtitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Main Controls"
+horizontal_alignment = 1
+
+[node name="Controls" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls"]
+layout_mode = 2
+
+[node name="HowToPlay1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "WSAD to Move"
+horizontal_alignment = 1
+
+[node name="HowToPlay2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Space to Dash"
+horizontal_alignment = 1
+
+[node name="HowToPlay3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Left Click to Shoot"
+horizontal_alignment = 1
+
+[node name="HowToPlay4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Middle Mouse or Clicking to Reload"
+horizontal_alignment = 1
+
+[node name="HowToPlay5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Right Click and Hold to Charge up Secondary Attack"
+horizontal_alignment = 1
+
+[node name="HowToPlay6" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Q to Reroll Upgrades at the Shop"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Other" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+
+[node name="SubtitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Goal of the Game"
+horizontal_alignment = 1
+
+[node name="Controls" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls"]
+layout_mode = 2
+
+[node name="HowToPlay1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Select your weapons and upgrades at the lobby the enter the portal to begin"
+horizontal_alignment = 1
+
+[node name="HowToPlay2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Defeat waves of enemies to progress to further rooms"
+horizontal_alignment = 1
+
+[node name="HowToPlay3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Gather coins from enemies and crates"
+horizontal_alignment = 1
+
+[node name="HowToPlay4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Spend coins at the shop to upgrade your weapon"
+horizontal_alignment = 1
+
+[node name="HowToPlay5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Gather gems every time you beat a room"
+horizontal_alignment = 1
+
+[node name="HowToPlay6" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/Other/Controls/VBoxContainer"]
+layout_mode = 2
+text = "Spend gems at the lobby to unlock new weapons and upgrades"
+horizontal_alignment = 1
+
+[node name="BottomHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ControlAdvice" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
+layout_mode = 2
+text = "The controls listed can be changed in the control settings menu"
+horizontal_alignment = 1
+
+[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Close Menu"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer/CloseMenu" to="." method="_on_close_menu_pressed"]
