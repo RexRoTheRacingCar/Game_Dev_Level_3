@@ -5,6 +5,7 @@ class_name WeaponController
 @export var current_weapon : WeaponType
 @onready var reload_label = $Reloading
 @onready var shoot_timer = $ShootTimer
+@onready var weapon_sprite = %WeaponSprite
 
 var reloading : bool = false
 var can_shoot : bool = true
@@ -52,6 +53,7 @@ func _load_default_values():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func weapon_controls(secondary_active):
+	_weapon_sprite_update()
 	#Reloading functionality
 	if (
 		(Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("primary_attack") and ammo <= 0)) and
@@ -81,6 +83,23 @@ func weapon_controls(secondary_active):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+#Update the weapon sprite's postion, rotation, and skew based on the position of the mouse
+func _weapon_sprite_update():
+	var mouse_pos : Vector2 = get_global_mouse_position()
+	weapon_sprite.position = Vector2.ZERO
+	
+	weapon_sprite.look_at(mouse_pos)
+	var dir : float = weapon_sprite.rotation
+	var distance_to_mouse : float = weapon_sprite.global_position.distance_to(mouse_pos)
+	distance_to_mouse = clamp(distance_to_mouse / 2, 2.5, 55.0)
+	
+	weapon_sprite.position = Vector2.RIGHT.rotated(dir) * distance_to_mouse
+	weapon_sprite.position.y /= 2
+	
+	weapon_sprite.skew = 0.5 * sin(2 * weapon_sprite.rotation)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 #Player Shoot Function
 func player_shoot():
 	Camera.apply_camera_shake(camera_shake)
@@ -98,7 +117,7 @@ func player_shoot():
 		mouse_dir.y *= 2
 		
 		#Bullet spawned
-		bullet_instance.global_position = global_position
+		bullet_instance.global_position = global_position + weapon_sprite.position
 		bullet_instance.rotation = mouse_dir.angle()
 		get_tree().root.get_node("/root/Game/").add_child(bullet_instance)
 		

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4xa4sn4p1kan"]
+[gd_scene load_steps=5 format=3 uid="uid://c4xa4sn4p1kan"]
 
 [ext_resource type="Script" path="res://scripts/main/player/weapon_controller.gd" id="1_lnh1g"]
 [ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="2_ax8oj"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_chy2n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bmsbf"]
 font_size = 12
@@ -9,7 +11,15 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="WeaponController" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_lnh1g")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0.566667, 1, 1)
+y_sort_enabled = true
+scale = Vector2(40.1833, 16.0733)
+texture = SubResource("PlaceholderTexture2D_chy2n")
 
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true

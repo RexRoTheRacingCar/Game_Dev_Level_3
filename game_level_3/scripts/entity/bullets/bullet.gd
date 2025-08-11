@@ -115,7 +115,7 @@ func _update_bullet():
 	if sprite:
 		sprite.rotation = velocity.angle() - rotation
 		if can_skew ==  true: 
-			sprite.skew = (0.5 * sin((2 * PI) * (sprite.rotation)) + 0)
+			sprite.skew = 0.5 * sin(2 * sprite.rotation)
 	if hurtbox:
 		hurtbox.hurtbox_hit.connect(on_enemy_hit)
 		hurtbox.hurtbox_exited.connect(enemy_un_hit)

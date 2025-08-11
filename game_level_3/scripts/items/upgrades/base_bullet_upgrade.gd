@@ -5,7 +5,7 @@ class_name BaseUpgrade
 #---------------------------------------------------------------------------------------------------------------------------
 #Apply bullet upgrade to bullet (KEEP BLANK)
 @warning_ignore("unused_parameter")
-func apply_upgrade(bullet: Bullet):
+func apply_upgrade(bullet : Bullet):
 	pass
 
 #---------------------------------------------------------------------------------------------------------------------------
