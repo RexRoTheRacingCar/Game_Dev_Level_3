@@ -38,12 +38,16 @@ func _button_pressed(btn_id : int):
 		1: #Settings
 			var gen_menu_id = all_settings.rfind(%GeneralSettings)
 			all_settings[gen_menu_id].visible = !all_settings[gen_menu_id].visible
-			
+		
 		2: #Controls
 			var ctrl_menu_id = all_settings.rfind(%InputSettings)
 			all_settings[ctrl_menu_id].visible = !all_settings[ctrl_menu_id].visible
-			
-		3: #Quit Game
+		
+		3: #How to Play
+			var tutorial_menu_id = all_settings.rfind(%HowToPlay)
+			all_settings[tutorial_menu_id].visible = !all_settings[tutorial_menu_id].visible
+		
+		4: #Quit Game
 			get_tree().quit()
 
 

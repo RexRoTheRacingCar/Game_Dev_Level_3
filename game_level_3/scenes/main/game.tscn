@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=15 format=3 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player/player.tscn" id="1_vr3do"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqluonvie0sa" path="res://scenes/main/camera.tscn" id="4_ol12e"]
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
 [ext_resource type="PackedScene" uid="uid://wxuhlbqbmy7x" path="res://scenes/ui/debug_menu.tscn" id="6_w6w6d"]
+[ext_resource type="PackedScene" uid="uid://8h77x3g8e54c" path="res://scenes/ui/how_to_play.tscn" id="6_wft2d"]
 [ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="8_n6g87"]
 [ext_resource type="PackedScene" uid="uid://7b3fdg50aw5p" path="res://scenes/ui/general_settings.tscn" id="10_qyc1a"]
 
@@ -85,16 +86,21 @@ layer = 4
 [node name="DebugMenu" parent="GameMenus" instance=ExtResource("6_w6w6d")]
 visible = false
 
-[node name="PauseMenu" parent="GameMenus" node_paths=PackedStringArray("general_setttings", "input_settings") instance=ExtResource("6_8na6d")]
+[node name="PauseMenu" parent="GameMenus" node_paths=PackedStringArray("general_setttings", "input_settings", "how_to_play_menu") instance=ExtResource("6_8na6d")]
 visible = false
 general_setttings = NodePath("GeneralSettings")
 input_settings = NodePath("InputSettings")
+how_to_play_menu = NodePath("HowToPlay")
 
 [node name="GeneralSettings" parent="GameMenus/PauseMenu" instance=ExtResource("10_qyc1a")]
 visible = false
 layout_mode = 1
 
 [node name="InputSettings" parent="GameMenus/PauseMenu" instance=ExtResource("8_n6g87")]
+visible = false
+layout_mode = 1
+
+[node name="HowToPlay" parent="GameMenus/PauseMenu" instance=ExtResource("6_wft2d")]
 visible = false
 layout_mode = 1
 

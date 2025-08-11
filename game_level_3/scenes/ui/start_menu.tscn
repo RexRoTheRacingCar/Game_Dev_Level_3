@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://skhfik5dpup3"]
+[gd_scene load_steps=23 format=3 uid="uid://skhfik5dpup3"]
 
 [ext_resource type="Script" path="res://scripts/ui/start_menu.gd" id="1_ma0em"]
 [ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="2_jrip2"]
 [ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="2_q0vis"]
 [ext_resource type="PackedScene" uid="uid://7b3fdg50aw5p" path="res://scenes/ui/general_settings.tscn" id="2_xe85t"]
 [ext_resource type="FontFile" uid="uid://dqdk45kupcc2b" path="res://misc/misc/fonts/BreatheFireIi-2z9W.ttf" id="3_m8e88"]
+[ext_resource type="PackedScene" uid="uid://8h77x3g8e54c" path="res://scenes/ui/how_to_play.tscn" id="5_yu72a"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="6_oxpqn"]
 
 [sub_resource type="Gradient" id="Gradient_xjwfi"]
@@ -165,7 +166,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_m8e88")
 theme_override_font_sizes/font_size = 180
-text = "the marsh"
+text = "a game of all time"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/MainVBox"]
@@ -200,6 +201,14 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Controls"
 
+[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "How to Play"
+
 [node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
@@ -215,5 +224,9 @@ unique_name_in_owner = true
 visible = false
 
 [node name="InputSettings" parent="SettingsOptions" instance=ExtResource("2_q0vis")]
+unique_name_in_owner = true
+visible = false
+
+[node name="HowToPlay" parent="SettingsOptions" instance=ExtResource("5_yu72a")]
 unique_name_in_owner = true
 visible = false

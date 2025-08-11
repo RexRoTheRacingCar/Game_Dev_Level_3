@@ -3,6 +3,8 @@ extends Control
 
 @export var general_setttings : Control
 @export var input_settings : Control
+@export var how_to_play_menu : Control
+
 
 #Pause Menu
 var is_paused := false : 
@@ -25,6 +27,7 @@ func _ready():
 	
 	input_settings.connect("menu_closed", _force_menu_input)
 	general_setttings.connect("menu_closed", _force_menu_input)
+	how_to_play_menu.connect("menu_closed", _force_menu_input)
 	
 	#Loop connects all buttons and assigns button id bind
 	all_buttons = v_box_options.get_children()
@@ -33,17 +36,17 @@ func _ready():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _unhandled_input(event): #Change pause status based on "pause" pressed
+func _unhandled_input(event): #Change pause status based on pause" pressed
 	if event.is_action_pressed("esc"):
 		if input_settings.visible == false and general_setttings.visible == false:
 			is_paused = !is_paused
 			panel_container.visible = is_paused
-		elif input_settings.visible == true:
+		
+		if visible == false:
+			panel_container.visible = true
 			input_settings.visible = false
-			panel_container.visible = true
-		elif general_setttings.visible == true:
 			general_setttings.visible = false
-			panel_container.visible = true
+			how_to_play_menu.visible = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -60,15 +63,19 @@ func _button_pressed(btn_id : int):
 			input_settings.visible = true
 			panel_container.visible = false
 		
-		3: #Reset To Lobby
+		3: #How to Play
+			how_to_play_menu.visible = true
+			panel_container.visible = false
+		
+		4: #Reset To Lobby
 			Global.reset_to_lobby.emit()
 			Global.player.p_can_move = false
 			_force_menu_input()
 		
-		4: #Main Menu
+		5: #Main Menu
 			var _new_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")
 		
-		5: #Quit Game
+		6: #Quit Game
 			get_tree().quit()
 
 

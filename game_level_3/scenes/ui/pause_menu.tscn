@@ -109,6 +109,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Controls"
 
+[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
+text = "How To Play"
+
 [node name="ResetToLobbyBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
