@@ -120,7 +120,6 @@ func hit_stop(stop_time : float):
 func rand_nav_mesh_point(nav_map, layer : int, uniform : bool) -> Vector2:
 	return NavigationServer2D.map_get_random_point(nav_map, layer, uniform)
 
-
 #Returns the closest point to a NavMesh from a certain target point
 #---------------------------------------------------------------------------------------------------------------------------
 func get_nav_mesh_point(nav_map, target_point : Vector2, min_dist_from_edge : float) -> Vector2:

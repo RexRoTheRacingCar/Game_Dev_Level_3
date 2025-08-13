@@ -94,7 +94,7 @@ func _weapon_sprite_update():
 	distance_to_mouse = clamp(distance_to_mouse / 2, 2.5, 55.0)
 	
 	weapon_sprite.position = Vector2.RIGHT.rotated(dir) * distance_to_mouse
-	weapon_sprite.position.y /= 2
+	#weapon_sprite.position.y /= 2
 	
 	weapon_sprite.skew = 0.5 * sin(2 * weapon_sprite.rotation)
 	

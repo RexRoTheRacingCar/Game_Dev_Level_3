@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_onx0p"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_3teeb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c03ik"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_udgpq"]
 atlas = ExtResource("4_3teeb")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(0, 400, 100, 100)
 
 [resource]
 script = ExtResource("2_onx0p")
@@ -23,5 +23,5 @@ item_name = "Default Gun"
 rarity = "Common"
 item_type = ExtResource("2_bx42r")
 item_cost = 0
-texture = SubResource("AtlasTexture_c03ik")
+texture = SubResource("AtlasTexture_udgpq")
 upgrade_type = "weapon"

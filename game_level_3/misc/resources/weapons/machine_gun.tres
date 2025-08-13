@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_k7v75"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_l7rem"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tplsv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hweyt"]
 atlas = ExtResource("4_l7rem")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(100, 400, 100, 100)
 
 [resource]
 script = ExtResource("2_gnln0")
@@ -23,5 +23,5 @@ item_name = "Machine Gun"
 rarity = "Common"
 item_type = ExtResource("2_k7v75")
 item_cost = 10
-texture = SubResource("AtlasTexture_tplsv")
+texture = SubResource("AtlasTexture_hweyt")
 upgrade_type = "weapon"

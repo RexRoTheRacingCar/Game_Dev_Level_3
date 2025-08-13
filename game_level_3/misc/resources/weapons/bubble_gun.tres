@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_hnjpj"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_u6qj8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_axnji"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrvu3"]
 atlas = ExtResource("4_u6qj8")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(200, 400, 100, 100)
 
 [resource]
 script = ExtResource("2_hnjpj")
@@ -23,5 +23,5 @@ item_name = "Bubble Gun"
 rarity = "Common"
 item_type = ExtResource("2_ejfbb")
 item_cost = 5
-texture = SubResource("AtlasTexture_axnji")
+texture = SubResource("AtlasTexture_wrvu3")
 upgrade_type = "weapon"

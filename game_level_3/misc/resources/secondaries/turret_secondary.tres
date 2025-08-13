@@ -9,9 +9,9 @@
 atlas = ExtResource("3_iscyd")
 region = Rect2(200, 300, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7slk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6koak"]
 atlas = ExtResource("3_iscyd")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(500, 400, 100, 100)
 
 [resource]
 script = ExtResource("1_hsxci")
@@ -28,5 +28,5 @@ item_name = "Turret"
 rarity = "Common"
 item_type = ExtResource("1_34che")
 item_cost = 10
-texture = SubResource("AtlasTexture_q7slk")
+texture = SubResource("AtlasTexture_6koak")
 upgrade_type = "secondary"

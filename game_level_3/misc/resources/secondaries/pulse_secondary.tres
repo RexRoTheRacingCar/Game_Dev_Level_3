@@ -10,9 +10,9 @@
 atlas = ExtResource("3_ba14h")
 region = Rect2(200, 0, 200, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iyrol"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikm1l"]
 atlas = ExtResource("5_48i43")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(300, 400, 100, 100)
 
 [resource]
 script = ExtResource("1_tcpvg")
@@ -29,5 +29,5 @@ item_name = "Knockback Pulse"
 rarity = "Common"
 item_type = ExtResource("1_o74q5")
 item_cost = 0
-texture = SubResource("AtlasTexture_iyrol")
+texture = SubResource("AtlasTexture_ikm1l")
 upgrade_type = "secondary"

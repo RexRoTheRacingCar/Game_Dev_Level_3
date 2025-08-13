@@ -10,9 +10,9 @@
 atlas = ExtResource("3_4ipik")
 region = Rect2(400, 200, 200, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3p8kw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhcgu"]
 atlas = ExtResource("5_gtqpc")
-region = Rect2(400, 300, 100, 100)
+region = Rect2(400, 400, 100, 100)
 
 [resource]
 script = ExtResource("1_801t6")
@@ -29,5 +29,5 @@ item_name = "Healing Aura"
 rarity = "Common"
 item_type = ExtResource("1_nnok1")
 item_cost = 5
-texture = SubResource("AtlasTexture_3p8kw")
+texture = SubResource("AtlasTexture_rhcgu")
 upgrade_type = "secondary"
