@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
-[ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_3k3c0"]
+[ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="3_acl6d"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
@@ -36,7 +36,7 @@ P_FRICTION = 25000
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
-current_weapon = ExtResource("3_3k3c0")
+current_weapon = ExtResource("3_acl6d")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
 current_secondary = ExtResource("5_52k6h")

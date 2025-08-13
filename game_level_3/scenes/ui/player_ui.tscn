@@ -76,6 +76,7 @@ size_flags_horizontal = 3
 [node name="RerollSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
 layout_mode = 2
 size_flags_horizontal = 10
+dragger_visibility = 2
 
 [node name="Rerolls" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/RerollSplit"]
 custom_minimum_size = Vector2(24, 24)
@@ -99,6 +100,7 @@ stretch_mode = 5
 [node name="GemSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
 layout_mode = 2
 size_flags_horizontal = 10
+dragger_visibility = 2
 
 [node name="Gems" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/GemSplit"]
 custom_minimum_size = Vector2(24, 24)
@@ -122,6 +124,7 @@ stretch_mode = 5
 [node name="Coins" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
 layout_mode = 2
 size_flags_horizontal = 10
+dragger_visibility = 2
 
 [node name="Coins" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/Coins"]
 custom_minimum_size = Vector2(24, 24)
@@ -142,8 +145,11 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="BottomRow" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+collapsed = true
+dragger_visibility = 2
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow"]
 custom_minimum_size = Vector2(400, 30)
@@ -155,12 +161,15 @@ value = 90.0
 show_percentage = false
 
 [node name="HSplit1" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow"]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 split_offset = 12
+collapsed = true
+dragger_visibility = 2
 
 [node name="PlayerHP" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
@@ -170,6 +179,7 @@ text = "50 I 50"
 [node name="BulletSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
 layout_mode = 2
 size_flags_horizontal = 10
+dragger_visibility = 2
 
 [node name="Bullets" type="Label" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1/BulletSplit"]
 custom_minimum_size = Vector2(24, 24)

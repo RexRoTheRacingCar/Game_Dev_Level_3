@@ -9,17 +9,20 @@ signal zero_health
 #Variables
 @export var health_bar : ProgressBar 
 @export var max_health : int = 100 : set = _set_max_health
+var starting_hp : int = 100 
 var health : int : set = _set_health
 var death_emitted : bool
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
+	starting_hp = max_health
 	_reset_health()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _reset_health():
+	max_health = starting_hp
 	health = max_health
 	death_emitted = false
 	

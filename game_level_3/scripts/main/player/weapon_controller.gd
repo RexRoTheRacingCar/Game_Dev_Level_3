@@ -97,6 +97,11 @@ func _weapon_sprite_update():
 	weapon_sprite.position.y /= 2
 	
 	weapon_sprite.skew = 0.5 * sin(2 * weapon_sprite.rotation)
+	
+	if mouse_pos < global_position:
+		weapon_sprite.flip_v = true
+	else:
+		weapon_sprite.flip_v = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
