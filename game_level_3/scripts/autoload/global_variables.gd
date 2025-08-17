@@ -132,7 +132,8 @@ func get_nav_mesh_point(nav_map, target_point : Vector2, min_dist_from_edge : fl
 			delta = delta.normalized()
 			closest_point += delta * min_dist_from_edge
 		return closest_point
-	return target_point
+	else:
+		return target_point
 
 
 #Weighted lerp function to account for delta time

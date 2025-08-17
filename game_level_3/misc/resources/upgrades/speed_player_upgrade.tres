@@ -17,3 +17,4 @@ item_type = ExtResource("1_a36x3")
 item_cost = 15
 texture = SubResource("AtlasTexture_b7i2i")
 upgrade_type = "p_upgrades"
+update_save_variable = ""

@@ -97,11 +97,10 @@ func load_lobby_room():
 		current_room = null
 	
 	current_room = LOBBY_ROOM.instantiate()
-	call_deferred("add_child", current_room)
+	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
-	Global.global_map = current_room_mesh
-	Global.destructable_layer = current_room.destructable_tilemap
+	_update_global_var()
 
 
 #---------------------------------------------------------------------------------------------------------------------------

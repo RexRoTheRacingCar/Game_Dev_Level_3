@@ -17,3 +17,4 @@ item_type = ExtResource("1_socbi")
 item_cost = 10
 texture = SubResource("AtlasTexture_py722")
 upgrade_type = "p_bullet_upgrades"
+update_save_variable = ""
