@@ -10,3 +10,5 @@ class_name Item
 @export var item_cost : int = 10
 @export var texture : Texture2D
 @export var upgrade_type : String
+
+@export var update_save_variable : String

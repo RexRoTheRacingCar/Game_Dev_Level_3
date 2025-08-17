@@ -31,3 +31,4 @@ item_type = ExtResource("1_nnok1")
 item_cost = 5
 texture = SubResource("AtlasTexture_rhcgu")
 upgrade_type = "secondary"
+update_save_variable = "healing_sec_unlocked"

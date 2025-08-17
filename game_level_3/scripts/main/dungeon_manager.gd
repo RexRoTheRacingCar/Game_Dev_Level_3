@@ -21,7 +21,6 @@ func _ready():
 	randomize()
 	Global.player = PLAYER
 	Global.current_main_scene = "Game"
-	Global.gems = 0
 	
 	Global.portal_entered.connect(_new_room_transition)
 	Global.reset_to_lobby.connect(_load_lobby)
@@ -35,6 +34,7 @@ func _ready():
 	await get_tree().create_timer(1.0, true).timeout
 	var tween = create_tween()
 	tween.tween_property(overlay_second, "modulate", Color(0, 0, 0, 0), 1.0).from_current()
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _load_lobby():

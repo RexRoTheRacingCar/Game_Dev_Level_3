@@ -78,7 +78,6 @@ _data = {
 y_sort_enabled = true
 
 [node name="PlayerUI" parent="." instance=ExtResource("1_keorb")]
-follow_viewport_enabled = false
 
 [node name="GameMenus" type="CanvasLayer" parent="."]
 layer = 4

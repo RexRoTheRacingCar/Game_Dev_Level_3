@@ -63,6 +63,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="ControlAdvice" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections/MainControlsSection"]
+layout_mode = 2
+text = "The controls listed can be changed in the control settings menu"
+horizontal_alignment = 1
+
 [node name="SubtitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections/MainControlsSection"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -167,9 +172,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ControlAdvice" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
+[node name="Saving" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
 layout_mode = 2
-text = "The controls listed can be changed in the control settings menu"
+theme_override_colors/font_outline_color = Color(1, 0.3, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 17
+text = "The game saves only your progress in the lobby. It does NOT save your progress for each run."
 horizontal_alignment = 1
 
 [node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]

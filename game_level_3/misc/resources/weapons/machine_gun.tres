@@ -25,3 +25,4 @@ item_type = ExtResource("2_k7v75")
 item_cost = 10
 texture = SubResource("AtlasTexture_hweyt")
 upgrade_type = "weapon"
+update_save_variable = "machine_gun_unlocked"

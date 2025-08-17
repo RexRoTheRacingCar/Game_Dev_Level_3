@@ -7,6 +7,3 @@ class_name RoomArray
 
 #Array of all possible rooms of array_type. 
 @export var room_array : Array[PackedScene] = []
-
-
-#---------------------------------------------------------------------------------------------------------------------------

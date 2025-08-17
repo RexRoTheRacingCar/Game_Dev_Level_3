@@ -21,7 +21,6 @@ var all_buttons : Array = []
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	panel_container.visible = true
-	is_paused = false
 	input_settings.visible = false
 	general_setttings.visible = false
 	
@@ -29,10 +28,12 @@ func _ready():
 	general_setttings.connect("menu_closed", _force_menu_input)
 	how_to_play_menu.connect("menu_closed", _force_menu_input)
 	
-	#Loop connects all buttons and assigns button id bind
+	#Loop connects all buttons and assigns button id binds
 	all_buttons = v_box_options.get_children()
 	for button in range(0, all_buttons.size()):
 		all_buttons[button].pressed.connect(_button_pressed.bind(button))
+	
+	is_paused = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -73,9 +74,11 @@ func _button_pressed(btn_id : int):
 			_force_menu_input()
 		
 		5: #Main Menu
+			SaveLoad._save()
 			var _new_menu = get_tree().change_scene_to_file("res://scenes/ui/start_menu.tscn")
 		
 		6: #Quit Game
+			SaveLoad._save()
 			get_tree().quit()
 
 

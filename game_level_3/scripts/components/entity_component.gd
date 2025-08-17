@@ -122,7 +122,7 @@ func _on_navigation_timer_timeout():
 func no_health():
 	var rand = randi_range(coin_min, coin_max)
 	for _n in range(0, rand): #Spawn coins at death position
-		var new_coin = spawn_scene(COIN_SCENE, self.get_parent())
+		var new_coin = spawn_scene(COIN_SCENE, get_tree().root.get_node("/root/Game/"))
 		var rand_spawn : float = 30.0
 		new_coin.global_position = Vector2(
 			global_position.x + randf_range(rand_spawn, -rand_spawn), 

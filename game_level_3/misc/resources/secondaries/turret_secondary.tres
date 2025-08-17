@@ -30,3 +30,4 @@ item_type = ExtResource("1_34che")
 item_cost = 10
 texture = SubResource("AtlasTexture_6koak")
 upgrade_type = "secondary"
+update_save_variable = "turret_sec_unlocked"

@@ -22,6 +22,7 @@ GlobalSettings="*res://scripts/autoload/global_settings.gd"
 Camera="*res://scripts/main/camera.gd"
 PlayerUpgradeStats="*res://scripts/autoload/player_upgrade_stats.gd"
 ConfigFileHandler="*res://scripts/autoload/config_file_handler.gd"
+SaveLoad="*res://scripts/components/save_scripts/save_load.gd"
 
 [debug]
 

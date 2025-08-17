@@ -2,12 +2,10 @@
 extends Node
 
 #World global variables
-var scene_to_load : String = ""
 var current_main_scene : String :
-	set(new_value):
+	set(new_value) :
 		current_main_scene = new_value
-		
-		match current_main_scene:
+		match Global.current_main_scene:
 			"Game":
 				Camera.anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
 			
@@ -15,6 +13,7 @@ var current_main_scene : String :
 				Camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
 				Camera.shake_amount = 0
 				Global.player_position = Vector2.ZERO
+
 
 var enemy_count : int
 var enemy_wave : bool
@@ -120,17 +119,20 @@ func hit_stop(stop_time : float):
 func rand_nav_mesh_point(nav_map, layer : int, uniform : bool) -> Vector2:
 	return NavigationServer2D.map_get_random_point(nav_map, layer, uniform)
 
+
 #Returns the closest point to a NavMesh from a certain target point
 #---------------------------------------------------------------------------------------------------------------------------
 func get_nav_mesh_point(nav_map, target_point : Vector2, min_dist_from_edge : float) -> Vector2:
-	var closest_point := NavigationServer2D.map_get_closest_point(nav_map, target_point)
-	var delta := closest_point - target_point
-	var is_on_map = delta.is_zero_approx()
-	#If it wasn't on the map, push towards map
-	if not is_on_map and min_dist_from_edge > 0:
-		delta = delta.normalized()
-		closest_point += delta * min_dist_from_edge
-	return closest_point
+	if Global.global_map != null:
+		var closest_point := NavigationServer2D.map_get_closest_point(nav_map, target_point)
+		var delta := closest_point - target_point
+		var is_on_map = delta.is_zero_approx()
+		#If it wasn't on the map, push towards map
+		if not is_on_map and min_dist_from_edge > 0:
+			delta = delta.normalized()
+			closest_point += delta * min_dist_from_edge
+		return closest_point
+	return target_point
 
 
 #Weighted lerp function to account for delta time

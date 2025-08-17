@@ -63,6 +63,8 @@ func _ready():
 	
 	_update_display()
 	
+	_check_for_upgrade_existing()
+	
 	swap_timer.start(swap_time * 2.0)
 	swap_timer.connect("timeout", _timer_swapped)
 
@@ -152,6 +154,8 @@ func spawn_upgrade(x_offset : float):
 	new_scene.global_position = Vector2(global_position.x + x_offset, global_position.y - 30)
 	new_scene.upgrade = display_item
 	new_scene.delete_on_collection = !is_lobby_tile
+	
+	_lobby_save_var()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -195,3 +199,52 @@ func _timer_swapped():
 #---------------------------------------------------------------------------------------------------------------------------
 func _shop_deleted():
 	Global.shops_in_room -= 1
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _lobby_save_var():
+	#Blehh code
+	if display_item.update_save_variable:
+		match display_item.update_save_variable:
+			"default_gun_unlocked": SaveLoad.save_data.default_gun_unlocked = true
+			"bubble_gun_unlocked": SaveLoad.save_data.bubble_gun_unlocked = true
+			"machine_gun_unlocked": SaveLoad.save_data.machine_gun_unlocked = true
+			
+			"knockback_sec_unlocked": SaveLoad.save_data.knockback_sec_unlocked = true
+			"healing_sec_unlocked": SaveLoad.save_data.healing_sec_unlocked = true
+			"turret_sec_unlocked": SaveLoad.save_data.turret_sec_unlocked = true
+
+
+#Even more bleehhh code
+#---------------------------------------------------------------------------------------------------------------------------
+func _check_for_upgrade_existing():
+	if display_item.update_save_variable:
+		match display_item.update_save_variable:
+			"default_gun_unlocked": 
+				if SaveLoad.save_data.default_gun_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()
+			"bubble_gun_unlocked": 
+				if SaveLoad.save_data.bubble_gun_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()
+			"machine_gun_unlocked": 
+				if SaveLoad.save_data.machine_gun_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()
+			
+			"knockback_sec_unlocked": 
+				if SaveLoad.save_data.knockback_sec_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()
+			"healing_sec_unlocked": 
+				if SaveLoad.save_data.healing_sec_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()
+			"turret_sec_unlocked": 
+				if SaveLoad.save_data.turret_sec_unlocked == true:
+					spawn_upgrade(0)
+					queue_free()

@@ -94,11 +94,16 @@ func _reset_player():
 	p_can_move = true
 	visible = true
 	
-	p_upgrades = null
+	$PlaceholderSprite2D.self_modulate = Color("ffffff")
 	
 	p_vel_prep = Vector2.ZERO
 	p_knockback_taken = Vector2.ZERO
 	velocity = Vector2.ZERO
+	
+	collision_shape.disabled = false
+	
+	Global.player_rerolls = 3
+	p_upgrades = null
 	
 	P_HITBOX_COMPONENT.set_deferred("monitoring", false)
 	P_WEAPON_CONTROLLER.bullet_upgrade_array = []
@@ -106,11 +111,6 @@ func _reset_player():
 	P_SECONDARY_CONTROLLER._reset_secondary_controller()
 	P_HEALTH_COMPONENT._reset_health()
 	
-	collision_shape.disabled = false
-	Global.player_rerolls = 3
-	
-	$PlaceholderSprite2D.self_modulate = Color("ffffff")
-
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):

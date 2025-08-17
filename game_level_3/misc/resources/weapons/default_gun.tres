@@ -25,3 +25,4 @@ item_type = ExtResource("2_bx42r")
 item_cost = 0
 texture = SubResource("AtlasTexture_udgpq")
 upgrade_type = "weapon"
+update_save_variable = "default_gun_unlocked"

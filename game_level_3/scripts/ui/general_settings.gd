@@ -17,7 +17,6 @@ extends Control
 #Misc
 @onready var screen_shake_label = %ScreenShakeLabel
 
-@warning_ignore("unused_signal")
 signal menu_closed
 
 #---------------------------------------------------------------------------------------------------------------------------

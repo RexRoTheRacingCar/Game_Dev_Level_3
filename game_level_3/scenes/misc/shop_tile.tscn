@@ -275,8 +275,8 @@ offset = Vector2(0, 13)
 self_modulate = Color(0.6, 0.588, 0.588, 0.9)
 z_index = 1
 y_sort_enabled = true
-position = Vector2(0, -42)
-scale = Vector2(0.54, 0.54)
+position = Vector2(0, -39)
+scale = Vector2(0.6, 0.6)
 texture = SubResource("AtlasTexture_fclsx")
 region_rect = Rect2(50, 0, 100, 100)
 

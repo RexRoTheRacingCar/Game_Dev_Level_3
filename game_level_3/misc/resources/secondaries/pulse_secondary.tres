@@ -31,3 +31,4 @@ item_type = ExtResource("1_o74q5")
 item_cost = 0
 texture = SubResource("AtlasTexture_ikm1l")
 upgrade_type = "secondary"
+update_save_variable = "knockback_sec_unlocked"

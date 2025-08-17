@@ -38,6 +38,7 @@ const LOBBY_ROOM = preload("res://scenes/misc/rooms/lobby_room.tscn")
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	
 	room_counter = 0
 	
 	_update_room_arrays()
@@ -79,6 +80,11 @@ func generate_room():
 	add_child(current_room)
 	
 	current_room_mesh = current_room.room_nav_mesh
+	_update_global_var()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _update_global_var():
 	Global.global_map = current_room_mesh
 	Global.destructable_layer = current_room.destructable_tilemap
 

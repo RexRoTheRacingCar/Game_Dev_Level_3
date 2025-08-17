@@ -23,6 +23,7 @@ var loop_breaker : bool = false
 @export var generate_waves : bool
 @export var max_waves : int = 3
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()

@@ -25,3 +25,4 @@ item_type = ExtResource("2_ejfbb")
 item_cost = 5
 texture = SubResource("AtlasTexture_wrvu3")
 upgrade_type = "weapon"
+update_save_variable = "bubble_gun_unlocked"

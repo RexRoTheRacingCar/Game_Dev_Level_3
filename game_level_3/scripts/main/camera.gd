@@ -15,6 +15,7 @@ func _ready():
 	shake_multiplier = GlobalSettings.screenshake_multiplier
 	shake_amount = 0
 	zoom = Vector2(zoom_amount, zoom_amount)
+	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
