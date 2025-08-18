@@ -26,7 +26,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_a0odh"]
 curve = SubResource("Curve_ssxah")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c1v7y"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5yon"]
 resource_local_to_scene = true
 particle_flag_disable_z = true
 angle_min = -720.0
@@ -267,7 +267,7 @@ debug_color = Color(0.999774, 0, 0.101632, 0.42)
 
 [node name="GPUParticles2D" parent="." instance=ExtResource("3_8nch0")]
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_c1v7y")
+process_material = SubResource("ParticleProcessMaterial_d5yon")
 texture = SubResource("AtlasTexture_sd76h")
 lifetime = 1.2
 speed_scale = 1.6

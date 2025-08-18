@@ -12,6 +12,7 @@ var target : Node2D = null
 func _ready():
 	collision_shape_2d.shape.size = Vector2(radius, radius)
 	collision_shape_2d.scale.y = 0.75
+	collision_shape_2d.scale *= 1.25
 
 
 #---------------------------------------------------------------------------------------------------------------------------
