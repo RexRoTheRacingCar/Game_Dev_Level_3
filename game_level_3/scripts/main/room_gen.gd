@@ -6,7 +6,7 @@ class_name RoomGenerator
 @export_group("Room Resources")
 @export var fight_room_resource : RoomArray
 @export var shop_room_resource : RoomArray
-@export var reward_room_resource : RoomArray
+@export var boss_room_resource : RoomArray
 
 @export_group("Misc")
 
@@ -14,19 +14,13 @@ class_name RoomGenerator
 @export var minimum_rooms : int = 10
 @export var maximum_rooms : int = 15
 
-#MIGHT NOT USE v
-var maximum_fight_rooms : int = 0 
-var maximum_shop_rooms : int = 0
-var maximum_reward_rooms : int = 0
-#MIGHT NOT USE ^
-
 var room_counter : int = 0
 var room_save : PackedScene
 
 #Room arrays saving room resource arrays and modifying them. 
 var fight_room_array : Array = []
 var shop_room_array : Array = []
-var reward_room_array : Array = []
+var boss_room_array : Array = []
 
 var current_room = null
 var current_room_mesh = null
@@ -48,16 +42,13 @@ func _ready():
 func _update_room_arrays():
 	#Update room arrays
 	if fight_room_resource: #Fight room array
-		maximum_fight_rooms = fight_room_resource.room_array.size()
 		fight_room_array = fight_room_resource.room_array
 	
 	if shop_room_resource: #Shop room array
-		maximum_shop_rooms = shop_room_resource.room_array.size()
 		shop_room_array = shop_room_resource.room_array
 	
-	if reward_room_resource: #Reward room array
-		maximum_reward_rooms = reward_room_resource.room_array.size()
-		reward_room_array = reward_room_resource.room_array
+	if boss_room_resource: #Boss room array
+		boss_room_array = boss_room_resource.room_array
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -102,6 +93,22 @@ func load_lobby_room():
 	current_room_mesh = current_room.room_nav_mesh
 	_update_global_var()
 
+
+#Load a boss room
+#---------------------------------------------------------------------------------------------------------------------------
+func load_boss_room():
+	if current_room != null:
+		current_room.queue_free()
+		current_room = null
+	
+	current_room = select_room(boss_room_array)
+	Global.current_room_type = "boss"
+	
+	#Load room into the game and update Global Variables
+	add_child(current_room)
+	
+	current_room_mesh = current_room.room_nav_mesh
+	_update_global_var()
 
 #---------------------------------------------------------------------------------------------------------------------------
 #Select a random room from selection, make sure it doesn't load same room 

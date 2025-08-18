@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckjdjuavq4s2e"]
+[gd_scene load_steps=5 format=3 uid="uid://ckjdjuavq4s2e"]
 
 [ext_resource type="Script" path="res://scripts/main/room_gen.gd" id="1_dxinl"]
 [ext_resource type="Resource" uid="uid://cr4s0xjpk51tr" path="res://misc/resources/room_resources/fight_rooms.tres" id="2_1t61y"]
 [ext_resource type="Resource" uid="uid://b760pxxko1wpg" path="res://misc/resources/room_resources/shop_rooms.tres" id="3_rf25d"]
+[ext_resource type="Resource" uid="uid://dojk312uabe8a" path="res://misc/resources/room_resources/boss_rooms.tres" id="4_s42og"]
 
 [node name="RoomGenerator" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dxinl")
 fight_room_resource = ExtResource("2_1t61y")
 shop_room_resource = ExtResource("3_rf25d")
+boss_room_resource = ExtResource("4_s42og")

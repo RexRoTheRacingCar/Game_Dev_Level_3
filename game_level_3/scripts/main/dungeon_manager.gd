@@ -10,6 +10,7 @@ extends Node2D
 var room_generating : bool = false
 var transitioning : bool = false
 var is_in_lobby : bool = false
+var boss_room : bool = false
 
 const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
 
