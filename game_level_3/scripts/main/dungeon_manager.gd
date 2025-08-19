@@ -43,6 +43,7 @@ func _load_lobby():
 	is_in_lobby = true
 	room_generating = true
 	GAME_MANAGER.generate_waves = false
+	GAME_MANAGER.is_generating = false
 	GAME_MANAGER.loop_breaker = true
 	PLAYER_UI.can_count = false
 	
@@ -94,14 +95,15 @@ func _reset_room():
 	await get_tree().physics_frame
 	
 	#Teleport player to random position on NavMesh
-	GAME_MANAGER.max_waves = randi_range(1, 3)
+	var rand_wave_amount : int = randi_range(1, 3)
+	GAME_MANAGER.max_waves = rand_wave_amount
 	
 	var posible_player_positions : Array = ROOM_MANAGER.current_room.portal_spawn_array
 	PLAYER.global_position = posible_player_positions[
 		randi_range(0, posible_player_positions.size() - 1)
 		].global_position
 	
-	Global.current_max_waves = GAME_MANAGER.max_waves
+	Global.current_max_waves = rand_wave_amount
 	Global.wave_counter = 0
 	Global.enemy_wave = false
 	
