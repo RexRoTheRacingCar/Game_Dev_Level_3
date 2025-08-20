@@ -7,6 +7,7 @@ extends PortalBase
 var reward_item : Item
 
 @onready var item_label = %Item
+@onready var sprite_folder = $Sprites
 
 const REWARD_SCENE = preload("res://scenes/entity/stat_upgrade.tscn")
 var non_upgrade_reward_chance : float = 0.35
@@ -25,13 +26,18 @@ func _ready():
 	randomize()
 	
 	var rand_value : float = randf()
-	boss_chance = Global.rooms_cleared
-	boss_chance = clamp(boss_chance, )
+	var x : float = float(Global.rooms_cleared)
+	boss_chance = (x ** (3)) - (27 * x ** (2)) + (243 * x) - 729
+	boss_chance = clamp(boss_chance, 0.0, 0.75)
 	
 	_portal_prep()
 	
 	if is_lobby_portal == false:
-		if 
+		if rand_value < boss_chance:
+			sprite_folder.modulate = Color(1, 0, 0)
+			reward_sprite.texture.region = Rect2(100, 300, 100, 100)
+			item_label.text = "   BOSS FIGHT   "
+		else:
 			rand_reward_chance = randf()
 			if rand_reward_chance >= non_upgrade_reward_chance:
 				get_random_item()
@@ -91,7 +97,7 @@ func _on_player_detect_body_entered(body : Player):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _spawn_room_reward():
-	if is_lobby_portal == false:
+	if is_lobby_portal == false and reward_item:
 		#If upgrade
 		if rand_reward_chance >= non_upgrade_reward_chance:
 			var new_reward = REWARD_SCENE.instantiate()
