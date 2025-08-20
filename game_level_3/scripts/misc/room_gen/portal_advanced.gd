@@ -18,18 +18,25 @@ var non_upgrade_reward_dict : Dictionary = {
 }
 var rand_select
 var rand_reward_chance : float
+var boss_chance : float = 0
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
+	
+	var rand_value : float = randf()
+	boss_chance = Global.rooms_cleared
+	boss_chance = clamp(boss_chance, )
+	
 	_portal_prep()
 	
 	if is_lobby_portal == false:
-		rand_reward_chance = randf()
-		if rand_reward_chance >= non_upgrade_reward_chance:
-			get_random_item()
-		else:
-			get_random_non_upgrade()
+		if 
+			rand_reward_chance = randf()
+			if rand_reward_chance >= non_upgrade_reward_chance:
+				get_random_item()
+			else:
+				get_random_non_upgrade()
 	else:
 		reward_sprite.texture.region = Rect2(100, 300, 100, 100)
 		item_label.text = "   BEGIN   "

@@ -240,6 +240,8 @@ _data = {
 [node name="AdvancedPortal" type="Node2D" node_paths=PackedStringArray("HITBOX")]
 y_sort_enabled = true
 script = ExtResource("1_5l1n2")
+is_lobby_portal = null
+item_rewards = null
 HITBOX = NodePath("PlayerDetect")
 
 [node name="Sprites" type="Node2D" parent="."]
