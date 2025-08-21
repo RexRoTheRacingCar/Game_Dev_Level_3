@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomArray" load_steps=3 format=3 uid="uid://hr6r4tvq4let"]
+
+[ext_resource type="PackedScene" uid="uid://70hldybnta8i" path="res://scenes/entity/bosses/big_boss.tscn" id="1_uxeeh"]
+[ext_resource type="Script" path="res://scripts/misc/room_gen/room_gen_list.gd" id="1_vwb0q"]
+
+[resource]
+script = ExtResource("1_vwb0q")
+array_type = "Bosses"
+room_array = Array[PackedScene]([ExtResource("1_uxeeh")])

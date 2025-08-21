@@ -65,7 +65,7 @@ func _ready():
 	
 	_check_for_upgrade_existing()
 	
-	swap_timer.start(swap_time * 2.0)
+	swap_timer.start(swap_time)
 	swap_timer.connect("timeout", _timer_swapped)
 
 

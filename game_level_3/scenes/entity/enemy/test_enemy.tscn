@@ -159,7 +159,7 @@ shape = SubResource("CircleShape2D_icdur")
 collision_layer = 0
 collision_mask = 33
 monitorable = false
-radius = 2000.0
+radius = 2500.0
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

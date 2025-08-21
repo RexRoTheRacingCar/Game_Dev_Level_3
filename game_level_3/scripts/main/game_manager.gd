@@ -3,6 +3,7 @@ extends Node2D
 
 @export_group("Required")
 @export var ENEMY_SCENE_LIST : RoomArray
+@export var BOSS_SCENE_LIST : RoomArray
 @export var ROOM_GENERATOR : RoomGenerator
 @export var PLAYER : Player
 
@@ -74,6 +75,35 @@ func _generate_wave():
 		if loop_breaker == true: return
 	
 	await get_tree().create_timer(3.0, false).timeout
+	
+	is_generating = false
+
+
+#Spawns a boss fight
+#---------------------------------------------------------------------------------------------------------------------------
+func _spawn_boss():
+	Global.wave_counter += 1
+	Global.wave_time = 0.0
+	Global.enemy_count = 0 
+	
+	is_generating = true
+	arrows_generated = false
+	
+	await get_tree().create_timer(1.5, false).timeout
+	
+	if loop_breaker == true: return
+	
+	#Spawn the boss
+	var selected_boss : int = randi_range(0, BOSS_SCENE_LIST.room_array.size() - 1)
+	
+	var boss_spawner = SPAWN_ANIMATION.instantiate()
+	boss_spawner.scale *= 2
+	boss_spawner.enemy_scene = BOSS_SCENE_LIST.room_array[selected_boss]
+	boss_spawner.global_position = Vector2.ZERO
+	boss_spawner.spawn_speed = 0.4
+	get_tree().root.get_node("/root/Game/").call_deferred("add_child", boss_spawner)
+	
+	await get_tree().create_timer(10.0, false).timeout
 	
 	is_generating = false
 

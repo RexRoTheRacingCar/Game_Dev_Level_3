@@ -19,15 +19,19 @@ var non_upgrade_reward_dict : Dictionary = {
 }
 var rand_select
 var rand_reward_chance : float
+
+@export var x_offset : float = 0
 var boss_chance : float = 0
+var is_boss_portal : bool = false
+
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
 	
 	var rand_value : float = randf()
-	var x : float = float(Global.rooms_cleared)
-	boss_chance = (x ** (3)) - (27 * x ** (2)) + (243 * x) - 729
+	var x : float = float(Global.rooms_cleared) - x_offset
+	boss_chance = ((x - 5) ** 3) / 125
 	boss_chance = clamp(boss_chance, 0.0, 0.75)
 	
 	_portal_prep()
@@ -35,12 +39,15 @@ func _ready():
 	if is_lobby_portal == false:
 		if rand_value < boss_chance:
 			sprite_folder.modulate = Color(1, 0, 0)
-			reward_sprite.texture.region = Rect2(100, 300, 100, 100)
+			reward_sprite.texture.region = Rect2(600, 200, 100, 100)
 			item_label.text = "   BOSS FIGHT   "
+			
+			is_boss_portal = true 
 		else:
 			rand_reward_chance = randf()
 			if rand_reward_chance >= non_upgrade_reward_chance:
 				get_random_item()
+				
 			else:
 				get_random_non_upgrade()
 	else:
@@ -91,15 +98,21 @@ func get_random_non_upgrade():
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_player_detect_body_entered(body : Player):
 	if has_detected_player == false:
-		_spawn_room_reward()
-		super._on_player_detect_body_entered(body)
+		if is_boss_portal == true: #If Portal leads to Boss Room
+			has_detected_player = true
+			target_alpha = 0.0
+			Global.emit_signal("boss_portal_entered")
+			
+		else: #If it is a normal portal
+			_spawn_room_reward()
+			super._on_player_detect_body_entered(body)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _spawn_room_reward():
-	if is_lobby_portal == false and reward_item:
+	if is_lobby_portal == false:
 		#If upgrade
-		if rand_reward_chance >= non_upgrade_reward_chance:
+		if rand_reward_chance >= non_upgrade_reward_chance and reward_item:
 			var new_reward = REWARD_SCENE.instantiate()
 			new_reward.global_position = Global.player_position
 			new_reward.upgrade = reward_item

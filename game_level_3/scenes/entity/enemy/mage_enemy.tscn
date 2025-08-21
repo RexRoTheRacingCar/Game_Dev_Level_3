@@ -155,7 +155,7 @@ shape = SubResource("CircleShape2D_w156p")
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_nif14")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 5
+hurt_damage = 3
 hurt_knockback = 250.0
 knockback_type = "center"
 
@@ -167,7 +167,7 @@ shape = SubResource("CircleShape2D_v3h61")
 collision_layer = 0
 collision_mask = 33
 monitorable = false
-radius = 2000.0
+radius = 2500.0
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

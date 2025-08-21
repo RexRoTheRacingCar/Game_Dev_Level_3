@@ -110,6 +110,7 @@ func load_boss_room():
 	current_room_mesh = current_room.room_nav_mesh
 	_update_global_var()
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 #Select a random room from selection, make sure it doesn't load same room 
 func select_room(room_array : Array):

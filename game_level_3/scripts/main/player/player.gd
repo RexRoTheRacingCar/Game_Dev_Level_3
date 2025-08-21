@@ -77,6 +77,7 @@ func _ready():
 	P_HITBOX_COMPONENT.hitbox_entered.connect(player_hit_signalled)
 	P_HEALTH_COMPONENT.zero_health.connect(player_no_health)
 	Global.connect("portal_entered", _portal_visibility_delay)
+	Global.connect("boss_portal_entered", _portal_visibility_delay)
 	
 	await get_tree().create_timer(0.09, false).timeout 
 	

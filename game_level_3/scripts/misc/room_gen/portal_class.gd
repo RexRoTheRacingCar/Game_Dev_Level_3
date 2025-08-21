@@ -21,6 +21,7 @@ func _portal_prep():
 	Global.connect("room_changed", queue_free)
 	Global.connect("reset_to_lobby", queue_free)
 	Global.connect("portal_entered", _other_portal_entered)
+	Global.connect("boss_portal_entered", _other_portal_entered)
 	
 	current_alpha = 0.0
 	target_alpha = 1.0

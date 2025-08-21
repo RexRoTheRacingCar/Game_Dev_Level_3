@@ -59,6 +59,7 @@ var coin_scene : PackedScene = preload("res://scenes/entity/coin.tscn")
 #Global Signals (The signals are mainly used in other scripts)
 signal shop_reroll
 signal portal_entered
+signal boss_portal_entered
 
 signal room_changed
 signal room_cleared

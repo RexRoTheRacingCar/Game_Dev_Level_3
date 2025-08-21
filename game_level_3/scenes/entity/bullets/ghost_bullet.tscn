@@ -23,7 +23,6 @@ hurtbox = NodePath("HurtboxComponent")
 death_timer_node = NodePath("DeleteTimer")
 collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
-default_damage = 6
 default_knockback = 200.0
 initial_speed = 650.0
 target_speed = 50.0

@@ -11,6 +11,7 @@ var room_generating : bool = false
 var transitioning : bool = false
 var is_in_lobby : bool = false
 var boss_room : bool = false
+var boss_room_room_offset : float = 0.0
 
 const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
 
@@ -25,6 +26,7 @@ func _ready():
 	
 	Global.portal_entered.connect(_new_room_transition)
 	Global.reset_to_lobby.connect(_load_lobby)
+	Global.boss_portal_entered.connect(_boss_room_transition)
 	
 	overlay_second.modulate = Color(0, 0, 0, 1)
 	
@@ -46,6 +48,7 @@ func _load_lobby():
 	GAME_MANAGER.is_generating = false
 	GAME_MANAGER.loop_breaker = true
 	PLAYER_UI.can_count = false
+	boss_room_room_offset = 0.0
 	
 	await get_tree().create_timer(1.0, true).timeout
 	
@@ -76,6 +79,33 @@ func _load_lobby():
 	_spawn_set_position_portals()
 	
 	room_generating = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _boss_room():
+	GAME_MANAGER.max_waves = 1
+	ROOM_MANAGER.load_boss_room()
+	Global.rooms_cleared += 1
+	Global.emit_signal("room_changed")
+	
+	if is_in_lobby == false:
+		Global.gems += 1
+	is_in_lobby = false
+	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	
+	var posible_player_positions : Array = ROOM_MANAGER.current_room.portal_spawn_array
+	PLAYER.global_position = posible_player_positions[
+		randi_range(0, posible_player_positions.size() - 1)
+		].global_position
+	
+	Global.wave_counter = 0
+	Global.enemy_wave = false
+	
+	room_generating = false
+	PLAYER_UI.can_count = true
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -116,24 +146,32 @@ func _process(delta):
 	Global.wave_time += delta #Wave timer
 	
 	#WAVE GENERATION CONDITIONS
-	if Global.enemy_count == 0 and GAME_MANAGER.is_generating == false and GAME_MANAGER.generate_waves == true:
-		#If no room is being generated
-		if room_generating == false:
-			Global.enemy_wave = false
-		
-		if Global.enemy_wave == false:
-			#Start next wave
-			if Global.wave_counter < GAME_MANAGER.max_waves:
-				Global.enemy_wave = true
-				GAME_MANAGER._generate_wave()
+	if Global.enemy_count == 0 and GAME_MANAGER.is_generating == false:
+		if GAME_MANAGER.generate_waves == true or Global.current_room_type == "boss":
+			#If no room is being generated
+			if room_generating == false:
+				Global.enemy_wave = false
 			
-			#Go to next room before starting next wave
-			elif Global.wave_counter >= GAME_MANAGER.max_waves:
-				if transitioning == false:
-					transitioning = true
-					_spawn_set_position_portals()
+			if Global.enemy_wave == false:
+				#Start next wave
+				if Global.wave_counter < GAME_MANAGER.max_waves:
+					Global.enemy_wave = true
+					#Spawn enemy wave
+					if GAME_MANAGER.generate_waves == true:
+						GAME_MANAGER._generate_wave()
 					
-					Global.emit_signal("room_cleared")
+					#Spawn Boss Fight
+					elif Global.current_room_type == "boss":
+						GAME_MANAGER._spawn_boss()
+				
+				#Go to next room before starting next wave
+				elif Global.wave_counter >= GAME_MANAGER.max_waves:
+					if transitioning == false:
+						transitioning = true
+						_spawn_set_position_portals()
+						
+						Global.emit_signal("room_cleared")
+	
 	
 	#If enemies have been on screen for a while, spawn arrows to help guide the player
 	if Global.enemy_count > 0 and Global.wave_time > (GAME_MANAGER.min_time_till_arrows + Global.enemy_count) and GAME_MANAGER.arrows_generated == false:
@@ -149,6 +187,7 @@ func _spawn_set_position_portals():
 		var new_portal = PORTAL_ADVANCED.instantiate()
 		new_portal.global_position = portal_position_array[positions].global_position
 		new_portal.is_lobby_portal = is_in_lobby
+		new_portal.x_offset = boss_room_room_offset
 		get_tree().root.get_node("/root/Game/").add_child(new_portal)
 
 
@@ -161,4 +200,18 @@ func _new_room_transition():
 	await get_tree().create_timer(1.0, true).timeout
 	
 	_reset_room()
+	transitioning = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _boss_room_transition():
+	Global.enemy_wave = true
+	GAME_MANAGER.generate_waves = false
+	room_generating = true
+	room_fade_animation.play("room_fade")
+	boss_room_room_offset = float(Global.rooms_cleared)
+	
+	await get_tree().create_timer(1.0, true).timeout
+	
+	_boss_room()
 	transitioning = false
