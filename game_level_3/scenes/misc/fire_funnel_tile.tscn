@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dysffqx4sviud"]
+[gd_scene load_steps=18 format=3 uid="uid://dysffqx4sviud"]
 
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_crqqr"]
 [ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="1_jfki6"]
+[ext_resource type="Script" path="res://scripts/misc/fire_funnel_tile.gd" id="1_jvn68"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="1_ke4gy"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_bgydn"]
 
@@ -17,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -29,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -89,7 +90,21 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 0.533232, 0.283095, 0.807094)]
+"values": [Color(1, 0.532, 0.28, 0)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7josw"]
@@ -181,6 +196,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 0.787833, 0.33, 0.0862745), Color(1, 0.532, 0.28, 0.513726), Color(1, 0.424, 0.28, 0.670588), Color(1, 0.6865, 0.43, 0)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationPlayer:speed_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p2n3q"]
 _data = {
@@ -236,6 +263,7 @@ region = Rect2(0, 300, 50, 50)
 
 [node name="FireFunnelTile" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_jvn68")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -244,7 +272,7 @@ libraries = {
 autoplay = "fire_animation"
 
 [node name="FireGlow" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0.533232, 0.283095, 0.807094)
+self_modulate = Color(1, 0.532, 0.28, 0)
 z_index = 1
 position = Vector2(0, -3.8147e-06)
 scale = Vector2(0.5, 0.25)
@@ -254,12 +282,14 @@ texture = SubResource("AtlasTexture_fl7s2")
 texture = SubResource("AtlasTexture_014hb")
 
 [node name="FireFunnelFire" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 texture = SubResource("AtlasTexture_6eegk")
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_layer = 10
 collision_mask = 0
 monitoring = false
+monitorable = false
 script = ExtResource("1_jfki6")
 hurt_damage = 7
 hurt_knockback = 50.0

@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://covuqtiwt1cdv" path="res://assets/art/other/pixilart-drawing.png" id="2_ngj33"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bmsbf"]
-font_size = 12
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -23,12 +22,13 @@ one_shot = true
 
 [node name="Reloading" type="Label" parent="."]
 z_index = 5
-offset_left = -38.0
-offset_top = -38.0
-offset_right = 39.0
-offset_bottom = -15.0
+offset_left = -43.0
+offset_top = -41.0
+offset_right = 43.0
+offset_bottom = -16.0
 theme = ExtResource("2_ax8oj")
 theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 28
 text = "Reloading"
 label_settings = SubResource("LabelSettings_bmsbf")
 horizontal_alignment = 1

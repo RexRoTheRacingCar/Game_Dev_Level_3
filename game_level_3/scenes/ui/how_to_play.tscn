@@ -99,7 +99,7 @@ horizontal_alignment = 1
 
 [node name="HowToPlay4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections/MainControlsSection/Controls/VBoxContainer"]
 layout_mode = 2
-text = "Middle Mouse or Clicking to Reload"
+text = "R to Reload"
 horizontal_alignment = 1
 
 [node name="HowToPlay5" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections/MainControlsSection/Controls/VBoxContainer"]

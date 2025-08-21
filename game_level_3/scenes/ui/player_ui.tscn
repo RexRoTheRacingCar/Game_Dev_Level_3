@@ -83,6 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "Rerolls
 "
 horizontal_alignment = 2
@@ -107,6 +108,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "Gems
 "
 horizontal_alignment = 2
@@ -131,6 +133,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "Coins"
 horizontal_alignment = 2
 
@@ -151,7 +154,7 @@ collapsed = true
 dragger_visibility = 2
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow"]
-custom_minimum_size = Vector2(400, 30)
+custom_minimum_size = Vector2(500, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_74qv3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qe5c6")
@@ -173,6 +176,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "50 I 50"
 
 [node name="BulletSplit" type="HSplitContainer" parent="MainControl/UIMargin/BottomHBox/BottomVBox/BottomRow/HSplit1"]
@@ -186,6 +190,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "Bullets
 "
 horizontal_alignment = 2
@@ -210,5 +215,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0.0784314, 0, 0, 1)
 theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 22
 text = "Game Time"
 horizontal_alignment = 2

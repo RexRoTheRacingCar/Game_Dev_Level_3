@@ -22,6 +22,11 @@ spawn_location_type = 2
 shake_on_use = 12.0
 scale_based = true
 max_scale = 2.2
+item_name = ""
+rarity = ""
+item_cost = 10
+upgrade_type = ""
+update_save_variable = ""
 
 [node name="SpecialController" type="Node2D" node_paths=PackedStringArray("progress_bar")]
 script = ExtResource("1_18fdd")
@@ -33,10 +38,10 @@ one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 z_index = 100
-offset_left = -48.0
-offset_top = -24.0
+offset_left = -50.0
+offset_top = -30.0
 offset_right = -40.0
-offset_bottom = 24.0
+offset_bottom = 30.0
 theme = ExtResource("5_o33kb")
 max_value = 5.0
 value = 2.0

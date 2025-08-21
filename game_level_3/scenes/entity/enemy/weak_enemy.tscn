@@ -73,7 +73,7 @@ collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_grsan")
-speed = 475.0
+speed = 460.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -120,7 +120,7 @@ offset = Vector2(0, -10)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_kwoo5")]
 health_bar = NodePath("ProgressBar")
-max_health = 5
+max_health = 3
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20

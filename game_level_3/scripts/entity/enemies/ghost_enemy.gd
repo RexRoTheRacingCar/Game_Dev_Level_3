@@ -84,7 +84,7 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 	#If enemy is invisible
 	if is_invisible == false and (player_distance > invisble_distance or player_visible == false):
 		invisible_timer += delta
-		alpha_target = 0.075
+		alpha_target = 0.125
 		
 		#If out of range for a while
 		if invisible_timer > 7.5 and player_distance > invisble_distance * 1.5:

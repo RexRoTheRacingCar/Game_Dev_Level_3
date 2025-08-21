@@ -138,7 +138,7 @@ PLAYER_UI = NodePath("../PlayerUI")
 [node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")
 PLAYER = NodePath("../Player")
-maximum_enemies = 7
+maximum_enemies = 4
 generate_waves = true
 
 [node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]

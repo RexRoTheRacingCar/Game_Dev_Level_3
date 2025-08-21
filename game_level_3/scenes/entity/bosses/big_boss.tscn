@@ -172,7 +172,7 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("5_hf654")]
 position = Vector2(0, -15)
 health_bar = NodePath("ProgressBar")
-max_health = 275
+max_health = 1000
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20

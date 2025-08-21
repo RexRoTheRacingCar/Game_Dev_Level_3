@@ -146,7 +146,7 @@ func _process(delta):
 	Global.wave_time += delta #Wave timer
 	
 	#WAVE GENERATION CONDITIONS
-	if Global.enemy_count == 0 and GAME_MANAGER.is_generating == false:
+	if Global.enemy_count == 0 and GAME_MANAGER.is_generating == false and is_in_lobby == false:
 		if GAME_MANAGER.generate_waves == true or Global.current_room_type == "boss":
 			#If no room is being generated
 			if room_generating == false:

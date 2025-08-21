@@ -78,7 +78,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 44
 text = "Game Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -90,6 +90,7 @@ alignment = 1
 
 [node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -97,6 +98,7 @@ text = "Resume Game"
 
 [node name="GeneralBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -104,6 +106,7 @@ text = "Settings"
 
 [node name="KeybindsBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -111,6 +114,7 @@ text = "Controls"
 
 [node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -118,6 +122,7 @@ text = "How To Play"
 
 [node name="ResetToLobbyBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -125,6 +130,7 @@ text = "Reset To Lobby"
 
 [node name="StartMenuBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
@@ -132,6 +138,7 @@ text = "Save and Exit to Menu"
 
 [node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")

@@ -51,7 +51,7 @@ func _generate_wave():
 	if loop_breaker == true: return
 	
 	#Wave spawn time variation
-	var generating_delay = (randf_range(0.1, 1.0) ** 6) + 0.1
+	var generating_delay = (0.9 * (randf_range(0.1, 0.95) ** 2)) + 0.25
 	
 	var enemy_variance = randi_range(0, ENEMY_SCENE_LIST.room_array.size() - 1)
 	var enemy_array : Array = ENEMY_SCENE_LIST.room_array.duplicate()

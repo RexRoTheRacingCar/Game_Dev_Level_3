@@ -83,6 +83,8 @@ func _update_global_var():
 #Load the starting lobby screen
 #---------------------------------------------------------------------------------------------------------------------------
 func load_lobby_room():
+	Global.current_room_type = "lobby"
+	
 	if current_room != null:
 		current_room.queue_free()
 		current_room = null
