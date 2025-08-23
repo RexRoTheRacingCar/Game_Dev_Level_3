@@ -15,3 +15,4 @@ class_name WeaponType
 @export_group("Other Values")
 @export var default_bullet : PackedScene
 @export var camera_shake : float = 4.0
+@export var weapon_sprite : Texture2D

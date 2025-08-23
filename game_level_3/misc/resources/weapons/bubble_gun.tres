@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="WeaponType" load_steps=6 format=3 uid="uid://wsp2b187sq6m"]
+[gd_resource type="Resource" script_class="WeaponType" load_steps=8 format=3 uid="uid://wsp2b187sq6m"]
 
 [ext_resource type="PackedScene" uid="uid://c8ntcgi3rcq2" path="res://scenes/entity/bullets/bubble_bullet.tscn" id="1_jhwdv"]
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_ejfbb"]
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_hnjpj"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_u6qj8"]
+[ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="5_qyk7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wrvu3"]
 atlas = ExtResource("4_u6qj8")
 region = Rect2(200, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy8gn"]
+atlas = ExtResource("5_qyk7f")
+region = Rect2(300, 600, 100, 100)
 
 [resource]
 script = ExtResource("2_hnjpj")
@@ -19,6 +24,7 @@ default_reload_time = 2.0
 default_max_ammo = 48
 default_bullet = ExtResource("1_jhwdv")
 camera_shake = 2.0
+weapon_sprite = SubResource("AtlasTexture_vy8gn")
 item_name = "Bubble Gun"
 rarity = "Common"
 item_type = ExtResource("2_ejfbb")

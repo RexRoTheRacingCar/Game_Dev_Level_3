@@ -49,6 +49,8 @@ func _load_default_values():
 	
 	ammo = max_ammo
 	bullet_upgrade_array = []
+	
+	weapon_sprite.texture = current_weapon.weapon_sprite
 
 
 #---------------------------------------------------------------------------------------------------------------------------

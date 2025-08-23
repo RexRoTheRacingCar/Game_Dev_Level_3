@@ -63,7 +63,7 @@ func _generate_wave():
 	
 	#Spawn random enemies from new random list
 	var max_possible_enemies : int = roundi(roundf((maximum_enemies + Global.rooms_cleared)) / roundf((float(Global.current_max_waves) / float(Global.wave_counter))))
-	max_possible_enemies = clampi(max_possible_enemies, 1, max_possible_enemies)
+	max_possible_enemies = clampi(max_possible_enemies, Global.wave_counter, max_possible_enemies)
 	
 	for enemy in randi_range(minimum_enemies, max_possible_enemies):
 		var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
