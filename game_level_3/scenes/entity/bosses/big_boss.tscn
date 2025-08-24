@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/entity/bosses/big_boss.gd" id="1_r4eec"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_yqpg8"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="3_sb5p4"]
-[ext_resource type="Texture2D" uid="uid://cbel6epen134d" path="res://assets/art/entity/god_knows.png" id="4_h7wqr"]
+[ext_resource type="Texture2D" uid="uid://d3wctobnqykjb" path="res://assets/art/entity/lookatyou.png" id="4_0daom"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="5_hf654"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="6_yidp2"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="7_ips5l"]
@@ -62,7 +62,7 @@ radius = 25.0
 radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l7aex"]
-radius = 173.012
+radius = 125.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_im0nk"]
 radius = 30.0
@@ -110,11 +110,11 @@ collision_layer = 24
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_r4eec")
-DEFAULT_SPEED = 525.0
-CHARGE_SPEED = 1200.0
+DEFAULT_SPEED = 1000.0
+CHARGE_SPEED = 2500.0
 CHARGE_TIME = 1.5
-DEFAULT_DAMAGE = 10
-CHARGE_DAMAGE = 20
+DEFAULT_DAMAGE = 20
+CHARGE_DAMAGE = 49
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -158,9 +158,9 @@ randomness = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kx04d")
-position = Vector2(-1, 29)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("4_h7wqr")
+position = Vector2(-1.93207, -3.62348)
+scale = Vector2(0.0611111, 0.0611112)
+texture = ExtResource("4_0daom")
 offset = Vector2(-1.11111, -38.8889)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -204,6 +204,7 @@ position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_qjmvo")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_ips5l")]
+visible = false
 position = Vector2(0, -7)
 collision_layer = 2
 collision_mask = 0
@@ -236,7 +237,6 @@ scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_l7aex")
 
 [node name="WallCollision" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollision"]
 position = Vector2(0, 3)
