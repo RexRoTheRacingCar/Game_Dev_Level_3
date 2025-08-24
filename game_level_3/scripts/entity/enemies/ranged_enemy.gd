@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	#The enemy shoot timer + Line of Sight check
 	if shoot_timer > shoot_speed and can_see_player == true:
 		shoot_timer = 0.0
-		_shoot_at_player(distance)
+		_shoot_at_player()
 	
 	if shoot_timer > shoot_speed - 0.4 and state == IN_RANGE:
 		shoot_move_speed = lerp(shoot_move_speed, 0.0, Global.weighted_lerp(30, delta))
@@ -128,18 +128,22 @@ func _move_enemy(delta : float):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _shoot_at_player(distance : float): 
+func _shoot_at_player(): 
 	#Find bullet angle
 	var new_bullet = GLOWING_BULLET.instantiate()
-	var offset : Vector2 = Global.player_position - global_position
-	offset = Vector2(offset.x, offset.y * 2)
-	var dir = get_angle_to(Global.player_position + offset + Global.player_velocity * (distance / (new_bullet.initial_speed * 0.8)))
+	
+	var player_distance : float = global_position.distance_to(Global.player_position) / 650
+	var target_pos : Vector2 = Global.player_position + Global.player_velocity * player_distance
+	
+	target_pos = target_pos - global_position
+	target_pos.y *= 2
+	var dir = target_pos.angle()
 	
 	#Weapon recoil
 	knockback_taken = Vector2.RIGHT.rotated(dir) * -100
 	
 	#Apply variables to newly instanced bullet
-	new_bullet.accuracy /= 2
+	new_bullet.accuracy /= 2.5
 	new_bullet.rotation = dir
 	new_bullet.global_position = global_position
 	

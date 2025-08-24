@@ -73,7 +73,7 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 		if shoot_timer > when_to_shoot:
 			#Enough ammo
 			if ammo > 0:
-				_shoot_at_player(player_distance)
+				_shoot_at_player()
 				shoot_timer = 0.0
 				ammo -= 1
 			#Not enough ammo (Teleports away)
@@ -152,11 +152,14 @@ func _move_enemy(delta : float):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _shoot_at_player(distance : float): 
+func _shoot_at_player(): 
 	#Find bullet angle
-	var offset : Vector2 = Global.player_position - global_position
-	offset = Vector2(offset.x, offset.y * 2)
-	var dir = get_angle_to(Global.player_position + offset + Global.player_velocity * (distance / 650))
+	var player_distance : float = global_position.distance_to(Global.player_position) / 650
+	var target_pos : Vector2 = Global.player_position + Global.player_velocity * player_distance
+	
+	target_pos = target_pos - global_position
+	target_pos.y *= 2
+	var dir = target_pos.angle()
 	
 	#Bullet Wave
 	for bullet in range(-3, 4):

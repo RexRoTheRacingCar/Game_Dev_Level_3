@@ -1,14 +1,18 @@
 ############################## Turret Secondary ##############################
 extends BaseSecondary
 
+@onready var turret_barrel_1 : Sprite2D = %TurretBarrel1
+@onready var turret_barrel_2 : Sprite2D = %TurretBarrel2
+
 @onready var range_area = %RangeArea
 var target_array : Array = []
 var target : Entity
+var turret_position : Vector2
 
 @onready var death_timer = %DeathTimer
 @export var can_shoot : bool = false
 @export var shoot_time : float = 1.0
-var timer : float = 0.0
+var timer : float = 0
 
 const BULLET = preload("res://scenes/entity/bullets/default_bullet.tscn")
 const LANDING_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
@@ -25,6 +29,11 @@ func _ready():
 	range_area.connect("body_entered", body_entered)
 	range_area.connect("body_exited", body_exited)
 	death_timer.connect("timeout", turret_death)
+	
+	turret_position = global_position + Vector2(0, -34)
+	
+	turret_barrel_1.look_at(Global.player_position)
+	turret_barrel_2.rotation = turret_barrel_1.rotation
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -32,10 +41,43 @@ func _physics_process(delta):
 	if target_array.is_empty() == false:
 		timer += delta
 		
+		var turret_dir : float = _get_angle_to_enemy()
+		
 		#Shoot when timer says so, reset timer afterwards
 		if timer >= shoot_time / ((power_mult + 1.0) / 2) and can_shoot == true:
 			timer = 0.0
-			_shoot_bullet()
+			
+			_shoot_bullet(turret_dir, turret_position)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _get_angle_to_enemy():
+	#Check for target
+	if _check_target_array() == false:
+		return
+	
+	#Find closest enemy to turret
+	var aim_target : Entity
+	var enemy_dist : float = 99999.9
+	
+	for enemy in range(0, target_array.size()):
+		var dist = global_position.distance_to(target_array[enemy].global_position)
+		if dist < enemy_dist:
+			enemy_dist = dist
+			aim_target = target_array[enemy]
+	
+	var distance : float = turret_position.distance_to(aim_target.global_position) / 950
+	var target_pos : Vector2 = aim_target.global_position + aim_target.velocity * distance
+	
+	turret_barrel_1.look_at(target_pos)
+	turret_barrel_2.rotation = turret_barrel_1.rotation
+	
+	target_pos = target_pos - turret_position
+	target_pos.y *= 2
+	
+	var dir = target_pos.angle()
+	return dir
+
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -51,33 +93,16 @@ func _check_target_array():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func _shoot_bullet():
-	#Check for target
-	if _check_target_array() == false:
-		return
-	
-	#Find closest enemy to turret
-	var aim_target : Entity
-	var enemy_dist : float = 99999.9
-	
-	for enemy in range(0, target_array.size()):
-		var dist = global_position.distance_to(target_array[enemy].global_position)
-		if dist < enemy_dist:
-			enemy_dist = dist
-			aim_target = target_array[enemy]
-	
-	#Instance bullet & aim at target. Predictive aiming. 
+func _shoot_bullet(dir : float, turret_pos : Vector2):
+	#Instance bullet & aim at target. Predictive aiming.
 	var new_bullet := BULLET.instantiate()
-	var vel : Vector2 = aim_target.velocity
-	var offset : Vector2 = aim_target.global_position - global_position
-	offset = Vector2(offset.x, offset.y * 2)
-	var dist_to_enemy : float = global_position.distance_to(aim_target.global_position)
-	var dir = get_angle_to(aim_target.global_position + offset + vel * (dist_to_enemy / (new_bullet.initial_speed * 0.8)))
 	
 	#Bullet spawned
-	new_bullet.global_position = global_position
+	new_bullet.global_position = Vector2.RIGHT.rotated(dir) * 50
+	new_bullet.global_position.y /= 2
+	new_bullet.global_position += turret_pos
 	new_bullet.rotation = dir
-	new_bullet.accuracy /= 2
+	new_bullet.accuracy /= 3
 	
 	new_bullet.damage *= power_mult
 	
@@ -85,6 +110,33 @@ func _shoot_bullet():
 	
 	new_bullet.implement_stats()
 	new_bullet.death_timer_node.start(new_bullet.lifetime * 1.6)
+	
+	_muzzle_flash()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Turret shoot animation
+func _muzzle_flash():
+	#Bullet Just Fired
+	turret_barrel_1.texture.region = Rect2(600, 500, 200, 100)
+	
+	turret_barrel_1.position = Vector2.RIGHT.rotated(turret_barrel_1.rotation) * -28
+	turret_barrel_1.position.y -= 64
+	turret_barrel_2.position = Vector2(turret_barrel_1.position.x, turret_barrel_1.position.y - 10)
+	
+	#Post Bullet Fired
+	
+	var turret_1_tween = create_tween().set_parallel(true)
+	turret_1_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	turret_1_tween.tween_property(turret_barrel_1, "position", Vector2(0, -64), shoot_time / 3).from_current()
+	
+	var turret_2_tween = create_tween().set_parallel(true)
+	turret_2_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	turret_2_tween.tween_property(turret_barrel_2, "position", Vector2(0, -74), shoot_time / 3).from_current()
+	
+	await get_tree().create_timer(shoot_time / 3, false).timeout
+	
+	turret_barrel_1.texture.region = Rect2(600, 400, 200, 100)
 
 
 #When death timer runs out, delete turret

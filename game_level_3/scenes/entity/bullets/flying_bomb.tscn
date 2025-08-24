@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://vnkinv4wdsmk"]
+[gd_scene load_steps=15 format=3 uid="uid://vnkinv4wdsmk"]
 
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="1_djuu1"]
 [ext_resource type="Script" path="res://scripts/entity/bullets/flying_bomb.gd" id="2_r7u0f"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="3_8dahs"]
+[ext_resource type="PackedScene" uid="uid://guq4cs78isyh" path="res://scenes/components/line_component.tscn" id="4_3cv55"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obhy5"]
 atlas = ExtResource("1_djuu1")
@@ -43,6 +44,14 @@ color_ramp = SubResource("GradientTexture1D_w2eyb")
 atlas = ExtResource("1_djuu1")
 region = Rect2(0, 300, 50, 50)
 
+[sub_resource type="Curve" id="Curve_j0vdf"]
+_data = [Vector2(0, 0), 0.0, 1.54868, 0, 0, Vector2(1, 1), 0.561212, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7ijny"]
+offsets = PackedFloat32Array(0, 0.791045)
+colors = PackedColorArray(0, 0, 0, 0, 0.5, 0.5, 0.5, 0.607843)
+
 [node name="FlyingBomb" type="Node2D"]
 script = ExtResource("2_r7u0f")
 
@@ -69,3 +78,12 @@ texture = SubResource("AtlasTexture_4q0hf")
 lifetime = 0.8
 speed_scale = 1.1
 randomness = 0.2
+
+[node name="Line2D" parent="BombSprite" instance=ExtResource("4_3cv55")]
+width = 44.0
+width_curve = SubResource("Curve_j0vdf")
+gradient = SubResource("Gradient_7ijny")
+texture_mode = 1
+length = 16
+twirl_amplitude = 12.0
+twirl_freq = 8.0
