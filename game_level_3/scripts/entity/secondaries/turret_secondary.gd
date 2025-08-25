@@ -3,6 +3,7 @@ extends BaseSecondary
 
 @onready var turret_barrel_1 : Sprite2D = %TurretBarrel1
 @onready var turret_barrel_2 : Sprite2D = %TurretBarrel2
+@onready var turret_barrel_3 : Sprite2D = %TurretBarrel3
 
 @onready var range_area = %RangeArea
 var target_array : Array = []
@@ -34,6 +35,7 @@ func _ready():
 	
 	turret_barrel_1.look_at(Global.player_position)
 	turret_barrel_2.rotation = turret_barrel_1.rotation
+	turret_barrel_3.rotation = turret_barrel_1.rotation
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -71,13 +73,13 @@ func _get_angle_to_enemy():
 	
 	turret_barrel_1.look_at(target_pos)
 	turret_barrel_2.rotation = turret_barrel_1.rotation
+	turret_barrel_3.rotation = turret_barrel_1.rotation
 	
 	target_pos = target_pos - turret_position
 	target_pos.y *= 2
 	
 	var dir = target_pos.angle()
 	return dir
-
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -118,14 +120,14 @@ func _shoot_bullet(dir : float, turret_pos : Vector2):
 #Turret shoot animation
 func _muzzle_flash():
 	#Bullet Just Fired
-	turret_barrel_1.texture.region = Rect2(600, 500, 200, 100)
+	turret_barrel_1.texture.region = Rect2(600, 400, 200, 100)
 	
 	turret_barrel_1.position = Vector2.RIGHT.rotated(turret_barrel_1.rotation) * -28
 	turret_barrel_1.position.y -= 64
 	turret_barrel_2.position = Vector2(turret_barrel_1.position.x, turret_barrel_1.position.y - 10)
+	turret_barrel_3.position= Vector2(turret_barrel_1.position.x, turret_barrel_1.position.y - 20)
 	
 	#Post Bullet Fired
-	
 	var turret_1_tween = create_tween().set_parallel(true)
 	turret_1_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	turret_1_tween.tween_property(turret_barrel_1, "position", Vector2(0, -64), shoot_time / 3).from_current()
@@ -134,9 +136,13 @@ func _muzzle_flash():
 	turret_2_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	turret_2_tween.tween_property(turret_barrel_2, "position", Vector2(0, -74), shoot_time / 3).from_current()
 	
+	var turret_3_tween = create_tween().set_parallel(true)
+	turret_3_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	turret_3_tween.tween_property(turret_barrel_3, "position", Vector2(0, -84), shoot_time / 3).from_current()
+	
 	await get_tree().create_timer(shoot_time / 3, false).timeout
 	
-	turret_barrel_1.texture.region = Rect2(600, 400, 200, 100)
+	turret_barrel_1.texture.region = Rect2(600, 300, 200, 100)
 
 
 #When death timer runs out, delete turret

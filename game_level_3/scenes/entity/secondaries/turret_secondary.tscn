@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csjvumawbopd5"]
+[gd_scene load_steps=13 format=3 uid="uid://csjvumawbopd5"]
 
 [ext_resource type="Script" path="res://scripts/entity/secondaries/turret_secondary.gd" id="1_kun16"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_27sae"]
@@ -15,11 +15,15 @@ region = Rect2(0, 300, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_51g4x"]
 atlas = ExtResource("3_l60jp")
-region = Rect2(600, 300, 200, 100)
+region = Rect2(600, 200, 200, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oirad"]
 atlas = ExtResource("3_l60jp")
-region = Rect2(600, 400, 200, 100)
+region = Rect2(600, 300, 200, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6lw5"]
+atlas = ExtResource("3_l60jp")
+region = Rect2(600, 500, 200, 100)
 
 [sub_resource type="Animation" id="Animation_ew7vd"]
 length = 0.001
@@ -218,6 +222,12 @@ offset = Vector2(49.9609, 0.195549)
 unique_name_in_owner = true
 position = Vector2(0, -74)
 texture = SubResource("AtlasTexture_oirad")
+offset = Vector2(49.9609, 0.195549)
+
+[node name="TurretBarrel3" type="Sprite2D" parent="TurretStand/TurretSquash"]
+unique_name_in_owner = true
+position = Vector2(0, -84)
+texture = SubResource("AtlasTexture_m6lw5")
 offset = Vector2(49.9609, 0.195549)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

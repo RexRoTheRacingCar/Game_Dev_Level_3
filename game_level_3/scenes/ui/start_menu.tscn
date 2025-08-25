@@ -11,7 +11,7 @@
 [sub_resource type="Gradient" id="Gradient_xjwfi"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.292035, 0.610619, 1)
-colors = PackedColorArray(1, 0, 0, 0, 0.71, 0.118333, 0, 0.105882, 0.66, 0.396, 0, 0.0627451, 1, 0.968, 0.52, 0)
+colors = PackedColorArray(1, 0, 0, 0, 0.71, 0.118333, 0, 0.137255, 0.66, 0.396, 0, 0.0705882, 1, 0.968, 0.52, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ijij7"]
 gradient = SubResource("Gradient_xjwfi")
