@@ -104,13 +104,13 @@ func _check_player_position() -> bool:
 	if sprite:
 		#Player X Axis
 		var sprite_scale_x : float = abs(sprite.scale.x)
-		if next_path_position.x >= global_position.x:
+		if velocity.x >= 0.0:
 			sprite.scale.x = sprite_scale_x * 1
 		else:
 			sprite.scale.x = sprite_scale_x * -1
 		
 		#Player Y Axis
-		if next_path_position.y >= global_position.y:
+		if velocity.y >= 0.0:
 			return false
 		else:
 			return true
