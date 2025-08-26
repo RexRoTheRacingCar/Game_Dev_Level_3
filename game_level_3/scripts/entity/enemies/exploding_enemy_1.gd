@@ -18,9 +18,6 @@ var player_angle_pos : Vector2
 @export var speed : float = 425.0
 const EXPLOSION := preload("res://scenes/entity/secondaries/explosion.tscn")
 
-@onready var sprite = $Sprite2D
-
-
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -64,6 +61,12 @@ func _physics_process(delta) -> void:
 		velocity += knockback_taken
 		knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 		move_and_slide()
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
 
 
 #---------------------------------------------------------------------------------------------------------------------------

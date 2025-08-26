@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwww23dsvnhg8"]
+[gd_scene load_steps=26 format=3 uid="uid://dwww23dsvnhg8"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/ghost_enemy.gd" id="1_3dn8v"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="3_e25jr"]
@@ -34,6 +34,25 @@ radius = 23.0868
 [sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
 radius = 18.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ujk5"]
+animation = &"back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mrt8l"]
+animation = &"front"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_30sa1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wnd1f"]
+graph_offset = Vector2(-423.611, 53.2597)
+nodes/BackAnim/node = SubResource("AnimationNodeAnimation_0ujk5")
+nodes/BackAnim/position = Vector2(-133.333, 320)
+nodes/FrontAnim/node = SubResource("AnimationNodeAnimation_mrt8l")
+nodes/FrontAnim/position = Vector2(-133.333, 160)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_30sa1")
+nodes/Movement/position = Vector2(80, 160)
+nodes/output/position = Vector2(293.333, 160)
+node_connections = [&"Movement", 0, &"FrontAnim", &"Movement", 1, &"BackAnim", &"output", 0, &"Movement"]
+
 [sub_resource type="Animation" id="Animation_cksef"]
 length = 0.001
 tracks/0/type = "value"
@@ -49,8 +68,26 @@ tracks/0/keys = {
 "values": [Rect2(0, 0, 100, 100)]
 }
 
+[sub_resource type="Animation" id="Animation_ih2gr"]
+resource_name = "back"
+length = 0.6
+loop_mode = 1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 100, 100, 100), Rect2(100, 100, 100, 100), Rect2(200, 100, 100, 100), Rect2(300, 100, 100, 100), Rect2(400, 100, 100, 100), Rect2(500, 100, 100, 100)]
+}
+
 [sub_resource type="Animation" id="Animation_7cxrf"]
-resource_name = "new_animation"
+resource_name = "front"
 length = 0.6
 loop_mode = 1
 step = 0.025
@@ -70,7 +107,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f6fyo"]
 _data = {
 "RESET": SubResource("Animation_cksef"),
-"new_animation": SubResource("Animation_7cxrf")
+"back": SubResource("Animation_ih2gr"),
+"front": SubResource("Animation_7cxrf")
 }
 
 [sub_resource type="Animation" id="Animation_yj808"]
@@ -111,7 +149,7 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="GhostEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
+[node name="GhostEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "anim_tree", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
@@ -125,6 +163,8 @@ hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
+sprite = NodePath("Sprite2D")
+anim_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.4
@@ -215,11 +255,15 @@ radius = 2500.0
 collision_mask = 32
 max_target_distance = 2500.0
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_wnd1f")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/blend_amount = 0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_f6fyo")
 }
-autoplay = "new_animation"
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

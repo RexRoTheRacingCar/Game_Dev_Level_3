@@ -21,7 +21,6 @@ const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
 
-@onready var sprite = $Sprite2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():

@@ -26,8 +26,12 @@ func _physics_process(delta: float) -> void:
 			velocity += knockback_taken
 			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
-	
-	
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
 
 
 #---------------------------------------------------------------------------------------------------------------------------

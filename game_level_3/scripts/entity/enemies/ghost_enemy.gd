@@ -17,7 +17,6 @@ var ammo : int = 4
 @export var when_to_shoot : float = 2.5
 var shoot_timer : float = 0.0
 
-@onready var sprite = $Sprite2D
 @onready var teleport_timer = $TeleportTimer
 @onready var collision = $CollisionShape2D
 
@@ -57,6 +56,12 @@ func _physics_process(delta: float) -> void:
 		speed_mult = lerp(speed_mult, speed_mult_target, Global.weighted_lerp(24, delta))
 		sprite.modulate = lerp(sprite.modulate, Color(1, 1, 1, alpha_target), Global.weighted_lerp(12, delta))
 		health_component.modulate = sprite.modulate
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
 	
 	invisibility_and_shooting(delta, can_see_player, distance)
 
@@ -123,6 +128,7 @@ func _on_teleport_timer_timeout():
 	
 	await get_tree().create_timer(1.0, false).timeout
 	
+	shoot_timer /= 2.0
 	speed_mult_target = 1.0
 	alpha_target = 1.0
 	invisible_timer = 0.0

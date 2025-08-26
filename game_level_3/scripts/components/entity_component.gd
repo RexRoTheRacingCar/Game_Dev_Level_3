@@ -9,6 +9,10 @@ class_name Entity
 @export var health_component : HealthComponent
 @export var hit_flash_anim : AnimationPlayer
 
+@export_group("Animation Nodes")
+@export var sprite : Sprite2D
+@export var anim_tree : AnimationTree
+
 #Naviagtion
 @export_group("Navigation")
 @export var navigation_agent : NavigationAgent2D
@@ -17,7 +21,7 @@ class_name Entity
 @export var max_nav_time : float = 0.7
 var can_navigate : bool = false
 var current_agent_position : Vector2
-var next_path_position
+var next_path_position : Vector2
 
 #Line of sight variables
 @export var area_of_sight : AreaOfSight #Polygon / 2d Shape
@@ -57,6 +61,9 @@ func _ready():
 	hitbox_component.hitbox_entered.connect(hit_signalled)
 	health_component.zero_health.connect(no_health)
 	self.connect("tree_exiting", queue_freeing)
+	
+	if sprite:
+		sprite.flip_h = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -90,6 +97,24 @@ func spawn_scene(scene : PackedScene, parent : Node):
 	var new_scene = scene.instantiate()
 	parent.call_deferred("add_child", new_scene)
 	return new_scene
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _check_player_position() -> bool:
+	if sprite:
+		#Player X Axis
+		var sprite_scale_x : float = abs(sprite.scale.x)
+		if next_path_position.x >= global_position.x:
+			sprite.scale.x = sprite_scale_x * 1
+		else:
+			sprite.scale.x = sprite_scale_x * -1
+		
+		#Player Y Axis
+		if next_path_position.y >= global_position.y:
+			return false
+		else:
+			return true
+	return false
 
 
 #---------------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,9 @@
 ############################## Bomber Enemy ##############################
 extends Entity
 
+
+@onready var animation_player = $AnimationPlayer
+
 @export var MAX_SPEED : float = 375.0
 var speed : float = 425.0
 var target_speed : float = 425.0
@@ -64,6 +67,14 @@ func _physics_process(delta: float) -> void:
 			await get_tree().create_timer(randf_range(0.4, 1.4), false).timeout
 			
 			target_speed = MAX_SPEED
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
+			
+		animation_player.speed_scale = clamp(speed / 475, 0.0,  2.5)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

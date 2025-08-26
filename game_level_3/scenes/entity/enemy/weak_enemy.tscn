@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwbvr2oi12krr"]
+[gd_scene load_steps=25 format=3 uid="uid://bwbvr2oi12krr"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/weak_enemy.gd" id="1_grsan"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_somc8"]
@@ -20,7 +20,7 @@ shader_parameter/Tint = Color(1, 1, 1, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4b7q"]
 resource_local_to_scene = true
 atlas = ExtResource("3_uams5")
-region = Rect2(0, 100, 100, 100)
+region = Rect2(0, 200, 100, 100)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qshim"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -33,23 +33,24 @@ radius = 19.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_i161s"]
 radius = 14.0
 
-[sub_resource type="Animation" id="Animation_0xyv6"]
-resource_name = "new_animation"
-length = 0.4
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(0, 0, 0, 0),
-"update": 0,
-"values": [Rect2(0, 100, 100, 100), Rect2(100, 100, 100, 100), Rect2(200, 100, 100, 100), Rect2(300, 100, 100, 100)]
-}
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c0qow"]
+animation = &"back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b6udx"]
+animation = &"front"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_fa12g"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tteeq"]
+graph_offset = Vector2(-300.779, 74.1735)
+nodes/Back/node = SubResource("AnimationNodeAnimation_c0qow")
+nodes/Back/position = Vector2(-26.6667, 266.667)
+nodes/Front/node = SubResource("AnimationNodeAnimation_b6udx")
+nodes/Front/position = Vector2(-26.6667, 133.333)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_fa12g")
+nodes/Movement/position = Vector2(133.333, 133.333)
+nodes/output/position = Vector2(293.333, 133.333)
+node_connections = [&"Movement", 0, &"Front", &"Movement", 1, &"Back", &"output", 0, &"Movement"]
 
 [sub_resource type="Animation" id="Animation_e7d7k"]
 length = 0.001
@@ -63,13 +64,50 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 100, 100, 100)]
+"values": [Rect2(0, 200, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_xxiqe"]
+resource_name = "back"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 300, 100, 100), Rect2(100, 300, 100, 100), Rect2(200, 300, 100, 100), Rect2(300, 300, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_0xyv6"]
+resource_name = "front"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 200, 100, 100), Rect2(100, 200, 100, 100), Rect2(200, 200, 100, 100), Rect2(300, 200, 100, 100)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kulv"]
 _data = {
 "RESET": SubResource("Animation_e7d7k"),
-"new_animation": SubResource("Animation_0xyv6")
+"back": SubResource("Animation_xxiqe"),
+"front": SubResource("Animation_0xyv6")
 }
 
 [sub_resource type="Animation" id="Animation_yj808"]
@@ -110,7 +148,7 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="WeakEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="WeakEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "anim_tree", "navigation_agent", "nav_timer", "area_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
@@ -122,6 +160,8 @@ hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
+sprite = NodePath("Sprite2D")
+anim_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.2
@@ -209,11 +249,15 @@ collision_mask = 33
 monitorable = false
 radius = 2500.0
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_tteeq")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/blend_amount = 0.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4kulv")
 }
-autoplay = "new_animation"
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

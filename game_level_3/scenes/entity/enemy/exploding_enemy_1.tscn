@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bny6ynmi2tsa7"]
+[gd_scene load_steps=27 format=3 uid="uid://bny6ynmi2tsa7"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/exploding_enemy_1.gd" id="1_r0548"]
-[ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="2_38bs6"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_rsphv"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="3_ckyhi"]
+[ext_resource type="Texture2D" uid="uid://bistcwngkarhs" path="res://assets/art/entity/enemy_spritesheet.png" id="3_nx2p1"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="4_ehx84"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="4_jq6ia"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="5_bfyrr"]
@@ -15,9 +15,10 @@ shader = ExtResource("2_rsphv")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u4qc"]
-atlas = ExtResource("2_38bs6")
-region = Rect2(0, 100, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mge0"]
+resource_local_to_scene = true
+atlas = ExtResource("3_nx2p1")
+region = Rect2(0, 600, 100, 100)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgc7t"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -35,6 +36,83 @@ radius = 12.0416
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ml1og"]
 radius = 275.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ujk5"]
+animation = &"back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mrt8l"]
+animation = &"front"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_30sa1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f8qh2"]
+graph_offset = Vector2(-372.729, 53.4743)
+nodes/BackAnim/node = SubResource("AnimationNodeAnimation_0ujk5")
+nodes/BackAnim/position = Vector2(-133.333, 320)
+nodes/FrontAnim/node = SubResource("AnimationNodeAnimation_mrt8l")
+nodes/FrontAnim/position = Vector2(-133.333, 160)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_30sa1")
+nodes/Movement/position = Vector2(80, 160)
+nodes/output/position = Vector2(293.333, 160)
+node_connections = [&"Movement", 0, &"FrontAnim", &"Movement", 1, &"BackAnim", &"output", 0, &"Movement"]
+
+[sub_resource type="Animation" id="Animation_xb7pf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 600, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_iqfmg"]
+resource_name = "back"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 700, 100, 100), Rect2(200, 700, 100, 100), Rect2(300, 700, 100, 100), Rect2(400, 700, 100, 100), Rect2(300, 700, 100, 100), Rect2(200, 700, 100, 100), Rect2(100, 700, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_0ssf6"]
+resource_name = "front"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 600, 100, 100), Rect2(200, 600, 100, 100), Rect2(300, 600, 100, 100), Rect2(400, 600, 100, 100), Rect2(300, 600, 100, 100), Rect2(200, 600, 100, 100), Rect2(100, 600, 100, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f270q"]
+_data = {
+"RESET": SubResource("Animation_xb7pf"),
+"back": SubResource("Animation_iqfmg"),
+"front": SubResource("Animation_0ssf6")
+}
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -74,7 +152,7 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="ExplodingEnemy1" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
+[node name="ExplodingEnemy1" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "anim_tree", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
 collision_layer = 24
 collision_mask = 16
 motion_mode = 1
@@ -83,6 +161,8 @@ hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
+sprite = NodePath("Sprite2D")
+anim_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.25
@@ -109,8 +189,9 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_s4tcs")
-position = Vector2(0, 12)
-texture = SubResource("AtlasTexture_1u4qc")
+position = Vector2(0, 1)
+scale = Vector2(0.570729, 0.570729)
+texture = SubResource("AtlasTexture_1mge0")
 offset = Vector2(0, -7)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_ehx84")]
@@ -126,9 +207,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -31.0
-offset_top = -20.0
+offset_top = -26.0
 offset_right = 31.0
-offset_bottom = -10.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_cgc7t")
@@ -183,6 +264,16 @@ collision_mask = 4
 position = Vector2(0, 12)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_ml1og")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_f8qh2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/blend_amount = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f270q")
+}
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

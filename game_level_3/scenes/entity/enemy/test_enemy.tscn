@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://01j0ju22xu5y"]
+[gd_scene load_steps=25 format=3 uid="uid://01j0ju22xu5y"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/test_enemy.gd" id="1_n8ry8"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_0twv3"]
-[ext_resource type="Texture2D" uid="uid://m5yg4rroyn8f" path="res://assets/art/entity/test_enemy_spritesheet.png" id="2_m3pgr"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_kkxus"]
+[ext_resource type="Texture2D" uid="uid://bistcwngkarhs" path="res://assets/art/entity/enemy_spritesheet.png" id="3_wfeih"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_faqak"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="5_v15ek"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="6_hqwr3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eb74s"]
-radius = 11.0
+radius = 12.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuko5"]
 resource_local_to_scene = true
@@ -17,9 +17,10 @@ shader = ExtResource("2_0twv3")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgkib"]
-atlas = ExtResource("2_m3pgr")
-region = Rect2(0, 0, 50, 50)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa3go"]
+resource_local_to_scene = true
+atlas = ExtResource("3_wfeih")
+region = Rect2(0, 400, 100, 100)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qshim"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -27,10 +28,87 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwd6q"]
-radius = 12.0
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icdur"]
-radius = 12.0
+radius = 16.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ujk5"]
+animation = &"back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mrt8l"]
+animation = &"front"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_30sa1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j5tld"]
+graph_offset = Vector2(-312.029, 82.683)
+nodes/BackAnim/node = SubResource("AnimationNodeAnimation_0ujk5")
+nodes/BackAnim/position = Vector2(-133.333, 320)
+nodes/FrontAnim/node = SubResource("AnimationNodeAnimation_mrt8l")
+nodes/FrontAnim/position = Vector2(-133.333, 160)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_30sa1")
+nodes/Movement/position = Vector2(80, 160)
+nodes/output/position = Vector2(293.333, 160)
+node_connections = [&"Movement", 0, &"FrontAnim", &"Movement", 1, &"BackAnim", &"output", 0, &"Movement"]
+
+[sub_resource type="Animation" id="Animation_2c3a4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 400, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_28jbs"]
+resource_name = "back"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 500, 100, 100), Rect2(100, 500, 100, 100), Rect2(200, 500, 100, 100), Rect2(300, 500, 100, 100), Rect2(200, 500, 100, 100), Rect2(100, 500, 100, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_8vl7a"]
+resource_name = "front"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Rect2(0, 400, 100, 100), Rect2(100, 400, 100, 100), Rect2(200, 400, 100, 100), Rect2(300, 400, 100, 100), Rect2(200, 400, 100, 100), Rect2(100, 400, 100, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h0fyk"]
+_data = {
+"RESET": SubResource("Animation_2c3a4"),
+"back": SubResource("Animation_28jbs"),
+"front": SubResource("Animation_8vl7a")
+}
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -70,7 +148,7 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight")]
+[node name="TestEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "anim_tree", "navigation_agent", "nav_timer", "area_of_sight")]
 y_sort_enabled = true
 collision_layer = 24
 collision_mask = 16
@@ -81,6 +159,8 @@ hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
+sprite = NodePath("Sprite2D")
+anim_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 area_of_sight = NodePath("AreaOfSight")
@@ -101,15 +181,16 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 12)
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_eb74s")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_tuko5")
-position = Vector2(0, 11)
-texture = SubResource("AtlasTexture_kgkib")
+position = Vector2(0, 6.82)
+scale = Vector2(0.593081, 0.593081)
+texture = SubResource("AtlasTexture_qa3go")
 offset = Vector2(0, -11)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_kkxus")]
@@ -141,7 +222,7 @@ hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_mwd6q")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_v15ek")]
@@ -152,7 +233,7 @@ hurt_knockback = 250.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, 9)
 shape = SubResource("CircleShape2D_icdur")
 
 [node name="AreaOfSight" parent="." instance=ExtResource("6_hqwr3")]
@@ -160,6 +241,16 @@ collision_layer = 0
 collision_mask = 33
 monitorable = false
 radius = 2500.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_j5tld")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/blend_amount = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h0fyk")
+}
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
