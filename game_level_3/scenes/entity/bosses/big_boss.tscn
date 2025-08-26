@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://70hldybnta8i"]
+[gd_scene load_steps=24 format=3 uid="uid://70hldybnta8i"]
 
 [ext_resource type="Script" path="res://scripts/entity/bosses/big_boss.gd" id="1_r4eec"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_yqpg8"]
@@ -61,12 +61,6 @@ radius = 25.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkdxq"]
 radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l7aex"]
-radius = 125.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_im0nk"]
-radius = 30.0
-
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
 tracks/0/type = "value"
@@ -105,31 +99,12 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="BigBoss" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
+[node name="BigBoss" type="CharacterBody2D"]
 collision_layer = 24
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_r4eec")
-DEFAULT_SPEED = 1000.0
-CHARGE_SPEED = 2500.0
-CHARGE_TIME = 1.5
-DEFAULT_DAMAGE = 20
-CHARGE_DAMAGE = 49
-hitbox_component = NodePath("HitboxComponent")
-hurtbox_component = NodePath("HurtboxComponent")
-health_component = NodePath("HealthComponent")
-hit_flash_anim = NodePath("HitFlashAnimationPlayer")
-navigation_agent = NodePath("NavigationAgent2D")
-nav_timer = NodePath("NavigationTimer")
-min_nav_time = 0.2
-max_nav_time = 0.4
-area_of_sight = NodePath("AreaOfSight")
-line_of_sight = NodePath("LineOfSight")
-knockback_resistance = 0.4
-shake_on_hit = 8.0
-shake_on_death = 50.0
-coin_min = 75
-coin_max = 100
+pursuit_speed = 600.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
@@ -204,7 +179,6 @@ position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_qjmvo")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_ips5l")]
-visible = false
 position = Vector2(0, -7)
 collision_layer = 2
 collision_mask = 0
@@ -226,28 +200,9 @@ radius = 2500.0
 collision_mask = 32
 max_target_distance = 1000.0
 
-[node name="ChargeDetection" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeDetection"]
-position = Vector2(0, 12)
-scale = Vector2(1, 0.5)
-shape = SubResource("CircleShape2D_l7aex")
-
-[node name="WallCollision" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollision"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_im0nk")
-debug_color = Color(0.747664, 0.205094, 1, 0.42)
-
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4hgvt")
 }
 
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
-[connection signal="body_entered" from="ChargeDetection" to="." method="_on_charge_detection_body_entered"]
-[connection signal="body_entered" from="WallCollision" to="." method="_on_wall_collision_body_entered"]
