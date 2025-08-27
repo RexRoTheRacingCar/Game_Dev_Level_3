@@ -180,6 +180,7 @@ navigation_layers = 2
 path_metadata_flags = 0
 simplify_path = true
 simplify_epsilon = 3.0
+debug_use_custom = true
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.4

@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://jkr0v7p7k4en"]
+[gd_scene load_steps=32 format=3 uid="uid://jkr0v7p7k4en"]
 
 [ext_resource type="Script" path="res://scripts/entity/enemies/bomber_enemy.gd" id="1_y703p"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="2_0fa8o"]
 [ext_resource type="Texture2D" uid="uid://bistcwngkarhs" path="res://assets/art/entity/enemy_spritesheet.png" id="3_6qs77"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="4_sv177"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_xov0s"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="5_uss6e"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="6_mieb2"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="7_gf118"]
@@ -42,6 +43,10 @@ resource_local_to_scene = true
 atlas = ExtResource("3_6qs77")
 region = Rect2(200, 800, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty1lt"]
+atlas = ExtResource("4_xov0s")
+region = Rect2(0, 300, 50, 50)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0ik6"]
 bg_color = Color(1, 0, 0.105882, 1)
 corner_radius_top_left = 8
@@ -64,7 +69,7 @@ animation = &"front"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3egi0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_njtmg"]
-graph_offset = Vector2(-330.55, -4.60357)
+graph_offset = Vector2(-622.28, 61.1926)
 nodes/BackAnim/node = SubResource("AnimationNodeAnimation_0ujk5")
 nodes/BackAnim/position = Vector2(-133.333, 320)
 nodes/FrontAnim/node = SubResource("AnimationNodeAnimation_mrt8l")
@@ -641,6 +646,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_boiuj")
@@ -693,7 +699,16 @@ texture = SubResource("AtlasTexture_bggrx")
 offset = Vector2(-2, -10)
 flip_h = true
 
+[node name="BombShadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.501961)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 18)
+scale = Vector2(0.94468, 0.47234)
+texture = SubResource("AtlasTexture_ty1lt")
+
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("5_uss6e")]
+visible = false
 health_bar = NodePath("ProgressBar")
 max_health = 18
 
@@ -716,6 +731,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("6_mieb2")]
+visible = false
 collision_layer = 0
 collision_mask = 8
 hit_delay = 0.01
@@ -725,6 +741,7 @@ single_hits = true
 shape = SubResource("CircleShape2D_cnnko")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_gf118")]
+visible = false
 collision_layer = 2
 collision_mask = 0
 hurt_damage = 2
@@ -735,6 +752,7 @@ knockback_type = "center"
 shape = SubResource("CircleShape2D_sfyi6")
 
 [node name="AreaOfSight" parent="." instance=ExtResource("4_sv177")]
+visible = false
 collision_layer = 0
 collision_mask = 33
 monitorable = false
