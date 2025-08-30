@@ -36,6 +36,8 @@ func _ready():
 	turret_barrel_1.look_at(Global.player_position)
 	turret_barrel_2.rotation = turret_barrel_1.rotation
 	turret_barrel_3.rotation = turret_barrel_1.rotation
+	
+	shoot_time /= ((power_mult + 1.0) / 1.75)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -46,7 +48,7 @@ func _physics_process(delta):
 		var turret_dir : float = _get_angle_to_enemy()
 		
 		#Shoot when timer says so, reset timer afterwards
-		if timer >= shoot_time / ((power_mult + 1.0) / 2) and can_shoot == true:
+		if timer >= shoot_time and can_shoot == true:
 			timer = 0.0
 			
 			_shoot_bullet(turret_dir, turret_position)

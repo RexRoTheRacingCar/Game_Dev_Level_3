@@ -64,7 +64,7 @@ can_skew = false
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.35, 0.35)
 texture = SubResource("AtlasTexture_af8rs")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]

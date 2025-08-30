@@ -8,6 +8,12 @@ const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
+	
+	await get_tree().physics_frame
+	
+	var new_dust = spawn_scene(DUST_SCENE, get_tree().root.get_node("/root/Game/"))
+	new_dust.global_position = self.global_position
+	new_dust.modulate = Color(1, 0, 0)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

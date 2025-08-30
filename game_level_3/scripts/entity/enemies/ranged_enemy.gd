@@ -15,6 +15,7 @@ var circling_directon : float = 1.0
 @export var shoot_speed : float = 2.0
 var shoot_timer : float = 0.0
 
+@onready var body_sprite = %Body
 @onready var fleeing_particles = $FleeingParticles
 var can_see_player : bool
 
@@ -52,6 +53,8 @@ func _physics_process(delta: float) -> void:
 	
 	#If Area Of Sight returns with a target
 	if area_of_sight.target != null:
+		body_sprite.rotation += delta * 135
+		
 		match state:
 			PURSUIT: #Pursue the player
 				_navigation_check(Global.player_position, min_nav_time, max_nav_time)
@@ -101,15 +104,24 @@ func _physics_process(delta: float) -> void:
 		
 		_move_enemy(delta)
 	
-	#The enemy shoot timer + Line of Sight check
-	if shoot_timer > shoot_speed and can_see_player == true:
-		shoot_timer = 0.0
-		_shoot_at_player()
-	
-	if shoot_timer > shoot_speed - 0.4 and state == IN_RANGE:
-		shoot_move_speed = lerp(shoot_move_speed, 0.0, Global.weighted_lerp(30, delta))
-	else:
-		shoot_move_speed = lerp(shoot_move_speed, 1.0, Global.weighted_lerp(30, delta))
+		#The enemy shoot timer + Line of Sight check
+		if shoot_timer > shoot_speed and can_see_player == true:
+			shoot_timer = 0.0
+			_shoot_at_player()
+		
+		if shoot_timer > shoot_speed - 0.4 and state == IN_RANGE:
+			shoot_move_speed = lerp(shoot_move_speed, 0.0, Global.weighted_lerp(30, delta))
+		
+		else:
+			shoot_move_speed = lerp(shoot_move_speed, 1.0, Global.weighted_lerp(30, delta))
+			
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
+		
+		anim_tree["parameters/TimeScale/scale"] = clamp(speed / 220, 0.5, 2.0)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -152,6 +164,9 @@ func _shoot_at_player():
 	
 	new_bullet.implement_stats()
 	new_bullet.death_timer_node.start(2.5)
+	
+	#Play animation
+	anim_tree["parameters/Ability_Shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 
 #---------------------------------------------------------------------------------------------------------------------------

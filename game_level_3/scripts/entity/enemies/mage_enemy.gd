@@ -18,8 +18,8 @@ var special_active : bool
 
 const WEAK_ENEMY = preload("res://scenes/entity/enemy/weak_enemy.tscn")
 const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
-const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
+const AURA_PARTICLE = preload("res://scenes/entity/particles/aura_particle.tscn")
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -29,8 +29,6 @@ func _ready():
 	max_speed = speed
 	selected_time = randf_range(special_min, special_max)
 	special_active = false
-	
-	sprite.texture.region = Rect2(0, 0, 100, 100)
 	
 	if randf() >= 0.5: circling_directon = -1.0
 
@@ -73,6 +71,12 @@ func _physics_process(delta: float) -> void:
 			velocity += knockback_taken
 			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -90,6 +94,8 @@ func _special_move(_delta : float):
 	
 	await get_tree().create_timer(TWEEN_TIME, false).timeout
 	
+	anim_tree["parameters/Ability_Shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	
 	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= float(health_component.max_health) / 2)):
 		#TELEPORT PREP
 		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
@@ -99,8 +105,6 @@ func _special_move(_delta : float):
 		var teleport_2 = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
 		teleport_2.global_position = new_pos
 		teleport_2.modulate = Color(0.108, 0.83, 0.637)
-		
-		sprite.texture.region = Rect2(200, 0, 100, 100)
 		
 		var sprite_tween_1 = create_tween()
 		sprite_tween_1.tween_property(sprite, "modulate", Color(0, 0.6, 0.45), TWEEN_TIME / 2).from_current()
@@ -118,8 +122,6 @@ func _special_move(_delta : float):
 	
 	else:
 		#SUMMON PREP
-		sprite.texture.region = Rect2(100, 0, 100, 100)
-		
 		var sprite_tween_1 = create_tween()
 		sprite_tween_1.tween_property(sprite, "modulate", Color(0.75, 0.45, 0), TWEEN_TIME / 2).from_current()
 		var summon_effect = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
@@ -134,9 +136,12 @@ func _special_move(_delta : float):
 	var sprite_tween_2 = create_tween()
 	sprite_tween_2.tween_property(sprite, "modulate", Color(1, 1, 1), TWEEN_TIME / 2).from_current()
 	
-	await get_tree().create_timer(TWEEN_TIME, false).timeout
-	sprite.texture.region = Rect2(0, 0, 100, 100)
-	await get_tree().create_timer(TWEEN_TIME / 2, false).timeout
+	if area_of_sight.target != null:
+		var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
+		aura_particles.global_position = global_position
+		aura_particles.z_index = 1
+	
+	await get_tree().create_timer(TWEEN_TIME * 1, false).timeout
 	
 	#Speed
 	var tween_2 = create_tween()
@@ -160,10 +165,6 @@ func enemy_summon():
 		#Enemy
 		var new_enemy = spawn_scene(WEAK_ENEMY, get_tree().root.get_node("/root/Game/"))
 		new_enemy.global_position = spawn_pos
-		#Dust
-		var new_dust = spawn_scene(DUST_SCENE, get_tree().root.get_node("/root/Game/"))
-		new_dust.global_position = new_enemy.global_position
-		new_dust.modulate = Color(1, 0, 0)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

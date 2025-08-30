@@ -95,11 +95,6 @@ func invisibility_and_shooting(delta : float, player_visible : bool, player_dist
 		if invisible_timer > 7.5 and player_distance > invisble_distance * 1.5:
 			_invisible_setup()
 			is_invisible = true
-	
-	if player_distance < invisble_distance * 1.05 or player_visible == true:
-		hitbox_component.monitoring = true
-	else:
-		hitbox_component.monitoring = false
 
 
 #---------------------------------------------------------------------------------------------------------------------------
