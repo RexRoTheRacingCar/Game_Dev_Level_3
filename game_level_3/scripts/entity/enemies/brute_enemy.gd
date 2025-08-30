@@ -28,6 +28,7 @@ var state = PURSUIT
 @onready var CHARGE_PARTICLE = $ChargeParticles
 const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
+const AURA_PARTICLE = preload("res://scenes/entity/particles/aura_particle.tscn")
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -90,7 +91,13 @@ func _physics_process(delta: float) -> void:
 						
 						hurtbox_component.set_collision_layer_value(4, true)
 						hurtbox_component.hurt_damage = CHARGE_DAMAGE
-						CHARGE_PARTICLE.emitting = true 
+						CHARGE_PARTICLE.emitting = true
+						
+						if area_of_sight.target != null:
+							var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
+							aura_particles.global_position = global_position
+							aura_particles.z_index = 1
+							aura_particles.modulate = Color(0.68, 0.717, 1.0)
 						
 						timer = 0.0
 					
@@ -108,7 +115,7 @@ func _physics_process(delta: float) -> void:
 					
 					timer += delta
 					
-					speed = lerp(speed, target_speed, Global.weighted_lerp(4, delta))
+					speed = lerpf(speed, target_speed, Global.weighted_lerp(3.5, delta))
 					target_speed += CHARGE_SPEED * delta
 					target_speed = clamp(target_speed, 0, CHARGE_SPEED)
 					
@@ -148,11 +155,18 @@ func _physics_process(delta: float) -> void:
 					
 					velocity = Vector2(dir * speed)
 			
-			
 			velocity.y /= 2
 			velocity += knockback_taken
 			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
+		
+		var check : bool = _check_player_position()
+		if check == false:
+			anim_tree["parameters/Movement/blend_amount"] = 0
+		else:
+			anim_tree["parameters/Movement/blend_amount"] = 1
+		
+		anim_tree["parameters/TimeScale/scale"] = (speed / 40)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

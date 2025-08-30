@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 			anim_tree["parameters/Movement/blend_amount"] = 0
 		else:
 			anim_tree["parameters/Movement/blend_amount"] = 1
-			
+		
 		anim_tree["parameters/TimeScale/scale"] = clamp(speed / 150, 0.0, 4.0)
 
 
