@@ -51,3 +51,5 @@ speed_scale = 1.6
 explosiveness = 0.98
 randomness = 0.2
 script = ExtResource("2_7vsec")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

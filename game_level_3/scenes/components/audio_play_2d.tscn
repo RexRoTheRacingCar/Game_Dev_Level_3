@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvgsol8e6l4dx"]
+
+[ext_resource type="Script" path="res://scripts/components/audio_play_2d.gd" id="1_53tuu"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+autoplay = true
+max_distance = 1750.0
+script = ExtResource("1_53tuu")

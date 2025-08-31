@@ -18,6 +18,12 @@ var player_angle_pos : Vector2
 @export var speed : float = 425.0
 const EXPLOSION := preload("res://scenes/entity/secondaries/explosion.tscn")
 
+const EXPLOSION_1_SFX = preload("res://assets/audio/diegetic_sfx/explosion_1.mp3")
+const EXPLOSION_2_SFX = preload("res://assets/audio/diegetic_sfx/explosion_2.mp3")
+const EXPLOSION_3_SFX = preload("res://assets/audio/diegetic_sfx/explosion_3.mp3")
+
+const EXPLODING_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/exploding_hit.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -70,6 +76,12 @@ func _physics_process(delta) -> void:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+func hit_signalled(hurtbox : HurtboxComponent):
+	super.hit_signalled(hurtbox)
+	AudioManager.play_2d_sound(EXPLODING_HIT_SFX, "SFX", global_position)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
 	set_physics_process(false)
@@ -102,6 +114,14 @@ func _instantiate_explosion(i, d, am):
 	new_explosion.rotation = 0
 	new_explosion.default_power = 18
 	new_explosion.power_mult = 0.5
+	
+	var explosion_chance : float = randf()
+	if explosion_chance < 0.33:
+		new_explosion.spawn_audio = EXPLOSION_1_SFX
+	elif explosion_chance < 0.66:
+		new_explosion.spawn_audio = EXPLOSION_2_SFX
+	else:
+		new_explosion.spawn_audio = EXPLOSION_3_SFX
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_explosion)
 	

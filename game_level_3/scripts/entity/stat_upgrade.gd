@@ -18,6 +18,8 @@ var collected : bool = false
 var delete_on_collection : bool = true
 const COLLECTION_PARTICLE = preload("res://scenes/entity/particles/bubble_pop2.tscn")
 
+const UPGRADE_PICKUP = preload("res://assets/audio/diegetic_sfx/upgrade_pickup.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	randomize()
@@ -85,6 +87,7 @@ func _on_body_entered(body : Player):
 			new_particle.scale *= 1.25
 			new_particle.modulate = $GPUParticles2D.self_modulate
 			
+			AudioManager.play_2d_sound(UPGRADE_PICKUP, "SFX", global_position)
 			
 			if delete_on_collection == true:
 				collected = true

@@ -19,25 +19,24 @@ const BULLET = preload("res://scenes/entity/bullets/default_bullet.tscn")
 const LANDING_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
+const TURRET_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/turret_falls.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	global_position = Global.get_nav_mesh_point(Global.global_map, global_position, 10)
 	Global.connect("reset_to_lobby", queue_free)
 	Global.connect("room_changed", queue_free)
-	
-	target_array = []
-	
 	range_area.connect("body_entered", body_entered)
 	range_area.connect("body_exited", body_exited)
 	death_timer.connect("timeout", turret_death)
 	
-	turret_position = global_position + Vector2(0, -34)
+	target_array = []
+	shoot_time /= ((power_mult + 1.0) / 1.75)
 	
+	turret_position = global_position + Vector2(0, -34)
 	turret_barrel_1.look_at(Global.player_position)
 	turret_barrel_2.rotation = turret_barrel_1.rotation
 	turret_barrel_3.rotation = turret_barrel_1.rotation
-	
-	shoot_time /= ((power_mult + 1.0) / 1.75)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -163,7 +162,8 @@ func crash_landed():
 	if GlobalSettings.limited_particles == false:
 		Global.spawn_particle(global_position, self, DUST_SCENE)
 	
-	Camera.apply_camera_shake(7)
+	AudioManager.play_2d_sound(TURRET_IMPACT_SFX, "SFX", global_position)
+	Camera.apply_camera_shake(9)
 
 
 #Enter & exit range

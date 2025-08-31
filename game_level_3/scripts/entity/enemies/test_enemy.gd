@@ -4,6 +4,9 @@ extends Entity
 #A test enemy to figure out how I'm going to implement enemies
 @export var speed : float = 250.0
 
+const BASIC_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/basic_hit.mp3")
+const BASIC_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/basic_death.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -35,6 +38,13 @@ func _physics_process(delta: float) -> void:
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+func hit_signalled(hurtbox : HurtboxComponent):
+	super.hit_signalled(hurtbox)
+	AudioManager.play_2d_sound(BASIC_HIT_SFX, "SFX", global_position)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	AudioManager.play_2d_sound(BASIC_DEATH_SFX, "SFX", global_position)
 	queue_free()

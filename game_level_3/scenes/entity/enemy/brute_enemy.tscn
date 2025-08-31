@@ -33,8 +33,8 @@ initial_velocity_max = 29.76
 angular_velocity_min = -100.0
 angular_velocity_max = 100.0
 gravity = Vector3(0, 20, 0)
-scale_min = 0.3
-scale_max = 0.55
+scale_min = 0.35
+scale_max = 0.65
 scale_curve = SubResource("CurveTexture_4e0v3")
 color_ramp = SubResource("GradientTexture1D_23jhk")
 
@@ -90,7 +90,7 @@ radius = 26.0
 radius = 430.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_im0nk"]
-radius = 32.0
+radius = 28.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_osals"]
 animation = &"back"
@@ -114,132 +114,6 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_qhndb")
 nodes/TimeScale/position = Vector2(213.333, 160)
 nodes/output/position = Vector2(373.333, 160)
 node_connections = [&"Movement", 0, &"Front", &"Movement", 1, &"Back", &"TimeScale", 0, &"Movement", &"output", 0, &"TimeScale"]
-
-[sub_resource type="Animation" id="Animation_ptdqs"]
-resource_name = "front"
-length = 2.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteFolder/Leg1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
-"transitions": PackedFloat32Array(2, 0.659754, 1.46409),
-"update": 0,
-"values": [Vector2(-6, 23), Vector2(-17, 18.5), Vector2(-10, 12)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteFolder/Leg2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.6, 1.45, 2),
-"update": 0,
-"values": [Vector2(-37, 8.5), Vector2(-30, 2), Vector2(-26, 13)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteFolder/Leg4:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
-"transitions": PackedFloat32Array(2, 0.659754, 1.46409),
-"update": 0,
-"values": [Vector2(24, -17), Vector2(13, -21.5), Vector2(20, -28)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SpriteFolder/Leg3:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.6, 1.45, 2),
-"update": 0,
-"values": [Vector2(-7, -31.5), Vector2(0, -38), Vector2(4, -27)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SpriteFolder/Body:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(0, -2), Vector2(0, 2)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SpriteFolder/Body:texture:region")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0),
-"update": 0,
-"values": [Rect2(0, 1100, 100, 100)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SpriteFolder/Leg2:flip_h")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SpriteFolder/Leg1:flip_h")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("SpriteFolder/Leg4:flip_h")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("SpriteFolder/Leg3:flip_h")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_qker1"]
 length = 0.001
@@ -490,6 +364,132 @@ tracks/9/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_ptdqs"]
+resource_name = "front"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteFolder/Leg1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(2, 0.659754, 1.46409),
+"update": 0,
+"values": [Vector2(-6, 23), Vector2(-17, 18.5), Vector2(-10, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteFolder/Leg2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.6, 1.45, 2),
+"update": 0,
+"values": [Vector2(-37, 8.5), Vector2(-30, 2), Vector2(-26, 13)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteFolder/Leg4:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(2, 0.659754, 1.46409),
+"update": 0,
+"values": [Vector2(24, -17), Vector2(13, -21.5), Vector2(20, -28)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteFolder/Leg3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.6, 1.45, 2),
+"update": 0,
+"values": [Vector2(-7, -31.5), Vector2(0, -38), Vector2(4, -27)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteFolder/Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteFolder/Body:texture:region")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 0,
+"values": [Rect2(0, 1100, 100, 100)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteFolder/Leg2:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpriteFolder/Leg1:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpriteFolder/Leg4:flip_h")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpriteFolder/Leg3:flip_h")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a6k7s"]
 _data = {
 "RESET": SubResource("Animation_qker1"),
@@ -541,7 +541,7 @@ collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_ktovh")
 DEFAULT_SPEED = 180.0
-CHARGE_SPEED = 850.0
+CHARGE_SPEED = 900.0
 CHARGE_TIME = 1.25
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -576,10 +576,10 @@ one_shot = true
 [node name="ChargeParticles" type="GPUParticles2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 27)
-amount = 9
+amount = 11
 process_material = SubResource("ParticleProcessMaterial_ncy5q")
 texture = SubResource("AtlasTexture_raksp")
-lifetime = 1.2
+lifetime = 1.3
 speed_scale = 1.1
 randomness = 0.2
 
@@ -644,7 +644,7 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_56qer")]
 position = Vector2(0, -15)
 health_bar = NodePath("ProgressBar")
-max_health = 40
+max_health = 42
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -707,6 +707,7 @@ scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_l7aex")
 
 [node name="WallCollision" type="Area2D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollision"]
 shape = SubResource("CircleShape2D_im0nk")

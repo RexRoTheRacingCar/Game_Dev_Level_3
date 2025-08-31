@@ -21,6 +21,10 @@ extends Node2D
 var distance : float
 var rand_flip : float
 
+const EXPLOSION_1_SFX = preload("res://assets/audio/diegetic_sfx/explosion_1.mp3")
+const EXPLOSION_2_SFX = preload("res://assets/audio/diegetic_sfx/explosion_2.mp3")
+const EXPLOSION_3_SFX = preload("res://assets/audio/diegetic_sfx/explosion_3.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	Global.connect("room_changed", queue_free)
@@ -65,8 +69,16 @@ func _ready():
 	
 	#Explode
 	if explosion_scene:
-		var explosion = Global.spawn_particle(target_pos, self, explosion_scene)
-		explosion.scale = Vector2(explosion_scale.x, explosion_scale.y * 2) / 1.6
+		var new_explosion = Global.spawn_particle(target_pos, self, explosion_scene)
+		new_explosion.scale = Vector2(explosion_scale.x, explosion_scale.y * 2) / 1.6
+		
+		var explosion_chance : float = randf()
+		if explosion_chance < 0.33:
+			new_explosion.spawn_audio = EXPLOSION_1_SFX
+		elif explosion_chance < 0.66:
+			new_explosion.spawn_audio = EXPLOSION_2_SFX
+		else:
+			new_explosion.spawn_audio = EXPLOSION_3_SFX
 	
 	bomb_sprite.self_modulate = Color(1, 1, 1, 0)
 	bomb_shadow.self_modulate = Color(1, 1, 1, 0)

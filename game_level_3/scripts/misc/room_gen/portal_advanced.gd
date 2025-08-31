@@ -31,8 +31,8 @@ func _ready():
 	
 	var rand_value : float = randf()
 	var x : float = float(Global.rooms_cleared) - x_offset
-	boss_chance = ((x - 5) ** 3) / 100
-	boss_chance = clamp(boss_chance, 0.0, 0.75)
+	boss_chance = ((x - 4) ** 3) / 75
+	boss_chance = clamp(boss_chance, 0.0, 0.8)
 	
 	_portal_prep()
 	

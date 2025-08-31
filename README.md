@@ -1,2 +1,4 @@
-# Game_Dev_Level_3
- Game
+# Level 3 Game Development
+By Rory Grant.
+
+Made with Godot 4.3.stable.

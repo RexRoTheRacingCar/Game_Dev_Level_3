@@ -11,6 +11,8 @@ var random_offset : float
 @onready var animation_player = $AnimationPlayer
 @onready var particles = $GPUParticles2D
 
+const COIN_PICKUP = preload("res://assets/audio/diegetic_sfx/coin_pickup.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	set_process(false)
@@ -60,6 +62,8 @@ func _on_collection_radius_body_entered(_body : Player):
 	sprite.visible = false
 	particles.emitting = false
 	set_process(false)
+	
+	AudioManager.play_2d_sound(COIN_PICKUP, "SFX", global_position)
 	
 	await get_tree().create_timer(0.6, false).timeout
 	

@@ -5,9 +5,14 @@ class_name DamageBasedSecondary
 @export var hurtbox : HurtboxComponent
 @export var particle_folder : Node2D
 
+@export var spawn_audio : AudioStream
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	_apply_mult()
+	
+	if spawn_audio:
+		AudioManager.play_2d_sound(spawn_audio, "SFX", global_position)
 	
 	if particle_nodes.is_empty() == false and particle_folder:
 		particle_nodes = particle_folder.get_children()

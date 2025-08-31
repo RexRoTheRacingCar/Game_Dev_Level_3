@@ -28,6 +28,11 @@ var state = PURSUIT
 
 const GLOWING_BULLET = preload("res://scenes/entity/bullets/glowing_bullet.tscn")
 
+const RANGED_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ranged_shoot.mp3")
+const RANGED_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ranged_hit.mp3")
+const RANGED_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ranged_death.mp3")
+
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -167,6 +172,7 @@ func _shoot_at_player():
 	
 	#Play animation
 	anim_tree["parameters/Ability_Shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	AudioManager.play_2d_sound(RANGED_SHOOT_SFX, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -179,9 +185,11 @@ func _rand_orbit():
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	shoot_timer /= 1.5
+	AudioManager.play_2d_sound(RANGED_HIT_SFX, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	AudioManager.play_2d_sound(RANGED_DEATH_SFX, "SFX", global_position)
 	queue_free()

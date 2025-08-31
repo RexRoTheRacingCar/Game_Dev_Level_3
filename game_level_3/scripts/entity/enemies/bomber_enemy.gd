@@ -16,6 +16,10 @@ const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 
 var timer : float = 0.0
 
+const BOMBER_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_death.mp3")
+const BOMBER_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_hit.mp3")
+const BOMBER_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_shoot.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -80,6 +84,8 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 #Create and load in variables to create a lobbing bomb
 func _create_bomb(_delta : float):
+	AudioManager.play_2d_sound(BOMBER_SHOOT_SFX, "SFX", global_position)
+	
 	#Particle effect
 	var pulse_scene = spawn_scene(SMALL_PULSE, self)
 	pulse_scene.modulate = Color(1, 1, 1, 0.675)
@@ -103,6 +109,14 @@ func _create_bomb(_delta : float):
 
 
 #---------------------------------------------------------------------------------------------------------------------------
+func hit_signalled(hurtbox : HurtboxComponent):
+	super.hit_signalled(hurtbox)
+	AudioManager.play_2d_sound(BOMBER_HIT_SFX, "SFX", global_position)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	AudioManager.play_2d_sound(BOMBER_DEATH_SFX, "SFX", global_position)
+	
 	queue_free()

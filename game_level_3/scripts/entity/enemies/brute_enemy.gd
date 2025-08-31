@@ -1,11 +1,13 @@
 ############################## Brute Enemy ##############################
 extends Entity
 
+
+@onready var wall_collision = %WallCollision
+
 @export var DEFAULT_SPEED : float = 175.0
 @export var CHARGE_SPEED : float = 800.0
 var speed : float = 150.0
 var target_speed : float = 150.0
-
 
 @export var CHARGE_TIME : float = 1.2
 var is_stunned : bool = false
@@ -30,6 +32,7 @@ const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const AURA_PARTICLE = preload("res://scenes/entity/particles/aura_particle.tscn")
 
+const BRUTE_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_impact.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -39,6 +42,7 @@ func _ready():
 	target_speed = DEFAULT_SPEED
 	
 	hurtbox_component.hurt_damage = DEFAULT_DAMAGE
+	wall_collision.monitoring = false
 	
 	CHARGE_PARTICLE.emitting = false
 	if GlobalSettings.limited_particles == true:
@@ -92,12 +96,12 @@ func _physics_process(delta: float) -> void:
 						hurtbox_component.set_collision_layer_value(4, true)
 						hurtbox_component.hurt_damage = CHARGE_DAMAGE
 						CHARGE_PARTICLE.emitting = true
+						wall_collision.monitoring = true
 						
-						if area_of_sight.target != null:
-							var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
-							aura_particles.global_position = global_position
-							aura_particles.z_index = 1
-							aura_particles.modulate = Color(0.68, 0.717, 1.0)
+						var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
+						aura_particles.global_position = global_position
+						aura_particles.z_index = 1
+						aura_particles.modulate = Color(0.68, 0.717, 1.0)
 						
 						timer = 0.0
 					
@@ -105,6 +109,7 @@ func _physics_process(delta: float) -> void:
 						hurtbox_component.set_collision_layer_value(4, false)
 						hurtbox_component.hurt_damage = DEFAULT_DAMAGE
 						CHARGE_PARTICLE.emitting = false
+						wall_collision.monitoring = false
 						
 						speed = CHARGE_SPEED / -2
 						target_speed = DEFAULT_SPEED
@@ -115,7 +120,7 @@ func _physics_process(delta: float) -> void:
 					
 					timer += delta
 					
-					speed = lerpf(speed, target_speed, Global.weighted_lerp(3.5, delta))
+					speed = lerpf(speed, target_speed, Global.weighted_lerp(3.0, delta))
 					target_speed += CHARGE_SPEED * delta
 					target_speed = clamp(target_speed, 0, CHARGE_SPEED)
 					
@@ -124,11 +129,12 @@ func _physics_process(delta: float) -> void:
 				STUNNED:
 					if is_stunned == false:
 						is_stunned = true
-						speed *= -1 
+						speed *= -1
 						target_speed = 0
 						
 						hurtbox_component.set_collision_layer_value(4, false)
 						hurtbox_component.hurt_damage = DEFAULT_DAMAGE
+						wall_collision.monitoring = false
 						
 						#Effects on impact
 						CHARGE_PARTICLE.emitting = false
@@ -136,7 +142,7 @@ func _physics_process(delta: float) -> void:
 						dust_scene.speed_scale = 1.5
 						var pulse_scene = spawn_scene(SMALL_PULSE, self)
 						pulse_scene.modulate = Color(1, 1, 1, 0.675)
-						pulse_scene.scale = Vector2(1.6, 0.8)
+						pulse_scene.scale = Vector2(1.8, 0.9)
 						
 						timer = 0.0
 					
@@ -149,10 +155,8 @@ func _physics_process(delta: float) -> void:
 						
 						is_charging = false
 						can_navigate = false
-						
 					
 					speed = lerp(speed, target_speed, Global.weighted_lerp(17, delta))
-					
 					velocity = Vector2(dir * speed)
 			
 			velocity.y /= 2
@@ -187,3 +191,5 @@ func _on_wall_collision_body_entered(body: Node2D) -> void:
 	if state == CHARGING and body.is_in_group("blocked"):
 		state = STUNNED
 		is_stunned = false
+		
+		AudioManager.play_2d_sound(BRUTE_IMPACT_SFX, "SFX", global_position)

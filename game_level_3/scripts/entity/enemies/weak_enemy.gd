@@ -5,6 +5,8 @@ extends Entity
 @export var speed : float = 400.0
 const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
+const WEAK_DEATH = preload("res://assets/audio/diegetic_sfx/enemies/weak_death.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -48,5 +50,7 @@ func no_health():
 	var new_scene = spawn_scene(DUST_SCENE, get_tree().root.get_node("/root/Game/"))
 	new_scene.global_position = global_position
 	new_scene.modulate = Color(0, 0, 0)
+	
+	AudioManager.play_2d_sound(WEAK_DEATH, "SFX", global_position)
 	
 	queue_free()

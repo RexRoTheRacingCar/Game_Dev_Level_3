@@ -587,6 +587,8 @@ visibility_rect = Rect2(-500, -500, 1000, 1000)
 local_coords = true
 script = ExtResource("4_c41wv")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="ParticleFolder/SmokeParticle1"]
+
 [node name="SmokeParticle2" type="GPUParticles2D" parent="ParticleFolder"]
 z_index = 1
 y_sort_enabled = true
@@ -601,6 +603,8 @@ visibility_rect = Rect2(-500, -500, 1000, 1000)
 local_coords = true
 script = ExtResource("4_c41wv")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="ParticleFolder/SmokeParticle2"]
+
 [node name="FireParticle" type="GPUParticles2D" parent="ParticleFolder"]
 z_index = 1
 y_sort_enabled = true
@@ -614,6 +618,8 @@ visibility_rect = Rect2(-500, -500, 1000, 1000)
 local_coords = true
 script = ExtResource("4_c41wv")
 shake_on_start = 25.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="ParticleFolder/FireParticle"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

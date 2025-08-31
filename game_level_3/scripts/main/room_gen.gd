@@ -31,8 +31,6 @@ const LOBBY_ROOM = preload("res://scenes/misc/rooms/lobby_room.tscn")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
-	randomize()
-	
 	room_counter = 0
 	
 	_update_room_arrays()
@@ -53,6 +51,8 @@ func _update_room_arrays():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func generate_room():
+	randomize()
+	
 	if current_room != null:
 		current_room.queue_free()
 		current_room = null
@@ -60,7 +60,7 @@ func generate_room():
 	#Select a type of room based on a random float
 	var rand_room_type := randf()
 	
-	if rand_room_type <= shop_chance:
+	if rand_room_type <= shop_chance and Global.current_room_type != "shop":
 		current_room = select_room(shop_room_array)
 		Global.current_room_type = "shop"
 	else:

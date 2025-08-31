@@ -60,6 +60,10 @@ func _tile_hit(body):
 			queue_free()
 			return
 		
+		var destroy_sound = tile_d.get_custom_data("break_audio")
+		if destroy_sound:
+			AudioManager.play_2d_sound(destroy_sound, "SFX", global_position)
+		
 		if tile_d.get_custom_data("coin_chance") != 0.0:
 			_coin_drop(tile_d.get_custom_data("coin_chance"), tile_d.get_custom_data("coin_amount"))
 		_generate_scenes()
@@ -87,7 +91,6 @@ func _tile_hit(body):
 			set_collision_mask_value(1, false)
 			await get_tree().create_timer(0.375, false).timeout
 			set_collision_mask_value(1, true)
-		
 		
 		else:
 			#Delete tile and self

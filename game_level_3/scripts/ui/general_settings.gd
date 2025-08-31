@@ -12,7 +12,9 @@ extends Control
 @onready var screen_shake_slider = %ScreenShakeSlider
 
 #Audio settings nodes
-
+@onready var master_volume_slider = %MasterVolumeSlider
+@onready var music_volume_slider = %MusicVolumeSlider
+@onready var sfx_volume_slider = %SFXVolumeSlider
 
 #Misc
 @onready var screen_shake_label = %ScreenShakeLabel
@@ -36,11 +38,17 @@ func _ready():
 	#ADD AUDIO SETTINGS LATER
 	#Audio Settings
 	var _audio_settings = ConfigFileHandler.load_audio_settings()
-	
+	master_volume_slider.value = _audio_settings.master_volume
+	music_volume_slider.value = _audio_settings.music_volume
+	sfx_volume_slider.value = _audio_settings.sfx_volume
 	
 	_update_global_settings()
 	_update_resolution()
 	_update_fullscreen()
+	
+	_update_audio_server(AudioServer.get_bus_index("Master"), master_volume_slider.value)
+	_update_audio_server(AudioServer.get_bus_index("Music"), music_volume_slider.value)
+	_update_audio_server(AudioServer.get_bus_index("SFX"), sfx_volume_slider.value)
 
 
 #Updates the global settings variables to match the save file
@@ -88,8 +96,15 @@ func _update_fullscreen():
 		call_deferred("_update_resolution")
 
 
+#---------------------------------------------------------------------------------------------------------------------------
+func _update_audio_server(BUS_INDEX : int, value : float):
+	AudioServer.set_bus_volume_db(BUS_INDEX, linear_to_db(value))
+	AudioServer.set_bus_mute(BUS_INDEX, value < 0.05)
+
+
 #All setting signals
 #---------------------------------------------------------------------------------------------------------------------------
+#Video / Window Settings
 func _on_resolution_options_item_selected(index): #Screen Resolution
 	ConfigFileHandler.save_video_setting("screen_resolution", index)
 	GlobalSettings.screen_resolution = index
@@ -100,6 +115,7 @@ func _on_fullscreen_checkbox_toggled(toggled_on): #Fullscreen
 	GlobalSettings.fullscreen = toggled_on
 	call_deferred("_update_fullscreen")
 
+#Graphic Settings
 func _on_limited_particles_checkbox_toggled(toggled_on): #Limited Particles
 	ConfigFileHandler.save_graphics_setting("limited_particles", toggled_on)
 	GlobalSettings.limited_particles = toggled_on
@@ -117,3 +133,19 @@ func _on_screen_shake_slider_drag_ended(value_changed): #Screen Shake Multiplier
 		ConfigFileHandler.save_graphics_setting("screenshake_multiplier", screen_shake_slider.value)
 		GlobalSettings.screenshake_multiplier = screen_shake_slider.value
 		screen_shake_label.text = "Screen Shake Multiplier (" + str(screen_shake_slider.value) + ")"
+
+#Audio Settings
+func _on_master_volume_slider_drag_ended(value_changed):
+	if value_changed:
+		ConfigFileHandler.save_audio_settings("master_volume", master_volume_slider.value)
+		_update_audio_server(AudioServer.get_bus_index("Master"), master_volume_slider.value)
+
+func _on_music_volume_slider_drag_ended(value_changed):
+	if value_changed:
+		ConfigFileHandler.save_audio_settings("music_volume", music_volume_slider.value)
+		_update_audio_server(AudioServer.get_bus_index("Music"), music_volume_slider.value)
+
+func _on_sfx_volume_slider_drag_ended(value_changed):
+	if value_changed:
+		ConfigFileHandler.save_audio_settings("sfx_volume", sfx_volume_slider.value)
+		_update_audio_server(AudioServer.get_bus_index("SFX"), sfx_volume_slider.value)

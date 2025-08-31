@@ -15,14 +15,19 @@ run/main_scene="res://scenes/ui/start_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://misc/misc/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://scripts/autoload/global_variables.gd"
+AudioManager="*res://scripts/autoload/audio_manager.gd"
 GlobalSettings="*res://scripts/autoload/global_settings.gd"
-Camera="*res://scripts/main/camera.gd"
-PlayerUpgradeStats="*res://scripts/autoload/player_upgrade_stats.gd"
 ConfigFileHandler="*res://scripts/autoload/config_file_handler.gd"
 SaveLoad="*res://scripts/components/save_scripts/save_load.gd"
+Camera="*res://scripts/main/camera.gd"
+PlayerUpgradeStats="*res://scripts/autoload/player_upgrade_stats.gd"
 
 [debug]
 

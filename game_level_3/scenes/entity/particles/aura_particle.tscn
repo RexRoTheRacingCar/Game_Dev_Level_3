@@ -44,4 +44,7 @@ lifetime = 1.4
 one_shot = true
 speed_scale = 1.6
 explosiveness = 0.25
+visibility_rect = Rect2(-400, -400, 800, 800)
 script = ExtResource("2_bafxy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

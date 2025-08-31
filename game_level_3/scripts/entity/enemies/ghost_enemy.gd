@@ -24,6 +24,10 @@ const GHOST_BULLET = preload("res://scenes/entity/bullets/ghost_bullet.tscn")
 const POP_PARTICLES = preload("res://scenes/entity/particles/bubble_pop2.tscn")
 const GHOST_DEATH = preload("res://scenes/entity/particles/ghost_death.tscn")
 
+const GHOST_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ghost_death.mp3")
+const GHOST_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ghost_hit.mp3")
+const GHOST_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/ghost_shoot.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	super._ready()
@@ -154,6 +158,8 @@ func _move_enemy(delta : float):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _shoot_at_player(): 
+	AudioManager.play_2d_sound(GHOST_SHOOT_SFX, "SFX", global_position)
+	
 	#Find bullet angle
 	var player_distance : float = global_position.distance_to(Global.player_position) / 650
 	var target_pos : Vector2 = Global.player_position + Global.player_velocity * player_distance
@@ -189,6 +195,7 @@ func _shoot_at_player():
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	sprite.modulate = Color(1, 1, 1, 1)
+	AudioManager.play_2d_sound(GHOST_HIT_SFX, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -197,5 +204,7 @@ func no_health():
 	
 	var ghost_death = spawn_scene(GHOST_DEATH, get_tree().root.get_node("/root/Game/"))
 	ghost_death.global_position = global_position / ghost_death.scale
+	
+	AudioManager.play_2d_sound(GHOST_DEATH_SFX, "SFX", global_position)
 	
 	queue_free()

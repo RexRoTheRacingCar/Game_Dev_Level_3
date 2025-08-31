@@ -213,7 +213,7 @@ horizontal_alignment = 1
 
 [node name="ScreenShakeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 52)
+custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 max_value = 2.0
@@ -223,6 +223,134 @@ value = 1.0
 [node name="Number2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "2.0x"
+horizontal_alignment = 1
+
+[node name="AudioOptions" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubtitleCard" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="MasterVolume" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+alignment = 1
+
+[node name="MasterVolumeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Number1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mute"
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.05
+value = 0.9
+
+[node name="Number2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Max"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+alignment = 1
+
+[node name="MusicVolumeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Number1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mute"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.05
+value = 0.9
+
+[node name="Number2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Max"
+horizontal_alignment = 1
+
+[node name="SFXVolume" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+alignment = 1
+
+[node name="SFXVolumeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Number1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mute"
+horizontal_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+max_value = 1.0
+step = 0.05
+value = 0.9
+
+[node name="Number2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Max"
 horizontal_alignment = 1
 
 [node name="BottomHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -241,4 +369,7 @@ text = "Close Menu"
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox/StopwatchCheckbox" to="." method="_on_stopwatch_checkbox_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ShowHealthBars/HBox/ShowHealthBarsCheckbox" to="." method="_on_show_health_bars_checkbox_toggled"]
 [connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer/ScreenShakeSlider" to="." method="_on_screen_shake_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_drag_ended"]
+[connection signal="drag_ended" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_drag_ended"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/CloseMenu" to="." method="_on_close_menu_pressed"]

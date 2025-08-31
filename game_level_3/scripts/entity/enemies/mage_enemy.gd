@@ -21,6 +21,10 @@ const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
 const AURA_PARTICLE = preload("res://scenes/entity/particles/aura_particle.tscn")
 
+const MAGE_ABILITY_SFX = preload("res://assets/audio/diegetic_sfx/enemies/mage_ability.mp3")
+const MAGE_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/mage_hit.mp3")
+const MAGE_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/mage_death.mp3")
+const MAGE_SUMMON_SFX = preload("res://assets/audio/diegetic_sfx/enemies/mage_summon.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -135,6 +139,7 @@ func _special_move(_delta : float):
 	#Post special animations
 	var sprite_tween_2 = create_tween()
 	sprite_tween_2.tween_property(sprite, "modulate", Color(1, 1, 1), TWEEN_TIME / 2).from_current()
+	AudioManager.play_2d_sound(MAGE_SUMMON_SFX, "SFX", global_position)
 	
 	if area_of_sight.target != null:
 		var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
@@ -157,7 +162,7 @@ func enemy_summon():
 	#Summon Enemies
 	var amt : int = 4
 	var rand = randf() * 2 * PI
-
+	
 	for enemy in range(0, amt):
 		var target : Vector2 = Vector2.RIGHT.rotated((((2 * PI) / amt) * enemy) + rand) * 75
 		target = global_position + Vector2(target.x, target.y / 2)
@@ -177,6 +182,7 @@ func _spawn_magic_explosion(pos : Vector2, damage : bool):
 	if damage == false:
 		new_explosion.hurtbox.set_collision_layer_value(2, false)
 		new_explosion.hurtbox.set_collision_layer_value(4, false)
+		new_explosion.spawn_audio = MAGE_ABILITY_SFX
 	
 	return new_explosion
 
@@ -184,13 +190,16 @@ func _spawn_magic_explosion(pos : Vector2, damage : bool):
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	special_timer += 4.5
+	special_timer += 5.0
+	
+	AudioManager.play_2d_sound(MAGE_HIT_SFX, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
 	
-	_spawn_magic_explosion(global_position, false)
+	var new_explosion = _spawn_magic_explosion(global_position, false)
+	new_explosion.spawn_audio = MAGE_DEATH_SFX
 	
 	queue_free()

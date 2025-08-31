@@ -17,7 +17,7 @@ func _ready():
 		config.set_value("keybinding", "dash", "Space")
 		config.set_value("keybinding", "primary_attack", "mouse_1")
 		config.set_value("keybinding", "secondary_attack", "mouse_2")
-		config.set_value("keybinding", "reload", "mouse_3")
+		config.set_value("keybinding", "reload", "R")
 		config.set_value("keybinding", "reroll", "Q")
 		config.set_value("keybinding", "esc", "Escape")
 		config.set_value("keybinding", "open_debug", "Ctrl")
@@ -33,7 +33,9 @@ func _ready():
 		config.set_value("graphics", "screenshake_multiplier", 1.0)
 		
 		#Audio
-		config.set_value("audio", "master_volume", 1.0)
+		config.set_value("audio", "master_volume", 0.9)
+		config.set_value("audio", "music_volume", 0.9)
+		config.set_value("audio", "sfx_volume", 0.9)
 		
 		config.save(SETTINGS_FILE_PATH)
 	else:
@@ -73,7 +75,7 @@ func load_graphics_settings():
 #Save / Load Audio
 #---------------------------------------------------------------------------------------------------------------------------
 func save_audio_settings(key : String, value):
-	config.set_value("video", key, value)
+	config.set_value("audio", key, value)
 	config.save(SETTINGS_FILE_PATH)
 
 

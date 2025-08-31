@@ -30,6 +30,8 @@ var collected : bool = false
 var is_hidden : bool = false
 var is_lobby_tile : bool
 
+const SHOP_REJECT = preload("res://assets/audio/diegetic_sfx/shop_1.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	randomize()
@@ -106,7 +108,7 @@ func _update_display():
 	else:
 		reward_sprite.texture.region = Rect2(600, 100, 100, 100)
 		#Pricing
-		price = randi_range(15, 30)
+		price = randi_range(20, 35)
 		coins.text = str(price)
 		item.text = "Random?"
 
@@ -144,6 +146,8 @@ func _on_area_2d_body_entered(body):
 			var new_locked_scene = LOCKED_INDICATOR.instantiate()
 			get_parent().call_deferred("add_child", new_locked_scene)
 			new_locked_scene.global_position = Vector2(global_position.x, global_position.y - 35)
+			
+			AudioManager.play_2d_sound(SHOP_REJECT, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

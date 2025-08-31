@@ -67,6 +67,8 @@ const PLAYER_HIT_FLASH = preload("res://scenes/entity/particles/player_hit_flash
 const DEATH_SCREEN = preload("res://scenes/ui/death_screen.tscn")
 @onready var collision_shape : CollisionPolygon2D = $CollisionPolygon2D
 
+const PLAYER_DASH_SFX = preload("res://assets/audio/diegetic_sfx/player/player_dash.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	set_physics_process(false)
@@ -164,6 +166,8 @@ func player_dash(p_input):
 	if p_input and p_consecutive_dash <= p_max_dash and p_secondary_active == false:
 		p_vel_prep = p_input * 2200
 		p_consecutive_dash += 1
+		
+		AudioManager.play_sound(PLAYER_DASH_SFX, "SFX")
 
 
 #---------------------------------------------------------------------------------------------------------------------------
