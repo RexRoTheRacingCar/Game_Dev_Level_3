@@ -32,6 +32,9 @@ const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const AURA_PARTICLE = preload("res://scenes/entity/particles/aura_particle.tscn")
 
+const BRUTE_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_hit.mp3")
+const BRUTE_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_death.mp3")
+const BRUTE_CHARGE_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_charge.mp3")
 const BRUTE_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_impact.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -102,6 +105,8 @@ func _physics_process(delta: float) -> void:
 						aura_particles.global_position = global_position
 						aura_particles.z_index = 1
 						aura_particles.modulate = Color(0.68, 0.717, 1.0)
+						
+						AudioManager.play_2d_sound(BRUTE_CHARGE_SFX, "SFX", global_position)
 						
 						timer = 0.0
 					
@@ -176,7 +181,14 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
+	AudioManager.play_2d_sound(BRUTE_DEATH_SFX, "SFX", global_position)
 	queue_free()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func hit_signalled(hurtbox : HurtboxComponent):
+	super.hit_signalled(hurtbox)
+	AudioManager.play_2d_sound(BRUTE_HIT_SFX, "SFX", global_position)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

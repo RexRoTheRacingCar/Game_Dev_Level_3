@@ -20,6 +20,7 @@ const LANDING_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
 const TURRET_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/turret_falls.mp3")
+const TURRET_SHOT_SFX = preload("res://assets/audio/diegetic_sfx/turret_shot.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -121,6 +122,7 @@ func _shoot_bullet(dir : float, turret_pos : Vector2):
 #Turret shoot animation
 func _muzzle_flash():
 	#Bullet Just Fired
+	AudioManager.play_2d_sound(TURRET_SHOT_SFX, "SFX", global_position)
 	turret_barrel_1.texture.region = Rect2(600, 400, 200, 100)
 	
 	turret_barrel_1.position = Vector2.RIGHT.rotated(turret_barrel_1.rotation) * -28
@@ -164,7 +166,8 @@ func crash_landed():
 	
 	AudioManager.play_2d_sound(TURRET_IMPACT_SFX, "SFX", global_position)
 	Camera.apply_camera_shake(9)
-
+	
+	timer = -shoot_time
 
 #Enter & exit range
 #---------------------------------------------------------------------------------------------------------------------------

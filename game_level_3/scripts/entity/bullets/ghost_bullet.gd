@@ -19,7 +19,7 @@ func _ready():
 	
 	var scale_tween = create_tween()
 	scale_tween.set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN).set_parallel(false)
-	scale_tween.tween_property(sprite, "scale", Vector2(0.1, 0.1), 3.0).from_current()
+	scale_tween.tween_property(sprite, "scale", Vector2(0.25, 0.25), 3.0).from_current()
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _physics_process(delta):

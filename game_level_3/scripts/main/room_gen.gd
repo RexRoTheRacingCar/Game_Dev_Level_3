@@ -60,7 +60,7 @@ func generate_room():
 	#Select a type of room based on a random float
 	var rand_room_type := randf()
 	
-	if rand_room_type <= shop_chance and Global.current_room_type != "shop":
+	if rand_room_type <= shop_chance and Global.current_room_type != "shop" and Global.current_room_type != "lobby":
 		current_room = select_room(shop_room_array)
 		Global.current_room_type = "shop"
 	else:

@@ -7,6 +7,8 @@ extends Node2D
 var spawn_speed : float = 1.0
 var enemy_scene : PackedScene
 
+const ENEMY_SPAWNED_SFX = preload("res://assets/audio/diegetic_sfx/enemies/enemy_spawned.mp3")
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	Global.connect("reset_to_lobby", queue_free)
@@ -24,3 +26,4 @@ func _spawn_enemy():
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_enemy)
 	
+	AudioManager.play_2d_sound(ENEMY_SPAWNED_SFX, "SFX", global_position)

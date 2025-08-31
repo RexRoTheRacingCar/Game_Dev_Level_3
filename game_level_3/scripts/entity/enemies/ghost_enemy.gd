@@ -177,7 +177,7 @@ func _shoot_at_player():
 		new_bullet.rotation = dir
 		new_bullet.angle = bullet_float / 1.25
 		new_bullet.initial_speed -= 60 * (bullet_float ** 2)
-		var bullet_scale : float  =((-bullet_float ** 2) / 20) + 0.85
+		var bullet_scale : float = ((-bullet_float ** 2) / 28) + 0.9
 		new_bullet.scale = Vector2(bullet_scale, bullet_scale)
 		new_bullet.global_position = global_position
 		
