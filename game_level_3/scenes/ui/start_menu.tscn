@@ -166,7 +166,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_m8e88")
 theme_override_font_sizes/font_size = 180
-text = "a game"
+text = "lachlans pond"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/MainVBox"]
