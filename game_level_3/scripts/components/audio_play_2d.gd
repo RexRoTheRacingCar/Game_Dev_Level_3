@@ -3,5 +3,5 @@ extends AudioStreamPlayer2D
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
-	pitch_scale += randf_range(0.15, -0.15)
+	pitch_scale += randf_range(0.1, -0.1)
 	connect("finished", queue_free)

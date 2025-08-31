@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dg811lgp4seux"]
+[gd_scene load_steps=16 format=3 uid="uid://dg811lgp4seux"]
 
 [ext_resource type="Texture2D" uid="uid://bhmcvtgtv47wb" path="res://assets/art/enviroment/iso_green_set.png" id="1_48fmo"]
+[ext_resource type="AudioStream" uid="uid://d2cf7o3aqa074" path="res://assets/audio/diegetic_sfx/torch_fire_loop.mp3" id="1_qaixo"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_53tkp"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_qakpu"]
 
@@ -114,6 +115,13 @@ _data = {
 [node name="TorchTile" type="StaticBody2D" groups=["blocked", "navigation_polygon_source_geometry_group", "walls"]]
 collision_layer = 57
 collision_mask = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_qaixo")
+autoplay = true
+max_distance = 1250.0
+bus = &"SFX"
+parameters/looping = true
 
 [node name="TorchSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -32)

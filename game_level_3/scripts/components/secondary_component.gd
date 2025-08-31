@@ -18,6 +18,8 @@ class_name SecondaryAbility
 @export var scale_based : bool = true
 @export var max_scale : float = 1.0
 
+@export var sound_on_use : AudioStream
+
 var is_usable : bool = true
 
 

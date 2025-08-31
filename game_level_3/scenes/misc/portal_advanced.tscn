@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://chxfphylgjutc"]
+[gd_scene load_steps=13 format=3 uid="uid://chxfphylgjutc"]
 
 [ext_resource type="Script" path="res://scripts/misc/room_gen/portal_advanced.gd" id="1_5l1n2"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="2_gteti"]
+[ext_resource type="AudioStream" uid="uid://1i0ncuptvwf3" path="res://assets/audio/diegetic_sfx/portal_loop.mp3" id="2_s2s73"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="3_ht6f1"]
 [ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="4_r08e0"]
 
@@ -241,6 +242,13 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_5l1n2")
 HITBOX = NodePath("PlayerDetect")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_s2s73")
+autoplay = true
+max_distance = 1250.0
+bus = &"SFX"
+parameters/looping = true
 
 [node name="Sprites" type="Node2D" parent="."]
 
