@@ -12,7 +12,7 @@ func _ready():
 	_apply_mult()
 	
 	if spawn_audio:
-		AudioManager.play_2d_sound(spawn_audio, "SFX", global_position)
+		AudioManager.play_2d_sound(spawn_audio, "SFX", global_position, true)
 	
 	if particle_nodes.is_empty() == false and particle_folder:
 		particle_nodes = particle_folder.get_children()

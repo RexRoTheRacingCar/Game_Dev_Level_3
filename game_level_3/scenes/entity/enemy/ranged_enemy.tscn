@@ -498,8 +498,9 @@ collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_g3wwa")
-pursuit_speed = 235.0
-fleeing_speed = 425.0
+pursuit_speed = 250.0
+fleeing_speed = 435.0
+shoot_speed = 1.8
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -512,7 +513,7 @@ min_nav_time = 0.15
 max_nav_time = 0.25
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
-knockback_resistance = 1.15
+knockback_resistance = 1.2
 shake_on_hit = 3.0
 shake_on_death = 5.0
 
@@ -578,7 +579,7 @@ texture = SubResource("AtlasTexture_whi8w")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_hgpeq")]
 health_bar = NodePath("ProgressBar")
-max_health = 29
+max_health = 32
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -610,8 +611,8 @@ shape = SubResource("CircleShape2D_mwd6q")
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_nd1ox")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 3
-hurt_knockback = 100.0
+hurt_damage = 5
+hurt_knockback = 125.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

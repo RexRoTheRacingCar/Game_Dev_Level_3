@@ -14,6 +14,7 @@ const WARNING_OUTLINE = preload("res://scenes/entity/warning_outline.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 
+@export var shoot_time : float = 6.0
 var timer : float = 0.0
 
 const BOMBER_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_death.mp3")
@@ -57,10 +58,10 @@ func _physics_process(delta: float) -> void:
 			knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 			move_and_slide()
 	
-		if timer >= 5.0:
+		if timer >= shoot_time:
 			target_speed = 0.0
 			
-			timer = randf_range(-2.0, -8.0)
+			timer = randf_range(0.0, -4.0)
 			
 			await get_tree().create_timer(randf_range(0.6, 1.6), false).timeout
 			
@@ -84,7 +85,7 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 #Create and load in variables to create a lobbing bomb
 func _create_bomb(_delta : float):
-	AudioManager.play_2d_sound(BOMBER_SHOOT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BOMBER_SHOOT_SFX, "SFX", global_position, true)
 	
 	#Particle effect
 	var pulse_scene = spawn_scene(SMALL_PULSE, self)
@@ -111,12 +112,12 @@ func _create_bomb(_delta : float):
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	AudioManager.play_2d_sound(BOMBER_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BOMBER_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
-	AudioManager.play_2d_sound(BOMBER_DEATH_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BOMBER_DEATH_SFX, "SFX", global_position, true)
 	
 	queue_free()

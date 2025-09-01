@@ -47,6 +47,7 @@ walls=""
 navigation_polygon_source_geometry_group=""
 blocked=""
 not_destructive=""
+UI=""
 
 [gui]
 

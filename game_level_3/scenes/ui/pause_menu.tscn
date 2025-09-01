@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://pmudi5spt44d"]
+[gd_scene load_steps=7 format=3 uid="uid://pmudi5spt44d"]
 
 [ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_cat3g"]
 [ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="1_k7l6q"]
+[ext_resource type="PackedScene" uid="uid://bj461eh34drv5" path="res://scenes/ui/ui_sounds.tscn" id="3_3ad00"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stujb"]
 bg_color = Color(0.32, 0.32, 0.32, 0.392157)
@@ -41,6 +42,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_k7l6q")
 script = ExtResource("1_cat3g")
+
+[node name="UISounds" parent="." instance=ExtResource("3_3ad00")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -88,7 +91,7 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="ResumeBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -96,7 +99,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Resume Game"
 
-[node name="GeneralBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="GeneralBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -104,7 +107,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Settings"
 
-[node name="KeybindsBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="KeybindsBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -112,7 +115,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Controls"
 
-[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -120,7 +123,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "How To Play"
 
-[node name="ResetToLobbyBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="ResetToLobbyBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -128,7 +131,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Reset To Lobby"
 
-[node name="StartMenuBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="StartMenuBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")
@@ -136,7 +139,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l4v03")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hkak8")
 text = "Save and Exit to Menu"
 
-[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer" groups=["UI"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 theme_override_styles/hover = SubResource("StyleBoxFlat_stujb")

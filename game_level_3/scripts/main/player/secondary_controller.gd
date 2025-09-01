@@ -89,7 +89,7 @@ func secondary_controls(delta : float):
 				new_secondary.scale = (progress) * Vector2(current_secondary.max_scale, current_secondary.max_scale)
 			
 			if current_secondary.sound_on_use:
-				AudioManager.play_2d_sound(current_secondary.sound_on_use, "SFX", new_secondary.global_position)
+				AudioManager.play_2d_sound(current_secondary.sound_on_use, "SFX", new_secondary.global_position, true)
 			
 			#Cooldown 
 			var cooldown_actual_time : float = current_secondary.cooldown

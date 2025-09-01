@@ -17,4 +17,4 @@ func _stop_the_fire():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _fire_audio():
-	AudioManager.play_2d_sound(FIRE_TRAP_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(FIRE_TRAP_SFX, "SFX", global_position, true)

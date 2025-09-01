@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponType" load_steps=8 format=3 uid="uid://baw7lvm3snw2v"]
+[gd_resource type="Resource" script_class="WeaponType" load_steps=11 format=3 uid="uid://baw7lvm3snw2v"]
 
 [ext_resource type="PackedScene" uid="uid://brb23yhtndmma" path="res://scenes/entity/bullets/thin_bullet.tscn" id="1_rcnt6"]
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_gnln0"]
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_k7v75"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_l7rem"]
+[ext_resource type="AudioStream" uid="uid://bb0s8cuvf34e3" path="res://assets/audio/diegetic_sfx/player/weapon_no_ammo.mp3" id="5_m6wke"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="5_ov7fm"]
+[ext_resource type="AudioStream" uid="uid://26n2dad08tti" path="res://assets/audio/diegetic_sfx/player/machine_gun_reload.mp3" id="6_1r5vl"]
+[ext_resource type="AudioStream" uid="uid://c4bmq4qm4p4o7" path="res://assets/audio/diegetic_sfx/player/machine_gun_shot.mp3" id="7_5nrva"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hweyt"]
 atlas = ExtResource("4_l7rem")
@@ -17,11 +20,14 @@ region = Rect2(0, 600, 200, 100)
 [resource]
 script = ExtResource("2_gnln0")
 default_bullet_amount = 1
-default_spread = 8.0
+default_spread = 9.0
 default_burst_amount = 1
-default_firerate = 0.06
-default_reload_time = 1.35
+default_firerate = 0.09
+default_reload_time = 1.7
 default_max_ammo = 50
+weapon_shot_sfx = ExtResource("7_5nrva")
+weapon_reload_sfx = ExtResource("6_1r5vl")
+weapon_empty_sfx = ExtResource("5_m6wke")
 default_bullet = ExtResource("1_rcnt6")
 camera_shake = 4.0
 weapon_sprite = SubResource("AtlasTexture_mhiyi")

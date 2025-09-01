@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://skhfik5dpup3"]
+[gd_scene load_steps=25 format=3 uid="uid://skhfik5dpup3"]
 
 [ext_resource type="Script" path="res://scripts/ui/start_menu.gd" id="1_ma0em"]
 [ext_resource type="Theme" uid="uid://caaprjqu8fva7" path="res://misc/misc/main_ui_theme.tres" id="2_jrip2"]
 [ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="2_q0vis"]
 [ext_resource type="PackedScene" uid="uid://7b3fdg50aw5p" path="res://scenes/ui/general_settings.tscn" id="2_xe85t"]
+[ext_resource type="AudioStream" uid="uid://d2cf7o3aqa074" path="res://assets/audio/diegetic_sfx/torch_fire_loop.mp3" id="3_bqvje"]
 [ext_resource type="FontFile" uid="uid://dqdk45kupcc2b" path="res://misc/misc/fonts/BreatheFireIi-2z9W.ttf" id="3_m8e88"]
+[ext_resource type="PackedScene" uid="uid://bj461eh34drv5" path="res://scenes/ui/ui_sounds.tscn" id="3_orpuk"]
 [ext_resource type="PackedScene" uid="uid://8h77x3g8e54c" path="res://scenes/ui/how_to_play.tscn" id="5_yu72a"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="6_oxpqn"]
 
@@ -118,6 +120,15 @@ size_flags_vertical = 3
 theme = ExtResource("2_jrip2")
 script = ExtResource("1_ma0em")
 
+[node name="UISounds" parent="." instance=ExtResource("3_orpuk")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bqvje")
+volume_db = 10.0
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
 [node name="ParticleFolder" type="Node2D" parent="."]
 
 [node name="BigParticles" type="GPUParticles2D" parent="ParticleFolder"]
@@ -177,7 +188,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StartBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+[node name="StartBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions" groups=["UI"]]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -185,7 +196,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
 
-[node name="SettingsBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+[node name="SettingsBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions" groups=["UI"]]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -193,7 +204,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Settings"
 
-[node name="ControlBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+[node name="ControlBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions" groups=["UI"]]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -201,7 +212,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "Controls"
 
-[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+[node name="HowToPlayBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions" groups=["UI"]]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -209,7 +220,7 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
 text = "How to Play"
 
-[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions"]
+[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/MainVBox/VBoxOptions" groups=["UI"]]
 custom_minimum_size = Vector2(800, 100)
 layout_mode = 2
 size_flags_horizontal = 4

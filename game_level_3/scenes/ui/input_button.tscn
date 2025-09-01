@@ -42,7 +42,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="InputButton" type="Button"]
+[node name="InputButton" type="Button" groups=["UI"]]
 custom_minimum_size = Vector2(0, 52)
 anchors_preset = 10
 anchor_right = 1.0

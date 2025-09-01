@@ -62,7 +62,7 @@ func _tile_hit(body):
 		
 		var destroy_sound = tile_d.get_custom_data("break_audio")
 		if destroy_sound:
-			AudioManager.play_2d_sound(destroy_sound, "SFX", global_position)
+			AudioManager.play_2d_sound(destroy_sound, "SFX", global_position, true)
 		
 		if tile_d.get_custom_data("coin_chance") != 0.0:
 			_coin_drop(tile_d.get_custom_data("coin_chance"), tile_d.get_custom_data("coin_amount"))

@@ -24,6 +24,7 @@ var rand_reward_chance : float
 var boss_chance : float = 0
 var is_boss_portal : bool = false
 
+const PORTAL_ENTERED_SFX = preload("res://assets/audio/diegetic_sfx/portal_entered.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -98,6 +99,7 @@ func get_random_non_upgrade():
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_player_detect_body_entered(body : Player):
 	if has_detected_player == false:
+		AudioManager.play_sound(PORTAL_ENTERED_SFX, "SFX", true)
 		if is_boss_portal == true: #If Portal leads to Boss Room
 			has_detected_player = true
 			target_alpha = 0.0

@@ -180,7 +180,7 @@ theme_override_font_sizes/font_size = 17
 text = "The game saves only your progress in the lobby. It does NOT save your progress for each run."
 horizontal_alignment = 1
 
-[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
+[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer" groups=["UI"]]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3

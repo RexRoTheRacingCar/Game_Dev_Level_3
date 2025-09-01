@@ -172,7 +172,7 @@ func _shoot_at_player():
 	
 	#Play animation
 	anim_tree["parameters/Ability_Shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	AudioManager.play_2d_sound(RANGED_SHOOT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(RANGED_SHOOT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -185,11 +185,11 @@ func _rand_orbit():
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	shoot_timer /= 1.5
-	AudioManager.play_2d_sound(RANGED_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(RANGED_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
-	AudioManager.play_2d_sound(RANGED_DEATH_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(RANGED_DEATH_SFX, "SFX", global_position, true)
 	queue_free()

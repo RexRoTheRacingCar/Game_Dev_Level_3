@@ -81,7 +81,7 @@ layout_mode = 2
 [node name="BottomHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox"]
+[node name="ResetButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox" groups=["UI"]]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -89,7 +89,7 @@ focus_mode = 0
 theme = ExtResource("3_e01hb")
 text = "Reset to Defaults"
 
-[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox"]
+[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox" groups=["UI"]]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3

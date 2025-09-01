@@ -26,4 +26,4 @@ func _spawn_enemy():
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_enemy)
 	
-	AudioManager.play_2d_sound(ENEMY_SPAWNED_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(ENEMY_SPAWNED_SFX, "SFX", global_position, true)

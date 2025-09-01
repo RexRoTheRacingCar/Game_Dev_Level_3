@@ -156,9 +156,10 @@ collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_3dn8v")
-speed = 150.0
+speed = 175.0
 invisble_distance = 350.0
 max_ammo = 3
+when_to_shoot = 2.25
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -170,6 +171,7 @@ nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.4
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
+knockback_resistance = 0.9
 shake_on_hit = 0.0
 shake_on_death = 2.0
 
@@ -206,7 +208,7 @@ offset = Vector2(0, -7.81941)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("5_peoyj")]
 health_bar = NodePath("ProgressBar")
-max_health = 28
+max_health = 30
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -239,7 +241,7 @@ shape = SubResource("CircleShape2D_mwd6q")
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_be5s4")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 3
+hurt_damage = 4
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

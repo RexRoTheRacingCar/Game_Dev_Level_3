@@ -84,7 +84,7 @@ layout_mode = 2
 text = "Screen Resolution"
 horizontal_alignment = 1
 
-[node name="ResolutionOptions" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Resolution/HBox"]
+[node name="ResolutionOptions" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Resolution/HBox" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
@@ -113,7 +113,7 @@ layout_mode = 2
 text = "Fullscreen Enabled"
 horizontal_alignment = 1
 
-[node name="FullscreenCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Fullscreen/HBox"]
+[node name="FullscreenCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/WindowOptions/Fullscreen/HBox" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
@@ -143,7 +143,7 @@ layout_mode = 2
 text = "Limited Particles Enabled"
 horizontal_alignment = 1
 
-[node name="LimitedParticlesCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/LimitedParticles/HBox"]
+[node name="LimitedParticlesCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/LimitedParticles/HBox" groups=["UI"]]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -162,7 +162,7 @@ layout_mode = 2
 text = "Show Stopwatch"
 horizontal_alignment = 1
 
-[node name="StopwatchCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox"]
+[node name="StopwatchCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/Stopwatch/HBox" groups=["UI"]]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -181,7 +181,7 @@ layout_mode = 2
 text = "Show Enemy Healthbars"
 horizontal_alignment = 1
 
-[node name="ShowHealthBarsCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ShowHealthBars/HBox"]
+[node name="ShowHealthBarsCheckbox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ShowHealthBars/HBox" groups=["UI"]]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -211,7 +211,7 @@ layout_mode = 2
 text = "0.0x"
 horizontal_alignment = 1
 
-[node name="ScreenShakeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer"]
+[node name="ScreenShakeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/GraphicsOptions/ScreenShake/VBoxContainer/HBoxContainer" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
@@ -261,7 +261,7 @@ layout_mode = 2
 text = "Mute"
 horizontal_alignment = 1
 
-[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MasterVolume/VBoxContainer/HBoxContainer" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
@@ -300,7 +300,7 @@ layout_mode = 2
 text = "Mute"
 horizontal_alignment = 1
 
-[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/MusicVolume/VBoxContainer/HBoxContainer" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
@@ -339,7 +339,7 @@ layout_mode = 2
 text = "Mute"
 horizontal_alignment = 1
 
-[node name="SFXVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer"]
+[node name="SFXVolumeSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllOptions/AudioOptions/SFXVolume/VBoxContainer/HBoxContainer" groups=["UI"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
@@ -356,7 +356,7 @@ horizontal_alignment = 1
 [node name="BottomHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox"]
+[node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox" groups=["UI"]]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3

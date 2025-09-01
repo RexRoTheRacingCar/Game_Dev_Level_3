@@ -158,7 +158,7 @@ func _move_enemy(delta : float):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _shoot_at_player(): 
-	AudioManager.play_2d_sound(GHOST_SHOOT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(GHOST_SHOOT_SFX, "SFX", global_position, true)
 	
 	#Find bullet angle
 	var player_distance : float = global_position.distance_to(Global.player_position) / 650
@@ -195,7 +195,7 @@ func _shoot_at_player():
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	sprite.modulate = Color(1, 1, 1, 1)
-	AudioManager.play_2d_sound(GHOST_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(GHOST_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -205,6 +205,6 @@ func no_health():
 	var ghost_death = spawn_scene(GHOST_DEATH, get_tree().root.get_node("/root/Game/"))
 	ghost_death.global_position = global_position / ghost_death.scale
 	
-	AudioManager.play_2d_sound(GHOST_DEATH_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(GHOST_DEATH_SFX, "SFX", global_position, true)
 	
 	queue_free()

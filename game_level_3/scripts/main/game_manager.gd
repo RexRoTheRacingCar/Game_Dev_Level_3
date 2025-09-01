@@ -8,7 +8,6 @@ extends Node2D
 @export var PLAYER : Player
 
 @export_group("Customisable Enemies")
-@export var minimum_enemies : int = 1
 @export var maximum_enemies : int = 16
 @export var min_time_till_arrows : float = 20.0
 
@@ -61,11 +60,13 @@ func _generate_wave():
 		var rand_selection = randi_range(0, enemy_array.size() - 1)
 		enemy_array.remove_at(rand_selection)
 	
-	#Spawn random enemies from new random list
+	#Spawn random enemies from new random list (Max & Min amounts found here)
 	var max_possible_enemies : int = roundi(roundf((maximum_enemies + Global.rooms_cleared)) / roundf((float(Global.current_max_waves) / float(Global.wave_counter))))
 	max_possible_enemies = clampi(max_possible_enemies, Global.wave_counter, max_possible_enemies)
 	
-	for enemy in randi_range(Global.wave_counter, max_possible_enemies):
+	var minimum_enemies : int = Global.wave_counter + int(float(Global.rooms_cleared) / 3)
+	
+	for enemy in randi_range(minimum_enemies, max_possible_enemies):
 		var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
 		var rand_postion = Global.rand_nav_mesh_point(ROOM_GENERATOR.current_room_mesh, 2, false) #Find random position
 		var new_enemy = Global.spawn_particle(rand_postion, self, SPAWN_ANIMATION) #Spawn enemy

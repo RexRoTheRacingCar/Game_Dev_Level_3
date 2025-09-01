@@ -68,6 +68,10 @@ const DEATH_SCREEN = preload("res://scenes/ui/death_screen.tscn")
 @onready var collision_shape : CollisionPolygon2D = $CollisionPolygon2D
 
 const PLAYER_DASH_SFX = preload("res://assets/audio/diegetic_sfx/player/player_dash.mp3")
+const PLAYER_HIT_1_SFX = preload("res://assets/audio/diegetic_sfx/player/player_hit_1.mp3")
+const PLAYER_HIT_2_SFX = preload("res://assets/audio/diegetic_sfx/player/player_hit_2.mp3")
+const PLAYER_HEAL_SFX = preload("res://assets/audio/diegetic_sfx/player/player_heal.mp3")
+const PLAYER_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/player/player_dead.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -167,7 +171,7 @@ func player_dash(p_input):
 		p_vel_prep = p_input * 2200
 		p_consecutive_dash += 1
 		
-		AudioManager.play_sound(PLAYER_DASH_SFX, "SFX")
+		AudioManager.play_sound(PLAYER_DASH_SFX, "SFX", true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -218,11 +222,18 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 			Camera.apply_camera_shake(16.0)
 			Global.hit_stop(0.075)
 			$PlaceholderSprite2D.self_modulate = Color("ff2121")
+			
+			if randf() > 0.5:
+				AudioManager.play_sound(PLAYER_HIT_1_SFX, "SFX", true)
+			else:
+				AudioManager.play_sound(PLAYER_HIT_2_SFX, "SFX", true)
 		
 		#If player was healed
 		else:
 			P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay / 5)
 			$PlaceholderSprite2D.self_modulate = Color("00FF00")
+			
+			AudioManager.play_sound(PLAYER_HEAL_SFX, "SFX", true)
 		
 		await get_tree().create_timer(0.9, false).timeout
 		$PlaceholderSprite2D.self_modulate = Color("ffffff")
@@ -240,6 +251,7 @@ func player_no_health():
 	
 	var death_screen = DEATH_SCREEN.instantiate()
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", death_screen)
+	AudioManager.play_sound(PLAYER_DEATH_SFX, "SFX", false)
 	
 	await get_tree().create_timer(1.0, false).timeout
 	

@@ -139,7 +139,7 @@ func _special_move(_delta : float):
 	#Post special animations
 	var sprite_tween_2 = create_tween()
 	sprite_tween_2.tween_property(sprite, "modulate", Color(1, 1, 1), TWEEN_TIME / 2).from_current()
-	AudioManager.play_2d_sound(MAGE_SUMMON_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(MAGE_SUMMON_SFX, "SFX", global_position, true)
 	
 	if area_of_sight.target != null:
 		var aura_particles = spawn_scene(AURA_PARTICLE, get_tree().root.get_node("/root/Game/"))
@@ -192,7 +192,7 @@ func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	special_timer += 5.0
 	
-	AudioManager.play_2d_sound(MAGE_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(MAGE_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

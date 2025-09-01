@@ -21,6 +21,7 @@ const DUST_SCENE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 
 const TURRET_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/turret_falls.mp3")
 const TURRET_SHOT_SFX = preload("res://assets/audio/diegetic_sfx/turret_shot.mp3")
+const TURRET_FALLING_WHOOSH_SFX = preload("res://assets/audio/diegetic_sfx/turret_falling_whoosh.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -38,6 +39,8 @@ func _ready():
 	turret_barrel_1.look_at(Global.player_position)
 	turret_barrel_2.rotation = turret_barrel_1.rotation
 	turret_barrel_3.rotation = turret_barrel_1.rotation
+	
+	AudioManager.play_2d_sound(TURRET_FALLING_WHOOSH_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -122,7 +125,7 @@ func _shoot_bullet(dir : float, turret_pos : Vector2):
 #Turret shoot animation
 func _muzzle_flash():
 	#Bullet Just Fired
-	AudioManager.play_2d_sound(TURRET_SHOT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(TURRET_SHOT_SFX, "SFX", global_position, true)
 	turret_barrel_1.texture.region = Rect2(600, 400, 200, 100)
 	
 	turret_barrel_1.position = Vector2.RIGHT.rotated(turret_barrel_1.rotation) * -28
@@ -164,10 +167,11 @@ func crash_landed():
 	if GlobalSettings.limited_particles == false:
 		Global.spawn_particle(global_position, self, DUST_SCENE)
 	
-	AudioManager.play_2d_sound(TURRET_IMPACT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(TURRET_IMPACT_SFX, "SFX", global_position, true)
 	Camera.apply_camera_shake(9)
 	
 	timer = -shoot_time
+
 
 #Enter & exit range
 #---------------------------------------------------------------------------------------------------------------------------

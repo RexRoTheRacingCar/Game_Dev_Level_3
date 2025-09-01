@@ -540,9 +540,11 @@ collision_layer = 24
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_ktovh")
-DEFAULT_SPEED = 180.0
-CHARGE_SPEED = 900.0
+DEFAULT_SPEED = 195.0
+CHARGE_SPEED = 925.0
 CHARGE_TIME = 1.25
+DEFAULT_DAMAGE = 7
+CHARGE_DAMAGE = 11
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -554,8 +556,8 @@ nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.35
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
+knockback_resistance = 0.65
 shake_on_hit = 3.0
-coin_max = 4
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
@@ -644,7 +646,7 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_56qer")]
 position = Vector2(0, -15)
 health_bar = NodePath("ProgressBar")
-max_health = 42
+max_health = 45
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20

@@ -65,6 +65,9 @@ func weapon_controls(secondary_active):
 		reload_label.visible = true
 		reloading = true
 		
+		if current_weapon.weapon_reload_sfx:
+			AudioManager.play_2d_sound(current_weapon.weapon_reload_sfx, "SFX", global_position, true)
+		
 		await get_tree().create_timer(current_weapon.default_reload_time, false).timeout
 		
 		reload_label.visible = false
@@ -76,8 +79,18 @@ func weapon_controls(secondary_active):
 		for _n in range(0, burst_amount):
 			if ammo >= 1:
 				player_shoot()
+				if current_weapon.weapon_shot_sfx:
+					AudioManager.play_2d_sound(current_weapon.weapon_shot_sfx, "SFX", global_position, true)
+			
+			elif current_weapon.weapon_empty_sfx and ammo <= 0:
+				can_shoot = false
+				shoot_timer.stop()
+				shoot_timer.start(firerate)
 				
+				AudioManager.play_2d_sound(current_weapon.weapon_empty_sfx, "SFX", global_position, true)
+			
 			await get_tree().create_timer(firerate / (burst_amount), false).timeout
+	
 	
 	#Update global variables
 	Global.player_ammo = ammo

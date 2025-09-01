@@ -51,6 +51,6 @@ func no_health():
 	new_scene.global_position = global_position
 	new_scene.modulate = Color(0, 0, 0)
 	
-	AudioManager.play_2d_sound(WEAK_DEATH, "SFX", global_position)
+	AudioManager.play_2d_sound(WEAK_DEATH, "SFX", global_position, true)
 	
 	queue_free()

@@ -87,7 +87,7 @@ func _on_body_entered(body : Player):
 			new_particle.scale *= 1.25
 			new_particle.modulate = $GPUParticles2D.self_modulate
 			
-			AudioManager.play_2d_sound(UPGRADE_PICKUP, "SFX", global_position)
+			AudioManager.play_2d_sound(UPGRADE_PICKUP, "SFX", global_position, true)
 			
 			if delete_on_collection == true:
 				collected = true

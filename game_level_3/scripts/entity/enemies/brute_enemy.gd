@@ -27,6 +27,9 @@ enum {
 }
 var state = PURSUIT
 
+var audio_timer_reset : float = 0.1
+var audio_timer : float = -0.3
+
 @onready var CHARGE_PARTICLE = $ChargeParticles
 const DUST_PARTICLE = preload("res://scenes/entity/particles/dust_splash1.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
@@ -36,6 +39,7 @@ const BRUTE_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_hit
 const BRUTE_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_death.mp3")
 const BRUTE_CHARGE_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_charge.mp3")
 const BRUTE_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_impact.mp3")
+const BRUTE_STEP_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_step.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -106,7 +110,7 @@ func _physics_process(delta: float) -> void:
 						aura_particles.z_index = 1
 						aura_particles.modulate = Color(0.68, 0.717, 1.0)
 						
-						AudioManager.play_2d_sound(BRUTE_CHARGE_SFX, "SFX", global_position)
+						AudioManager.play_2d_sound(BRUTE_CHARGE_SFX, "SFX", global_position, true)
 						
 						timer = 0.0
 					
@@ -122,15 +126,22 @@ func _physics_process(delta: float) -> void:
 						state = PURSUIT
 						is_charging = false
 						can_navigate = false
-					
+						
 					timer += delta
 					
 					speed = lerpf(speed, target_speed, Global.weighted_lerp(3.0, delta))
 					target_speed += CHARGE_SPEED * delta
 					target_speed = clamp(target_speed, 0, CHARGE_SPEED)
 					
+					audio_timer += speed / 8000
+					
+					if audio_timer > audio_timer_reset:
+						AudioManager.play_2d_sound(BRUTE_STEP_SFX, "SFX", global_position, true)
+						audio_timer = 0.0
+						audio_timer_reset += 0.1
+					
 					velocity = Vector2(dir.x, dir.y * 2) * speed
-				
+					
 				STUNNED:
 					if is_stunned == false:
 						is_stunned = true
@@ -150,6 +161,8 @@ func _physics_process(delta: float) -> void:
 						pulse_scene.scale = Vector2(1.8, 0.9)
 						
 						timer = 0.0
+						audio_timer_reset = 0.1
+						audio_timer = -0.3
 					
 					timer += delta
 					if timer >= CHARGE_TIME / 2:
@@ -181,14 +194,14 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
-	AudioManager.play_2d_sound(BRUTE_DEATH_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BRUTE_DEATH_SFX, "SFX", global_position, true)
 	queue_free()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	AudioManager.play_2d_sound(BRUTE_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BRUTE_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -204,4 +217,6 @@ func _on_wall_collision_body_entered(body: Node2D) -> void:
 		state = STUNNED
 		is_stunned = false
 		
-		AudioManager.play_2d_sound(BRUTE_IMPACT_SFX, "SFX", global_position)
+		AudioManager.play_2d_sound(BRUTE_IMPACT_SFX, "SFX", global_position, true)
+		audio_timer_reset = 0.1
+		audio_timer = -0.3

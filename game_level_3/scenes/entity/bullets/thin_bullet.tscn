@@ -27,10 +27,10 @@ collision_timer_node = NodePath("CollisionTimer")
 sprite = NodePath("Sprite")
 default_damage = 2
 default_lifetime = 0.35
-default_knockback = 10.0
-initial_speed = 1400.0
-target_speed = 1400.0
-accuracy = 0.25
+default_knockback = 8.0
+initial_speed = 1350.0
+target_speed = 1350.0
+accuracy = 0.26
 collision_time = 0.1
 
 [node name="Sprite" type="Sprite2D" parent="."]

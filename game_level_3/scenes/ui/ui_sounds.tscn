@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj461eh34drv5"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui_sounds.gd" id="1_i0c4g"]
+
+[node name="UISounds" type="Node"]
+script = ExtResource("1_i0c4g")

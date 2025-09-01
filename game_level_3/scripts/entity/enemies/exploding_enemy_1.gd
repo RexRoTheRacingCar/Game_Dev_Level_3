@@ -78,7 +78,7 @@ func _physics_process(delta) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	AudioManager.play_2d_sound(EXPLODING_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(EXPLODING_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

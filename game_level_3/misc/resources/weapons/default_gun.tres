@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponType" load_steps=8 format=3 uid="uid://fyuhjs8leq0o"]
+[gd_resource type="Resource" script_class="WeaponType" load_steps=11 format=3 uid="uid://fyuhjs8leq0o"]
 
 [ext_resource type="PackedScene" uid="uid://dueeegogx0ea3" path="res://scenes/entity/bullets/default_bullet.tscn" id="1_jpypq"]
 [ext_resource type="PackedScene" uid="uid://dnol7wny77myh" path="res://scenes/entity/stat_upgrade.tscn" id="2_bx42r"]
 [ext_resource type="Script" path="res://scripts/items/weapon_type.gd" id="2_onx0p"]
 [ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_3teeb"]
 [ext_resource type="Texture2D" uid="uid://c66qrko5goj04" path="res://assets/art/other/iso_attacks.png" id="5_kxf2c"]
+[ext_resource type="AudioStream" uid="uid://bb0s8cuvf34e3" path="res://assets/audio/diegetic_sfx/player/weapon_no_ammo.mp3" id="5_ls3ad"]
+[ext_resource type="AudioStream" uid="uid://l8j5fba3lp3u" path="res://assets/audio/diegetic_sfx/player/pistol_reload.mp3" id="6_hdj27"]
+[ext_resource type="AudioStream" uid="uid://dh2vhivjau3ig" path="res://assets/audio/diegetic_sfx/player/pistol_shot.mp3" id="7_85gnk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udgpq"]
 atlas = ExtResource("4_3teeb")
@@ -22,6 +25,9 @@ default_burst_amount = 1
 default_firerate = 0.4
 default_reload_time = 0.4
 default_max_ammo = 18
+weapon_shot_sfx = ExtResource("7_85gnk")
+weapon_reload_sfx = ExtResource("6_hdj27")
+weapon_empty_sfx = ExtResource("5_ls3ad")
 default_bullet = ExtResource("1_jpypq")
 camera_shake = 3.0
 weapon_sprite = SubResource("AtlasTexture_jkmmp")

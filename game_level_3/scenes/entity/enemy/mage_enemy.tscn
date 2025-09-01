@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="7_v0aed"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j80aj"]
-radius = 15.0
+radius = 17.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f0rus"]
 resource_local_to_scene = true
@@ -73,7 +73,7 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w156p"]
-radius = 18.2483
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v3h61"]
 radius = 25.318
@@ -579,8 +579,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_e3g0r")
 speed = 190.0
-special_min = 9.0
-special_max = 15.0
+special_min = 7.0
+special_max = 14.0
 special_distance = 250.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -595,6 +595,7 @@ area_of_sight = NodePath("AreaOfSight")
 knockback_resistance = 0.9
 shake_on_hit = 3.5
 shake_on_death = 10.0
+coin_max = 2
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0
@@ -610,7 +611,6 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_j80aj")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
@@ -687,7 +687,7 @@ offset = Vector2(0, -25)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_t6fs5")]
 health_bar = NodePath("ProgressBar")
-max_health = 33
+max_health = 36
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -714,18 +714,16 @@ hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_w156p")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("6_nif14")]
 collision_layer = 2
 collision_mask = 0
-hurt_damage = 3
-hurt_knockback = 250.0
+hurt_damage = 8
+hurt_knockback = 300.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_v3h61")
 
 [node name="AreaOfSight" parent="." instance=ExtResource("7_v0aed")]

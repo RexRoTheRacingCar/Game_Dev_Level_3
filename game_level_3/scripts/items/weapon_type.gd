@@ -11,6 +11,10 @@ class_name WeaponType
 @export var default_reload_time : float = 0.4
 @export var default_max_ammo : int = 18
 
+@export_group("Audio")
+@export var weapon_shot_sfx : AudioStream
+@export var weapon_reload_sfx : AudioStream
+@export var weapon_empty_sfx : AudioStream
 
 @export_group("Other Values")
 @export var default_bullet : PackedScene

@@ -30,7 +30,9 @@ var collected : bool = false
 var is_hidden : bool = false
 var is_lobby_tile : bool
 
-const SHOP_REJECT = preload("res://assets/audio/diegetic_sfx/shop_1.mp3")
+const SHOP_REJECT_SFX = preload("res://assets/audio/diegetic_sfx/shop_reject.mp3")
+const SHOP_REROLL_SFX = preload("res://assets/audio/diegetic_sfx/shop_reroll.mp3")
+const SHOP_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/shop_impact.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -85,6 +87,8 @@ func _shop_rerolled():
 		var new_reroll_scene = REROLL_INDICATOR.instantiate()
 		get_parent().call_deferred("add_child", new_reroll_scene)
 		new_reroll_scene.global_position = Vector2(global_position.x, global_position.y - 35)
+		
+		AudioManager.play_2d_sound(SHOP_REROLL_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -132,6 +136,8 @@ func _on_area_2d_body_entered(body):
 				shop_tile.position.x = randf_range(3.0, -3.0)
 				await get_tree().create_timer(0.02, false).timeout
 			
+			AudioManager.play_2d_sound(SHOP_IMPACT_SFX, "SFX", global_position, true)
+			
 			#Spawn upgrade and particles
 			if is_hidden == false:
 				spawn_upgrade(0)
@@ -147,7 +153,7 @@ func _on_area_2d_body_entered(body):
 			get_parent().call_deferred("add_child", new_locked_scene)
 			new_locked_scene.global_position = Vector2(global_position.x, global_position.y - 35)
 			
-			AudioManager.play_2d_sound(SHOP_REJECT, "SFX", global_position)
+			AudioManager.play_2d_sound(SHOP_REJECT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------

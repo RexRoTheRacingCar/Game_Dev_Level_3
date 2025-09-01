@@ -40,11 +40,11 @@ func _physics_process(delta: float) -> void:
 #---------------------------------------------------------------------------------------------------------------------------
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
-	AudioManager.play_2d_sound(BASIC_HIT_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BASIC_HIT_SFX, "SFX", global_position, true)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
 	super.no_health()
-	AudioManager.play_2d_sound(BASIC_DEATH_SFX, "SFX", global_position)
+	AudioManager.play_2d_sound(BASIC_DEATH_SFX, "SFX", global_position, true)
 	queue_free()
