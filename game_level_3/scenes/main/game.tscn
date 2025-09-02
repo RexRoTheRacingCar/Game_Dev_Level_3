@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhusb8ekekxkj"]
+[gd_scene load_steps=16 format=3 uid="uid://bhusb8ekekxkj"]
 
 [ext_resource type="PackedScene" uid="uid://bom22ublhv6f4" path="res://scenes/ui/player_ui.tscn" id="1_keorb"]
 [ext_resource type="PackedScene" uid="uid://biv2erpftkxlb" path="res://scenes/main/player/player.tscn" id="1_vr3do"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://pmudi5spt44d" path="res://scenes/ui/pause_menu.tscn" id="6_8na6d"]
 [ext_resource type="PackedScene" uid="uid://wxuhlbqbmy7x" path="res://scenes/ui/debug_menu.tscn" id="6_w6w6d"]
 [ext_resource type="PackedScene" uid="uid://8h77x3g8e54c" path="res://scenes/ui/how_to_play.tscn" id="6_wft2d"]
+[ext_resource type="AudioStream" uid="uid://c8fohhneygcvq" path="res://assets/audio/non_diegetic_sfx/music/dungeon_ambience.mp3" id="7_vpogu"]
 [ext_resource type="PackedScene" uid="uid://bbve6xlnimkfn" path="res://scenes/ui/input_settings.tscn" id="8_n6g87"]
 [ext_resource type="PackedScene" uid="uid://7b3fdg50aw5p" path="res://scenes/ui/general_settings.tscn" id="10_qyc1a"]
 
@@ -128,12 +129,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER", "PLAYER_UI") instance=ExtResource("2_r7fuv")]
+[node name="MainGameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vpogu")
+autoplay = true
+bus = &"Music"
+
+[node name="GameAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vpogu")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+
+[node name="DungeonManager" parent="." node_paths=PackedStringArray("GAME_MANAGER", "ROOM_MANAGER", "PLAYER", "PLAYER_UI", "AUDIO_PLAYER") instance=ExtResource("2_r7fuv")]
 y_sort_enabled = true
 GAME_MANAGER = NodePath("GameManager")
 ROOM_MANAGER = NodePath("RoomGenerator")
 PLAYER = NodePath("Player")
 PLAYER_UI = NodePath("../PlayerUI")
+AUDIO_PLAYER = NodePath("../MainGameMusic")
 
 [node name="GameManager" parent="DungeonManager" node_paths=PackedStringArray("ROOM_GENERATOR", "PLAYER") instance=ExtResource("2_xnef5")]
 ROOM_GENERATOR = NodePath("../RoomGenerator")

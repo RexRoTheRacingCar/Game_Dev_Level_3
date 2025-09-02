@@ -6,6 +6,7 @@ extends Node2D
 @export var ROOM_MANAGER : Node2D
 @export var PLAYER : Player
 @export var PLAYER_UI : CanvasLayer
+@export var AUDIO_PLAYER : AudioStreamPlayer
 
 var room_generating : bool = false
 var transitioning : bool = false
@@ -13,10 +14,20 @@ var is_in_lobby : bool = false
 var boss_room : bool = false
 var boss_room_room_offset : float = 0.0
 
+var previous_song_type : String = ""
+var target_music_volume : float = 0.0
+var music_volume : float = 1.0
+
 const PORTAL_ADVANCED = preload("res://scenes/misc/portal_advanced.tscn")
 
 @onready var room_fade_animation = %RoomAnimationPlayer
 @onready var overlay_second = $"../RoomTransition/OverlayOpening"
+
+const ROOM_CLEAR_SFX = preload("res://assets/audio/non_diegetic_sfx/room_clear.mp3")
+const FIGHT_MUSIC = preload("res://assets/audio/non_diegetic_sfx/music/fight_music.mp3")
+const MENU_MUSIC = preload("res://assets/audio/non_diegetic_sfx/music/menu_music.mp3")
+const SHOP_MUSIC = preload("res://assets/audio/non_diegetic_sfx/music/shop_music.mp3")
+const BOSS_MUSIC = preload("res://assets/audio/non_diegetic_sfx/music/boss_music.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -30,9 +41,13 @@ func _ready():
 	
 	overlay_second.modulate = Color(0, 0, 0, 1)
 	
+	music_volume = 0.0
+	target_music_volume = 1.0
+	
 	transitioning = false
 	
 	_load_lobby()
+	_music_to_play_check()
 	
 	await get_tree().create_timer(1.0, true).timeout
 	var tween = create_tween()
@@ -79,6 +94,8 @@ func _load_lobby():
 	_spawn_set_position_portals()
 	
 	room_generating = false
+	
+	_music_to_play_check()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -106,6 +123,8 @@ func _boss_room():
 	
 	room_generating = false
 	PLAYER_UI.can_count = true
+	
+	_music_to_play_check()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -139,6 +158,8 @@ func _reset_room():
 	
 	room_generating = false
 	PLAYER_UI.can_count = true
+	
+	_music_to_play_check()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -177,11 +198,20 @@ func _process(delta):
 	if Global.enemy_count > 0 and Global.wave_time > (GAME_MANAGER.min_time_till_arrows + Global.enemy_count) and GAME_MANAGER.arrows_generated == false:
 		GAME_MANAGER.arrows_generated = true
 		GAME_MANAGER._create_arrows()
+	
+	
+	#Music Managing
+	if is_equal_approx(target_music_volume, music_volume) == false:
+		music_volume = lerpf(music_volume, target_music_volume, Global.weighted_lerp(5, delta))
+		AUDIO_PLAYER.volume_db = linear_to_db(music_volume)
 
 
 #Spawns advanced portals based on a preset array on portal positions
 #---------------------------------------------------------------------------------------------------------------------------
 func _spawn_set_position_portals():
+	AudioManager.play_sound(ROOM_CLEAR_SFX, "SFX", false)
+	target_music_volume = 0.5
+	
 	var portal_position_array : Array = ROOM_MANAGER.current_room.portal_spawn_array
 	for positions in portal_position_array.size():
 		var new_portal = PORTAL_ADVANCED.instantiate()
@@ -215,3 +245,35 @@ func _boss_room_transition():
 	
 	_boss_room()
 	transitioning = false
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _music_to_play_check():
+	#Music transitions
+	if previous_song_type != Global.current_room_type:
+		match Global.current_room_type:
+			"fight":
+				_change_music_to(FIGHT_MUSIC)
+			"shop":
+				_change_music_to(SHOP_MUSIC)
+			"boss":
+				_change_music_to(BOSS_MUSIC)
+			"lobby":
+				_change_music_to(MENU_MUSIC)
+		
+		previous_song_type = Global.current_room_type
+	
+	else:
+		target_music_volume = 1.0
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _change_music_to(song_to_play : AudioStream) -> void:
+	target_music_volume = 0.0
+	
+	await get_tree().create_timer(1.0, false).timeout
+	
+	AUDIO_PLAYER.stream = song_to_play
+	AUDIO_PLAYER.play()
+	AUDIO_PLAYER["parameters/looping"] = true
+	target_music_volume = 1.0
