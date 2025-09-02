@@ -116,6 +116,8 @@ min_nav_time = 0.2
 max_nav_time = 0.5
 area_of_sight = NodePath("AreaOfSight")
 line_of_sight = NodePath("LineOfSight")
+coin_min = 75
+coin_max = 75
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 2.0

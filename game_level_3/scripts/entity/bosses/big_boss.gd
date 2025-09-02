@@ -30,13 +30,18 @@ func _process(delta: float) -> void:
 				
 				speed = lerp(speed, pursuit_speed, Global.weighted_lerp(22, delta))
 				
-			BOSS_STATE.CHARGE:
+				
 				pass
 				
 			BOSS_STATE.STUNNED:
 				pass
 		
 		_move_boss(delta)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _boss_attack():
+	pass
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -52,3 +57,9 @@ func _move_boss(delta : float):
 		velocity += knockback_taken
 		knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
 		move_and_slide()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func no_health():
+	super.no_health()
+	queue_free()
