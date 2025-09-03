@@ -154,7 +154,8 @@ func _process(delta: float) -> void:
 					
 					_shoot_bullet(shoot_dir)
 				
-				if counter > 65:
+				#Reset to pursuit
+				if counter > 55:
 					state = BOSS_STATE.PURSUIT
 					
 					attack_timer = 0.0
@@ -173,6 +174,7 @@ func _process(delta: float) -> void:
 				_navigation_check(Global.player_position, min_nav_time, max_nav_time)
 				_boss_navigate(delta)
 				
+				#Shoot ring of bullets
 				if attack_timer > 0.75:
 					attack_timer = 0
 					counter += 1
@@ -201,6 +203,7 @@ func _process(delta: float) -> void:
 				_navigation_check(Global.player_position, min_nav_time, max_nav_time)
 				_boss_navigate(delta)
 				
+				#Shoot the bombs in the air
 				if attack_timer > 1.0 and counter <= 2:
 					counter += 1
 					
@@ -212,13 +215,14 @@ func _process(delta: float) -> void:
 						
 						await get_tree().create_timer(randf_range(0.15, 0.4), false).timeout
 					
-				
+				#Charge at player, then reset
 				if counter > 2 and attack_timer > 0.75:
 					state = BOSS_STATE.CHARGING
 					
 					initial_attack = true
 				
 			BOSS_STATE.TELEPORT:
+				#Teleport to random position
 				if initial_attack == true and attack_timer > 1.0:
 					initial_attack = false
 					_teleport()
