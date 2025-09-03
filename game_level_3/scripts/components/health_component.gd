@@ -13,6 +13,7 @@ var starting_hp : int = 100
 var health : int : set = _set_health
 var death_emitted : bool
 
+@export var scale_health_bar : bool = true
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
@@ -62,7 +63,7 @@ func _set_max_health(new_value : int) -> void:
 	max_health = new_value
 	
 	#If there is a health bar
-	if health_bar:
+	if health_bar and scale_health_bar == true:
 		@warning_ignore("integer_division")
 		health_bar.size.x = 50 + (max_health / 2)
 		health_bar.position.x = -health_bar.size.x / 2

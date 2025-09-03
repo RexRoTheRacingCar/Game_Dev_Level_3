@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://70hldybnta8i"]
+[gd_scene load_steps=18 format=3 uid="uid://70hldybnta8i"]
 
 [ext_resource type="Script" path="res://scripts/entity/bosses/big_boss.gd" id="1_r4eec"]
-[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="2_yqpg8"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="3_sb5p4"]
 [ext_resource type="Texture2D" uid="uid://d3wctobnqykjb" path="res://assets/art/entity/lookatyou.png" id="4_0daom"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="5_hf654"]
@@ -9,37 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="7_ips5l"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="8_cb4pa"]
 [ext_resource type="PackedScene" uid="uid://r53nt5uliuqf" path="res://scenes/misc/line_of_sight.tscn" id="9_84m46"]
-
-[sub_resource type="Gradient" id="Gradient_28dt0"]
-offsets = PackedFloat32Array(0, 0.275, 1)
-colors = PackedColorArray(0.49, 0.83, 1, 0, 0.332415, 0.400641, 0.566014, 1, 0.304462, 0.304462, 0.304462, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_23jhk"]
-gradient = SubResource("Gradient_28dt0")
-
-[sub_resource type="Curve" id="Curve_khaiy"]
-_data = [Vector2(0, 0), 0.0, 14.104, 0, 0, Vector2(0.161871, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.350943), -1.47236, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_4e0v3"]
-curve = SubResource("Curve_khaiy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncy5q"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 23.81
-initial_velocity_max = 29.76
-angular_velocity_min = -100.0
-angular_velocity_max = 100.0
-gravity = Vector3(0, 20, 0)
-scale_min = 0.2
-scale_max = 0.45
-scale_curve = SubResource("CurveTexture_4e0v3")
-color_ramp = SubResource("GradientTexture1D_23jhk")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_raksp"]
-atlas = ExtResource("2_yqpg8")
-region = Rect2(0, 300, 50, 50)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kx04d"]
 resource_local_to_scene = true
@@ -60,6 +28,9 @@ radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkdxq"]
 radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ankdf"]
+radius = 31.0
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
@@ -104,7 +75,8 @@ collision_layer = 24
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_r4eec")
-pursuit_speed = 600.0
+pursuit_speed = 350.0
+when_to_attack = 3.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -135,15 +107,6 @@ debug_path_custom_line_width = 2.0
 wait_time = 0.4
 one_shot = true
 
-[node name="ChargeParticles" type="GPUParticles2D" parent="."]
-y_sort_enabled = true
-position = Vector2(0, 27)
-process_material = SubResource("ParticleProcessMaterial_ncy5q")
-texture = SubResource("AtlasTexture_raksp")
-lifetime = 1.2
-speed_scale = 1.1
-randomness = 0.2
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_kx04d")
 position = Vector2(-1.93207, -3.62348)
@@ -161,6 +124,7 @@ debug_color = Color(0.582521, 0.550979, 0, 0.42)
 position = Vector2(0, -15)
 health_bar = NodePath("ProgressBar")
 max_health = 1000
+scale_health_bar = false
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -170,15 +134,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -20.0
-offset_right = 31.0
-offset_bottom = -10.0
+offset_left = -66.0
+offset_top = -48.0
+offset_right = 66.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_yg47j")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("6_yidp2")]
 position = Vector2(0, -7)
@@ -209,6 +172,13 @@ collision_mask = 33
 monitorable = false
 radius = 2500.0
 
+[node name="WallDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetection"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_ankdf")
+debug_color = Color(0.864132, 0.242405, 0.66078, 0.42)
+
 [node name="LineOfSight" parent="." instance=ExtResource("9_84m46")]
 collision_mask = 32
 max_target_distance = 1000.0
@@ -219,3 +189,4 @@ libraries = {
 }
 
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
+[connection signal="body_entered" from="WallDetection" to="." method="_on_wall_detection_body_entered"]

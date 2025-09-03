@@ -61,6 +61,8 @@ signal shop_reroll
 signal portal_entered
 signal boss_portal_entered
 
+signal summon_enemies_for_boss
+
 signal room_changed
 signal room_cleared
 signal reset_to_lobby

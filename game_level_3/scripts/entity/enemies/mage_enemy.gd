@@ -100,7 +100,7 @@ func _special_move(_delta : float):
 	
 	anim_tree["parameters/Ability_Shot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
-	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= float(health_component.max_health) / 2)):
+	if randf() >= 0.5 and (distance >= special_distance or (distance <= special_distance and health_component.health <= float(health_component.max_health) / 2.5)):
 		#TELEPORT PREP
 		var new_pos : Vector2 = Global.rand_nav_mesh_point(Global.global_map, 2, false)
 		var teleport_1 = spawn_scene(TELEPORT_SCENE, get_tree().root.get_node("/root/Game/"))
@@ -146,7 +146,7 @@ func _special_move(_delta : float):
 		aura_particles.global_position = global_position
 		aura_particles.z_index = 1
 	
-	await get_tree().create_timer(TWEEN_TIME * 1, false).timeout
+	await get_tree().create_timer(TWEEN_TIME, false).timeout
 	
 	#Speed
 	var tween_2 = create_tween()

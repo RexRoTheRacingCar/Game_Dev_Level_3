@@ -112,7 +112,7 @@ func _instantiate_explosion(i, d, am):
 	var postion_correction = (Vector2.RIGHT.rotated(explode_dir) * 160 * i)
 	new_explosion.global_position = global_position + Vector2(postion_correction.x, postion_correction.y / 2)
 	new_explosion.rotation = 0
-	new_explosion.default_power = 18
+	new_explosion.default_power = 15
 	new_explosion.power_mult = 0.5
 	
 	var explosion_chance : float = randf()

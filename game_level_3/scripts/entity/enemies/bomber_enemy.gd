@@ -89,7 +89,7 @@ func _create_bomb(_delta : float):
 	
 	#Particle effect
 	var pulse_scene = spawn_scene(SMALL_PULSE, self)
-	pulse_scene.modulate = Color(1, 1, 1, 0.675)
+	pulse_scene.modulate = Color(1, 1, 1)
 	pulse_scene.scale = Vector2(1.8, 0.9)
 	
 	var new_bomb = FLYING_BOMB.instantiate()

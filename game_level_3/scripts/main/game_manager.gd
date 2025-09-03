@@ -33,6 +33,8 @@ func _ready():
 	
 	#Reset global values
 	Global.active_enemy_array = []
+	
+	Global.connect("summon_enemies_for_boss", _spawn_wave)
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -117,3 +119,40 @@ func _create_arrows():
 		new_arrow.follow_target = PLAYER
 		new_arrow.point_target = enemy
 		add_child(new_arrow)
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+func _spawn_wave():
+	is_generating = true
+	
+	await get_tree().create_timer(1.0, false).timeout
+	
+	if loop_breaker == true: return
+	
+	#Wave spawn time variation
+	var generating_delay = (0.9 * (randf_range(0.1, 0.95) ** 2)) + 0.25
+	
+	var enemy_variance = randi_range(0, ENEMY_SCENE_LIST.room_array.size() - 3)
+	var enemy_array : Array = ENEMY_SCENE_LIST.room_array.duplicate()
+	
+	#Select random enemies from enemy array and add them to new array
+	for _i in randi_range(0, enemy_variance):
+		var rand_selection = randi_range(0, enemy_array.size() - 1)
+		enemy_array.remove_at(rand_selection)
+	
+	#Spawn random enemies from new random list (Max & Min amounts found here)
+	var max_possible_enemies : int = 3
+	var minimum_enemies : int = 2
+	
+	for enemy in randi_range(minimum_enemies, max_possible_enemies):
+		var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
+		var rand_postion = Global.rand_nav_mesh_point(ROOM_GENERATOR.current_room_mesh, 2, false) #Find random position
+		var new_enemy = Global.spawn_particle(rand_postion, self, SPAWN_ANIMATION) #Spawn enemy
+		new_enemy.enemy_scene = selected_enemy #Update spawn anim to spawn slected enemy
+		
+		await get_tree().create_timer(generating_delay, false).timeout #Await a small delay
+		if loop_breaker == true: return
+	
+	await get_tree().create_timer(3.0, false).timeout
+	
+	is_generating = false

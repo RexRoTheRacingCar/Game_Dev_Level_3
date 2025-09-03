@@ -83,6 +83,7 @@ func secondary_controls(delta : float):
 			#Spawn secondary attack scene
 			var new_secondary = current_secondary.spawn_scene(current_secondary.secondary_attack, get_tree().root.get_node("/root/Game/"))
 			new_secondary.global_position = _get_position_type()
+			new_secondary.player_made = true
 			
 			#Adjust secondary attack if scale_based == true
 			if current_secondary.scale_based == true:

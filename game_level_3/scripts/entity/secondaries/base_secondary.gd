@@ -6,6 +6,8 @@ class_name BaseSecondary
 @export var power_mult : float = 1.0
 var power : float = 0.0
 
+var player_made : bool = false
+
 @export var anim_player : AnimationPlayer
 @export var particle_nodes : Array = []
 @export var vis_node : VisibleOnScreenNotifier2D
@@ -29,4 +31,7 @@ func _particle_check():
 func _apply_mult():
 	Global.connect("room_changed", queue_free)
 	Global.connect("reset_to_lobby", queue_free)
-	power = default_power * PlayerUpgradeStats.power_mult
+	
+	power = default_power
+	if player_made == true:
+		power *= PlayerUpgradeStats.power_mult
