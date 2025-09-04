@@ -580,7 +580,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_e3g0r")
 speed = 190.0
 special_min = 7.0
-special_max = 14.0
+special_max = 12.0
 special_distance = 250.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
@@ -687,7 +687,7 @@ offset = Vector2(0, -25)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("4_t6fs5")]
 health_bar = NodePath("ProgressBar")
-max_health = 36
+max_health = 40
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20

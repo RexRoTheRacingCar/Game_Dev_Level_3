@@ -75,7 +75,7 @@ region = Rect2(0, 300, 50, 50)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhipf"]
 radius = 23.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg47j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbhln"]
 bg_color = Color(1, 0, 0.105882, 1)
 corner_radius_top_left = 8
 corner_radius_bottom_right = 8
@@ -644,9 +644,10 @@ shape = SubResource("CircleShape2D_xhipf")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_56qer")]
-position = Vector2(0, -15)
+position = Vector2(0, -28)
 health_bar = NodePath("ProgressBar")
-max_health = 45
+max_health = 50
+scale_health_bar = false
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
@@ -656,15 +657,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -24.0
-offset_right = 31.0
-offset_bottom = -14.0
+offset_left = -38.0
+offset_top = -19.0
+offset_right = 38.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_yg47j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nbhln")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_5dt2g")]
 position = Vector2(0, -7)

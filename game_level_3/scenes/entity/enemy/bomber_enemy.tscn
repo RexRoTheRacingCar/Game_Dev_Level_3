@@ -614,7 +614,8 @@ collision_layer = 24
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_y703p")
-MAX_SPEED = 360.0
+MAX_SPEED = 365.0
+shoot_time = 5.5
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
@@ -710,7 +711,7 @@ texture = SubResource("AtlasTexture_ty1lt")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("5_uss6e")]
 health_bar = NodePath("ProgressBar")
-max_health = 19
+max_health = 20
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
 z_index = 20
