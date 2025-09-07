@@ -144,6 +144,8 @@ func _physics_process(delta: float) -> void:
 					
 				STUNNED:
 					if is_stunned == false:
+						Camera.apply_camera_shake(8.0)
+						
 						is_stunned = true
 						speed *= -1
 						target_speed = 0

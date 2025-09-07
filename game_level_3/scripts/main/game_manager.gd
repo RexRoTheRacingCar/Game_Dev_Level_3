@@ -154,6 +154,8 @@ func _spawn_wave():
 			
 			await get_tree().create_timer(generating_delay, false).timeout #Await a small delay
 			if loop_breaker == true: return
+			
+			Global.current_max_waves = 1
 		
 		await get_tree().create_timer(2.0, false).timeout
 		

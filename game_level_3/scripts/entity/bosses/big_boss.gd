@@ -53,6 +53,7 @@ const BOSS_CHARGE_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_c
 const BOSS_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_impact.mp3")
 const BOSS_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/boss_death.mp3")
 
+
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
 	super._ready()
@@ -179,6 +180,7 @@ func _process(delta: float) -> void:
 					
 					AudioManager.play_2d_sound(BOSS_SHOOT_SFX, "SFX", global_position, true)
 					_dust_pulse(1.5)
+					Camera.apply_camera_shake(1.5)
 					
 					var player_distance : float = global_position.distance_to(Global.player_position) / 750
 					var target_pos : Vector2 = Global.player_position + (Global.player_velocity / 2) * player_distance
@@ -224,6 +226,7 @@ func _process(delta: float) -> void:
 					
 					AudioManager.play_2d_sound(BOSS_BIG_SHOT_SFX, "SFX", global_position, true)
 					_dust_pulse(2.25)
+					Camera.apply_camera_shake(6.0)
 					
 					for bullet in range(0, 18):
 						var shoot_dir = (((2 * PI) / 18) * bullet) + timer
@@ -391,6 +394,8 @@ func _burst_fire_bombs(target_position : Vector2):
 	var rand_scale = randf_range(1.5, 2.0)
 	new_bomb.explosion_scale = Vector2(rand_scale, rand_scale / 2)
 	
+	Camera.apply_camera_shake(3.0)
+	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_bomb)
 	
 	AudioManager.play_2d_sound(BOMB_SHOOT_SFX, "SFX", global_position, true)
@@ -431,6 +436,8 @@ func _teleport():
 	global_position = new_pos
 	_spawn_magic_explosion(old_pos, false)
 	_spawn_magic_explosion(new_pos, false)
+	
+	Camera.apply_camera_shake(9.0)
 	
 	knockback_taken = Vector2.ZERO
 	
@@ -478,11 +485,18 @@ func hit_signalled(hurtbox : HurtboxComponent):
 	
 	AudioManager.play_2d_sound(BOSS_HIT_SFX, "SFX", global_position, true)
 	
-	if health_component.health <= int(float(health_component.max_health) / 2) and double_time == false:
-		when_to_attack = 1.75
-		hurtbox_component.hurt_damage = 30
+	if double_time == false:
+		if health_component.health <= int(float(health_component.max_health) / 2):
+			when_to_attack = 1.75
+			hurtbox_component.hurt_damage = 30
+			
+			Global.emit_signal("summon_enemies_for_boss")
 		
-		Global.emit_signal("summon_enemies_for_boss")
+		elif health_component.health <= int(float(health_component.max_health) / 10):
+			when_to_attack = 0.25
+			hurtbox_component.hurt_damage = 50
+	
+	
 
 
 #---------------------------------------------------------------------------------------------------------------------------
@@ -500,6 +514,8 @@ func no_health():
 		
 		Global.gems += 10
 		
+		Camera.apply_camera_shake(30.0)
+		
 		queue_free()
 
 
@@ -509,3 +525,5 @@ func _on_wall_detection_body_entered(body):
 		attack_timer = 0.0
 		state = BOSS_STATE.STUNNED
 		initial_attack = true
+		
+		Camera.apply_camera_shake(15.0)
