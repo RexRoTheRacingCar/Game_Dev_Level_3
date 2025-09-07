@@ -11,6 +11,7 @@ class_name Player
 @export var P_DASH_TIMER : Timer
 @export var P_HITBOX_COMPONENT : HitboxComponent
 @export var P_HEALTH_COMPONENT : HealthComponent
+@export var P_ANIMATION_TREE : AnimationTree
 
 #Movement variables
 @export_group("Speed")
@@ -26,12 +27,12 @@ var p_is_dashing : bool = false : #If dashing or
 	set(new_value):
 		p_is_dashing = new_value
 		if p_is_dashing == true:
-			$PlaceholderSprite2D.self_modulate = Color("e3e65a")
-			await get_tree().create_timer(0.25, false).timeout
+			$Head.modulate = Color("fff200")
+			await get_tree().create_timer(0.2, false).timeout
 			p_is_dashing = false
-			$PlaceholderSprite2D.self_modulate = Color("ffffff")
+			$Head.modulate = Color("ffffff")
 		else:
-			$PlaceholderSprite2D.self_modulate = Color("ffffff")
+			$Head.modulate = Color("ffffff")
 
 
 var p_consecutive_dash : int = 0 : #How many dashes the payer has done, resets after last dash
@@ -90,6 +91,8 @@ func _ready():
 	call_deferred("set_physics_process", true)
 	
 	_reset_player()
+	
+	P_ANIMATION_TREE.active = true
 
 
 #Reset the player when game/lobby is loaded
@@ -101,7 +104,7 @@ func _reset_player():
 	p_can_move = true
 	visible = true
 	
-	$PlaceholderSprite2D.self_modulate = Color("ffffff")
+	$Head.modulate = Color("ffffff")
 	
 	p_vel_prep = Vector2.ZERO
 	p_knockback_taken = Vector2.ZERO
@@ -129,7 +132,10 @@ func _physics_process(delta):
 		#Player roll
 		if Input.is_action_just_pressed("dash"):
 			player_dash(p_input)
-	
+		
+		#Animations
+		P_ANIMATION_TREE["parameters/PlayerMovement/blend_position"] = p_input
+		
 		#Velocity manage
 		velocity = p_vel_prep 
 		velocity += p_knockback_taken
@@ -221,7 +227,7 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 			
 			Camera.apply_camera_shake(16.0)
 			Global.hit_stop(0.075)
-			$PlaceholderSprite2D.self_modulate = Color("ff2121")
+			$Head.modulate = Color("ff2121")
 			
 			if randf() > 0.5:
 				AudioManager.play_sound(PLAYER_HIT_1_SFX, "SFX", true)
@@ -231,12 +237,12 @@ func player_hit_signalled(hurtbox: HurtboxComponent):
 		#If player was healed
 		else:
 			P_HITBOX_COMPONENT.hit_timer.start(P_HITBOX_COMPONENT.hit_delay / 5)
-			$PlaceholderSprite2D.self_modulate = Color("00FF00")
+			$Head.modulate = Color("00FF00")
 			
 			AudioManager.play_sound(PLAYER_HEAL_SFX, "SFX", true)
 		
 		await get_tree().create_timer(0.9, false).timeout
-		$PlaceholderSprite2D.self_modulate = Color("ffffff")
+		$Head.modulate = Color("ffffff")
 		
 	else:
 		P_HITBOX_COMPONENT.hit_timer.start(0.1)

@@ -165,6 +165,18 @@ layout_mode = 2
 text = "Spend gems at the lobby to unlock new weapons and upgrades"
 horizontal_alignment = 1
 
+[node name="Spacer2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections/GameGoalSection"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Saving" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/AllSections"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.3, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 17
+text = "The game saves only your progress in the lobby. It does NOT save your progress for each run."
+horizontal_alignment = 1
+
 [node name="BottomHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -172,12 +184,11 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Saving" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
+[node name="Credits" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 0.3, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 17
-text = "The game saves only your progress in the lobby. It does NOT save your progress for each run."
+text = "Game By Rory l l l SFX From FreeSound.com l l l Music by gundatsch"
 horizontal_alignment = 1
 
 [node name="CloseMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomHBox/VBoxContainer" groups=["UI"]]
