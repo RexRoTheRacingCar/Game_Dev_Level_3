@@ -12,6 +12,7 @@ const ENEMY_SPAWNED_SFX = preload("res://assets/audio/diegetic_sfx/enemies/enemy
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready():
 	Global.connect("reset_to_lobby", queue_free)
+	Global.connect("kill_all_enemies", queue_free)
 	
 	anim_player.speed_scale = spawn_speed
 

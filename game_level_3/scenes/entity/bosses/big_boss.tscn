@@ -1,22 +1,47 @@
-[gd_scene load_steps=18 format=3 uid="uid://70hldybnta8i"]
+[gd_scene load_steps=36 format=3 uid="uid://70hldybnta8i"]
 
 [ext_resource type="Script" path="res://scripts/entity/bosses/big_boss.gd" id="1_r4eec"]
+[ext_resource type="Texture2D" uid="uid://bistcwngkarhs" path="res://assets/art/entity/enemy_spritesheet.png" id="3_nokqf"]
 [ext_resource type="Shader" uid="uid://4gb7hlqy3ksx" path="res://misc/resources/shaders/hit_flash.tres" id="3_sb5p4"]
-[ext_resource type="Texture2D" uid="uid://d3wctobnqykjb" path="res://assets/art/entity/lookatyou.png" id="4_0daom"]
+[ext_resource type="Texture2D" uid="uid://c7tw33sb8qxl5" path="res://assets/art/ui/pickups.png" id="4_sngqj"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="5_hf654"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="6_yidp2"]
 [ext_resource type="PackedScene" uid="uid://dk6tq8iiesp0e" path="res://scenes/components/hurtbox_component.tscn" id="7_ips5l"]
 [ext_resource type="PackedScene" uid="uid://ks5hyrq6x4v1" path="res://scenes/misc/area_of_sight.tscn" id="8_cb4pa"]
 [ext_resource type="PackedScene" uid="uid://r53nt5uliuqf" path="res://scenes/misc/line_of_sight.tscn" id="9_84m46"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kx04d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66eqv"]
 resource_local_to_scene = true
 shader = ExtResource("3_sb5p4")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 1, 1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprkv"]
+resource_local_to_scene = true
+atlas = ExtResource("3_nokqf")
+region = Rect2(600, 400, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r0jn"]
+resource_local_to_scene = true
+atlas = ExtResource("3_nokqf")
+region = Rect2(600, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywvx6"]
+resource_local_to_scene = true
+atlas = ExtResource("3_nokqf")
+region = Rect2(400, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_754ei"]
+resource_local_to_scene = true
+atlas = ExtResource("3_nokqf")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv7cr"]
+atlas = ExtResource("4_sngqj")
+region = Rect2(0, 300, 50, 50)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhipf"]
-radius = 23.0
+radius = 39.0512
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg47j"]
 bg_color = Color(1, 0, 0.105882, 1)
@@ -24,20 +49,584 @@ corner_radius_top_left = 8
 corner_radius_bottom_right = 8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjmvo"]
-radius = 25.0
+radius = 45.0111
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkdxq"]
-radius = 25.0
+radius = 47.0956
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ankdf"]
-radius = 31.0
+radius = 56.2228
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6pyb"]
+animation = &"back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqbsy"]
+animation = &"front"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wd2sm"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6g6xi"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5s4mu"]
+animation = &"stunned"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ipojs"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0pl6o"]
+graph_offset = Vector2(-443.39, 144.405)
+nodes/Back/node = SubResource("AnimationNodeAnimation_s6pyb")
+nodes/Back/position = Vector2(-53.3333, 293.333)
+nodes/Front/node = SubResource("AnimationNodeAnimation_dqbsy")
+nodes/Front/position = Vector2(-53.3333, 160)
+nodes/Movement/node = SubResource("AnimationNodeBlend2_wd2sm")
+nodes/Movement/position = Vector2(133.333, 160)
+nodes/StunOneShot/node = SubResource("AnimationNodeOneShot_6g6xi")
+nodes/StunOneShot/position = Vector2(320, 160)
+nodes/Stunned/node = SubResource("AnimationNodeAnimation_5s4mu")
+nodes/Stunned/position = Vector2(133.333, 373.333)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ipojs")
+nodes/TimeScale/position = Vector2(506.667, 160)
+nodes/output/position = Vector2(693.333, 160)
+node_connections = [&"Movement", 0, &"Front", &"Movement", 1, &"Back", &"StunOneShot", 0, &"Movement", &"StunOneShot", 1, &"Stunned", &"TimeScale", 0, &"StunOneShot", &"output", 0, &"TimeScale"]
+
+[sub_resource type="Animation" id="Animation_fmqcq"]
+resource_name = "front"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteFolder/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteFolder/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 0.0698132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteFolder/ShoulderPad2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-22, -1), Vector2(-18, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteFolder/ShoulderPad2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0698132, -0.0698132]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteFolder/ShoulderPad1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(24, -19), Vector2(19, -23)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteFolder/ShoulderPad1:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0698132, -0.0698132]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteFolder/Body:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-3, 2), Vector2(-3, 5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpriteFolder/Body:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpriteFolder/Head:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(400, 200, 200, 200)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpriteFolder/ShoulderPad1:flip_h")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpriteFolder/ShoulderPad2:flip_h")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_eb2wq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteFolder/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteFolder/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteFolder/ShoulderPad2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteFolder/ShoulderPad2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteFolder/ShoulderPad1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19, -25)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteFolder/ShoulderPad1:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteFolder/Body:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3, 3)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpriteFolder/Body:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpriteFolder/Head:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(400, 200, 200, 200)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpriteFolder/ShoulderPad1:flip_h")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpriteFolder/ShoulderPad2:flip_h")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bx24n"]
+resource_name = "back"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteFolder/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteFolder/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 0.0698132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteFolder/ShoulderPad2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(22, -1), Vector2(18, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteFolder/ShoulderPad2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0698132, 0.0698132]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteFolder/ShoulderPad1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-24, -19), Vector2(-19, -23)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteFolder/ShoulderPad1:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 1.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0698132, 0.0698132]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteFolder/Body:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(3, 2), Vector2(3, 5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpriteFolder/Body:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpriteFolder/Head:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(400, 400, 200, 200)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SpriteFolder/ShoulderPad2:flip_h")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SpriteFolder/ShoulderPad1:flip_h")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gpin8"]
+resource_name = "stunned"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteFolder/Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(3.13834, 2.73208, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -17), Vector2(0, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteFolder/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(3.13834, 2.73208, 1),
+"update": 0,
+"values": [0.0, 0.20944, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteFolder/ShoulderPad2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5),
+"transitions": PackedFloat32Array(3, 3.5, 1),
+"update": 0,
+"values": [Vector2(-22, 0), Vector2(-22, 4), Vector2(-22, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteFolder/ShoulderPad1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5),
+"transitions": PackedFloat32Array(3, 3.5, 1),
+"update": 0,
+"values": [Vector2(19, -25), Vector2(19, -21), Vector2(19, -25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteFolder/Body:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5),
+"transitions": PackedFloat32Array(2, -3.13834, 1),
+"update": 0,
+"values": [Vector2(-3, 3), Vector2(-3, 8), Vector2(-3, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteFolder/Body:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpriteFolder/Head:texture:region")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(400, 200, 200, 200)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpriteFolder/ShoulderPad1:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SpriteFolder/ShoulderPad2:flip_h")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hv2gu"]
+_data = {
+"RESET": SubResource("Animation_eb2wq"),
+"back": SubResource("Animation_bx24n"),
+"front": SubResource("Animation_fmqcq"),
+"stunned": SubResource("Animation_gpin8")
+}
 
 [sub_resource type="Animation" id="Animation_yj808"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("SpriteFolder/ShoulderPad2:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,7 +643,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("SpriteFolder/ShoulderPad2:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,18 +659,19 @@ _data = {
 "hit_flash": SubResource("Animation_wn0sw")
 }
 
-[node name="BigBoss" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
+[node name="BigBoss" type="CharacterBody2D" node_paths=PackedStringArray("hitbox_component", "hurtbox_component", "health_component", "hit_flash_anim", "sprite", "anim_tree", "navigation_agent", "nav_timer", "area_of_sight", "line_of_sight")]
 collision_layer = 24
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_r4eec")
-pursuit_speed = 350.0
+pursuit_speed = 375.0
 when_to_attack = 3.0
 hitbox_component = NodePath("HitboxComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 health_component = NodePath("HealthComponent")
 hit_flash_anim = NodePath("HitFlashAnimationPlayer")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("SpriteFolder")
+anim_tree = NodePath("AnimationTree")
 navigation_agent = NodePath("NavigationAgent2D")
 nav_timer = NodePath("NavigationTimer")
 min_nav_time = 0.2
@@ -107,23 +697,54 @@ debug_path_custom_line_width = 2.0
 wait_time = 0.4
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_kx04d")
-position = Vector2(-1.93207, -3.62348)
-scale = Vector2(0.0611111, 0.0611112)
-texture = ExtResource("4_0daom")
-offset = Vector2(-1.11111, -38.8889)
+[node name="SpriteFolder" type="Sprite2D" parent="."]
+scale = Vector2(1.8, 1.8)
+
+[node name="Body" type="Sprite2D" parent="SpriteFolder"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_66eqv")
+position = Vector2(-3, 3)
+scale = Vector2(0.321615, 0.321615)
+texture = SubResource("AtlasTexture_oprkv")
+
+[node name="ShoulderPad1" type="Sprite2D" parent="SpriteFolder"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_66eqv")
+position = Vector2(19, -25)
+scale = Vector2(0.20323, 0.20323)
+texture = SubResource("AtlasTexture_3r0jn")
+
+[node name="Head" type="Sprite2D" parent="SpriteFolder"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_66eqv")
+position = Vector2(0, -21)
+scale = Vector2(0.20323, 0.20323)
+texture = SubResource("AtlasTexture_ywvx6")
+
+[node name="ShoulderPad2" type="Sprite2D" parent="SpriteFolder"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_66eqv")
+position = Vector2(-22, 0)
+scale = Vector2(0.20323, 0.20323)
+texture = SubResource("AtlasTexture_754ei")
+
+[node name="BombShadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.501961)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 59)
+scale = Vector2(2.08, 1.04)
+texture = SubResource("AtlasTexture_qv7cr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_xhipf")
 debug_color = Color(0.582521, 0.550979, 0, 0.42)
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("5_hf654")]
 position = Vector2(0, -15)
 health_bar = NodePath("ProgressBar")
-max_health = 1000
+max_health = 1250
 scale_health_bar = false
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthComponent"]
@@ -135,9 +756,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -66.0
-offset_top = -48.0
+offset_top = -73.0
 offset_right = 66.0
-offset_bottom = -29.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_yg47j")
@@ -151,7 +772,7 @@ hit_delay = 0.01
 single_hits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_qjmvo")
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("7_ips5l")]
@@ -163,7 +784,7 @@ hurt_knockback = 500.0
 knockback_type = "center"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, 12)
+position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_dkdxq")
 
 [node name="AreaOfSight" parent="." instance=ExtResource("8_cb4pa")]
@@ -175,13 +796,26 @@ radius = 2500.0
 [node name="WallDetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetection"]
-position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_ankdf")
 debug_color = Color(0.864132, 0.242405, 0.66078, 0.42)
 
 [node name="LineOfSight" parent="." instance=ExtResource("9_84m46")]
 collision_mask = 32
 max_target_distance = 1000.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_0pl6o")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/blend_amount = 0.0
+parameters/StunOneShot/active = false
+parameters/StunOneShot/internal_active = false
+parameters/StunOneShot/request = 0
+parameters/TimeScale/scale = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hv2gu")
+}
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

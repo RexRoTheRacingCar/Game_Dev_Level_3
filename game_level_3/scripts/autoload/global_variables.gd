@@ -62,6 +62,7 @@ signal portal_entered
 signal boss_portal_entered
 
 signal summon_enemies_for_boss
+signal kill_all_enemies
 
 signal room_changed
 signal room_cleared

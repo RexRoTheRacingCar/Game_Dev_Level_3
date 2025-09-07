@@ -31,9 +31,12 @@ func _ready():
 	randomize()
 	
 	var rand_value : float = randf()
-	var x : float = float(Global.rooms_cleared) - x_offset
-	boss_chance = ((x - 0) ** 3) / 1
-	boss_chance = clamp(boss_chance, 0.0, 0.8)
+	if Global.current_room_type != "boss":
+		var x : float = float(Global.rooms_cleared) + x_offset
+		boss_chance = ((x - 0) ** 3) / 1
+		boss_chance = clamp(boss_chance, 0.0, 0.8)
+	else:
+		rand_value = 100.0
 	
 	_portal_prep()
 	

@@ -8,6 +8,7 @@ func play_2d_sound(sound_to_play : AudioStream, AudioBus : StringName, global_po
 	new_sound.stream = sound_to_play
 	new_sound.set_bus(AudioBus)
 	new_sound.global_position = global_position
+	new_sound.autoplay = true
 	
 	if pitch_shift == true:
 		new_sound.pitch_scale = 1.0 + randf_range(0.1, -0.1)

@@ -18,6 +18,7 @@ var attack_timer : float = 0.0
 var timer : float = 0.0
 
 var double_time : bool = false
+var is_dead : bool = false
 
 enum BOSS_STATE {
 	PURSUIT,
@@ -38,11 +39,19 @@ const GLOWING_BULLET = preload("res://scenes/entity/bullets/glowing_bullet.tscn"
 const FLYING_BOMB = preload("res://scenes/entity/bullets/flying_bomb.tscn")
 const WARNING_OUTLINE = preload("res://scenes/entity/warning_outline.tscn")
 const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
-
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
-
 const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
+const DEATH_PULSE = preload("res://scenes/entity/secondaries/test_secondary.tscn")
 
+#Audio
+const BOMB_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_shoot.mp3")
+const BOSS_HIT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/boss_hit.mp3")
+const BOSS_BIG_SHOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/boss_big_shot.mp3")
+const BOSS_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/boss_shoot.mp3")
+const BOSS_TELEPORT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/mage_ability.mp3")
+const BOSS_CHARGE_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_charge.mp3")
+const BOSS_IMPACT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/brute_impact.mp3")
+const BOSS_DEATH_SFX = preload("res://assets/audio/diegetic_sfx/enemies/boss_death.mp3")
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _ready() -> void:
@@ -71,6 +80,14 @@ func _process(delta: float) -> void:
 					_boss_attack()
 				
 				_boss_navigate(delta)
+				
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
+				
+				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 100, 0.0, 4.0)
 			
 			#Boss charge at player
 			BOSS_STATE.CHARGING:
@@ -80,6 +97,9 @@ func _process(delta: float) -> void:
 					dir = global_position.direction_to(target_pos)
 					
 					wall_detection.monitoring = true
+					hurtbox_component.set_collision_layer_value(4, true)
+					
+					AudioManager.play_2d_sound(BOSS_CHARGE_SFX, "SFX", global_position, true)
 					
 					velocity = Vector2.ZERO
 					speed = 0.0
@@ -103,6 +123,15 @@ func _process(delta: float) -> void:
 				if counter > 8:
 					state = BOSS_STATE.PURSUIT
 					initial_attack = true
+					hurtbox_component.set_collision_layer_value(4, false)
+				
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
+				
+				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 100, 0.0, 4.0)
 			
 			#Boss is stunned after charge
 			BOSS_STATE.STUNNED:
@@ -112,8 +141,13 @@ func _process(delta: float) -> void:
 					
 					initial_attack = false
 					wall_detection.monitoring = false
+					hurtbox_component.set_collision_layer_value(4, false)
 					
+					AudioManager.play_2d_sound(BOSS_IMPACT_SFX, "SFX", global_position, true)
 					_dust_pulse(2.75)
+					
+					anim_tree["parameters/TimeScale/scale"] = 1.0
+					anim_tree["parameters/StunOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 				
 				speed = lerp(speed, target_speed, Global.weighted_lerp(8, delta))
 				velocity = Vector2(dir * speed)
@@ -143,6 +177,7 @@ func _process(delta: float) -> void:
 					attack_timer = 0
 					counter += 1
 					
+					AudioManager.play_2d_sound(BOSS_SHOOT_SFX, "SFX", global_position, true)
 					_dust_pulse(1.5)
 					
 					var player_distance : float = global_position.distance_to(Global.player_position) / 750
@@ -160,6 +195,14 @@ func _process(delta: float) -> void:
 					
 					attack_timer = 0.0
 					is_attacking = false
+				
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
+				
+				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 130, 0.0, 4.0)
 			
 			#Boss shoot in circle
 			BOSS_STATE.CIRCLE_SHOOT:
@@ -178,6 +221,8 @@ func _process(delta: float) -> void:
 				if attack_timer > 0.75:
 					attack_timer = 0
 					counter += 1
+					
+					AudioManager.play_2d_sound(BOSS_BIG_SHOT_SFX, "SFX", global_position, true)
 					_dust_pulse(2.25)
 					
 					for bullet in range(0, 18):
@@ -189,6 +234,14 @@ func _process(delta: float) -> void:
 					
 					attack_timer = 0.0
 					is_attacking = false
+					
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
+				
+				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 130, 0.0, 4.0)
 			
 			#Bombs shoot everywhere
 			BOSS_STATE.BOMB_SHOOT:
@@ -213,13 +266,23 @@ func _process(delta: float) -> void:
 						_burst_fire_bombs(Global.rand_nav_mesh_point(Global.global_map, 2, false))
 						_burst_fire_bombs(Global.player_position)
 						
+						anim_tree["parameters/TimeScale/scale"] = 4.0
+						anim_tree["parameters/StunOneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+						
 						await get_tree().create_timer(randf_range(0.15, 0.4), false).timeout
 					
 				#Charge at player, then reset
 				if counter > 2 and attack_timer > 0.75:
-					state = BOSS_STATE.CHARGING
+					attack_timer = 0
+					state = BOSS_STATE.TELEPORT
 					
 					initial_attack = true
+				
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
 				
 			BOSS_STATE.TELEPORT:
 				#Teleport to random position
@@ -234,13 +297,21 @@ func _process(delta: float) -> void:
 				_navigation_check(Global.player_position, min_nav_time, max_nav_time)
 				_boss_navigate(delta)
 				
-				if initial_attack == false and attack_timer > 5.0:
+				var check : bool = _check_player_position()
+				if check == false:
+					anim_tree["parameters/Movement/blend_amount"] = 0
+				else:
+					anim_tree["parameters/Movement/blend_amount"] = 1
+				
+				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 100, 0.0, 4.0)
+				
+				if initial_attack == false and attack_timer > 4.0:
 					state = BOSS_STATE.PURSUIT
 					
 					attack_timer = 0.0
 					is_attacking = false
 		
-		
+		#Movement
 		velocity.y /= 2
 		velocity += knockback_taken
 		knockback_taken = lerp(knockback_taken, Vector2.ZERO, Global.weighted_lerp(Global.knockback_ease, delta))
@@ -258,9 +329,12 @@ func _boss_attack():
 	var distance : float = global_position.distance_to(Global.player_position)
 	var select_rand_attack : float = randf()
 	
-	if distance < 250:
-		if select_rand_attack < 0.5:
+	if distance < 300:
+		if select_rand_attack < 0.33:
 			state = BOSS_STATE.CIRCLE_SHOOT
+		
+		elif select_rand_attack < 0.66:
+			state = BOSS_STATE.CHARGING
 		
 		else:
 			state = BOSS_STATE.TELEPORT
@@ -275,7 +349,7 @@ func _boss_attack():
 		else:
 			state = BOSS_STATE.BOMB_SHOOT
 	
-	if randf() < 0.25:
+	if randf() < 0.2:
 		Global.emit_signal("summon_enemies_for_boss")
 
 
@@ -319,6 +393,7 @@ func _burst_fire_bombs(target_position : Vector2):
 	
 	get_tree().root.get_node("/root/Game/").call_deferred("add_child", new_bomb)
 	
+	AudioManager.play_2d_sound(BOMB_SHOOT_SFX, "SFX", global_position, true)
 	_dust_pulse(1.75)
 
 
@@ -359,6 +434,8 @@ func _teleport():
 	
 	knockback_taken = Vector2.ZERO
 	
+	Global.emit_signal("summon_enemies_for_boss")
+	
 	var sprite_tween_2 = create_tween()
 	sprite_tween_2.tween_property(sprite, "modulate", Color(1, 1, 1), TWEEN_TIME / 2).from_current()
 
@@ -373,6 +450,7 @@ func _spawn_magic_explosion(pos : Vector2, damage : bool):
 	if damage == false:
 		new_explosion.hurtbox.set_collision_layer_value(2, false)
 		new_explosion.hurtbox.set_collision_layer_value(4, false)
+		new_explosion.spawn_audio = BOSS_TELEPORT_SFX
 	
 	return new_explosion
 
@@ -398,8 +476,10 @@ func _reset_boss_to_pursuit():
 func hit_signalled(hurtbox : HurtboxComponent):
 	super.hit_signalled(hurtbox)
 	
+	AudioManager.play_2d_sound(BOSS_HIT_SFX, "SFX", global_position, true)
+	
 	if health_component.health <= int(float(health_component.max_health) / 2) and double_time == false:
-		when_to_attack = 2.0
+		when_to_attack = 1.75
 		hurtbox_component.hurt_damage = 30
 		
 		Global.emit_signal("summon_enemies_for_boss")
@@ -407,12 +487,23 @@ func hit_signalled(hurtbox : HurtboxComponent):
 
 #---------------------------------------------------------------------------------------------------------------------------
 func no_health():
-	super.no_health()
-	queue_free()
+	if is_dead == false:
+		is_dead = true
+		super.no_health()
+		
+		_dust_pulse(2)
+		_dust_pulse(5)
+		_dust_pulse(11)
+		
+		AudioManager.play_2d_sound(BOSS_DEATH_SFX, "SFX", global_position, true)
+		Global.emit_signal("kill_all_enemies")
+		
+		queue_free()
 
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _on_wall_detection_body_entered(body):
 	if state == BOSS_STATE.CHARGING and body.is_in_group("blocked"):
+		attack_timer = 0.0
 		state = BOSS_STATE.STUNNED
 		initial_attack = true

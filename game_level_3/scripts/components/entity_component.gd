@@ -50,6 +50,7 @@ func _ready():
 	Global.active_enemy_array.append(self)
 	
 	Global.connect("reset_to_lobby", queue_free)
+	Global.connect("kill_all_enemies", no_health)
 	
 	can_navigate = false
 	current_agent_position = global_position
