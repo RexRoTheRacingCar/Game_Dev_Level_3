@@ -498,6 +498,8 @@ func no_health():
 		AudioManager.play_2d_sound(BOSS_DEATH_SFX, "SFX", global_position, true)
 		Global.emit_signal("kill_all_enemies")
 		
+		Global.gems += 10
+		
 		queue_free()
 
 

@@ -132,7 +132,7 @@ func _spawn_wave():
 		if loop_breaker == true: return
 		
 		#Wave spawn time variation
-		var generating_delay = (0.9 * (randf_range(0.1, 0.95) ** 2)) + 0.25
+		var generating_delay = 0.75
 		
 		var enemy_variance = randi_range(0, ENEMY_SCENE_LIST.room_array.size() - 3)
 		var enemy_array : Array = ENEMY_SCENE_LIST.room_array.duplicate()
@@ -163,5 +163,5 @@ func _spawn_wave():
 #---------------------------------------------------------------------------------------------------------------------------
 func _break_loop():
 	loop_breaker = true
-	await get_tree().process_frame
+	await get_tree().create_timer(1.0, false).timeout
 	loop_breaker = false
