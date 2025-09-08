@@ -33,7 +33,7 @@ func _ready():
 	var rand_value : float = randf()
 	if Global.current_room_type != "boss":
 		var x : float = float(Global.rooms_cleared) + x_offset
-		boss_chance = ((x - 4) ** 3) / 75
+		boss_chance = ((x - 3) ** 3) / 50
 		boss_chance = clamp(boss_chance, 0.0, 0.85)
 	else:
 		rand_value = 100.0

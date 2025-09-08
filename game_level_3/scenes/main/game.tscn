@@ -155,6 +155,7 @@ maximum_enemies = 5
 generate_waves = true
 
 [node name="RoomGenerator" parent="DungeonManager" instance=ExtResource("2_i5teo")]
+shop_chance = 0.45
 
 [node name="Player" parent="DungeonManager" instance=ExtResource("1_vr3do")]
 
