@@ -17,4 +17,5 @@ func _stop_the_fire():
 
 #---------------------------------------------------------------------------------------------------------------------------
 func _fire_audio():
-	AudioManager.play_2d_sound(FIRE_TRAP_SFX, "SFX", global_position, true)
+	if global_position.distance_to(Global.player_position) < 450:
+		AudioManager.play_2d_sound(FIRE_TRAP_SFX, "SFX", global_position, true)

@@ -43,7 +43,3 @@ func _process(delta):
 		MAX_WAVES.text = str("Current Max Waves : ", Global.current_max_waves)
 		POWER_MULT.text = str("Player PWR MULT : ", PlayerUpgradeStats.power_mult)
 		rooms_cleared.text = str("Rooms Cleared : ", Global.rooms_cleared)
-
-
-func _on_h_slider_value_changed(value):
-	PlayerUpgradeStats.power_mult = value

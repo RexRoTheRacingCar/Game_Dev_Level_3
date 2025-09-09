@@ -50,31 +50,6 @@ func _update_room_arrays():
 
 
 #---------------------------------------------------------------------------------------------------------------------------
-func generate_room():
-	randomize()
-	
-	if current_room != null:
-		current_room.queue_free()
-		current_room = null
-	
-	#Select a type of room based on a random float
-	var rand_room_type := randf()
-	
-	if rand_room_type <= shop_chance and Global.current_room_type != "shop" and Global.current_room_type != "lobby":
-		current_room = select_room(shop_room_array)
-		Global.current_room_type = "shop"
-	else:
-		current_room = select_room(fight_room_array)
-		Global.current_room_type = "fight"
-	
-	#Load room into the game and update Global Variables
-	add_child(current_room)
-	
-	current_room_mesh = current_room.room_nav_mesh
-	_update_global_var()
-
-
-#---------------------------------------------------------------------------------------------------------------------------
 func _update_global_var():
 	Global.global_map = current_room_mesh
 	Global.destructable_layer = current_room.destructable_tilemap
@@ -105,6 +80,32 @@ func load_boss_room():
 	
 	current_room = select_room(boss_room_array)
 	Global.current_room_type = "boss"
+	
+	#Load room into the game and update Global Variables
+	add_child(current_room)
+	
+	current_room_mesh = current_room.room_nav_mesh
+	_update_global_var()
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#Generate a new room (Fight / Shop Room)
+func generate_room():
+	randomize()
+	
+	if current_room != null:
+		current_room.queue_free()
+		current_room = null
+	
+	#Select a type of room based on a random float
+	var rand_room_type := randf()
+	
+	if rand_room_type <= shop_chance and Global.current_room_type != "shop" and Global.current_room_type != "lobby":
+		current_room = select_room(shop_room_array)
+		Global.current_room_type = "shop"
+	else:
+		current_room = select_room(fight_room_array)
+		Global.current_room_type = "fight"
 	
 	#Load room into the game and update Global Variables
 	add_child(current_room)

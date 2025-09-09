@@ -4,17 +4,21 @@ extends Node
 
 #---------------------------------------------------------------------------------------------------------------------------
 func play_2d_sound(sound_to_play : AudioStream, AudioBus : StringName, global_position : Vector2, pitch_shift : bool):
+	#Create Sound
 	var new_sound = AudioStreamPlayer2D.new()
 	new_sound.stream = sound_to_play
 	new_sound.set_bus(AudioBus)
 	new_sound.global_position = global_position
 	new_sound.autoplay = true
 	
+	#Pitch shift the audio
 	if pitch_shift == true:
 		new_sound.pitch_scale = 1.0 + randf_range(0.1, -0.1)
 	
+	#Add to scene tree
 	get_tree().root.add_child(new_sound)
 	
+	#Connect signal to delete audio node when audio is finished playing
 	new_sound.connect("finished", new_sound.queue_free)
 	
 	return new_sound

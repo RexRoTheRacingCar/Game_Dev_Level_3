@@ -62,15 +62,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Power Multiplier"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-max_value = 5.0
-step = 0.01
-value = 1.0
-
 [node name="RoomsCleared" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Rooms Cleared"
-
-[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

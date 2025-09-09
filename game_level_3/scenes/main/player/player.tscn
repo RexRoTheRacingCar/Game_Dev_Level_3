@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=3 uid="uid://biv2erpftkxlb"]
 
 [ext_resource type="Script" path="res://scripts/main/player/player.gd" id="1_wlkgh"]
-[ext_resource type="Resource" uid="uid://baw7lvm3snw2v" path="res://misc/resources/weapons/machine_gun.tres" id="3_acl6d"]
 [ext_resource type="PackedScene" uid="uid://b0l6em4pg4dha" path="res://scenes/main/player/secondary_controller.tscn" id="3_ctdu5"]
 [ext_resource type="PackedScene" uid="uid://c4xa4sn4p1kan" path="res://scenes/main/player/weapon.tscn" id="3_fvod0"]
 [ext_resource type="PackedScene" uid="uid://b048cf08scotb" path="res://scenes/components/health_component.tscn" id="3_hpa7o"]
+[ext_resource type="Resource" uid="uid://fyuhjs8leq0o" path="res://misc/resources/weapons/default_gun.tres" id="3_j8xeq"]
 [ext_resource type="PackedScene" uid="uid://dunjlie0dfpac" path="res://scenes/components/hitbox_component.tscn" id="4_yqhgr"]
 [ext_resource type="Resource" uid="uid://pmgh1c8hse5n" path="res://misc/resources/secondaries/pulse_secondary.tres" id="5_52k6h"]
 [ext_resource type="Texture2D" uid="uid://bistcwngkarhs" path="res://assets/art/entity/enemy_spritesheet.png" id="6_6dpal"]
@@ -465,7 +465,7 @@ P_FRICTION = 25000
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="WeaponController" parent="." instance=ExtResource("3_fvod0")]
-current_weapon = ExtResource("3_acl6d")
+current_weapon = ExtResource("3_j8xeq")
 
 [node name="SecondaryController" parent="." instance=ExtResource("3_ctdu5")]
 current_secondary = ExtResource("5_52k6h")

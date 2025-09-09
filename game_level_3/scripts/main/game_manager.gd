@@ -146,6 +146,10 @@ func _spawn_wave():
 		var max_possible_enemies : int = 3
 		var minimum_enemies : int = 1
 		
+		if Global.game_timer > 45.0:
+			max_possible_enemies = 4
+			minimum_enemies = 2
+		
 		for enemy in randi_range(minimum_enemies, max_possible_enemies):
 			var selected_enemy = enemy_array[randi_range(0, enemy_array.size() - 1)] #Select an enemy to spawn
 			var rand_postion = Global.rand_nav_mesh_point(ROOM_GENERATOR.current_room_mesh, 2, false) #Find random position

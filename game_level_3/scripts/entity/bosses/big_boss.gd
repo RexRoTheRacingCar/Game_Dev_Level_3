@@ -42,6 +42,7 @@ const EXPLOSION = preload("res://scenes/entity/secondaries/explosion.tscn")
 const SMALL_PULSE = preload("res://scenes/entity/particles/small_pulse.tscn")
 const TELEPORT_SCENE = preload("res://scenes/entity/particles/teleport_scene.tscn")
 const DEATH_PULSE = preload("res://scenes/entity/secondaries/test_secondary.tscn")
+const BOSS_DEFEAT_ANIMATION = preload("res://scenes/ui/boss_defeat_animation.tscn")
 
 #Audio
 const BOMB_SHOOT_SFX = preload("res://assets/audio/diegetic_sfx/enemies/bomber_shoot.mp3")
@@ -155,7 +156,7 @@ func _process(delta: float) -> void:
 				
 				attack_timer += delta
 				
-				if attack_timer > 1.5:
+				if attack_timer > 1.25:
 					state = BOSS_STATE.PURSUIT
 					
 					attack_timer = 0.0
@@ -308,7 +309,7 @@ func _process(delta: float) -> void:
 				
 				anim_tree["parameters/TimeScale/scale"] = clamp(speed / 100, 0.0, 4.0)
 				
-				if initial_attack == false and attack_timer > 4.0:
+				if initial_attack == false and attack_timer > 3.0:
 					state = BOSS_STATE.PURSUIT
 					
 					attack_timer = 0.0
@@ -487,7 +488,7 @@ func hit_signalled(hurtbox : HurtboxComponent):
 	
 	if double_time == false:
 		if health_component.health <= int(float(health_component.max_health) / 2):
-			when_to_attack = 1.75
+			when_to_attack = 1.25
 			hurtbox_component.hurt_damage = 30
 			
 			Global.emit_signal("summon_enemies_for_boss")
@@ -508,6 +509,8 @@ func no_health():
 		_dust_pulse(2)
 		_dust_pulse(5)
 		_dust_pulse(11)
+		
+		spawn_scene(BOSS_DEFEAT_ANIMATION, self.get_parent())
 		
 		AudioManager.play_2d_sound(BOSS_DEATH_SFX, "SFX", global_position, true)
 		Global.emit_signal("kill_all_enemies")
